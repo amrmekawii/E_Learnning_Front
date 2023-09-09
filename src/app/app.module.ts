@@ -25,6 +25,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
+import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { GlobalScreenComponent } from './Components/Admin/global-screen/global-s
     IntroComponent,
     HomeComponent,
     PopUpComponent,
-    GlobalScreenComponent
+    GlobalScreenComponent,
+    PopUpCangePassComponent
   ],
   imports: [
     BrowserModule,

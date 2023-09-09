@@ -3,17 +3,11 @@
     <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
         <mat-icon>menu</mat-icon>
     </button>
-    <span>ConcretePage.com</span>
-    <span class="toolbar-item-spacer"></span>
-    <button mat-icon-button matTooltip="Like">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Share">
-        <mat-icon>share</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Notifications">
-        <mat-icon>notifications</mat-icon>
-    </button>
+      <div class="logo mb-5 ">
+        <img src="assets/imgs/logo.png" alt="" height="50px"/>
+      </div>
+              <span class="toolbar-item-spacer"></span>
+  
     <button mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
         <mat-icon>account_circle</mat-icon>
     </button>
@@ -67,82 +61,8 @@
     </mat-sidenav>
     <mat-sidenav-content  style="color: black; background-color: antiquewhite;">
         
-        
-<section
-class="p-3 d-flex align-items-center justify-content-center flex-wrap w-auto container-fluid"
->
-<div class="card  xx p-3">
- 
-
-  <div class="card-body">   
-    <div class="d-flex justify-content-between">
-        <div class="card" style="width: 20rem;">
-            <img class="card-img-top" src="https://thumbs.dreamstime.com/z/traditional-classroom-interior-12152883.jpg?w=992" alt="Card image cap">
-            <div class="card-body d-flex justify-content-between  col" >
-              <h1 class="card-title ">User Mangment</h1>
-              <a href="#"  class="btn btn-outline-primary  ">  <mat-icon class="fs-3">arrow_right_alt</mat-icon>
-              </a>
-            </div>
-          </div>
-   
-    </div>
 
 
-  </div>
-</div>
-</section>
-<hr class="line" >
-
-<section
-class=" d-flex align-items-center justify-content-center flex-wrap w-auto container-fluid"
->
-<div class="card  ">
-<div class="card text-center">
-    <div class="card-header">My Info</div>
-    <div class="card-body">
-      <h5 class="card-title">Special Info section</h5>
-      <a href="#" class="btn btn-primary">Show</a>
-    </div>
-  </div>
-
-
-</div>
-</section>
-
-
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Modal 1</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Show a second modal and hide this one with the button below.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Open second modal</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Hide this modal and show the first with the button below.
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Open first modal</button>
 
     </mat-sidenav-content>
   </mat-sidenav-container>

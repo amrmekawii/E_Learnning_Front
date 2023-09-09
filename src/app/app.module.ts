@@ -22,6 +22,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { MatMenuModule } from '@angular/material/menu';
     RegisterComponent,
     LoginComponent,
     IntroComponent,
-    HomeComponent
+    HomeComponent,
+    PopUpComponent,
+    GlobalScreenComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { MatMenuModule } from '@angular/material/menu';
       positionClass: 'toast-bottom-right'
     }),
     MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
-    MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule
+    MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

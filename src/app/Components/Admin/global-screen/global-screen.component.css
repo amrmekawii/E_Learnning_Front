@@ -1,0 +1,16 @@
+.head {
+    background-color: #fae5c2; /* Light gray background */
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    
+    /* Change the font family */
+  }
+
+  /* Style for the heading text */
+  .head h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #333; /* Dark gray text color */
+  }

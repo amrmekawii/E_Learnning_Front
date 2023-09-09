@@ -22,7 +22,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
+import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
+import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { StudentMangmentComponent } from './Components/Admin/UserMangment/studen
     LoginComponent,
     IntroComponent,
     HomeComponent,
-    StudentMangmentComponent
+    PopUpComponent,
+    GlobalScreenComponent,
+    PopUpCangePassComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { StudentMangmentComponent } from './Components/Admin/UserMangment/studen
       positionClass: 'toast-bottom-right'
     }),
     MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
-    MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule
+    MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

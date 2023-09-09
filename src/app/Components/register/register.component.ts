@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnDestroy} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,8 +9,9 @@ import { RegisterDto } from 'src/app/TypeDto/Register';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit ,OnDestroy  {
  constructor(private toastr: ToastrService,private authService :AuthenticationServiceService, private router: Router, private formBuilder: FormBuilder ) { }
+ private video!: HTMLVideoElement;
 
   form1?: FormGroup;
 
@@ -40,6 +41,13 @@ export class RegisterComponent implements OnInit {
       userClassId: ['', Validators.required],
       userClassName: ['', Validators.required],
     })
+    this.video = document.querySelector('#video') as HTMLVideoElement;
+    this.video.play();
+
+
+  }
+  ngOnDestroy(): void {
+    this.video.pause();
   }
 
   // register(rgister: FormGroup): void {

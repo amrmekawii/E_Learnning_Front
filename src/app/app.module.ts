@@ -26,6 +26,7 @@ import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
+import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/po
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent
+    PopUpCangePassComponent,StudentMangmentComponent
   ],
   imports: [
     BrowserModule,
@@ -44,14 +45,14 @@ import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/po
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
     MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
     MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
-    MatDialogModule
+    FormsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

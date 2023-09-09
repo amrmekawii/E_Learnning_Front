@@ -26,6 +26,9 @@ export class GlobalScreenComponent implements OnInit {
         console.log(data);
         var _popup = this.dialog.open(PopUpComponent, {
           width: '60%',
+          exitAnimationDuration: '1000ms',
+          enterAnimationDuration:'1000ms',
+          disableClose: true,
           data: {
             title: data,
           }
@@ -45,6 +48,9 @@ Openpopup2() {
 
   var _popup = this.dialog.open(PopUpCangePassComponent, {
     width: '60%',
+    exitAnimationDuration: '1000ms',
+    enterAnimationDuration:'1000ms',
+    disableClose: true,
    
   });
 }

@@ -1,7 +1,7 @@
 export class RegisterDto {
   firstName:string ='';
   secondName:string = '';
-  lastttName: string ='';
+  lastttName?: string ='';
   password: string ='';
   phoneNumber: string ='';
   parentPhoneNumber: string='';

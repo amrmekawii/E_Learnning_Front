@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
+import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatMenuModule } from '@angular/material/menu';
     RegisterComponent,
     LoginComponent,
     IntroComponent,
-    HomeComponent
+    HomeComponent,
+    StudentMangmentComponent
   ],
   imports: [
     BrowserModule,

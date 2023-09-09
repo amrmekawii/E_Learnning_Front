@@ -36,6 +36,7 @@ export class GlobalScreenComponent implements OnInit {
       },
       error: (err) => {
         console.log(err)
+        
       }
 
     }

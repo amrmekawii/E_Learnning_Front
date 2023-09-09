@@ -30,7 +30,7 @@ export class AuthenticationServiceService {
 
   }
 
-  private readonly Base_URL = "http://localhost:5031/api/User/StudentRigster";
+  private readonly Base_URL = "http://localhost:7206/api/User/StudentRigster";
 
 
   public AddUser(newUser: RegisterDto): Observable<any> {
@@ -42,7 +42,7 @@ export class AuthenticationServiceService {
 
   public login(credentials: LoginDto): Observable<TokenDto> {
     return this.client
-      .post<TokenDto>('http://localhost:5031/api/User/StudentLogin', credentials)
+      .post<TokenDto>('https://localhost:7206/api/User/StudentLogin', credentials)
       .pipe(
         tap((tokenDto) => {
           this.isLoggedIn$.next(true);

@@ -23,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
@@ -32,6 +32,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-corsal/class-corsal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent
   ],
   imports: [
     BrowserModule,

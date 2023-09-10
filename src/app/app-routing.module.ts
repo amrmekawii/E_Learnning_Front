@@ -10,11 +10,12 @@ import { AuthLogGuard } from './Components/Guards/auth-log.guard';
 const routes: Routes = [
 
   { path: "intro", component: IntroComponent },
-  { path: "", component: IntroComponent },
+  { path: "", redirectTo:'intro'  ,pathMatch:'full'},
   { path: "Register", component: RegisterComponent },
   { path: "Login", component: LoginComponent },
   {path: "AdminHome" ,canActivate:[AuthLogGuard] , component:HomeComponent},
-  {path:"Lecture" , component: LuctureHComponent}
+  {path:"Lecture" , component: LuctureHComponent},
+  {path:'**' ,component:IntroComponent}
 ];
 
 @NgModule({

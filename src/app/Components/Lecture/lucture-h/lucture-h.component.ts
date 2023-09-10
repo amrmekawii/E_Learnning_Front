@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { GetAllClassService } from 'src/app/Services/Class/get-all-class.service';
-import { ClassAddDto } from 'src/app/TypeDto/ClassAddDto';
+import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
+import { LectuterAddDto } from 'src/app/TypeDto/ClassAddDto';
 @Component({
   selector: 'app-lucture-h',
   templateUrl: './lucture-h.component.html',
@@ -12,12 +12,12 @@ export class LuctureHComponent implements OnInit {
   constructor(
     private toastr: ToastrService,
     private _formBuilder: FormBuilder,
-    private Getcalsss: GetAllClassService,
-    private AddLec: GetAllClassService,
+    private Getcalsss: GetAllLectureService,
+    private AddLec: GetAllLectureService,
   ) { }
   ClassList!: any
   myFormGroup!: FormGroup;
-  ClasssDto = new ClassAddDto();
+  ClasssDto = new LectuterAddDto();
   isLinear = false;
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
@@ -55,7 +55,7 @@ export class LuctureHComponent implements OnInit {
     this.ClasssDto.header = data.value.Header
     this.ClasssDto.addvideos = data.value.vedio
     console.log(this.ClasssDto)
-    this.AddLec.AddClass(this.ClasssDto).subscribe({
+    this.AddLec.AddLec(this.ClasssDto).subscribe({
 
       next: (data) => {
         console.log(data);

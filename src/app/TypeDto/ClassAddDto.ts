@@ -1,5 +1,5 @@
 
-export class ClassAddDto {
+export class LectuterAddDto {
     classid?:number ;
     header?:String ;
     quizid?: number;

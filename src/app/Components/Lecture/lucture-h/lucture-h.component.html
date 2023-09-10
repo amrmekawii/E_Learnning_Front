@@ -1,0 +1,91 @@
+<div class="p">
+    <div class="progress-bar "></div>
+
+  <mat-expansion-panel
+    style="
+      border-style: outset;
+      border-radius: 20px;
+      width: 80%;
+      border-color: rgb(255, 179, 0);
+    "
+  >
+    <mat-expansion-panel-header>
+      <p>Add Lecture</p>
+    </mat-expansion-panel-header>
+
+   
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup" label="Select Class">
+            <form [formGroup]="firstFormGroup">
+              <mat-form-field>
+                <mat-label>Select Class</mat-label>
+                <mat-select formControlName="ClassId">
+                  <mat-option *ngFor="let class of ClassList" [value]="class.id">{{ class.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button [disabled]="!firstFormGroup.valid" mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+        
+      
+        <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field>
+              <mat-label>Name Lecture</mat-label>
+              <input matInput formControlName="Header" placeholder="Name For This Lecture" required minlength="5">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+           <mat-step  label="Links Video">
+            <form [formGroup]="myFormGroup">
+
+             
+
+                    <div formArrayName="addvideos">
+                      <div *ngFor="let video of addvideos.controls; let i = index">
+                        <div [formGroupName]="i">
+                          <mat-form-field>
+                            <input matInput formControlName="link" placeholder="Video Link" required>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <input matInput formControlName="partHeader" placeholder="Part Header" required>
+                          </mat-form-field>
+                          <mat-form-field>
+                            <input matInput formControlName="number" type="number" placeholder="Part Number" required>
+                          </mat-form-field>
+                          <button mat-icon-button (click)="removeVideo(i)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Video</button>
+        </form>
+
+            <div>
+              <button mat-button matStepperPrevious >Back</button>
+              <button [disabled]="addvideos.controls.length==0 || !myFormGroup.valid"  mat-button matStepperNext >Next</button>
+            </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel (click)="print()">Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="print()" >Add Lecture</button>
+          </div>
+        </mat-step>
+      </mat-stepper>
+      
+  </mat-expansion-panel>
+
+</div>

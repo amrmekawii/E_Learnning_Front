@@ -27,7 +27,11 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
-
+import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +41,7 @@ import { StudentMangmentComponent } from './Components/Admin/UserMangment/studen
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent,StudentMangmentComponent
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,11 @@ import { StudentMangmentComponent } from './Components/Admin/UserMangment/studen
     MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
     FormsModule,
     MatDialogModule,
+    MatButtonModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

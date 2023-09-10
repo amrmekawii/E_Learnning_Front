@@ -4,6 +4,8 @@ import { IntroComponent } from './Components/intro/intro.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { HomeComponent } from './Components/Admin/Home/home/home.component';
+import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
+import { AuthLogGuard } from './Components/Guards/auth-log.guard';
 
 const routes: Routes = [
 
@@ -11,7 +13,8 @@ const routes: Routes = [
   { path: "", component: IntroComponent },
   { path: "Register", component: RegisterComponent },
   { path: "Login", component: LoginComponent },
-  {path: "AdminHome" , component:HomeComponent}
+  {path: "AdminHome" ,canActivate:[AuthLogGuard] , component:HomeComponent},
+  {path:"Lecture" , component: LuctureHComponent}
 ];
 
 @NgModule({

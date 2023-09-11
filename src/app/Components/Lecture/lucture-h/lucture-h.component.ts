@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
-import { LectuterAddDto } from 'src/app/TypeDto/ClassAddDto';
+import { SharedService } from 'src/app/Services/Shared/shared.service';
+import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
+import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
+import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
 @Component({
   selector: 'app-lucture-h',
   templateUrl: './lucture-h.component.html',
-  styleUrls: ['./lucture-h.component.css']
+  styleUrls: ['./lucture-h.component.css'],
 })
 export class LuctureHComponent implements OnInit {
   constructor(
@@ -14,11 +18,20 @@ export class LuctureHComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private Getcalsss: GetAllLectureService,
     private AddLec: GetAllLectureService,
+    private router: Router,
+    private sharedService: SharedService,
+
   ) { }
+
   ClassList!: any
   myFormGroup!: FormGroup;
   ClasssDto = new LectuterAddDto();
   isLinear = false;
+  ClassLecId: GetLectByClassIdDto[] = []
+  ClassNameHeader: any
+  EditOrDeatails   = new EditOrDetailsDto()
+  FiristId:any
+
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
   });
@@ -31,24 +44,64 @@ export class LuctureHComponent implements OnInit {
     vedio: [[], Validators.required]
   });
 
-  ngOnInit(): void {
+
+  /////////////////////////////////////////////OninIt
+  ngOnInit() {
     this.Getcalsss.GetAllClass().subscribe({
       next: (data) => {
         this.ClassList = data
+        console.log(this.ClassList[0].id)
+
+        this.FiristId = this.ClassList[0].id;
+        this.Getcalsss.GetLecByClassId(this.ClassList[0].id).subscribe({
+          next: (data) => {
+            console.log(data)
+              this.ClassLecId = data as GetLectByClassIdDto[]
+              console.log(this.ClassLecId)
+              this.ClassNameHeader = this.ClassLecId[0]["className"]
+          },
+          error: (err) => {
+            console.log(err);
+          }
+        })
       },
       error: (err) => {
         console.log(err)
       }
     })
-    this.myFormGroup = this._formBuilder.group({
+    this.myFormGroup =  this._formBuilder.group({
       addvideos: this._formBuilder.array([])
-    });
-    
+    })
   }
 
 
-  get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
+  ////////////////////////////////////////////FireWhenSelectClass
+  onMyVariableChange(ClassID: number) {
+    this,this.FiristId=ClassID
+    console.log('myVariable changed in the child component:', ClassID);
+    this.Getcalsss.GetLecByClassId(ClassID).subscribe({
+      next: (data) => {
+        console.log(data)
+        if (data != null) {
+          this.ClassLecId = data as GetLectByClassIdDto[]
+          console.log(this.ClassLecId)
+          this.ClassNameHeader = this.ClassLecId[0]["className"]
+        } else {
+          this.toastr.warning("This Class (" + ClassID + ") Has No Data")
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 
+
+
+
+
+
+  /////////////////////ForAddLect2
   AddLecture(data: any) {
     console.log(data.value)
     this.ClasssDto.classid = data.value.ClassId
@@ -62,14 +115,14 @@ export class LuctureHComponent implements OnInit {
         this.toastr.success("Done", "success Added")
 
       },
-      error: (err) => {      
-          console.log(err)
+      error: (err) => {
+        console.log(err)
         this.toastr.error(err.error)
 
       },
     })
   }
-
+  /////////////////////ForAddLect1
   print() {
     console.log(this.addvideos.controls.length)
     console.log(this.myFormGroup.get('addvideos')?.value)
@@ -78,12 +131,28 @@ export class LuctureHComponent implements OnInit {
     this.LastForm.value.ClassId = this.firstFormGroup.value.ClassId
     this.LastForm.value.Header = this.secondFormGroup.value.Header
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value
-
     this.AddLecture(this.LastForm);
   }
 
 
+    /////////////////////ForEditOrDetails
+  EditOrDetails(LecId:any ,Classid:any ,Header:any ,quizid:any ,assid:any){
+this.EditOrDeatails.lectureId =LecId
+this.EditOrDeatails.classId =Classid
+this.EditOrDeatails.header =Header
+this.EditOrDeatails.quizId =quizid
+this.EditOrDeatails.assignmentId =assid
+console.log(this.EditOrDeatails)
+this.sharedService.setObject(this.EditOrDeatails);
 
+this.router.navigate(['EditOrDetailsLecture']);
+
+
+
+  }
+
+
+  /////////////////CallWhenAddVedioInList
   addVideo() {
     const videoFormGroup = this._formBuilder.group({
       link: ['', Validators.required],
@@ -95,6 +164,9 @@ export class LuctureHComponent implements OnInit {
     }
   }
 
+  get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
+
+  /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
     this.addvideos.removeAt(index);
   }

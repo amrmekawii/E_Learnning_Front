@@ -1,0 +1,27 @@
+
+<header class="head">
+    <p>lectureName   </p>
+    <h2>{{StudAud.lectureName}}
+    </h2>
+  </header>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>userName</th>
+          <th>start</th>
+          <th>END</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lecture of StudAud.userLectureAttendances">
+          <td>{{ lecture.userName }}</td>
+          <td>{{ lecture.start}}</td>
+          <td>{{ lecture.end  }}</td>
+       
+        </tr>
+      </tbody>
+     
+    </table>
+  </div>
+  

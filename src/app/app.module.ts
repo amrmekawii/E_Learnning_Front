@@ -33,6 +33,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-corsal/class-corsal.component';
+import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
+import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
+import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,7 @@ import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-cor
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent
   ],
   imports: [
     BrowserModule,

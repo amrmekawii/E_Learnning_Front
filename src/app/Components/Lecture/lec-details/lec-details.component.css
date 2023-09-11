@@ -1,0 +1,10 @@
+
+.container {
+ 
+    border: 1px solid #dda427;
+    border-radius: 5px;
+    box-shadow: 0 0 31px rgba(0, 0, 0, 0.2);
+    background-color: #cfcccc;
+    margin-top: 10px;
+  }
+  

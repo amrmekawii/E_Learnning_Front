@@ -1,4 +1,4 @@
-import { Component,ViewChild ,OnInit} from '@angular/core';
+import { Component,ViewChild ,OnInit, Output, EventEmitter} from '@angular/core';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 
 @Component({
@@ -12,13 +12,22 @@ export class ClassCorsalComponent  implements OnInit  {
   isFullyScrolledLeft: boolean = false
   ClassList!: any
 
+
+@Output() Task =new EventEmitter<number>()
+
+SendId(id:number){
+  this.Task.emit(id)
+  console.log(id)
+}
+
+
 constructor(    private Getcalsss: GetAllLectureService  ){}
 
 ngOnInit(): void {
   this.Getcalsss.GetAllClass().subscribe({
     next: (data) => {
       this.ClassList = data
-      console.log(   this.ClassList[0].name)
+      console.log(   this.ClassList[0])
 
     },
     error: (err) => {

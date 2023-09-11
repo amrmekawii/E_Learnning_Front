@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #fff9b9   ;
+    background-color: #a19a50   ;
     margin-top: 15px;
 
 }
@@ -26,7 +26,6 @@
     position: absolute;
     padding: 16px;
     height: 100%;
-    background-color: rgb(208, 208, 208);
     z-index: 5;
     width: 50px;
 }
@@ -51,15 +50,16 @@
     border-radius: 50%;
     width: 38px;
     height: 38px;
-    background-color: rgba(189, 168, 4, 0.628);
+    background-color: rgba(205, 181, 4, 0.628);
     transition: box-shadow 0.2s ease;
-    
+
 }
 
 .stay-filter .main-content .arrow-container .arrow:hover {
     transform: scale(1.09);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    
+    border: 3px solid #ff0000;
+
 }
 
 .stay-filter .main-content .filter-container {
@@ -92,6 +92,7 @@
     margin: 5px;
     color: #ffffff;
     border: 2px solid #875244;
+    
 
 }
 
@@ -102,12 +103,15 @@
     
 }
 
-.stay-filter .main-content .filter-container > *:hover:not(:last-child) {
-    color: #ff0000;
+.stay-filter .main-content .filter-container > *:hover {
+    color: rgb(255, 191, 0);
+    background-color: rgb(171, 20, 50);
 }
 
-.stay-filter .main-content .filter-container > *:hover:not(:last-child) img {
+
+.stay-filter .main-content .filter-container > *:hover img {
     opacity: 1;
+    
 }
 
 .stay-filter .main-content .filter-btn {

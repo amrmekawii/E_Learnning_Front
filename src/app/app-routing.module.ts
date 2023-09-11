@@ -6,16 +6,26 @@ import { RegisterComponent } from './Components/register/register.component';
 import { HomeComponent } from './Components/Admin/Home/home/home.component';
 import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
 import { AuthLogGuard } from './Components/Guards/auth-log.guard';
+import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
+import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
+import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 
 const routes: Routes = [
 
-  { path: "intro", component: IntroComponent },
-  { path: "", redirectTo:'intro'  ,pathMatch:'full'},
-  { path: "Register", component: RegisterComponent },
-  { path: "Login", component: LoginComponent },
-  {path: "AdminHome" ,canActivate:[AuthLogGuard] , component:HomeComponent},
-  {path:"Lecture" , component: LuctureHComponent},
-  {path:'**' ,component:IntroComponent}
+  { path: 'intro', component: IntroComponent },
+  { path: '', redirectTo: 'intro', pathMatch: 'full' },
+  { path: 'Register', component: RegisterComponent },
+  { path: 'Login', component: LoginComponent },
+  { path: 'AdminHome', canActivate: [AuthLogGuard], component: HomeComponent },
+  { path: 'Lecture', component: LuctureHComponent },
+  { path:'EditOrDetailsLecture', component:LecDetailsComponent,
+children:[
+  { path:'ChooseOption', component:ChooseOptionComponent},
+    {path:'ShowAudance/:id' ,component:LecAudeanceComponent}
+ 
+
+]},
+
 ];
 
 @NgModule({

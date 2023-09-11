@@ -1,3 +1,15 @@
+
+<mat-toolbar color="dark">
+
+    <div class="logo mb-5 ">
+      <img src="assets/imgs/logo.png" alt="" height="50px"/>
+    </div>
+            <span class="toolbar-item-spacer"></span>
+
+  
+
+</mat-toolbar>
+
 <div class="p">
     <div class="progress-bar "></div>
 
@@ -90,4 +102,32 @@
 
 </div>
 
-<app-class-corsal></app-class-corsal>
+<app-class-corsal (Task)="onMyVariableChange($event)"></app-class-corsal>
+
+<header class="head">
+  <h2>{{ClassNameHeader}}</h2>
+</header>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Lecture ID</th>
+        <th>Class Name</th>
+        <th>Header</th>
+        <th class="">Edit / Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lecture of ClassLecId">
+        <td>{{ lecture.lectureId }}</td>
+        <td>{{ lecture.className }}</td>
+        <td>{{ lecture.header }}</td>
+        <td class="btncolr">
+          <a class="btn btn-outline-warning"  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid)">Edit /Details</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

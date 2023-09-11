@@ -7,7 +7,7 @@
             </div>
         </div>
         <div #elFilter class="filter-container   mx=auto">
-            <div  *ngFor="let filter of ClassList">
+            <div  *ngFor="let filter of ClassList"  (click)="SendId(filter.id)" >
                 <span>{{ filter.name}}</span>
             </div>
 

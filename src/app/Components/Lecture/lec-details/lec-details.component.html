@@ -1,0 +1,66 @@
+
+<mat-toolbar color="dark">
+
+    <div class="logo mb-5 ">
+      <img src="assets/imgs/logo.png" alt="" height="50px"/>
+    </div>
+            <span class="toolbar-item-spacer"></span>
+
+  
+
+</mat-toolbar>
+
+<div class="container">
+    <button (click)="toggleEdit()" class="btn btn-primary mb-3">
+      {{ editMode ? 'Stop Editing' : 'Edit' }}
+    </button>
+    <form [formGroup]="editOrDetailsForm">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="lectureId" class="label">Lecture ID:</label>
+            <input type="number" id="lectureId" formControlName="lectureId" class="form-control" [readonly]="!editMode" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="classId" class="label">Class ID:</label>
+            <input type="number" id="classId" formControlName="classId" class="form-control" [readonly]="!editMode" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="header" class="label">Header:</label>
+            <input type="text" id="header" formControlName="header" class="form-control" [readonly]="!editMode" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="quizId" class="label">Quiz ID:</label>
+            <input type="number" id="quizId" formControlName="quizId" class="form-control" [readonly]="!editMode" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="assignmentId" class="label">Assignment ID:</label>
+            <input type="number" id="assignmentId" formControlName="assignmentId" class="form-control" [readonly]="!editMode" />
+          </div>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-12">
+          <button *ngIf="editMode" (click)="updateData()" class="btn btn-success">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+
+  <app-choose-option [IdPram]="IdAud"> </app-choose-option>

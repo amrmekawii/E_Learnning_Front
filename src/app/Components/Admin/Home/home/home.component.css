@@ -8,6 +8,10 @@
 }  
 .app-sidenav {
     width: 230px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(224, 127, 57);
+    border-left: #d69162;
+    border: solid;
 }
 .app-sidenav-content {
     display: flex;

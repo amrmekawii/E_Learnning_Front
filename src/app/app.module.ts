@@ -32,6 +32,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -56,7 +59,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
     MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
     FormsModule,
-    MatDialogModule,MatFormFieldModule, MatCheckboxModule, MatSelectModule,MatInputModule ,MatRadioModule
+    MatDialogModule,MatFormFieldModule, MatCheckboxModule, MatSelectModule,MatInputModule ,MatRadioModule,NgbPaginationModule
+    ,NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

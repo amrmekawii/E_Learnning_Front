@@ -27,6 +27,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -36,7 +40,7 @@ import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-cor
 import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
 import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
-@NgModule({
+@NgModule({ 
   declarations: [
     AppComponent,
     RegisterComponent,
@@ -60,8 +64,9 @@ import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-aude
     MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
     MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
     FormsModule,
-    MatDialogModule,
-    MatButtonModule,
+    MatDialogModule,MatFormFieldModule, MatCheckboxModule, MatSelectModule,MatInputModule ,MatRadioModule,NgbPaginationModule
+    ,NgbPaginationModule,
+    
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,

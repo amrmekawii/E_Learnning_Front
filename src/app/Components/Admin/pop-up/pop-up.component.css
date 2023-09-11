@@ -11,3 +11,20 @@
     width: 300px;
     height: 40px;
   }
+
+  .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  /* Style adjustments for the dialog content if needed */
+  mat-dialog-title,
+  mat-dialog-content,
+  mat-dialog-actions {
+    text-align: center; /* Center-align the content */
+    margin: 16px; /* Add some spacing around the content */
+  }
+  

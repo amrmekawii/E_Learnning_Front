@@ -22,19 +22,21 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { PopUpComponent } from './Components/Admin/pop-up/pop-up.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-corsal/class-corsal.component';
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -44,7 +46,7 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent,StudentMangmentComponent
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,12 @@ import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap'
     MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
     FormsModule,
     MatDialogModule,MatFormFieldModule, MatCheckboxModule, MatSelectModule,MatInputModule ,MatRadioModule,NgbPaginationModule
-    ,NgbPaginationModule
+    ,NgbPaginationModule,
+    
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

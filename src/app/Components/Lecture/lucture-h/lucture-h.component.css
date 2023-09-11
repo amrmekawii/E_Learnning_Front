@@ -1,0 +1,41 @@
+.progress-bar {
+    background-color: #ffcd06;
+    height: 4px;
+    width: 78%;
+    animation: grow 10s linear infinite;
+    transform-origin: left;
+  }
+  @keyframes grow {
+    0% {
+      transform: scaleX(0);
+    }
+  }
+  .p{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffcd06;
+    padding: 20px   ;
+    font-weight: 900;
+    font-size: large;
+    color: rgb(71, 71, 71);
+    border-bottom-right-radius: 30%;
+  border-bottom-left-radius: 30%;
+
+  }
+
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+  

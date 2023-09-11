@@ -19,9 +19,7 @@
     align-items: center;
     justify-content: center;
 }
-.xx {
-    background: linear-gradient(to bottom, hwb(226 73% 0%) 0%, #ffd4b8 100%);
-  }
+
   .line{
     border: 2px solid rgb(5, 2, 2);
 

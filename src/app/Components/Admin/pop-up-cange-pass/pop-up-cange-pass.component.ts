@@ -21,12 +21,12 @@ export class PopUpCangePassComponent  implements OnInit{
     
       this.UserDataPop =  this.auth.UserData
       console.log(this.UserDataPop)
-      this.createForm();
+      this.createForm(this.UserDataPop.Id);
   }
   onSubmit() {
     if (this.changePassForm.valid) {
       const formData = this.changePassForm.value as ChangePassDto;
-      formData.Id =this.UserDataPop.Id;
+      // formData.Id =this.UserDataPop.Id;
       console.log(formData)
 this.CangePass.UpUser(formData).subscribe({
   next: (data) => {
@@ -50,9 +50,9 @@ this.CangePass.UpUser(formData).subscribe({
     this.ref.close('Closed using function');
   }
   
-  createForm() {
+  createForm(id:string) {
     this.changePassForm = this.fb.group({
-      Id: [''],
+      Id: [id],
       OldPassword: ['', Validators.required],
       NewPassword: ['', Validators.required]
     });

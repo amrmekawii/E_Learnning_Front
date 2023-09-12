@@ -12,19 +12,19 @@
   }
   
   .left {
-    background-color: #6e8143;
+    background-color: #874f1c;
     color: #fff;
   }
   
   .right {
-    background-color: #28a745;
+    background-color: #a76828;
     color: #fff;
   }
   
   .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff0707;
+    background-color: #e19e23;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;

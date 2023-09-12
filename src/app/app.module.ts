@@ -40,6 +40,9 @@ import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-cor
 import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
 import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
+import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({ 
   declarations: [
     AppComponent,
@@ -49,7 +52,7 @@ import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-aude
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +73,8 @@ import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-aude
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

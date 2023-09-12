@@ -10,6 +10,7 @@ import { StudentMangmentComponent } from './Components/Admin/UserMangment/studen
 import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
 import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
+import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 
 const routes: Routes = [
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path:'EditOrDetailsLecture', component:LecDetailsComponent,
 children:[
   { path:'ChooseOption', component:ChooseOptionComponent},
-    {path:'ShowAudance/:id' ,component:LecAudeanceComponent}
+    {path:'ShowAudance/:id' ,component:LecAudeanceComponent},
+    {path:'AddUserAcces' ,component:AddUserAccessComponent}
  
 
 ]},

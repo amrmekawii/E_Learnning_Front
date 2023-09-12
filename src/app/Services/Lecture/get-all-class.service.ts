@@ -5,6 +5,10 @@ import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
 import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
 import { userLectureAttendancesDto } from 'src/app/TypeDto/StudentAudeanceDto';
+import { AddUserAccessDto } from 'src/app/TypeDto/AddUserAccessDto';
+import { ClassActive } from 'src/app/TypeDto/ClassIdActive';
+import { UserInClassDto } from 'src/app/TypeDto/GetStudents';
+import { Data } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,35 +20,49 @@ export class GetAllLectureService {
   private readonly Base_URL2 = "https://localhost:7206/api/Lecture/addLecture";
   private readonly Base_URL3 = "https://localhost:7206/api/Lecture/GetLectureList/";
   private readonly Base_URL4 = "https://localhost:7206/api/Lecture/GetLectureAttendance/";
+  private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
+  private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
 
-  public  GetAllClass(): Observable<ClassAllDto> {
+  public GetAllClass(): Observable<ClassAllDto> {
 
     return this.client.get(this.Base_URL);
 
   }
 
 
-  public  AddLec(Object: LectuterAddDto): Observable<any> {
+  public AddLec(Object: LectuterAddDto): Observable<any> {
     console.log(Object)
-    return this.client.post(this.Base_URL2,Object);
+    return this.client.post(this.Base_URL2, Object);
 
   }
 
-  public GetLecByClassId(id:number): Observable<GetLectByClassIdDto>{
+  public GetLecByClassId(id: number): Observable<GetLectByClassIdDto> {
 
-    return this.client.get(this.Base_URL3+id);
-
-  }
-
-
-
-
-  public userAttendances(id:number): Observable<any>{
-
-    return this.client.get(this.Base_URL4+id);
+    return this.client.get(this.Base_URL3 + id);
 
   }
 
+
+
+
+  public userAttendances(id: number): Observable<any> {
+
+    return this.client.get(this.Base_URL4 + id);
+
+  }
+
+  public UserAddAccess(object: AddUserAccessDto[]): Observable<any> {
+
+    return this.client.post(this.Base_URL5, object);
+
+  }
+
+  public UserActive(object: ClassActive): Observable< UserInClassDto[]> {
+    console.log(object);
+
+    return this.client.post<UserInClassDto[]>(this.Base_URL6, object);
+
+  }
 
 
 }

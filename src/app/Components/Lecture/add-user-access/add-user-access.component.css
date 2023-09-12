@@ -1,0 +1,45 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  .table-title {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333; /* You can adjust the color as needed */
+  }
+  
+  .table-title h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .table-title p {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+.center-button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .green-button {
+    background-color: green;
+    color: white; 
+    width: 60%;
+    height: 60px;
+    margin: 10px;
+    font-size: xx-large;
+  }
+  

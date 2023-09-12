@@ -1,7 +1,7 @@
 
-<header class="head">
+<header class="head" *ngIf="Headershow">
     <p>lectureName   </p>
-    <h2>{{StudAud.lectureName}}
+    <h2 >{{StudAud.lectureName}}
     </h2>
   </header>
   <div class="table-container">
@@ -13,7 +13,7 @@
           <th>END</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="Headershow">
         <tr *ngFor="let lecture of StudAud.userLectureAttendances">
           <td>{{ lecture.userName }}</td>
           <td>{{ lecture.start}}</td>

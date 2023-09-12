@@ -115,9 +115,9 @@ style="
   </mat-form-field>
   
   
-  <table class="table table-hover table-striped">
-    <thead>
-      <tr>
+  <table class="table table-hover ">
+    <thead class="thead-dark">
+      <tr >
         <th>ID</th>
         <th>Name</th>
       </tr>
@@ -129,4 +129,80 @@ style="
       </tr>
     </tbody>
   </table>
+</div>
+
+
+<div class="Container-fluid" style="margin-top: 10%;">
+  <h3>Listing Invoice</h3>
+  <mat-form-field class="example-full-width white " style="width: 100%;">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchText">
+  </mat-form-field>
+  <div class="card-body">
+
+      <table datatable  class="table table-bordered">
+          <thead class="bg-dark  text-white" >
+              <tr>
+                  <td >Invoice No</td>
+                  <td>Customer</td>
+                  <td>Remarks</td>
+                  <td>Total</td>
+                  <td>Tax</td>
+                  <td>NetTotal</td>
+                  <td>Action</td>
+              </tr>
+          </thead>
+          <tbody>
+<tr >
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td style="width: 30%">
+<a class="btn btn-primary">Edit</a> | 
+<a class="btn btn-danger" >Delete</a> |
+<a class="btn btn-success">Print</a> |
+<a class="btn btn-success" >Download</a>
+  </td>
+
+</tr>
+<tr >
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td style="width: 30%">
+<a class="btn btn-primary">Edit</a> | 
+<a class="btn btn-danger" >Delete</a> |
+<a class="btn btn-success">Print</a> |
+<a class="btn btn-success" >Download</a>
+  </td>
+
+</tr>
+<tr >
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td>asdsa</td>
+  <td style="width: 30%">
+<a class="btn btn-primary">Edit</a> | 
+<a class="btn btn-danger" >Delete</a> |
+<a class="btn btn-success">Print</a> |
+<a class="btn btn-success" >Download</a>
+  </td>
+
+</tr>
+
+          </tbody>
+
+      </table>
+
+  </div>
+
 </div>

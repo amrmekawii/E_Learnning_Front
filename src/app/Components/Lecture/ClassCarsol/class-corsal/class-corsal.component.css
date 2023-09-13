@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #a19a50   ;
+    background-color: #e9e8e2   ;
     margin-top: 15px;
 
 }
@@ -50,7 +50,7 @@
     border-radius: 50%;
     width: 38px;
     height: 38px;
-    background-color: rgba(205, 181, 4, 0.628);
+    background-color: rgba(255, 162, 0, 0.628);
     transition: box-shadow 0.2s ease;
 
 }

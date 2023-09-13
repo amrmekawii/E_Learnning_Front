@@ -1,12 +1,23 @@
 <div class="container">
     <div class="split left">
-      <h1>Get Lecture Attendance</h1>
-      <a [routerLink]="['/EditOrDetailsLecture/ShowAudance', IdPram]" class="btn">Get</a>
+      <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">            <h1>Get Lecture Attendance</h1>
+          </div>
+        <div class="card-body  split">
+          <a [routerLink]="['/EditOrDetailsLecture/ShowAudance', IdPram]" class="btn">Get</a>
+        </div>
+      </div>
     </div>
     <div class="split right">
-      <h1>Add Access To User</h1>
-      <a href="#" class="btn">Add Now</a>
+      <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">      <h1>Add Access To User</h1>
+          </div>
+        <div class="card-body split">
+          <a routerLink="/EditOrDetailsLecture/AddUserAcces" class="btn">Add Now</a>
+        </div>
+      </div>
     </div>
   </div>
+ 
   <router-outlet></router-outlet>
   

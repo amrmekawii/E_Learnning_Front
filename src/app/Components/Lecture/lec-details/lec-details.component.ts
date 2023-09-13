@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AssighmentService } from 'src/app/Services/Assighment/assighment.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
+import { AssignmentDto } from 'src/app/TypeDto/AssighmentAllDto';
 import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
 
 @Component({
@@ -10,55 +12,59 @@ import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
   styleUrls: ['./lec-details.component.css']
 })
 export class LecDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute ,private sharedService: SharedService,private fb: FormBuilder) {}
+  constructor(private route: ActivatedRoute, private sharedService: SharedService, private fb: FormBuilder, private asighm: AssighmentService) { }
   receivedObject!: EditOrDetailsDto;
+  receivedObject2!: any;
 
+  editOrDetailsForm!: FormGroup;
+  isReadOnly = true; // Initially, the form is in read-only mode
+  editMode = false; // Indicates whether we're in edit mode or not
+  IdAud?: number
+  AllAssighment: AssignmentDto[] = []
+  ngOnInit() {
+    // Create the form controls
+    this.editOrDetailsForm = this.fb.group({
+      lectureId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
+      classId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
+      header: [{ value: '', disabled: this.isReadOnly }, Validators.required],
+      quizId: [{ value: null, disabled: this.isReadOnly }],
+      assignmentId: [{ value: null, disabled: this.isReadOnly }],
+    });
 
+    this.asighm.GetAllAssoghment().subscribe({
+      next: (data) => {
+        this.AllAssighment = data
+      },
+      error: (err) => {
+        console.log(err);
 
+      }
+    })
 
+    this.receivedObject = this.sharedService.getObject();
+    this.receivedObject2 = this.sharedService.getObject2();
 
-editOrDetailsForm!: FormGroup;
-isReadOnly = true; // Initially, the form is in read-only mode
-editMode = false; // Indicates whether we're in edit mode or not
-IdAud?:number
+    this.editOrDetailsForm.patchValue(this.receivedObject);
+    this.IdAud = this.receivedObject.lectureId
+    console.log(this.IdAud + "---------------")
+  }
 
-ngOnInit() {
-  // Create the form controls
-  this.editOrDetailsForm = this.fb.group({
-    lectureId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
-    classId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
-    header: [{ value: '', disabled: this.isReadOnly }, Validators.required],
-    quizId: [{ value: null, disabled: this.isReadOnly }],
-    assignmentId: [{ value: null, disabled: this.isReadOnly }],
-  });
+  toggleEdit() {
+    this.editMode = !this.editMode;
 
-  this.receivedObject = this.sharedService.getObject();
- 
-  console.log(this.receivedObject);
-  // Fetch data from the backend and populate the form
-  // Replace this with your actual API call
+    if (this.editMode) {
+      this.editOrDetailsForm.enable();
+    } else {
+      this.editOrDetailsForm.disable();
+    }
+  }
 
-  this.editOrDetailsForm.patchValue(this.receivedObject);
-  this.IdAud=this.receivedObject.lectureId
-  console.log(this.IdAud + "amrrrrrrrrrrrr");
-  
-}
+  updateData(form: FormGroup) {
 
-toggleEdit() {
-  this.editMode = !this.editMode;
+    console.log(form.value);
 
-  if (this.editMode) {
-    this.editOrDetailsForm.enable();
-  } else {
+    this.editMode = false;
     this.editOrDetailsForm.disable();
   }
 }
 
-updateData() {
-
-
-  this.editMode = false;
-  this.editOrDetailsForm.disable();
-}
-}
-  

@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
@@ -13,6 +14,8 @@ import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
   styleUrls: ['./lucture-h.component.css'],
 })
 export class LuctureHComponent implements OnInit {
+
+
   constructor(
     private toastr: ToastrService,
     private _formBuilder: FormBuilder,
@@ -136,7 +139,7 @@ export class LuctureHComponent implements OnInit {
 
 
     /////////////////////ForEditOrDetails
-  EditOrDetails(LecId:any ,Classid:any ,Header:any ,quizid:any ,assid:any){
+  EditOrDetails(LecId:any ,Classid:any ,Header:any ,quizid:any ,assid:any ,clasj:any){
 this.EditOrDeatails.lectureId =LecId
 this.EditOrDeatails.classId =Classid
 this.EditOrDeatails.header =Header
@@ -144,6 +147,7 @@ this.EditOrDeatails.quizId =quizid
 this.EditOrDeatails.assignmentId =assid
 console.log(this.EditOrDeatails)
 this.sharedService.setObject(this.EditOrDeatails);
+this.sharedService.SetLecandClssname({ClassName:clasj , LectureName:Header});
 
 this.router.navigate(['EditOrDetailsLecture']);
 

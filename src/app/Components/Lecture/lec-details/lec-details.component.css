@@ -3,13 +3,31 @@
  
     border: 1px solid #dda427;
     border-radius: 5px;
-    box-shadow: 0 0 31px rgba(0, 0, 0, 0.2);
-    background-color: #cfcccc;
+    box-shadow: 0 0 31px rgba(255, 166, 0, 0.2);
+    background-color: #ffffff;
     margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
   }
-  
+
 .desgin{
-  background-color: #e9a91f;
-  width: 100px;
+  background-color: #ff8c00;
+  width: 80%;
   height: 40px;
+  border-radius: 5%;
+}
+.desgin2{
+  background-color: #00620a;
+  width: 80%;
+  height: 40px;
+  border-radius: 5%;
+}
+.label,label,h1{
+  color: #e19a00;
+}
+span{
+  color: black;
 }

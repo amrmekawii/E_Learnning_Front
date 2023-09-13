@@ -30,7 +30,7 @@ children:[
 
 
 
-  {path: "AdminHome" ,canActivate:[AuthLogGuard] , component:HomeComponent, children:[{path:"StudentMangment", component: StudentMangmentComponent}]},
+  {path: "AdminHome" , component:HomeComponent, children:[{path:"StudentMangment", component: StudentMangmentComponent}]},
 ];
 
 @NgModule({

@@ -7,17 +7,17 @@
       </button>
   
       <mat-nav-list>
-        <mat-list-item>
+          <mat-list-item  routerLink="/AdminHome/GlobalScreen"> 
           <mat-icon mat-list-icon>person</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Management A</h4>
+          <h4 mat-line *ngIf="isExpanded">Home</h4>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item  routerLink="/AdminHome/StudentMangment">
           <mat-icon mat-list-icon>assignment</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Management B</h4>
+          <h4 mat-line *ngIf="isExpanded">Student Mangment </h4>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item  routerLink="/AdminHome/Lecture">
           <mat-icon mat-list-icon>domain</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Management C</h4>
+          <h4 mat-line *ngIf="isExpanded">Lecture Mangment</h4>
         </mat-list-item>
         <mat-list-item>
           <mat-icon mat-list-icon>folder_shared</mat-icon>
@@ -66,9 +66,9 @@
     
 <!-- * * * * * * * * *    Componnet  * * * * * * * * * * * * * * * * * * * * * * -->
 
-    <app-student-mangment > </app-student-mangment>
+    <!-- <app-student-mangment > </app-student-mangment> -->
 
-
+<router-outlet></router-outlet>
 
   </mat-drawer-container>
 

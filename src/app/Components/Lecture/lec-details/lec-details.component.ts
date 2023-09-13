@@ -48,10 +48,12 @@ export class LecDetailsComponent implements OnInit {
     if (this.pdfurl.length ===0) {
       this.toastr.warning("Has No Assighment")
 
-    } else
+    } else{
       this.modalservice.open(this.popupview, { size: 'lg' });
-
+window.open(this.pdfurl)
+    }
   }
+  
   ngOnInit() {
     // Create the form controls
     this.editOrDetailsForm = this.fb.group({

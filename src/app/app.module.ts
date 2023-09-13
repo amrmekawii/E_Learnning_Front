@@ -84,11 +84,11 @@ import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor
         NgxExtendedPdfViewerModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorsInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorsInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

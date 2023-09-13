@@ -1,10 +1,6 @@
 
 <mat-toolbar color="dark">
 
-    <div class="logo mb-5 ">
-      <img src="assets/imgs/logo.png" alt="" height="50px"/>
-    </div>
-            <span class="toolbar-item-spacer"></span>
 
   
 
@@ -65,13 +61,12 @@
                       <div *ngFor="let video of addvideos.controls; let i = index">
 
                         <div [formGroupName]="i">
-                          <mat-form-field>
-                            <!-- <input matInput  formControlName="link" placeholder="Video Link" required> -->
-                            <input matInput formControlName="link" placeholder="Video Link" required >
-
-                          </mat-form-field>
-                          <!-- <input type="file" (change)="Uplodfile($event)"> -->
                           <input type="file" (change)="Uplodfile($event, i)">
+
+                          <mat-form-field>
+                            
+                            <input matInput formControlName="link" placeholder="Video Link" required >
+                          </mat-form-field>
                           <mat-form-field>
                             <input matInput formControlName="partHeader" placeholder="Part Header" required>
                           </mat-form-field>
@@ -95,7 +90,6 @@
 
         <mat-step>
           <ng-template matStepLabel (click)="print()">Done</ng-template>
-          <p>You are now done.</p>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="print()" >Add Lecture</button>

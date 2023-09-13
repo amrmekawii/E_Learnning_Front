@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   private sharedObject: any;
   private sharedObject2: any;
-
+private pathshares:any
   setObject(obj: any) {
     this.sharedObject = obj;
   }
@@ -15,7 +15,9 @@ export class SharedService {
     this.sharedObject2 = obj;
 
   }
-
+  setpath(bbj:any){
+this.pathshares =bbj
+  }
 
   ////////////
   getObject() {
@@ -24,6 +26,8 @@ export class SharedService {
   getObject2() {
     return this.sharedObject2;
   }
-
+getpath(){
+  return this.pathshares
+}
 
 }

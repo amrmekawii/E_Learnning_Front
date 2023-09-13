@@ -1,6 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
+import { isEmpty } from 'rxjs';
 import { AssighmentService } from 'src/app/Services/Assighment/assighment.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
 import { AssignmentDto } from 'src/app/TypeDto/AssighmentAllDto';
@@ -12,7 +15,16 @@ import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
   styleUrls: ['./lec-details.component.css']
 })
 export class LecDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private sharedService: SharedService, private fb: FormBuilder, private asighm: AssighmentService) { }
+  constructor(private route: ActivatedRoute,
+    private sharedService: SharedService,
+    private fb: FormBuilder,
+    private asighm: AssighmentService,
+    private modalservice: NgbModal,
+    private toastr: ToastrService,
+
+  ) {
+    ;
+  }
   receivedObject!: EditOrDetailsDto;
   receivedObject2!: any;
 
@@ -21,6 +33,25 @@ export class LecDetailsComponent implements OnInit {
   editMode = false; // Indicates whether we're in edit mode or not
   IdAud?: number
   AllAssighment: AssignmentDto[] = []
+
+  pdfurl:string ='';
+  path: any
+  @ViewChild('content') popupview !: ElementRef;
+
+  PassPath(path: any) {
+    this.pdfurl = path;
+    console.log(path);
+
+
+  }
+  showpdf() {
+    if (this.pdfurl.length ===0) {
+      this.toastr.warning("Has No Assighment")
+
+    } else
+      this.modalservice.open(this.popupview, { size: 'lg' });
+
+  }
   ngOnInit() {
     // Create the form controls
     this.editOrDetailsForm = this.fb.group({
@@ -34,15 +65,24 @@ export class LecDetailsComponent implements OnInit {
     this.asighm.GetAllAssoghment().subscribe({
       next: (data) => {
         this.AllAssighment = data
+        this.receivedObject = this.sharedService.getObject();
+        this.path = this.AllAssighment.find(x => x.id == this.receivedObject.assignmentId)
+        if(this.path !=null){
+          this.pdfurl = this.path.filePath
+          console.log(this.pdfurl);
+
+        }
+        console.log(this.pdfurl+"00000000");
+
       },
       error: (err) => {
         console.log(err);
 
       }
     })
-
     this.receivedObject = this.sharedService.getObject();
-    this.receivedObject2 = this.sharedService.getObject2();
+
+    this.receivedObject2 = this.sharedService.getObject();
 
     this.editOrDetailsForm.patchValue(this.receivedObject);
     this.IdAud = this.receivedObject.lectureId

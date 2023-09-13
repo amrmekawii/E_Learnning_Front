@@ -1,27 +1,39 @@
+<header class="head table-title" *ngIf="Headershow">
+  <p>lectureName </p>
+  <h2>{{StudAud.lectureName}}
+  </h2>
+</header>
 
-<header class="head" *ngIf="Headershow">
-    <p>lectureName   </p>
-    <h2 >{{StudAud.lectureName}}
-    </h2>
-  </header>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>userName</th>
-          <th>start</th>
-          <th>END</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="Headershow">
-        <tr *ngFor="let lecture of StudAud.userLectureAttendances">
-          <td>{{ lecture.userName }}</td>
-          <td>{{ lecture.start}}</td>
-          <td>{{ lecture.end  }}</td>
-       
-        </tr>
-      </tbody>
-     
-    </table>
-  </div>
-  
+
+
+<div class="Container-fluid" style="margin-top: 3%;">
+  <mat-form-field class="example-full-width white " style="width: 100%;">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchText">
+  </mat-form-field>
+
+
+  <table class="table table-hover ">
+    <thead class="thead-dark">
+      <tr>
+        <th>userName</th>
+        <th>start</th>
+        <th>END</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="Headershow">
+      <tr *ngFor="let lecture of StudAud.userLectureAttendances | search: searchText">
+        <td>{{ lecture.userName }}</td>
+        <td>{{ lecture.start}}</td>
+        <td>{{ lecture.end }}</td>
+
+      </tr>
+      <tr>
+        <td style="background-color: rgb(255, 166, 0);"></td>
+        <td style="background-color: rgb(255, 166, 0);"></td>
+        <td style="background-color: rgb(255, 166, 0);"></td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

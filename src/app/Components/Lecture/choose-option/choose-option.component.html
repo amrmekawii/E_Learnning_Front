@@ -1,23 +1,28 @@
-<div class="container">
-    <div class="split left">
-      <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">            <h1>Get Lecture Attendance</h1>
-          </div>
-        <div class="card-body  split">
-          <a [routerLink]="['/EditOrDetailsLecture/ShowAudance', IdPram]" class="btn">Get</a>
-        </div>
-      </div>
-    </div>
-    <div class="split right">
-      <div class="card text-bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">      <h1>Add Access To User</h1>
-          </div>
-        <div class="card-body split">
-          <a routerLink="/EditOrDetailsLecture/AddUserAcces" class="btn">Add Now</a>
-        </div>
-      </div>
+
+  
+
+  
+<header class="table-title" style="font-style: oblique 40deg;">
+
+  <div class="col-md-3 " style="margin-top: 1%; margin-bottom: 1%;" [routerLink]="['/EditOrDetailsLecture/AddUserAcces']" >
+    <div class="card card-3">
+           <h1>Add Access To User</h1>
+ 
+
     </div>
   </div>
+
+  <div class="col-md-3 " style="margin-top: 1%; margin-bottom: 1%;" [routerLink]="['/EditOrDetailsLecture/ShowAudance', IdPram]" >
+    <div class="card card-3">
+      <div class="card-header">            <h1>Get Lecture Attendance</h1>
+      </div>
+  
+ 
+
+    </div>
+  </div>
+
+</header>
  
   <router-outlet></router-outlet>
   

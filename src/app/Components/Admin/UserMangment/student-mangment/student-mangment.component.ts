@@ -11,4 +11,17 @@ export class StudentMangmentComponent {
     this.breadCrumbItems = [{ label: 'Forms' }, { label: 'Form Elements', active: true }];
   }
 
+
+  data = [
+    { id: 1, name: "Angular" },
+    { id: 2, name: "React" },
+    { id: 3, name: "Vue" },
+    { id: 4, name: "Bootstrap" },
+    { id: 5, name: "Foundation" },
+  ]
+
+  searchText = '';
+
+  
+
 }

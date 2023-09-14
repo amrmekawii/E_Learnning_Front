@@ -12,6 +12,8 @@ import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
+import { ErrorComponent } from './Components/error/error.component';
+import { CodeGenrationComponent } from './Components/Lecture/code-genration/code-genration.component';
 
 const routes: Routes = [
 
@@ -32,8 +34,10 @@ const routes: Routes = [
       { path: "StudentMangment", component: StudentMangmentComponent },
       { path: 'Lecture', component: LuctureHComponent },
       { path: 'GlobalScreen', component: GlobalScreenComponent },
+      { path: 'CodeGen', component: CodeGenrationComponent },
     ]
   },
+  {path:'**',component:ErrorComponent}
 ];
 
 @NgModule({

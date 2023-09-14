@@ -84,7 +84,7 @@ window.open(this.pdfurl)
     })
     this.receivedObject = this.sharedService.getObject();
 
-    this.receivedObject2 = this.sharedService.getObject();
+    this.receivedObject2 = this.sharedService.getObject2();
 
     this.editOrDetailsForm.patchValue(this.receivedObject);
     this.IdAud = this.receivedObject.lectureId

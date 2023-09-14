@@ -184,7 +184,7 @@ export class LuctureHComponent implements OnInit {
   
   /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
-    this.addvideos.removeAt(index);
+    this.addvideos.removeAt(index);   
   }
 }
 

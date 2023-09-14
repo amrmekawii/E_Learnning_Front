@@ -1,0 +1,73 @@
+
+<header class="head">
+    <h2>Admin Generate Lecture Code</h2>
+  </header>
+
+
+  <div class="form-container">
+    <mat-form-field>
+        <mat-label>Select Class</mat-label>
+        <mat-select >
+          <mat-option *ngFor="let class of ClassList" [value]="class.id"(onSelectionChange)="PathcalssId(class.id)">{{ class.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <form [formGroup]="quizForm" class="quiz-form">
+      <div class="form-row">
+        <mat-form-field class="form-field">
+          <mat-label>Select Lecture</mat-label>
+          <mat-select formControlName="lectureId">
+            <mat-option *ngFor="let class of LectureList" [value]="class.lectureId">{{ class.header }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label for="quizRequirement">Quiz Requirement:</mat-label>
+          <mat-select formControlName="quizRequirement" id="quizRequirement">
+            <mat-option value="true">True</mat-option>
+            <mat-option value="false">False</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <div class="form-row">
+        <mat-form-field class="form-field">
+          <mat-label for="duration">Duration (in days):</mat-label>
+          <input matInput type="number" id="duration" formControlName="duration" required min="1">
+        </mat-form-field>
+  
+        <mat-form-field class="form-field">
+          <mat-label for="numcode">Number of code Needed to Generate:</mat-label>
+          <input matInput type="number" id="numcode" formControlName="numcode" required min="1">
+        </mat-form-field>
+      </div>
+  
+      <button (click)="submitForm(quizForm)">Genrate</button>
+    </form>
+  </div>
+
+
+  <div class="table-container">
+
+    <button class="btn btn-orange" (click)="handleExport()">print <i class="fa-solid fa-print"></i></button>
+
+    <table class="lecture-table" id="Print_invice">
+      <thead>
+        <tr>
+          <th>.No</th>
+          <th>Lecture Name</th>
+          <th>Lecture Code</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lecturer of CodeList let i= index">
+            <td>{{ i+1 }}</td>
+            <td>{{ lecturer.lectureName }}</td>
+            <td>{{ lecturer.code }}</td>
+   
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+
+

@@ -5,7 +5,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginDto } from 'src/app/TypeDto/LoginDto';
 import { RegisterDto } from 'src/app/TypeDto/Register';
 import { TokenDto } from 'src/app/TypeDto/TokenDto';
-
+import { AddUserDto } from 'src/app/TypeDto/AddUserDto';
+import { RegisteredUser } from 'src/app/TypeDto/RegisteredUser';   
 @Injectable({
   providedIn: 'root'
 })
@@ -30,13 +31,13 @@ export class AuthenticationServiceService {
 
   }
 
-  private readonly Base_URL = "http://localhost:7206/api/User/StudentRigster";
+  private readonly Add_User_url = "http://localhost:7206/api/User/StudentRigster";
 
 
-  public AddUser(newUser: RegisterDto): Observable<any> {
+  public AddUser(newUser: AddUserDto )   {
     console.log(newUser)
 
-    return this.client.post(this.Base_URL, newUser);
+    return this.client.post(this.Add_User_url, newUser);
 
   }
 

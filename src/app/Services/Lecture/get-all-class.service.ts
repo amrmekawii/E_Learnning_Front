@@ -23,6 +23,12 @@ export class GetAllLectureService {
   private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
   private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
 
+
+
+
+
+
+
   public GetAllClass(): Observable<ClassAllDto> {
 
     return this.client.get(this.Base_URL);

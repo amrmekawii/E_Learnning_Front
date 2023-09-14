@@ -1,7 +1,7 @@
   import { Role } from "src/app/TypeDto/Role";
  import { UserClassDTO } from "src/app/TypeDto/UserClassDTO";
     
-    export class AddStudentDto {
+    export class AddUserDto {
         firstName: string |null ="";
         secondName: string |null ="";
         updatedBy: string |null ="";

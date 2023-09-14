@@ -1,4 +1,4 @@
 export class UserClassDTO {
-    id: number =0 ;
-    name: string ="";
+    id?: number | null;
+    name?: string | null ;
 }

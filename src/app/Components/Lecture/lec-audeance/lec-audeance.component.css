@@ -7,7 +7,7 @@
     margin-top: 16px;
   }
   
-
+/* 
   .table-container {
     display: flex;
     justify-content: center;
@@ -42,21 +42,26 @@
   }
 .btncolr{
   background-color: #776e4d;
-}
+} */
 
-.head {
-  background-color: #fff9ef; /* Light gray background */
+.table-title {
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #f2f2f2;
   padding: 10px;
   text-align: center;
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  width: 250px;
-  border-radius: 50%;
-
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333; /* You can adjust the color as needed */
 }
 
-.head h2 {
+.table-title h2 {
   font-size: 24px;
-  margin: 0;
-  color: #333; /* Dark gray text color */
+  margin-bottom: 5px;
+}
+
+.table-title p {
+  font-size: 16px;
+  margin-bottom: 5px;
 }

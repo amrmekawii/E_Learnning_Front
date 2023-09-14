@@ -1,10 +1,6 @@
 
 <mat-toolbar color="dark">
 
-    <div class="logo mb-5 ">
-      <img src="assets/imgs/logo.png" alt="" height="50px"/>
-    </div>
-            <span class="toolbar-item-spacer"></span>
 
   
 
@@ -18,7 +14,7 @@
       border-style: outset;
       border-radius: 20px;
       width: 80%;
-      border-color: rgb(255, 179, 0);
+      border-color: rgb(255, 136, 0);
     "
   >
     <mat-expansion-panel-header>
@@ -63,9 +59,13 @@
 
                     <div formArrayName="addvideos">
                       <div *ngFor="let video of addvideos.controls; let i = index">
+
                         <div [formGroupName]="i">
+                          <input type="file" (change)="Uplodfile($event, i)">
+
                           <mat-form-field>
-                            <input matInput formControlName="link" placeholder="Video Link" required>
+                            
+                            <input matInput formControlName="link" placeholder="Video Link" required >
                           </mat-form-field>
                           <mat-form-field>
                             <input matInput formControlName="partHeader" placeholder="Part Header" required>
@@ -90,7 +90,6 @@
 
         <mat-step>
           <ng-template matStepLabel (click)="print()">Done</ng-template>
-          <p>You are now done.</p>
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button (click)="print()" >Add Lecture</button>
@@ -104,12 +103,23 @@
 
 <app-class-corsal (Task)="onMyVariableChange($event)"></app-class-corsal>
 
-<header class="head">
-  <h2>{{ClassNameHeader}}</h2>
-</header>
-<div class="table-container">
-  <table>
-    <thead>
+<header class="table-title" style="font-style: oblique 40deg;">
+  <div class="col-md-3 " style="margin-top: 1%; margin-bottom: 1%;">
+    <div class="card card-3">
+      <h2>{{ClassNameHeader}}</h2>
+    </div>
+  </div></header>
+
+
+<div class="Container-fluid" style="margin-top: 1%;">
+  <mat-form-field class="example-full-width white " style="width: 100%;">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchText">
+  </mat-form-field>
+
+
+  <table class="table table-hover ">
+    <thead class="thead-dark">
       <tr>
         <th>Lecture ID</th>
         <th>Class Name</th>
@@ -118,16 +128,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let lecture of ClassLecId">
+      <tr *ngFor="let lecture of ClassLecId | search: searchText">
         <td>{{ lecture.lectureId }}</td>
         <td>{{ lecture.className }}</td>
         <td>{{ lecture.header }}</td>
         <td class="btncolr">
-          <a class="btn btn-outline-warning"  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid)">Edit /Details</a>
+          <a class="btn btn-outline-warning"  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">Edit / Details</a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
-
-

@@ -43,6 +43,9 @@ import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-aude
 import { SearchPipe } from './Services/Search-pipe';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 import { MatTableModule } from '@angular/material/table';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import {  HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor';
 
 @NgModule({ 
   declarations: [
@@ -77,9 +80,16 @@ import { MatTableModule } from '@angular/material/table';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+        NgxExtendedPdfViewerModule
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptorsInterceptor,
+    //   multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

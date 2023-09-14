@@ -5,58 +5,67 @@
       <img src="assets/imgs/logo.png" alt="" height="50px"/>
     </div>
             <span class="toolbar-item-spacer"></span>
-
-  
-
 </mat-toolbar>
 
 <div class="container">
-    <button (click)="toggleEdit()" class=" desgin mb-3">
-      {{ editMode ? 'Stop Editing' : 'Edit' }}
-    </button>
+ 
     <form [formGroup]="editOrDetailsForm">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="lectureId" class="label">Lecture ID:</label>
-            <input type="number" id="lectureId" formControlName="lectureId" class="form-control" [readonly]="!editMode" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="classId" class="label">Class ID:</label>
-            <input type="number" id="classId" formControlName="classId" class="form-control" [readonly]="!editMode" />
-          </div>
-        </div>
-      </div>
+     <div >
+
+      <h1> Class Name:<span>{{receivedObject2.ClassName}}</span> </h1>
+
+     </div>
+
   
-      <div class="row">
-        <div class="col-md-6">
+      <div class="">
+        <div class="col-md-12">
           <div class="form-group">
-            <label for="header" class="label">Header:</label>
+            <label for="header" class="label">lecture Name:</label>
             <input type="text" id="header" formControlName="header" class="form-control" [readonly]="!editMode" />
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="quizId" class="label">Quiz ID:</label>
-            <input type="number" id="quizId" formControlName="quizId" class="form-control" [readonly]="!editMode" />
-          </div>
-        </div>
+
       </div>
   
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="assignmentId" class="label">Assignment ID:</label>
-            <input type="number" id="assignmentId" formControlName="assignmentId" class="form-control" [readonly]="!editMode" />
+            <mat-form-field>
+
+              <mat-label   class="label">Quiz Name:</mat-label>
+              <mat-select formControlName="assignmentId">
+                <mat-option *ngFor="let Assigh of AllAssighment" [value]="Assigh.id">{{ Assigh.header }}</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
+       
         </div>
       </div>
-  
       <div class="row">
         <div class="col-md-12">
-          <button *ngIf="editMode" (click)="updateData()" class="btn btn-success">Update</button>
+          <div class="form-group">
+            <mat-form-field>
+
+              <mat-label   class="label">Assignment Name:</mat-label>
+              <mat-select formControlName="assignmentId">
+                <mat-option *ngFor="let Assigh of AllAssighment" [value]="Assigh.id" (onSelectionChange)="PassPath(Assigh.filePath)">{{ Assigh.header }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button (click)="showpdf()"> View Assighment</button>
+
+          </div>
+       
+        </div>
+      </div>
+     
+      <div >
+        <div class="col-md-12">
+          <button (click)="toggleEdit()" class=" desgin mb-3">
+            {{ editMode ? 'Stop Editing' : 'Edit' }}
+          </button>
+        </div>
+        <div class="col-md-12 ">
+          <button *ngIf="editMode" (click)="updateData(editOrDetailsForm)" class="btn btn-success desgin2">Update</button>
         </div>
       </div>
     </form>
@@ -64,3 +73,17 @@
   
 
   <app-choose-option [IdPram]="IdAud"> </app-choose-option>
+
+  
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <ngx-extended-pdf-viewer [src]="pdfurl" [useBrowserLocale]="true"[textLayer]="true"></ngx-extended-pdf-viewer>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" (click)="d('Cross click')">Close</button>
+    </div>
+  </ng-template>
+

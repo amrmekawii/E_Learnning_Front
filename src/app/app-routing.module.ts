@@ -11,6 +11,7 @@ import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-detail
 import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
+import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 
 const routes: Routes = [
 
@@ -18,19 +19,21 @@ const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'Lecture', component: LuctureHComponent },
-  { path:'EditOrDetailsLecture', component:LecDetailsComponent,
-children:[
-  { path:'ChooseOption', component:ChooseOptionComponent},
-    {path:'ShowAudance/:id' ,component:LecAudeanceComponent},
-    {path:'AddUserAcces' ,component:AddUserAccessComponent}
- 
-
-]},
-
-
-
-  {path: "AdminHome" , component:HomeComponent, children:[{path:"StudentMangment", component: StudentMangmentComponent}]},
+  { path: 'EditOrDetailsLecture', component: LecDetailsComponent,
+    children: [
+      { path: 'ChooseOption', component: ChooseOptionComponent },
+      { path: 'ShowAudance/:id', component: LecAudeanceComponent },
+      { path: 'AddUserAcces', component: AddUserAccessComponent }
+    ]
+  },
+  {
+    path: "AdminHome", component: HomeComponent,
+    children: [
+      { path: "StudentMangment", component: StudentMangmentComponent },
+      { path: 'Lecture', component: LuctureHComponent },
+      { path: 'GlobalScreen', component: GlobalScreenComponent },
+    ]
+  },
 ];
 
 @NgModule({

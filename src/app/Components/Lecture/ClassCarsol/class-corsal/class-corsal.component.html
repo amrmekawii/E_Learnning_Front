@@ -7,9 +7,13 @@
             </div>
         </div>
         <div #elFilter class="filter-container   mx=auto">
-            <div  *ngFor="let filter of ClassList"  (click)="SendId(filter.id)" >
-                <span>{{ filter.name}}</span>
-            </div>
+            <div *ngFor="let filter of ClassList; let i = index"
+            (click)="selectItem(i)"
+            [ngClass]="{ 'filter-container2': i === selectedItemIndex  }"
+            >
+           <span>{{ filter.name }}</span>
+       </div>
+
 
         </div>
         <div  (click)="onScroll(1)" class="arrow-container arrow-right  ">

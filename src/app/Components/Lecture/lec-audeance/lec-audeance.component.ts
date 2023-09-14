@@ -12,6 +12,8 @@ export class LecAudeanceComponent implements OnInit {
   IdParams!: any;
   StudAud: any
   Headershow = false;
+  searchText = '';
+
   constructor(private StudentAud: GetAllLectureService, private myRoute: ActivatedRoute, private toastr: ToastrService) {
     this.IdParams = myRoute.snapshot.paramMap.get('id');
 

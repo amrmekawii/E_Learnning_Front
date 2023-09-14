@@ -11,6 +11,21 @@ export class ClassCorsalComponent  implements OnInit  {
   isFullyScrolledRight: boolean = false
   isFullyScrolledLeft: boolean = false
   ClassList!: any
+  selectedItemIndex: number = -1;
+
+  selectItem(index: number) {
+    if (this.selectedItemIndex === index) {
+        // Clicked on the same item again, so unselect it
+        this.selectedItemIndex = -1;
+    } else {
+        // Clicked on a different item, update the selection
+        this.selectedItemIndex = index;
+    }
+    // Emit the selected item's index using the Task EventEmitter if needed
+    if (this.selectedItemIndex !== -1) {
+        this.Task.emit(this.ClassList[this.selectedItemIndex].id);
+    }
+}
 
 
 @Output() Task =new EventEmitter<number>()

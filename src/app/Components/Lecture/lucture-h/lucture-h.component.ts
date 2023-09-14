@@ -1,7 +1,9 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FilesService } from 'src/app/Services/FileUp/files.service';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
 import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
@@ -13,6 +15,8 @@ import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
   styleUrls: ['./lucture-h.component.css'],
 })
 export class LuctureHComponent implements OnInit {
+
+
   constructor(
     private toastr: ToastrService,
     private _formBuilder: FormBuilder,
@@ -20,7 +24,7 @@ export class LuctureHComponent implements OnInit {
     private AddLec: GetAllLectureService,
     private router: Router,
     private sharedService: SharedService,
-
+    private fileUplode: FilesService
   ) { }
 
   ClassList!: any
@@ -29,8 +33,9 @@ export class LuctureHComponent implements OnInit {
   isLinear = false;
   ClassLecId: GetLectByClassIdDto[] = []
   ClassNameHeader: any
-  EditOrDeatails   = new EditOrDetailsDto()
-  FiristId:any
+  EditOrDeatails = new EditOrDetailsDto()
+  FiristId: any
+  searchText = '';
 
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
@@ -44,7 +49,6 @@ export class LuctureHComponent implements OnInit {
     vedio: [[], Validators.required]
   });
 
-
   /////////////////////////////////////////////OninIt
   ngOnInit() {
     this.Getcalsss.GetAllClass().subscribe({
@@ -56,9 +60,9 @@ export class LuctureHComponent implements OnInit {
         this.Getcalsss.GetLecByClassId(this.ClassList[0].id).subscribe({
           next: (data) => {
             console.log(data)
-              this.ClassLecId = data as GetLectByClassIdDto[]
-              console.log(this.ClassLecId)
-              this.ClassNameHeader = this.ClassLecId[0]["className"]
+            this.ClassLecId = data as GetLectByClassIdDto[]
+            console.log(this.ClassLecId)
+            this.ClassNameHeader = this.ClassLecId[0]["className"]
           },
           error: (err) => {
             console.log(err);
@@ -69,15 +73,25 @@ export class LuctureHComponent implements OnInit {
         console.log(err)
       }
     })
-    this.myFormGroup =  this._formBuilder.group({
+    this.myFormGroup = this._formBuilder.group({
       addvideos: this._formBuilder.array([])
     })
   }
+  //////////////////////////////////handelfile
+  Uplodfile(e: Event,index: number) {
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0];
 
+    if (!file) return;
+    this.fileUplode.Upload(file).subscribe((response) => {
+      console.log(response);
+      this.addvideos.at(index).get('link')?.setValue(response.url)
+    })
+  }
 
   ////////////////////////////////////////////FireWhenSelectClass
   onMyVariableChange(ClassID: number) {
-    this,this.FiristId=ClassID
+    this, this.FiristId = ClassID
     console.log('myVariable changed in the child component:', ClassID);
     this.Getcalsss.GetLecByClassId(ClassID).subscribe({
       next: (data) => {
@@ -135,17 +149,17 @@ export class LuctureHComponent implements OnInit {
   }
 
 
-    /////////////////////ForEditOrDetails
-  EditOrDetails(LecId:any ,Classid:any ,Header:any ,quizid:any ,assid:any){
-this.EditOrDeatails.lectureId =LecId
-this.EditOrDeatails.classId =Classid
-this.EditOrDeatails.header =Header
-this.EditOrDeatails.quizId =quizid
-this.EditOrDeatails.assignmentId =assid
-console.log(this.EditOrDeatails)
-this.sharedService.setObject(this.EditOrDeatails);
-
-this.router.navigate(['EditOrDetailsLecture']);
+  /////////////////////ForEditOrDetails
+  EditOrDetails(LecId: any, Classid: any, Header: any, quizid: any, assid: any, clasj: any) {
+    this.EditOrDeatails.lectureId = LecId
+    this.EditOrDeatails.classId = Classid
+    this.EditOrDeatails.header = Header
+    this.EditOrDeatails.quizId = quizid
+    this.EditOrDeatails.assignmentId = assid
+    console.log(this.EditOrDeatails)
+    this.sharedService.setObject(this.EditOrDeatails);
+    this.sharedService.SetLecandClssname({ ClassName: clasj, LectureName: Header });
+    this.router.navigate(['EditOrDetailsLecture']);
 
 
 
@@ -154,11 +168,12 @@ this.router.navigate(['EditOrDetailsLecture']);
 
   /////////////////CallWhenAddVedioInList
   addVideo() {
-    const videoFormGroup = this._formBuilder.group({
+  const  videoFormGroup = this._formBuilder.group({
       link: ['', Validators.required],
       partHeader: ['', [Validators.required, Validators.minLength(5)]],
       number: [0, Validators.required]
     });
+
     if (this.myFormGroup.get('addvideos')?.valid || this.addvideos.controls.length == 0) {
       this.addvideos.push(videoFormGroup);
     }
@@ -166,6 +181,7 @@ this.router.navigate(['EditOrDetailsLecture']);
 
   get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
 
+  
   /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
     this.addvideos.removeAt(index);

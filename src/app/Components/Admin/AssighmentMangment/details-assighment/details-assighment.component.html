@@ -1,0 +1,83 @@
+
+
+<header class="head">
+    <h2> Assighment Details</h2>
+  </header>
+<div class="form-container">
+    <form [formGroup]="assignmentForm" class="assignment-form">
+      <div class="form-row">
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>ID</mat-label>
+            <input matInput type="text" id="id" formControlName="id" readonly>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>File Path</mat-label>
+            <input matInput type="text" id="filePath" formControlName="filePath" [disabled]="!isEditMode">
+          </mat-form-field>
+   
+          <input type="file" #fileInput style="display:none" (change)="onFileSelected('filePath', $event)">
+        </div>
+        <div class="icona">
+            <mat-icon matSuffix (click)="fileInput.click()">attach_file</mat-icon>
+            <mat-icon matSuffix (click)="openPdf(assignmentForm.value.filePath)">open_in_new</mat-icon>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Header</mat-label>
+            <input matInput type="text" id="header" formControlName="header" [disabled]="!isEditMode">
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+            <mat-form-field>
+              <mat-label>Model Answer File Path</mat-label>
+              <input matInput type="text" id="modelAnswerFilePath" formControlName="modelAnswerFilePath" [disabled]="!isEditMode">
+        
+
+            </mat-form-field>
+    
+            <input type="file" #fileInput2 style="display:none" (change)="onFileSelected('modelAnswerFilePath', $event)">
+          </div>
+          <div class="icona">
+            <mat-icon matSuffix (click)="fileInput2.click()">attach_file</mat-icon>
+            <mat-icon matSuffix (click)="openPdf(assignmentForm.value.modelAnswerFilePath)">open_in_new</mat-icon>
+          </div>
+          
+      </div>
+      <div class="form-row">
+        <div class="form-field ">
+            <mat-form-field class="form-field">
+                <mat-label>Select Class</mat-label>
+                <mat-select formControlName="classid">
+                  <mat-option *ngFor="let class of AllCalss" [value]="class.id">{{ class.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+    
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Updated By</mat-label>
+            <input matInput type="text" id="updatedBy" formControlName="updatedBy" [disabled]="!isEditMode">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Updated At</mat-label>
+            <input matInput type="text" id="updatedat" formControlName="updatedat" >
+          </mat-form-field>
+        </div>
+        <!-- Add more form fields as needed -->
+      </div>
+      <div class="form-row">
+        <button  mat-raised-button color="primary" (click)="enableEditMode()">Edit</button>
+        <button *ngIf="isEditMode" mat-raised-button color="primary" (click)="submitForm(assignmentForm)">Save</button>
+      </div>
+    </form>
+  </div>
+  

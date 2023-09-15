@@ -34,7 +34,7 @@ export class LecDetailsComponent implements OnInit {
   IdAud?: number
   AllAssighment: AssignmentDto[] = []
 
-  pdfurl:string ='';
+  pdfurl: string = '';
   path: any
   @ViewChild('content') popupview !: ElementRef;
 
@@ -45,15 +45,15 @@ export class LecDetailsComponent implements OnInit {
 
   }
   showpdf() {
-    if (this.pdfurl.length ===0) {
+    if (this.pdfurl.length === 0) {
       this.toastr.warning("Has No Assighment")
 
-    } else{
+    } else {
       this.modalservice.open(this.popupview, { size: 'lg' });
-window.open(this.pdfurl)
+      window.open(this.pdfurl)
     }
   }
-  
+
   ngOnInit() {
     // Create the form controls
     this.editOrDetailsForm = this.fb.group({
@@ -69,12 +69,12 @@ window.open(this.pdfurl)
         this.AllAssighment = data
         this.receivedObject = this.sharedService.getObject();
         this.path = this.AllAssighment.find(x => x.id == this.receivedObject.assignmentId)
-        if(this.path !=null){
+        if (this.path != null) {
           this.pdfurl = this.path.filePath
           console.log(this.pdfurl);
 
         }
-        console.log(this.pdfurl+"00000000");
+        console.log(this.pdfurl + "00000000");
 
       },
       error: (err) => {

@@ -1,0 +1,70 @@
+.Containe {
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px;
+  margin-top: 10px;
+  background-color: #ddd;
+  padding: 100px;
+  padding-top: 50px;
+}
+
+.lecture-table th,
+.lecture-table td {
+
+  text-align: center;
+  border-bottom: 3px solid #ddd;
+}
+
+.head {
+  background-color: #eaeefe;
+  /* Light gray background */
+  padding: 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  width: 300px;
+  border-radius: 25px;
+
+}
+
+.posto {
+
+  display: flex;
+  justify-content: end;
+  padding: 20px;
+  padding-right: 150px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 250px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  font-size: large;
+}
+.ancor{
+  width: 250px;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  font-size: large;
+}
+
+button:hover {
+  background-color: #ff6a00;
+
+}
+
+.ButonPop{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}

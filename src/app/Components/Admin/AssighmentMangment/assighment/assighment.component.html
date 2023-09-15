@@ -1,0 +1,68 @@
+<header class="head">
+    <h2>Admin Assighment Controls</h2>
+</header>
+<div class="posto">
+
+    <button routerLink="/AdminHome/AddAssighment" class="btn btn-orange">Add Assighment <i
+            class="fa-solid fa-file"></i></button>
+</div>
+<div class="Containe">
+    <mat-form-field class="example-full-width white " style="width: 80%;">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" [(ngModel)]="searchText">
+    </mat-form-field>
+
+
+    <table class="table table-hover lecture-table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Assighment ID</th>
+                <th>Assighment Name</th>
+                <th>Assighment Calss Name</th>
+                <th>Assighment File</th>
+                <th >Delete / Details</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lecture of AllAssighment | search: searchText">
+                <td>{{ lecture.id }}</td>
+                <td>{{ lecture.header }}</td>
+                <td>{{ lecture.classid }}</td>
+                <td><a style=" text-decoration: none;" target="_blank" href={{lecture.filePath}}> Veiw <i
+                            class="fa-solid fa-file-lines"></i></a></td>
+                <td class="btncolr">
+                    <a class="btn btn-danger" (click)="showpdf(lecture.header ,lecture.id)">Delete</a> |
+                    <a [routerLink]="['/AdminHome/DetailsAssighment', lecture.id]" class="btn btn-success">Details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+
+        <!-- BODY HERE -->
+        <header class="head">Assighment Name: {{AssighmentNameDelete}}</header>
+
+        <form [formGroup]="nameForm">
+            <mat-form-field style="width: 100%;">
+                <mat-label>Enter Assignment Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="nameForm.get('name')?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+            <div class="ButonPop">
+                <button type="submit" class="btn btn-danger ancor" (click)="onSubmit()">Delete</button>
+            </div>
+        </form>
+
+    </div>
+
+
+
+</ng-template>

@@ -48,6 +48,9 @@ import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor';
 import { ErrorComponent } from './Components/error/error.component';
 import { CodeGenrationComponent } from './Components/Lecture/code-genration/code-genration.component';
+import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
+import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
+import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
 
 @NgModule({ 
   declarations: [
@@ -62,7 +65,10 @@ import { CodeGenrationComponent } from './Components/Lecture/code-genration/code
  ,
  SearchPipe,
  ErrorComponent,
- CodeGenrationComponent
+ CodeGenrationComponent,
+ AssighmentComponent,
+ DetailsAssighmentComponent,
+ AddAssighmentComponent
   ],
   imports: [
     BrowserModule,

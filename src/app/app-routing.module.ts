@@ -14,6 +14,9 @@ import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { ErrorComponent } from './Components/error/error.component';
 import { CodeGenrationComponent } from './Components/Lecture/code-genration/code-genration.component';
+import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
+import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
+import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
 
 const routes: Routes = [
 
@@ -21,7 +24,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'EditOrDetailsLecture', component: LecDetailsComponent,
+  {
+    path: 'EditOrDetailsLecture', component: LecDetailsComponent,
     children: [
       { path: 'ChooseOption', component: ChooseOptionComponent },
       { path: 'ShowAudance/:id', component: LecAudeanceComponent },
@@ -35,9 +39,13 @@ const routes: Routes = [
       { path: 'Lecture', component: LuctureHComponent },
       { path: 'GlobalScreen', component: GlobalScreenComponent },
       { path: 'CodeGen', component: CodeGenrationComponent },
+      { path: 'AllAssighment', component: AssighmentComponent },
+      { path: 'DetailsAssighment/:id', component: DetailsAssighmentComponent },
+      { path: 'AddAssighment', component: AddAssighmentComponent },
+
     ]
   },
-  {path:'**',component:ErrorComponent}
+  { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({

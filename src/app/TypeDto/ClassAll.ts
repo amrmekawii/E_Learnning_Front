@@ -1,5 +1,5 @@
 export class ClassAllDto {
-    id?: number;
+    id?: number |string;
     name?: string;
   }
   

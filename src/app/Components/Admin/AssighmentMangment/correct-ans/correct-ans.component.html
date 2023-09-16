@@ -1,0 +1,58 @@
+<header class="head">
+    <h2>Student Name :{{DataUserCorrect.StName}} </h2>
+    <h2>Student Answer <i class="fa-solid fa-file" style="color: #1e1d58;"
+            (click)="openPdf(DataUserCorrect.userAnswerFilePath)"></i> </h2>
+</header>
+<div class="form-container">
+    <form [formGroup]="assignmentForm" class="assignment-form">
+
+        <div class="form-row">
+
+
+            <div class="form-field">
+                <mat-form-field>
+                    <mat-label>Student ID</mat-label>
+                    <input matInput type="text" id="modelAnswerFilePath6" formControlName="studentid" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+                <mat-form-field>
+                    <mat-label>Asseighment ID</mat-label>
+                    <input matInput type="text" id="modelAnswerFilePath5" formControlName="assighmentid" readonly>
+                </mat-form-field>
+            </div>
+
+            <div class="form-field">
+
+                <mat-form-field>
+                    <mat-label for="checked">Assighment Check:</mat-label>
+                    <mat-select formControlName="checked" id="checked">
+                        <mat-option [value]="true">True</mat-option>
+                        <mat-option [value]="false">False</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+
+            </div>
+
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-field">
+              <mat-form-field>
+                <mat-label>Comment</mat-label>
+                <textarea matInput type="text" id="comment" formControlName="comment" class="custom-textarea"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          
+
+
+        <div class="form-row">
+            <button type="submit"  (click)="Correct(assignmentForm)">Save</button>
+        </div>
+    </form>
+</div>

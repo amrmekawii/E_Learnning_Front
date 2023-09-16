@@ -80,4 +80,60 @@
       </div>
     </form>
   </div>
-  
+  <br>
+  <hr style="height:5px;border-width:0;color:gray;background-color:gray">
+  <header class="head">
+    <h2> User Assighment </h2>
+  </header>
+
+  <div class="Containe">
+    <mat-form-field class="example-full-width white " style="width: 80%;">
+        <mat-label>Search</mat-label>
+        <input matInput placeholder="Search" [(ngModel)]="searchText">
+    </mat-form-field>
+
+
+    <table class="table table-hover lecture-table">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>Student Name</th>
+                <th>student Number</th>
+                <th>Assighment solved</th>
+                <th>Assighment comment</th>
+                <th>Assighment checked</th>
+                <th >User Answer</th>
+                <th >Correct Answer</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- studentid?: string;
+            assighmentid?: number; -->
+        
+        
+            <tr *ngFor="let lecture of UserAssighment | search: searchText let i =index">
+                <td>{{ lecture.studentName }}</td>
+                <td>{{ lecture.studentNumber }}</td>    
+                <td>{{ lecture.solved }}
+                    <i *ngIf="lecture.solved "  class="fa-regular fa-circle-check" style="color: #00ff00;"></i>
+                    <i *ngIf="!lecture.solved "  class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
+
+                </td>   
+                <td>{{ lecture.comment }}</td>
+                <td>{{ lecture.checked }}
+                    <i *ngIf="lecture.checked "  class="fa-regular fa-circle-check" style="color: #00ff00;"></i>
+                    <i *ngIf="!lecture.checked "  class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
+                </td>
+                <td><a style=" text-decoration: none;" target="_blank" href={{lecture.userAnswerFilePath}}> Veiw <i
+                            class="fa-solid fa-file-lines"></i></a></td>
+                <td class="btncolr">
+                    <a (click)="Passdata(i)" class="btn btn-success">Details</a>
+                </td>
+            </tr>   
+        </tbody>
+    </table>
+</div>
+
+
+

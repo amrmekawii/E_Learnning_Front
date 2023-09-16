@@ -28,6 +28,8 @@
   .form-row {
     display: flex;
     gap: 20px;
+    justify-content: center;
+    align-items: center;
   }
 
 
@@ -55,7 +57,7 @@
     text-align: center;
     font-family: Arial, sans-serif;
     margin: 20px;
-    width: 300px;
+    width: 600px;
     border-radius: 25px;
   
   }
@@ -65,22 +67,9 @@ input{
 text-align: center;
 width: 200px;
 }
-.Containe {
-
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 10px;
-    background-color: #ddd;
-    padding-top: 50px;
-  }
-  
-  .lecture-table th,
-  .lecture-table td {
-  
-    text-align: center;
-    border-bottom: 3px solid #ddd;
+.custom-textarea {
+    width: 400px; /* Adjust the width as needed */
+    min-height: 100px; /* Adjust the minimum height as needed */
+    max-height: 250px; /* Adjust the maximum height as needed */
   }
   

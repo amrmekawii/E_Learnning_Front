@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AssighmentService } from 'src/app/Services/Assighment/assighment.service';
 import { FilesService } from 'src/app/Services/FileUp/files.service';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
+import { SharedService } from 'src/app/Services/Shared/shared.service';
 import { AssignmentByIdDto } from 'src/app/TypeDto/AssighmentByIdDto';
 import { UdateAssighmentDto } from 'src/app/TypeDto/AssighmentUpdateDto';
+import { UserAssighmentDto } from 'src/app/TypeDto/AssighmentsUserDto';
 import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
 
 @Component({
@@ -21,12 +23,18 @@ export class DetailsAssighmentComponent implements OnInit {
   AllCalss: ClassAllDto[] = [];
   UpdateData = new UdateAssighmentDto()
   addighmentdata!: AssignmentByIdDto
+  searchText = '';
+  UserAssighment: UserAssighmentDto[] = []
   constructor(private myRoute: ActivatedRoute,
     private toastr: ToastrService,
     private assghm: AssighmentService,
     private formBuilder: FormBuilder,
     private Getcalsss: GetAllLectureService,
-    private fileUplode: FilesService
+    private fileUplode: FilesService,
+    private SharedService: SharedService,
+    private router :Router
+
+
   ) {
     this.IdParams = myRoute.snapshot.paramMap.get('id');
 
@@ -36,8 +44,10 @@ export class DetailsAssighmentComponent implements OnInit {
 
     this.assghm.GetAssimentBtId(this.IdParams).subscribe({
       next: (data) => {
+
         this.addighmentdata = data;
-        console.log(this.addighmentdata);
+        this.UserAssighment = this.addighmentdata.userAssighments
+        console.log(this.UserAssighment);
 
         this.assignmentForm.patchValue({
           id: this.addighmentdata.id,
@@ -137,4 +147,24 @@ export class DetailsAssighmentComponent implements OnInit {
       window.open(filePath, '_blank');
     }
   }
+  Passdata(index: number) {
+    console.log(index);
+    
+    const x = {
+
+      StName: this.UserAssighment[index].studentName,
+      studentid: this.UserAssighment[index].studentid,
+      userAnswerFilePath: this.UserAssighment[index].userAnswerFilePath,
+      assighmentid: this.UserAssighment[index].assighmentid,
+      checked: this.UserAssighment[index].checked,
+
+
+    }
+    this.SharedService.setUserAnsModel(x);
+    this.router.navigateByUrl('/AdminHome/CorrectAns')   
+
+  }
 }
+
+
+

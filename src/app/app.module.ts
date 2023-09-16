@@ -51,6 +51,7 @@ import { CodeGenrationComponent } from './Components/Lecture/code-genration/code
 import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
 import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
 import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
+import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
 
 @NgModule({ 
   declarations: [
@@ -68,7 +69,8 @@ import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/ad
  CodeGenrationComponent,
  AssighmentComponent,
  DetailsAssighmentComponent,
- AddAssighmentComponent
+ AddAssighmentComponent,
+ CorrectAnsComponent
   ],
   imports: [
     BrowserModule,

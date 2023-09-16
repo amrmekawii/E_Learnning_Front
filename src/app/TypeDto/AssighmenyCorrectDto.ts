@@ -1,8 +1,8 @@
-export interface CorrectUserAssighmentDto {
+export class CorrectUserAssighmentDto {
 
-    Studentid: string | null;
-    Assighmentid: number | null;
-    Comment: string | null;
-    Checked: boolean | null;
+    studentid?: string;
+    assighmentid?: number ;
+    comment?: string;
+    checked?: boolean;
 
 }

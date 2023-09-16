@@ -17,6 +17,7 @@ import { CodeGenrationComponent } from './Components/Lecture/code-genration/code
 import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
 import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
 import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
+import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
 
 const routes: Routes = [
 
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'AllAssighment', component: AssighmentComponent },
       { path: 'DetailsAssighment/:id', component: DetailsAssighmentComponent },
       { path: 'AddAssighment', component: AddAssighmentComponent },
+      { path: 'CorrectAns', component: CorrectAnsComponent },
 
     ]
   },

@@ -1,3 +1,5 @@
+import { UserAssighmentDto } from "./AssighmentsUserDto";
+
 export interface AssignmentByIdDto {
     id: number;
     filePath: string;
@@ -6,5 +8,5 @@ export interface AssignmentByIdDto {
     classid: number;
     updatedBy: string;
     updatedat: string;
-    userAssighments: any[];
+    userAssighments: UserAssighmentDto[];
 }

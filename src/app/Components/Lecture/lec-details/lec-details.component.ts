@@ -21,6 +21,7 @@ export class LecDetailsComponent implements OnInit {
     private asighm: AssighmentService,
     private modalservice: NgbModal,
     private toastr: ToastrService,
+    
 
   ) {
     ;
@@ -40,6 +41,7 @@ export class LecDetailsComponent implements OnInit {
 
   PassPath(path: any) {
     this.pdfurl = path;
+
     console.log(path);
 
 
@@ -53,6 +55,10 @@ export class LecDetailsComponent implements OnInit {
       window.open(this.pdfurl)
     }
   }
+  handleLoadError(event: any) {
+    console.error('PDF load error:', event);
+  }
+  
 
   ngOnInit() {
     // Create the form controls
@@ -67,10 +73,11 @@ export class LecDetailsComponent implements OnInit {
     this.asighm.GetAllAssoghment().subscribe({
       next: (data) => {
         this.AllAssighment = data
-        this.receivedObject = this.sharedService.getObject();
+        this.receivedObject = this.sharedService.getObject(); 
         this.path = this.AllAssighment.find(x => x.id == this.receivedObject.assignmentId)
         if (this.path != null) {
           this.pdfurl = this.path.filePath
+
           console.log(this.pdfurl);
 
         }

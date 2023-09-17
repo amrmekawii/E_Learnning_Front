@@ -138,10 +138,10 @@ export class LuctureHComponent implements OnInit {
   }
   /////////////////////ForAddLect1
   print() {
-    console.log(this.addvideos.controls.length)
-    console.log(this.myFormGroup.get('addvideos')?.value)
-    console.log(this.firstFormGroup.value.ClassId)
-    console.log(this.secondFormGroup.value.Header)
+    // console.log(this.addvideos.controls.length)
+    // console.log(this.myFormGroup.get('addvideos')?.value)
+    // console.log(this.firstFormGroup.value.ClassId)
+    // console.log(this.secondFormGroup.value.Header)
     this.LastForm.value.ClassId = this.firstFormGroup.value.ClassId
     this.LastForm.value.Header = this.secondFormGroup.value.Header
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value

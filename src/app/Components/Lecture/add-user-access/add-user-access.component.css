@@ -19,6 +19,12 @@ table {
     color: #333; /* You can adjust the color as needed */
   }
   
+.lecture-table th,
+.lecture-table td {
+
+  text-align: center;
+  border-bottom: 3px solid #ddd;
+}
   .table-title h2 {
     font-size: 24px;
     margin-bottom: 5px;

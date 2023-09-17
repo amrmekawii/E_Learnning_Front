@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AddAssighmentDto, DeleteAssighmentDto } from 'src/app/TypeDto/AssighmentAddDto';
 import { AssignmentDto } from 'src/app/TypeDto/AssighmentAllDto';
 import { AssignmentByIdDto } from 'src/app/TypeDto/AssighmentByIdDto';
+import { UserAssighAnswerDTO } from 'src/app/TypeDto/AssighmentUaserAddDto';
 import { UdateAssighmentDto } from 'src/app/TypeDto/AssighmentUpdateDto';
 import { CorrectUserAssighmentDto } from 'src/app/TypeDto/AssighmenyCorrectDto';
 
@@ -20,6 +21,7 @@ export class AssighmentService {
   private readonly Base_URL3 = "https://localhost:7206/api/Assighment/UpdateAssigmenty";
   private readonly Base_URL4 = "https://localhost:7206/api/Assighment/DeleteAssigment";
   private readonly Base_URL5 = "https://localhost:7206/api/Assighment/CorrectUserAss";
+  private readonly Base_URL6 = "https://localhost:7206/api/Assighment/AddUserAssihgment";
 
 
   public GetAllAssoghment(): Observable<AssignmentDto[]> {
@@ -50,4 +52,9 @@ export class AssighmentService {
   public CorrectAssiment(Object: CorrectUserAssighmentDto): Observable<any> {
     return this.client.put(this.Base_URL5,Object);
   }
+  public AddUserAssighAnswer(Object: UserAssighAnswerDTO): Observable<any> {
+    return this.client.post(this.Base_URL6,Object);
+  }
+
+
 }

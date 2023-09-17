@@ -1,0 +1,177 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    background-color: rgb(229, 243, 255);
+    margin: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    border: 3px solid  rgb(239, 155, 0);
+    border-radius: 25px;
+    flex-direction: column;
+    padding-top: 20px;
+    
+  }
+  .icona{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  .quiz-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  
+  button {
+    padding: 8px 16px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 250px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    font-size: large;
+    margin: 40px;
+  }
+  
+  button:hover {
+    background-color: #ff6a00;
+
+  }
+  .head {
+    background-color: #eaeefe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    width: 500px;
+    border-radius: 25px;
+  
+  }
+  
+
+input{
+text-align: center;
+width: 200px;
+}
+
+
+
+
+/* assignment.component.css */
+.assignment-card {
+    width: 500px; /* Adjust the width as needed */
+    margin: 20px;
+    font-size: 18px; /* Adjust the font size as needed */
+  }
+  
+  /* Center the header */
+  mat-card-header {
+    text-align: center;
+    background-color: #E57373; /* Set your desired background color */
+    color: white; /* Set the text color for the header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .assignment-details {
+    display: flex;
+    flex-direction: column;
+  } 
+  
+  .assignment-property {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .property-label {
+    font-weight: bold;
+  }
+  
+  .mat-icon {
+    cursor: pointer;
+    color: #007ACC; /* Change to your desired color */
+  }
+  
+
+  .XX{
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #007ACC;
+  }
+  .XXx{
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: #007ACC;
+    
+  }
+  .XXx ,h5{
+font-size: large;
+cursor: pointer;
+
+  }
+
+
+
+
+
+
+  @media only screen and (max-width: 600px) {
+    .assignment-card {
+        width: 300px; /* Adjust the width as needed */
+        margin: 20px;
+        font-size: 15px; /* Adjust the font size as needed */
+      }
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: rgb(229, 243, 255);
+        margin: 20px;
+        border: 3px solid  rgb(239, 155, 0);
+        border-radius: 25px;
+        flex-direction: column;
+        padding-top: 20px;
+        
+      }
+      .head {
+        background-color: #eaeefe;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        width: 300px;
+        border-radius: 25px;
+      
+      }
+}

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AssighmentService } from 'src/app/Services/Assighment/assighment.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
 import { CorrectUserAssighmentDto } from 'src/app/TypeDto/AssighmenyCorrectDto';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-correct-ans',
@@ -16,6 +17,7 @@ constructor(    private SharedService: SharedService,
   private Assighment:AssighmentService,
   private formBuilder: FormBuilder,
   private toastr: ToastrService,
+  private location: Location
 
 
   ){}
@@ -57,6 +59,10 @@ console.log(this.CorrectUserAssighment);
 this.Assighment.CorrectAssiment(this.CorrectUserAssighment).subscribe({
   next:(data)=>{
     this.toastr.success("Update Done",data)
+    setTimeout(() => {
+      this.location.back();
+    }, 1500);
+  
 
   },
   error:(err)=>{

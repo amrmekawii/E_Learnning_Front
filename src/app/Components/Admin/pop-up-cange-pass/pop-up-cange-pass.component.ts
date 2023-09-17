@@ -38,11 +38,12 @@ this.CangePass.UpUser(formData).subscribe({
   },
   error: (err) => {
     console.log(err)
-    this.toastr.error(err.error)
+    this.toastr.error(err.error[0].code,err.error[0].description)
+    this.toastr.error(err.error[1].code,err.error[1].description)
 
   }})
     } else {
-      this.toastr.error("Data Not Valid")
+      this.toastr.error("Data Not Valid/Require")
 
     }
   }

@@ -52,6 +52,9 @@ import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/ad
 import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
 import { LectureAssighmentComponent } from './Components/Student/lecture-assighment/lecture-assighment.component';
 import { MatCardModule } from '@angular/material/card';
+import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
+import { LectureComponent } from './Components/Student/lecture/lecture.component';
+import { FooterComponent } from './Components/Footer/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +74,11 @@ import { MatCardModule } from '@angular/material/card';
     DetailsAssighmentComponent,
     AddAssighmentComponent,
     CorrectAnsComponent,
-    LectureAssighmentComponent
+    LectureAssighmentComponent,
+    StudentHomeComponent,
+    LectureComponent,
+    FooterComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,8 @@ import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangmen
 import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
 import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
 import { LectureAssighmentComponent } from './Components/Student/lecture-assighment/lecture-assighment.component';
+import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
+import { LectureComponent } from './Components/Student/lecture/lecture.component';
 
 const routes: Routes = [
 
@@ -49,6 +51,8 @@ const routes: Routes = [
     ]
   },
   { path: 'LectureAssighment', component: LectureAssighmentComponent },
+  { path: 'StudentHome', component: StudentHomeComponent },
+  { path: 'Lectures', component: LectureComponent },
   { path: '**', component: ErrorComponent }
 ];
 

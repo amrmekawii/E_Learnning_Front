@@ -36,7 +36,9 @@
               "src/assets/css/plyr.css",
               "src/assets/css/font.css",
               "node_modules/aos/dist/aos.css",
-              "@angular/material/prebuilt-themes/deeppurple-amber.css"
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "node_modules/Ngx-spinner/animations/ball-spin-clockwise.css"
+
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",

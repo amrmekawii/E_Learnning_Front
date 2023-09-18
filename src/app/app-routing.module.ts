@@ -21,6 +21,7 @@ import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/corre
 import { LectureAssighmentComponent } from './Components/Student/lecture-assighment/lecture-assighment.component';
 import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
 import { LectureComponent } from './Components/Student/lecture/lecture.component';
+import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
 
 const routes: Routes = [
 
@@ -47,12 +48,13 @@ const routes: Routes = [
       { path: 'DetailsAssighment/:id', component: DetailsAssighmentComponent },
       { path: 'AddAssighment', component: AddAssighmentComponent },
       { path: 'CorrectAns', component: CorrectAnsComponent },
+      { path: 'QuizHome', component: QuizHomeComponent },
 
     ]
   },
   { path: 'LectureAssighment', component: LectureAssighmentComponent },
   { path: 'StudentHome', component: StudentHomeComponent },
-  { path: 'Lectures', component: LectureComponent },
+  { path: 'Lectures/:id', component: LectureComponent },
   { path: '**', component: ErrorComponent }
 ];
 

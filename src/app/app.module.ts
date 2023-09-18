@@ -9,7 +9,7 @@ import { LoginComponent } from './Components/login/login.component';
 
 import { IntroComponent } from './Components/intro/intro.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './Components/Admin/Home/home/home.component';
@@ -55,7 +55,11 @@ import { MatCardModule } from '@angular/material/card';
 import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
 import { LectureComponent } from './Components/Student/lecture/lecture.component';
 import { FooterComponent } from './Components/Footer/footer/footer.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './Interceptors/loading.interceptor';
+import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +82,7 @@ import { FooterComponent } from './Components/Footer/footer/footer.component';
     StudentHomeComponent,
     LectureComponent,
     FooterComponent,
+    QuizHomeComponent,
 
   ],
   imports: [
@@ -98,21 +103,26 @@ import { FooterComponent } from './Components/Footer/footer/footer.component';
 
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
     MatTableModule,
     NgxExtendedPdfViewerModule,
     MatCardModule, // Add MatCardModule here
+    NgxSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
+    
 
     
     
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: InterceptorsInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -60,6 +60,8 @@ import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-details.component';
+import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +85,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     LectureComponent,
     FooterComponent,
     QuizHomeComponent,
+    QuizDetailsComponent,
+    UpdateQuationAnswerComponent,
 
   ],
   imports: [

@@ -116,7 +116,9 @@ export class LuctureHComponent implements OnInit {
 
 
   /////////////////////ForAddLect2
-  AddLecture(data: any) {
+  AddLecture(data: FormGroup) {
+    if (data.valid) {
+
     console.log(data.value)
     this.ClasssDto.classid = data.value.ClassId
     this.ClasssDto.header = data.value.Header
@@ -134,7 +136,11 @@ export class LuctureHComponent implements OnInit {
         this.toastr.error(err.error)
 
       },
-    })
+    })}
+    else{
+      this.toastr.warning("Enter Full Data First")
+
+    }
   }
   /////////////////////ForAddLect1
   print() {

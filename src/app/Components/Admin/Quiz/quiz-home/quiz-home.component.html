@@ -37,7 +37,7 @@
             <form [formGroup]="secondFormGroup">
               <mat-form-field>
                 <mat-label>Name Quiz</mat-label>
-                <input matInput formControlName="Header" placeholder="Name For This Lecture" required minlength="5">
+                <input matInput type="text" formControlName="Header" placeholder="Name For This Lecture" required minlength="5">
               </mat-form-field>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -68,7 +68,7 @@
                 <div class="form-group">
                   <mat-form-field>
                     <mat-label>Start Time:</mat-label>
-                    <input matInput [matDatepicker]="startDatePicker" formControlName="startTime">
+                    <input matInput  [matDatepicker]="startDatePicker" formControlName="startTime">
                     <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #startDatePicker></mat-datepicker>
                   </mat-form-field>
@@ -83,7 +83,7 @@
               <div>
               </div>
                 <button mat-button matStepperPrevious>Back</button>
-                <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
+                <button mat-button [disabled]="!timeForm.valid" matStepperNext>Next</button>
               </div>
             </form>
           </mat-step>
@@ -100,6 +100,14 @@
                 </div>
               </form>
           </mat-step>
+          
+          <mat-step>
+            <ng-template matStepLabel >Done</ng-template>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="print()">Add Lecture</button>
+            </div>
+          </mat-step>
 
     </mat-stepper>
   
@@ -109,15 +117,6 @@
 </div>
 
 <app-class-corsal (Task)="onMyVariableChange($event)"></app-class-corsal>
-<!-- <header class="table-title" style="font-style: oblique 40deg;">
-  <div class="col-md-3 " style="margin-top: 1%; margin-bottom: 1%;">
-    <div class="card card-3">
-      <h2>{{ClassNameHeader}}</h2>
-    </div>
-  </div>
-</header> -->
-
-
 <div class="Container-fluid" style="margin-top: 1%;">
   <mat-form-field class="example-full-width white " style="width: 100%;">
     <mat-label>Search</mat-label>
@@ -142,7 +141,7 @@
             (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">
              Details</a> -->
               <a class="btn btn-danger" >Delete</a> |
-              <a   class="btn btn-success">Details</a>
+              <a   class="btn btn-success" [routerLink]="['/AdminHome/QuizDetails',lecture.id]">Details</a>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,185 @@
+<!-- quiz-info.component.html -->
+
+<div class="quiz-container">
+    <div class="quiz-info">
+        <div>
+
+            <!-- assignment.component.html -->
+            <mat-card class="assignment-card ">
+                <mat-card-header>
+                    <mat-card-title>Quiz Information</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="assignment-details">
+                        <div class="assignment-property2">
+                            <span class="property-label">Quiz Id:</span>
+                            <span class="property-value">{{  DataQuiz.quizid }}</span>
+                        </div>
+                        <div class="assignment-property2">
+                            <span class="property-label">Quiz Name:</span>
+                            <span class="property-value">{{  DataQuiz.quizHeader }}</span>
+                        </div>
+                        <div class="assignment-property2">
+                            <span class="property-label">Quiz Type:</span>
+                            <span class="property-value">{{  DataQuiz.quizType }}</span>
+                        </div>
+                      
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        
+        </div>
+    </div>
+  
+
+    <!-- AddQuation   -->
+
+  <mat-expansion-panel style="
+      border-style: outset;
+      border-radius: 20px;
+      width: 80%;
+      border-color: rgb(255, 136, 0);
+    ">
+    <mat-expansion-panel-header>
+      <p class="xp">Add Lecture</p>
+    </mat-expansion-panel-header>
+
+
+    <mat-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="quizForm" label="Quation Type">
+        <form [formGroup]="quizForm">
+            <mat-form-field class="form-field">
+                <mat-label for="quizRequirement">Quation Type:</mat-label>
+                <mat-select formControlName="quizRequirement" >
+                  <mat-option [value]=0>Text</mat-option>
+                  <mat-option [value]=1>Image</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button [disabled]="!quizForm.valid" matStepperNext>Next</button>
+              </div>
+        </form>
+      </mat-step>
+      
+      <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
+        <form [formGroup]="secondFormGroup">
+
+            
+                  <input type="file" (change)="Uplodfile($event)" *ngIf="quizForm.value.quizRequirement==1">
+                  <img *ngIf="secondFormGroup.value.Header!='' &&quizForm.value.quizRequirement==1"  style="margin-left: 10px;"   [src]="secondFormGroup.get('Header')?.value" alt="Smiley face" width="600px" height="200px"  >
+
+                  <mat-form-field *ngIf="quizForm.value.quizRequirement==0">
+  
+                    <input  matInput formControlName="Header" placeholder="Quation ?" required>
+                  </mat-form-field>
+
+                  <div *ngIf="quizForm.value.quizRequirement==0" width="400px" height="200px" style="margin: 15px; border: 2px solid black; border-radius: 25px;   text-align: center;                  ">
+                    {{secondFormGroup.get('Header')?.value}}
+                  </div>  
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step label="Links Video">
+        <form [formGroup]="myFormGroup">
+
+
+
+          <div formArrayName="addvideos">
+            <div *ngFor="let video of addvideos.controls; let i = index">
+
+              <div [formGroupName]="i">
+                <mat-form-field>
+
+                  <input matInput formControlName="header" placeholder="Answer ?" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-select formControlName="rightAnswer" >
+                    <mat-option [value]=true>True</mat-option>
+                    <mat-option [value]=false>False</mat-option>
+                  </mat-select>
+                </mat-form-field>
+               
+                <button mat-icon-button (click)="removeVideo(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Video</button>
+        </form>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button [disabled]="addvideos.controls.length==0 || !myFormGroup.valid" mat-button
+            matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel >Done</ng-template>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="print()">Add Lecture</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
+  </mat-expansion-panel>
+
+    <!-- AddQuation   -->
+
+
+
+    <div class="questions-list   ">
+      <h2>Questions List</h2>
+      <ul>
+        <li *ngFor="let question of DataQuiz.getQuestionsDtos" class="question-item">
+          <div class="CardQuition ">
+
+            <!-- assignment.component.html -->
+            <mat-card class=" ">
+                <mat-card-header>
+                    <mat-card-title>Question ID: {{ question.questionID }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="">
+                     
+                        <div class="assignment-property" *ngIf="!image">
+                            <span class="property-label">Question Header:</span>
+                            <span class="property-value">{{ question.questionHeader}}</span>
+                        </div>
+                        <div class="assignment-property" *ngIf="image">
+                            <span  class="property-label">Question Header:</span>
+                            <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
+                            </span>
+                        </div>
+              
+                      
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        
+        </div>
+          <!-- Display answers if needed -->
+          <ul>
+            <li [ngStyle]="{'background-color':answer.right  == true ? 'rgb(0, 255, 0,.1)' : 'rgb(255, 0, 0,.1)' }" *ngFor="let answer of question.getAnswersDtos" class="answer-item">
+              <p>Answer ID: {{ answer.answerID }}</p>
+              <p  >Is Right: {{ answer.right }}</p>
+              <p>Answer Header: {{ answer.header }}</p>
+              
+            </li>
+          </ul>
+          <a class="btn btn-danger" >Delete</a> |
+          <a   class="btn btn-success" [routerLink]="['/AdminHome/UpdateQuationAnswer',question.questionID]">Update</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+

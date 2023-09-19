@@ -1,44 +1,54 @@
-import { Component ,OnInit} from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateAdapter } from '@angular/material/core';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
 import { QuizAllDto } from 'src/app/TypeDto/GetAllQuiz';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
+import { QuizAddDto } from 'src/app/TypeDto/QuizAddDto';
 @Component({
   selector: 'app-quiz-home',
   templateUrl: './quiz-home.component.html',
   styleUrls: ['./quiz-home.component.css']
 })
 export class QuizHomeComponent implements OnInit {
-  constructor(  private toastr: ToastrService,
+  constructor(private toastr: ToastrService,
     private _formBuilder: FormBuilder,
     private Getcalsss: GetAllLectureService,
     private QuizService: QuizService,
-    ){
-  
+  ) {
+
   }
   isLinear = false;
   ClassList!: any
   ClassLecId: QuizAllDto[] = []
   FiristId: any
   searchText = '';
-  
+  AddQuiz = new QuizAddDto()
   firstFormGroup = this._formBuilder.group({
-    ClassId: ['', Validators.required],
+    ClassId: [0, Validators.required],
   });
-    secondFormGroup = this._formBuilder.group({
+  secondFormGroup = this._formBuilder.group({
     Header: ['', [Validators.required, Validators.minLength(5)]],
   });
   quizForm = this._formBuilder.group({
     quizRequirement: [1, Validators.required],
   });
   Duration = this._formBuilder.group({
-    timer: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+    timer: [0, [Validators.required, Validators.pattern('^[0-9]+$')]],
   });
-  timeForm  = this._formBuilder.group({
+  timeForm = this._formBuilder.group({
     startTime: [null, [Validators.required]],
     endTime: [null, [Validators.required]],
+  });
+  AddQuizForm = this._formBuilder.group({
+    header: ['', Validators.required],
+    startTime: [DateAdapter, Validators.required],
+    classid: [0, Validators.required],
+    endTime: [DateAdapter, Validators.required],
+    duration: [0, Validators.required],
+    quizType: [0, Validators.required]
   });
 
 
@@ -68,26 +78,76 @@ export class QuizHomeComponent implements OnInit {
 
   }
 
-    ////////////////////////////////////////////FireWhenSelectClass
-    onMyVariableChange(ClassID: number) {
-      this, this.FiristId = ClassID
-      console.log('myVariable changed in the child component:', ClassID);
-      this.QuizService.GetClassByClassId(ClassID).subscribe({
+  ////////////////////////////////////////////FireWhenSelectClass
+  onMyVariableChange(ClassID: number) {
+    this, this.FiristId = ClassID
+    console.log('myVariable changed in the child component:', ClassID);
+    this.QuizService.GetClassByClassId(ClassID).subscribe({
+      next: (data) => {
+        console.log(data)
+        if (data.length != 0) {
+          this.ClassLecId = data as QuizAllDto[]
+          console.log(this.ClassLecId)
+        } else {
+          this.ClassLecId = data as QuizAllDto[]
+          console.log(this.ClassLecId)
+          this.toastr.warning("This Class (" + ClassID + ") Has No Data")
+        }
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+  ////////////////////// Addquiz
+  print() {
+
+    this.AddQuizForm.patchValue({
+      classid: this.firstFormGroup.value.ClassId,
+      header: this.secondFormGroup.value.Header,
+      quizType: this.quizForm.value.quizRequirement,
+      duration: this.Duration.value.timer,
+    });
+    if (this.quizForm.value.quizRequirement == 1) {
+      this.AddQuizForm.patchValue({
+        startTime: this.timeForm.value.startTime,
+        endTime: this.timeForm.value.endTime,
+      });
+    }
+    this.AddLecture(this.AddQuizForm);
+  }
+
+  AddLecture(data: FormGroup) {
+    if (data.valid) {
+      console.log(data.value)
+      this.AddQuiz.classid = data.value.classid
+      this.AddQuiz.header = data.value.header
+      this.AddQuiz.quizType = data.value.quizType
+      this.AddQuiz.endTime = data.value.endTime
+      if (this.quizForm.value.quizRequirement == 1) {
+        this.AddQuiz.duration = data.value.duration
+        this.AddQuiz.startTime = data.value.startTime
+      }
+      console.log(this.AddQuiz)
+      this.QuizService.AddQuiz(this.AddQuiz).subscribe({
+
         next: (data) => {
-          console.log(data)
-          if (data.length!=0) {
-            this.ClassLecId = data as QuizAllDto[]
-            console.log(this.ClassLecId)
-          } else {
-            this.ClassLecId = data as QuizAllDto[]
-            console.log(this.ClassLecId)
-            this.toastr.warning("This Class (" + ClassID + ") Has No Data")
-          }
+          console.log(data);
+          this.toastr.success("Done", "success Added")
         },
         error: (err) => {
-          console.log(err);
-        }
+          console.log(err)
+          this.toastr.error(err.error)
+        },
       })
     }
-  
+    else {
+      console.log(data.valid);
+      console.log(data);
+
+      this.toastr.warning("Enter Full Data First")
+
+    }
+
+  }
 }

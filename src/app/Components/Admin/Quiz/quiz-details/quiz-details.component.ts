@@ -1,0 +1,149 @@
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { FilesService } from 'src/app/Services/FileUp/files.service';
+import { QuizService } from 'src/app/Services/Quiz/quiz.service';
+import { QuizAddQuationDto } from 'src/app/TypeDto/QuizAddQuatioDto';
+import { GetQustionWithAnswersDto, QuestionType } from 'src/app/TypeDto/QuizDetailsDto';
+enum QuizType {
+  month,
+  lecture
+}
+
+
+@Component({
+  selector: 'app-quiz-details',
+  templateUrl: './quiz-details.component.html',
+  styleUrls: ['./quiz-details.component.css']
+})
+export class QuizDetailsComponent implements OnInit {
+  constructor(private myRoute: ActivatedRoute,
+    private QuizServ: QuizService,
+    private _formBuilder: FormBuilder,
+    private fileUplode: FilesService,
+    private toastr: ToastrService,
+
+
+  ) {
+    this.IdParams = myRoute.snapshot.paramMap.get('id');
+    console.log(this.IdParams);
+  }
+  IdParams!: any;
+  image: boolean = false
+  DataQuiz = new GetQustionWithAnswersDto()
+  //
+  QuizAddQuation=new QuizAddQuationDto()
+  isLinear = false;
+  myFormGroup!: FormGroup;
+
+  secondFormGroup = this._formBuilder.group({
+    Header: ['', [Validators.required,]],
+  });
+  quizForm = this._formBuilder.group({
+    quizRequirement: [0, Validators.required],
+  });
+  LastForm = this._formBuilder.group({
+      header: ['', Validators.required],
+      type: [0, Validators.required],
+      quizId: [0, Validators.required],
+      answerDTOs:  [[], Validators.required]
+  });
+  //
+
+
+  ngOnInit(): void {
+    this.QuizServ.GetQuizId(this.IdParams).subscribe({
+      next: (data) => {
+        this.DataQuiz = data
+        console.log(this.DataQuiz);
+        if (this.DataQuiz.quizType as number == QuestionType.Image) {
+          this.image = true
+        }
+
+      },
+      error: (err) => { }
+    })
+    this.myFormGroup = this._formBuilder.group({
+      addvideos: this._formBuilder.array([])
+    })
+  }
+
+  //////////////////////////////////handelfile
+  Uplodfile(e: Event) {
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+    this.fileUplode.Upload(file).subscribe((response) => {
+      console.log(response);
+      this.secondFormGroup.get('Header')?.setValue(response.url)
+    })
+  }
+  //////
+
+
+  addVideo() {
+    const videoFormGroup = this._formBuilder.group({
+      header: ['', Validators.required],
+      rightAnswer: ['true', Validators.required]
+    });
+
+    if (this.myFormGroup.get('addvideos')?.valid || this.addvideos.controls.length == 0) {
+      this.addvideos.push(videoFormGroup);
+    }
+  }
+
+  get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
+  removeVideo(index: number) {
+    this.addvideos.removeAt(index);
+  }
+
+  print() {
+
+    // this.LastForm.value.header = this.secondFormGroup.value.Header
+    // this.LastForm.value.type = this.quizForm.value.quizRequirement
+    // this.LastForm.value.quizId =this.IdParams
+    // this.LastForm.value.answerDTOs = this.myFormGroup.get('addvideos')?.value
+    this.LastForm.patchValue({
+      header: this.secondFormGroup.get('Header')?.value,
+      type: this.quizForm.get('quizRequirement')?.value,
+      quizId: this.IdParams,
+      answerDTOs: this.myFormGroup.get('addvideos')?.value
+    });
+    this.AddLecture(this.LastForm);
+  }
+
+    /////////////////////ForAddLect2
+    AddLecture(data: FormGroup) {
+      if (data.valid) {
+      console.log(data.value)
+      this.QuizAddQuation.header = data.value.header
+      this.QuizAddQuation.type = data.value.type
+      this.QuizAddQuation.quizId = data.value.quizId
+      this.QuizAddQuation.answerDTOs = data.value.answerDTOs
+      console.log(this.QuizAddQuation)
+      this.QuizServ.AddQuizQuation(this.QuizAddQuation).subscribe({
+  
+        next: (data) => {
+          console.log(data);
+          this.toastr.success("Done", "success Added")
+  
+        },
+        error: (err) => {
+          console.log(err)
+          this.toastr.error(err.error)
+  
+        },
+      })}
+      else{
+        this.toastr.warning("Enter Full Data First")
+
+      }
+    }
+}
+
+
+
+///////////////////
+

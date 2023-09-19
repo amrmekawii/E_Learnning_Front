@@ -1,0 +1,134 @@
+/* update-question-answer.component.css */
+
+.update-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ff8000;
+    border-radius: 4px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .answer-item {
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary {
+    margin-right: 10px;
+  }
+  
+  .btn-danger {
+    margin-left: 10px;
+  }
+  
+  .input-group-text {
+    background-color: #e9ecef;
+    border-color: #ced4da;
+  }
+  
+  .answer-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Custom Styling */
+  label {
+    font-weight: 600;
+  }
+  
+  .input-group-text {
+    border-radius: 0;
+  }
+  
+  .btn-primary,
+  .btn-danger {
+    border-radius: 0;
+  }
+  
+  .btn-primary:hover,
+  .btn-danger:hover {
+    opacity: 0.85;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+/* update-question-answer.component.css */
+/* update-question-answer.component.css */
+/* update-question-answer.component.css */
+
+/* Custom Styling */
+.input-group-text {
+    position: relative;
+  }
+  
+  .input-group-text input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .input-group-text input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 1.5em;
+    cursor: pointer;
+    transition: color 0.5s; /* Change the duration value here */
+  }
+  
+  .input-group-text input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+  }
+  
+  .input-group-text input[type="checkbox"]:checked + label:before {
+    background-color: #4caf50;
+    border-color: #4caf50;
+  }
+  
+  .input-group-text input[type="checkbox"]:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 0.35em;
+    top: 0.2em;
+    width: 0.6em;
+    height: 0.9em;
+    border: solid #fff;
+    border-width: 0 0.2em 0.2em 0;
+    transform: rotate(45deg);
+  }
+  
+  .input-group-text input[type="checkbox"]:not(:checked) + label:before {
+    border-color: #ff0000;
+    color:#ff0000;
+  }
+  
+  .input-group-text input[type="checkbox"]:checked + label {
+    color: #4caf50;
+  }
+  
+  .input-group-text input[type="checkbox"]:not(:checked) + label {
+    color: #cf3838;
+  }

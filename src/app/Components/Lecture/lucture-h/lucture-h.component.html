@@ -52,8 +52,6 @@
       <mat-step label="Links Video">
         <form [formGroup]="myFormGroup">
 
-
-
           <div formArrayName="addvideos">
             <div *ngFor="let video of addvideos.controls; let i = index">
 
@@ -130,9 +128,7 @@
         <td>{{ lecture.header }}</td>
         <td>{{ lecture.className }}</td>
         <td class="btncolr">
-          <!-- <a class="btn btn-outline-warning"
-            (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">
-             Details</a> -->
+      
               <a class="btn btn-danger" >Delete</a> |
               <a  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )" class="btn btn-success">Details</a>
         </td>

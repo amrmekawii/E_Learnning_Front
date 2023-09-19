@@ -1,0 +1,44 @@
+<!-- update-question-answer.component.html -->
+
+<div class="update-form">
+    <form [formGroup]="updateForm">
+      <input type="hidden" formControlName="id">
+  
+      <!-- Question Header -->
+      <div class="form-group" *ngIf="QutionType==0">
+        <label for="header">Question Header:</label>
+        <input type="text" id="header" formControlName="header" class="form-control" required>
+      </div>
+      <div class="form-group" *ngIf="QutionType==1">
+    
+        <input type="file" (change)="Uplodfile($event)" >
+        <img  style="margin-left: 10px;"   [src]="updateForm.get('header')?.value" alt="Smiley face" width="700px" height="300px"  >
+      </div>
+  
+      <!-- Answers -->
+      <div formArrayName="answerDTOs">
+        <div *ngFor="let answer of answers.controls; let i = index" class="answer-item">
+          <div [formGroupName]="i" class="form-group">
+            <label for="answerHeader{{ i }}">Answer {{ i + 1 }}:</label>
+            <div class="input-group">
+              <input type="text" id="answerHeader{{ i }}" formControlName="header" class="form-control" required>
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <input type="checkbox" id="rightAnswer{{ i }}" formControlName="rightAnswer">
+                  <label for="rightAnswer{{ i }}">
+                    {{ answer.get('rightAnswer')?.value ? 'Right' : 'Wrong' }}
+                  </label>                </div>
+              </div>
+            </div>
+          </div>
+          <button type="button" (click)="removeAnswer(i)" class="btn btn-danger">Remove Answer</button>
+        </div>
+      </div>
+  
+      <!-- Button Container -->
+      <div class="button-container">
+        <button type="button" (click)="addAnswer()" class="btn btn-primary">Add Answer</button>
+        <button type="button" (click)="updateQuestion()" class="btn btn-success">Update Question</button>
+      </div>
+    </form>
+  </div>

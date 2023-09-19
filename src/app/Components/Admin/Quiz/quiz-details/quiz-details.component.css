@@ -1,0 +1,213 @@
+/* quiz-info.component.css */
+
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 3px solid #ff8c00;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .quiz-info h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .quiz-info p {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .questions-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    text-align: center;
+    width: 70%;
+
+  }
+  .CardQuition{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .Imgsiz{
+    width: 700px;
+    height: 250px;
+  }
+  .questions-list h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .question-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question-item p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .answer-item {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .answer-item p {
+    font-size: 14px;
+    margin: 3px 0;
+    color: #444;
+  }
+
+  .xp {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ff9100;
+    
+    opacity: .6;
+    padding: 20px;
+    font-weight: 900;
+    font-size: large;
+    color: rgb(0, 0, 0);
+    border-bottom-right-radius: 30%;
+    border-bottom-left-radius: 30%;
+  
+  }
+
+
+/* assignment.component.css */
+.assignment-card {
+    width: 500px; /* Adjust the width as needed */
+    margin: 20px;
+    font-size: 18px; /* Adjust the font size as needed */
+  }
+  
+  /* Center the header */
+  mat-card-header {
+    text-align: center;
+    background-color: #E57373; /* Set your desired background color */
+    color: white; /* Set the text color for the header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .assignment-details {
+    display: flex;
+    flex-direction: column;
+  } 
+  
+  .assignment-property {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 8px;
+  }
+  .assignment-property2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 8px;
+  }
+  
+  .property-label {
+    font-weight: bold;
+  }
+  
+  .mat-icon {
+    cursor: pointer;
+    color: #007ACC; /* Change to your desired color */
+  }
+  
+
+  .XX{
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #007ACC;
+  }
+  .XXx{
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: #007ACC;
+    
+  }
+  .XXx ,h5{
+font-size: large;
+cursor: pointer;
+
+  }
+
+
+
+
+
+
+  @media only screen and (max-width: 600px) {
+    .Imgsiz{
+        width: 300px;
+        height: 250px;
+      }
+      
+    .assignment-card {
+        width: 300px; /* Adjust the width as needed */
+        margin: 20px;
+        font-size: 15px; /* Adjust the font size as needed */
+      }
+      .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        background-color: rgb(229, 243, 255);
+        margin: 20px;
+        border: 3px solid  rgb(239, 155, 0);
+        border-radius: 25px;
+        flex-direction: column;
+        padding-top: 20px;
+        
+      }
+      .head {
+        background-color: #eaeefe;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        width: 300px;
+        border-radius: 25px;
+      
+      }
+}

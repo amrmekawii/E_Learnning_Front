@@ -12,6 +12,7 @@ import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
+import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 
 const routes: Routes = [
 
@@ -29,11 +30,12 @@ const routes: Routes = [
   {
     path: "AdminHome", component: HomeComponent,
     children: [
-      { path: "StudentMangment", component: StudentMangmentComponent },
+     
       { path: 'Lecture', component: LuctureHComponent },
       { path: 'GlobalScreen', component: GlobalScreenComponent },
     ]
-  },
+
+  }, { path: "StudentMangment", component: StudentMangmentComponent } , { path: "StudentProfile", component: StudentProfileComponent }
 ];
 
 @NgModule({

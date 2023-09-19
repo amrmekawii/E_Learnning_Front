@@ -1,5 +1,20 @@
 <title class="mb-3" style="margin-left: 40%; color: #000; margin-top: 50px;  font-weight:400; width: 50%;">Student Mangment </title>
 
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">User Data!</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>username : {{Responce.userName}} </p>
+    <p>Password : {{Responce.password}} </p>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Ok</button>
+	</div>
+</ng-template>
+
 
 
 <mat-expansion-panel  hideToggle="true " class="white"
@@ -8,7 +23,7 @@ style="
   margin: auto;
   margin-top: 100px;
   border-radius: 20px;
-  width: 60%;
+  width: 80%;
   border-color:  rgb(201, 136, 17);"
 >
 <mat-expansion-panel-header style="width: 100%;"   >
@@ -19,21 +34,60 @@ style="
 
    
 
-<form>
+<form [formGroup]="RegisterForm"   (ngSubmit)="AddStudent(RegisterForm, content)">
     <div class="row w-75 mx-auto">
       <div class="col-md-4   mb-3">
         <label><i class="fa-solid fa-user me-2"></i>First Name</label>
         <input type="text" class="form-control"   formControlName="firstName"  placeholder="First Name"/>
+<div *ngIf=" RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: red;">
+<span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('minlength')  "    style="color: red;" > minLength is 3 letter</span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+
+</div>
+
+<div *ngIf=" !RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: rgb(23, 245, 71);">
+  <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+  </div>
+  
       </div>
       <div class="col-md-4 mb-3">
         <label><i class="fa-solid fa-user me-2"></i>Second Name</label>
         <input type="text" class="form-control" formControlName="secondName"   placeholder="Second Name"/>
+
+
+
+        <div *ngIf=" RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+          
       </div>
       <div class="col-md-4 mb-3">
         <label
           ><i class="fa-solid fa-user-tie me-2"></i>Last Name</label
         >
         <input type="text" class="form-control"   formControlName="lastName" placeholder="Last Name "/>
+
+
+
+        <div *ngIf=" RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  style="color: red;"  *ngIf=" RegisterForm.get('lastName')?.getError('minlength')" > minLength is 3 letter</span>
+          <span  style="color: red;" *ngIf=" RegisterForm.get('lastName')?.getError('required')" > this feild is Requird</span>
+          
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+        
       </div>
       <div class="col-md-6 mb-2">
         <label
@@ -41,8 +95,23 @@ style="
           Number</label
         >
         <input type=" time" class="form-control"     formControlName="phoneNumber"     placeholder="Your number"
+      />
+
+
+
+
+      <div *ngIf=" RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: red;">
+        <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('required')" > this feild is Requird</span>
+
+        </div>
         
-        />
+        <div *ngIf=" !RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+          <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+          </div>
+
+
       </div>
       <div class="col-md-6">
         <label
@@ -50,6 +119,21 @@ style="
           Phone Number</label
         >
         <input type="text" class="form-control"    formControlName="parentPhoneNumber"    placeholder="Parent number"/>
+     
+     
+        <div *ngIf=" RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: red;">
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+          <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('required')" > this feild is Requird</span>
+  
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+  
+     
+     
       </div>
     </div>
     <div class="my-3 mb-5 w-50 mx-auto">
@@ -61,6 +145,15 @@ style="
  
         <mat-option   *ngFor="let year of  allyears"       [value]="year.id"   style="color: chocolate !important;" >   {{year.name}}  </mat-option>
       </mat-select>
+      <div *ngIf=" RegisterForm.get('yearid')?.errors  && RegisterForm.get('yearid')?.touched" style="color: red;">
+        <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+        <span  *ngIf=" RegisterForm.get('yearid')?.getError('required')" > this feild is Requird</span>
+
+        </div>
+        
+        <div *ngIf=" !RegisterForm.get('yearid')?.errors  && RegisterForm.get('yearid')?.touched" style="color: rgb(23, 245, 71);">
+          <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+          </div>
 
       
       <mat-checkbox *ngFor="let class of  ClassesByYear"  #class [value]="class.id" (click)="onCheckChange($event) " >{{class.name}}</mat-checkbox>
@@ -69,7 +162,8 @@ style="
     </div>
 
     <div class="text-center w-50 mx-auto">
-      <button class="btn log-btn w-100">Submit</button>
+
+      <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!RegisterForm.valid"    type="submit">
 
     </div>
   </form>
@@ -82,10 +176,10 @@ style="
 <div class="box  col-md-6" >
 <h3>Active Student</h3>
 <div class="row">
-    <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
-      <div class="card card-3">
-        <p>First Secondary Class</p>
-      </div>
+    <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" *ngFor="let Class of classes">
+      <button class="card card-3" #cl  (click)="GetStudents(Class.id)">
+{{Class.name}}
+      </button>
     </div>
     </div>
 
@@ -102,109 +196,78 @@ style="
           </div>
         </div>
         </div>
-    
-    
         
       </div>
     </div>
 </div>
 
 
-<div class="Container-fluid" style="margin-top: 10%;">
+<div class="Container" style="margin-top: 3%;">
   <mat-form-field class="example-full-width white " style="width: 100%;">
     <mat-label>Search</mat-label>
     <input matInput placeholder="Search" [(ngModel)]="searchText">
   </mat-form-field>
   
-  
   <table class="table table-hover ">
     <thead class="thead-dark">
       <tr >
-        <th>ID</th>
-        <th>Name</th>
+        <th>Full Name</th>
+        <th>User Name</th>
+        <th>Password</th>
+        <th>Phone Number</th>
+        <th>Parent Number</th>
+        <th>Action</th>
+
+
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let e of data | search: searchText">
-        <td>{{e.id}}</td>
-        <td>{{e.name}}</td>
+      <tr *ngFor="let Student of AvtiveStudents | search: searchText"  >
+        <td>{{Student.name}}</td>
+        <td>{{Student.username}}</td>
+
+        <td>{{Student.pasword}}</td>
+        <td>{{Student.phoneNumber}}</td>
+        <td>{{Student.parentPhoneNumber}}</td>
+
+        <td style="width: 30%">
+          <a class="btn btn-primary" >Profile</a> | 
+          <button class="btn btn-danger" (click)="DeleteStudent(Student ,Delete)" >Delete</button> |
+          
+          
+          <button class="btn btn-warning " *ngFor="let Class of Student.userYear.classes"  (click)="DeleteFromClass(Class.id,Student.id )">Delete From  {{Class.name}}</button> |
+            </td>
+          
       </tr>
     </tbody>
   </table>
 </div>
 
 
-<div class="Container-fluid" style="margin-top: 10%;">
-  <h3>Listing Invoice</h3>
-  <mat-form-field class="example-full-width white " style="width: 100%;">
-    <mat-label>Search</mat-label>
-    <input matInput placeholder="Search" [(ngModel)]="searchText">
-  </mat-form-field>
-  <div class="card-body">
 
-      <table datatable  class="table table-bordered  table-hover">
-          <thead class="bg-dark  text-white" >
-              <tr>
-                  <td >Invoice No</td>
-                  <td>Customer</td>
-                  <td>Remarks</td>
-                  <td>Total</td>
-                  <td>Tax</td>
-                  <td>NetTotal</td>
-                  <td>Action</td>
-              </tr>
-          </thead>
-          <tbody>
-<tr >
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td style="width: 30%">
-<a class="btn btn-primary">Edit</a> | 
-<a class="btn btn-danger" >Delete</a> |
-<a class="btn btn-success">Print</a> |
-<a class="btn btn-success" >Download</a>
-  </td>
 
-</tr>
-<tr >
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td style="width: 30%">
-<a class="btn btn-primary">Edit</a> | 
-<a class="btn btn-danger" >Delete</a> |
-<a class="btn btn-success">Print</a> |
-<a class="btn btn-success" >Download</a>
-  </td>
 
-</tr>
-<tr >
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td>asdsa</td>
-  <td style="width: 30%">
-<a class="btn btn-primary">Edit</a> | 
-<a class="btn btn-danger" >Delete</a> |
-<a class="btn btn-success">Print</a> |
-<a class="btn btn-success" >Download</a>
-  </td>
-
-</tr>
-
-          </tbody>
-
-      </table>
-
+<ng-template #Delete let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete User</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="Canceldelete(Delete)"></button>
+	</div>
+	<div class="modal-body">
+		<p>Are You Sure you want Delete {{deleteUser.name}}</p>
   </div>
 
+<form   [formGroup]="DeleteForm" (ngSubmit)="DeleteFinal()">
+  <input type="text" class="form-control"   formControlName="Password"  placeholder="Password"/>
+<div *ngIf=" DeleteForm.get('Password')?.errors  && DeleteForm.get('Password')?.touched" style="color: red;">
+<span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+<span  *ngIf=" DeleteForm.get('Password')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+
 </div>
+
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-outline-dark"  [disabled]="!DeleteForm.valid">Yes</button>
+	</div>
+</form>
+
+</ng-template>
+

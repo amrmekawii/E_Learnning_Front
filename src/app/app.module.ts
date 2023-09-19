@@ -46,6 +46,8 @@ import { MatTableModule } from '@angular/material/table';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor';
+import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
+import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
 
 @NgModule({ 
   declarations: [
@@ -58,7 +60,9 @@ import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor
     GlobalScreenComponent,
     PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
  ,
- SearchPipe
+ SearchPipe,
+ StudentProfileComponent,
+ ClassMangmentComponent
   ],
   imports: [
     BrowserModule,

@@ -21,7 +21,6 @@ export class GenralServiceService {
 
   private readonly Base_URL = "https://localhost:7206/api/Class/GetAllYers";
   private readonly Base_URL2 = "https://localhost:7206/api/Class/GetClassByYear/";
-  private readonly Base_URL3 = "https://localhost:7206/api/Lecture/GetLectureList/";
 
 
 public GetAllYears () : Observable<UserYearDTO>  {

@@ -12,7 +12,16 @@ import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose
 import { LecAudeanceComponent } from './Components/Lecture/lec-audeance/lec-audeance.component';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
-import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
+import { ErrorComponent } from './Components/error/error.component';
+import { CodeGenrationComponent } from './Components/Lecture/code-genration/code-genration.component';
+import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
+import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
+import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
+import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
+import { LectureAssighmentComponent } from './Components/Student/lecture-assighment/lecture-assighment.component';
+import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
+import { LectureComponent } from './Components/Student/lecture/lecture.component';
+import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
 
 const routes: Routes = [
 
@@ -20,7 +29,8 @@ const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
-  { path: 'EditOrDetailsLecture', component: LecDetailsComponent,
+  {
+    path: 'EditOrDetailsLecture', component: LecDetailsComponent,
     children: [
       { path: 'ChooseOption', component: ChooseOptionComponent },
       { path: 'ShowAudance/:id', component: LecAudeanceComponent },
@@ -34,8 +44,7 @@ const routes: Routes = [
       { path: 'Lecture', component: LuctureHComponent },
       { path: 'GlobalScreen', component: GlobalScreenComponent },
     ]
-
-  }, { path: "StudentMangment", component: StudentMangmentComponent } , { path: "StudentProfile", component: StudentProfileComponent }
+  },
 ];
 
 @NgModule({

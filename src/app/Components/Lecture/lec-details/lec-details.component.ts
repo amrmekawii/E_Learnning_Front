@@ -21,6 +21,7 @@ export class LecDetailsComponent implements OnInit {
     private asighm: AssighmentService,
     private modalservice: NgbModal,
     private toastr: ToastrService,
+    
 
   ) {
     ;
@@ -34,26 +35,31 @@ export class LecDetailsComponent implements OnInit {
   IdAud?: number
   AllAssighment: AssignmentDto[] = []
 
-  pdfurl:string ='';
+  pdfurl: string = '';
   path: any
   @ViewChild('content') popupview !: ElementRef;
 
   PassPath(path: any) {
     this.pdfurl = path;
+
     console.log(path);
 
 
   }
   showpdf() {
-    if (this.pdfurl.length ===0) {
+    if (this.pdfurl.length === 0) {
       this.toastr.warning("Has No Assighment")
 
-    } else{
+    } else {
       this.modalservice.open(this.popupview, { size: 'lg' });
-window.open(this.pdfurl)
+      window.open(this.pdfurl)
     }
   }
+  handleLoadError(event: any) {
+    console.error('PDF load error:', event);
+  }
   
+
   ngOnInit() {
     // Create the form controls
     this.editOrDetailsForm = this.fb.group({
@@ -67,14 +73,15 @@ window.open(this.pdfurl)
     this.asighm.GetAllAssoghment().subscribe({
       next: (data) => {
         this.AllAssighment = data
-        this.receivedObject = this.sharedService.getObject();
+        this.receivedObject = this.sharedService.getObject(); 
         this.path = this.AllAssighment.find(x => x.id == this.receivedObject.assignmentId)
-        if(this.path !=null){
+        if (this.path != null) {
           this.pdfurl = this.path.filePath
+
           console.log(this.pdfurl);
 
         }
-        console.log(this.pdfurl+"00000000");
+        console.log(this.pdfurl + "00000000");
 
       },
       error: (err) => {
@@ -84,7 +91,7 @@ window.open(this.pdfurl)
     })
     this.receivedObject = this.sharedService.getObject();
 
-    this.receivedObject2 = this.sharedService.getObject();
+    this.receivedObject2 = this.sharedService.getObject2();
 
     this.editOrDetailsForm.patchValue(this.receivedObject);
     this.IdAud = this.receivedObject.lectureId

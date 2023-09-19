@@ -9,7 +9,7 @@ import { LoginComponent } from './Components/login/login.component';
 
 import { IntroComponent } from './Components/intro/intro.component';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './Components/Admin/Home/home/home.component';
@@ -27,15 +27,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GlobalScreenComponent } from './Components/Admin/global-screen/global-screen.component';
 import { PopUpCangePassComponent } from './Components/Admin/pop-up-cange-pass/pop-up-cange-pass.component';
 import { StudentMangmentComponent } from './Components/Admin/UserMangment/student-mangment/student-mangment.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LuctureHComponent } from './Components/Lecture/lucture-h/lucture-h.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 import { ClassCorsalComponent } from './Components/Lecture/ClassCarsol/class-corsal/class-corsal.component';
 import { LecDetailsComponent } from './Components/Lecture/lec-details/lec-details.component';
 import { ChooseOptionComponent } from './Components/Lecture/choose-option/choose-option.component';
@@ -44,12 +44,25 @@ import { SearchPipe } from './Services/Search-pipe';
 import { AddUserAccessComponent } from './Components/Lecture/add-user-access/add-user-access.component';
 import { MatTableModule } from '@angular/material/table';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import {  HTTP_INTERCEPTORS } from '@angular/common/http';
-import { InterceptorsInterceptor } from './Interceptors/interceptors.interceptor';
+import { ErrorComponent } from './Components/error/error.component';
+import { CodeGenrationComponent } from './Components/Lecture/code-genration/code-genration.component';
+import { AssighmentComponent } from './Components/Admin/AssighmentMangment/assighment/assighment.component';
+import { DetailsAssighmentComponent } from './Components/Admin/AssighmentMangment/details-assighment/details-assighment.component';
+import { AddAssighmentComponent } from './Components/Admin/AssighmentMangment/add-assighment/add-assighment.component';
+import { CorrectAnsComponent } from './Components/Admin/AssighmentMangment/correct-ans/correct-ans.component';
+import { LectureAssighmentComponent } from './Components/Student/lecture-assighment/lecture-assighment.component';
+import { MatCardModule } from '@angular/material/card';
+import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
+import { LectureComponent } from './Components/Student/lecture/lecture.component';
+import { FooterComponent } from './Components/Footer/footer/footer.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './Interceptors/loading.interceptor';
+import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
-
-@NgModule({ 
+@NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
@@ -60,9 +73,7 @@ import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-m
     GlobalScreenComponent,
     PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
  ,
- SearchPipe,
- StudentProfileComponent,
- ClassMangmentComponent
+ SearchPipe
   ],
   imports: [
     BrowserModule,
@@ -74,25 +85,34 @@ import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-m
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
     }),
-    MatSlideToggleModule, MatToolbarModule,MatIconModule,MatListModule,MatExpansionModule,
-    MatTooltipModule, MatButtonModule,MatSidenavModule,MatMenuModule,MatSlideToggleModule,
+    MatSlideToggleModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule,
+    MatTooltipModule, MatButtonModule, MatSidenavModule, MatMenuModule, MatSlideToggleModule,
     FormsModule,
-    MatDialogModule,MatFormFieldModule, MatCheckboxModule, MatSelectModule,MatInputModule ,MatRadioModule,NgbPaginationModule
-    ,NgbPaginationModule,
-    
+    MatDialogModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatInputModule, MatRadioModule, NgbPaginationModule
+    , NgbPaginationModule,
+
     MatStepperModule,
     MatFormFieldModule,
-    MatInputModule,
     MatSelectModule,
     MatTableModule,
-        NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    MatCardModule, // Add MatCardModule here
+    NgxSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    
+    
+
+    
+    
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: InterceptorsInterceptor,
-    //   multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+    
   ],
   bootstrap: [AppComponent]
 })

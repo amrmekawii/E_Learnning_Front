@@ -7,42 +7,6 @@
     margin-top: 16px;
   }
   
-/* 
-  .table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 900px;
-  }
-  
-  th {
-    border: 2px solid #464545;
-    text-align: center;
-    background-color: rgb(251, 225, 182);
-    height: 40px;
-
-  }
-   td {
-    border: 2px solid #ffffff;
-    padding: 8px;
-    text-align: center;
-
-  }
-  tr:nth-child(even)  {
-    background-color: #cfd1a0;
-  }
-  tr:nth-child(odd)  {
-    background-color: #d4d4d1;
-  }
-.btncolr{
-  background-color: #776e4d;
-} */
 
 .table-title {
   text-align: center;
@@ -64,4 +28,11 @@
 .table-title p {
   font-size: 16px;
   margin-bottom: 5px;
+}
+
+.lecture-table th,
+.lecture-table td {
+
+  text-align: center;
+  border-bottom: 3px solid #ddd;
 }

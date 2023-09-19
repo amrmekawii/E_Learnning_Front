@@ -1,0 +1,102 @@
+<header class="head">
+    <h2> Student Name : {{StudentName}} </h2>
+</header>
+
+<div class="form-container col-10">
+
+    <div>
+
+        <!-- assignment.component.html -->
+        <mat-card class="assignment-card ">
+            <mat-card-header>
+                <mat-card-title>Assignment Information</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="assignment-details">
+                    <div class="assignment-property">
+                        <span class="property-label">Assignment Name:</span>
+                        <span class="property-value">{{ Assighent.header }}</span>
+                    </div>
+                    <div class="assignment-property">
+                        <span class="property-label">Assignment File:</span>
+                        <span class="property-value">
+                            <div class="XXx">
+                                <h5 (click)="openPdf(Assighent.filePath)">Veiw</h5>
+                                <mat-icon (click)="openPdf(Assighent.filePath)">open_in_new</mat-icon>
+                            </div>
+                        </span>
+                    </div>
+                    <div *ngIf="UserSolveAssighment" class="assignment-property">
+                        <span class="property-label">Assignment Answer File:</span>
+                        <span class="property-value">
+                            <div class="XXx">
+                                <h5 (click)="openPdf(Assighent.modelAnswerFilePath)">Veiw</h5>
+                                <mat-icon (click)="openPdf(Assighent.modelAnswerFilePath)">open_in_new</mat-icon>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+    <div>
+
+        <!-- assignment.component.html -->
+        <mat-card class="assignment-card "*ngIf="UserSolveAssighment">
+            <mat-card-header>
+                <mat-card-title>Assignment Information</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="assignment-details">
+                  
+            
+                    <div *ngIf="UserSolveAssighment" class="assignment-property">
+                        <span class="property-label">Your Assignment Answer File:</span>
+                        <span class="property-value">
+                            <div class="XXx">
+                                <h5 (click)="openPdf(UserAssighent.userAnswerFilePath)">Veiw</h5>
+                                <mat-icon (click)="openPdf(UserAssighent.userAnswerFilePath)">open_in_new</mat-icon>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="assignment-property">
+                        <span class="property-label">Your Assignment Result:</span>
+                        <span class="property-value">{{ UserAssighent.comment }}</span>
+                        <div *ngIf="UserAssighent.comment==null">
+                            <h4 style="color: rgb(0, 0, 0); background-color: orangered; border-radius: 25px; padding: 3px; font-size: larger;"> Wait Your Result </h4>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+
+    <form [formGroup]="assignmentForm" class="assignment-form" *ngIf="!UserSolveAssighment">
+        <div class="form-row">
+            <div class="form-field">
+                <mat-form-field>
+                    <mat-label>Model Answer File Path</mat-label>
+                    <input matInput type="text" id="modelAnswerFilePath" formControlName="modelAnswerFilePath">
+                </mat-form-field>
+                <input type="file" #fileInput2 style="display:none"
+                    (change)="onFileSelected('modelAnswerFilePath', $event)">
+            </div>
+            <div class="icona">
+                <div class="XX">
+                    <mat-icon matSuffix (click)="fileInput2.click()">attach_file</mat-icon>
+                    <h5>Select</h5>
+                </div>
+                <div class="XX">
+                    <mat-icon matSuffix (click)="openPdf(assignmentForm.value.modelAnswerFilePath)">open_in_new</mat-icon>
+                    <h5>Veiw</h5>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="submit" (click)="SendFile(assignmentForm)">submit</button>
+        </div>
+    </form>
+</div>

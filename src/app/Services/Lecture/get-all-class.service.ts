@@ -9,6 +9,7 @@ import { AddUserAccessDto } from 'src/app/TypeDto/AddUserAccessDto';
 import { ClassActive } from 'src/app/TypeDto/ClassIdActive';
 import { UserInClassDto } from 'src/app/TypeDto/GetStudents';
 import { Data } from '@angular/router';
+import { CodeLecDto, GenrateCodeDto } from 'src/app/TypeDto/CodeGenrateDto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,7 @@ export class GetAllLectureService {
   private readonly Base_URL4 = "https://localhost:7206/api/Lecture/GetLectureAttendance/";
   private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
   private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
+  private readonly Base_URL7 = "https://localhost:7206/api/Lecture/GenerateCodes";
 
 
 
@@ -29,9 +31,9 @@ export class GetAllLectureService {
 
 
 
-  public GetAllClass(): Observable<ClassAllDto> {
+  public GetAllClass(): Observable<ClassAllDto[]> {
 
-    return this.client.get(this.Base_URL);
+    return this.client.get<ClassAllDto[]>(this.Base_URL);
 
   }
 
@@ -42,9 +44,9 @@ export class GetAllLectureService {
 
   }
 
-  public GetLecByClassId(id: number): Observable<GetLectByClassIdDto> {
+  public GetLecByClassId(id: number): Observable<GetLectByClassIdDto[]> {
 
-    return this.client.get(this.Base_URL3 + id);
+    return this.client.get<GetLectByClassIdDto[]>(this.Base_URL3 + id);
 
   }
 
@@ -67,6 +69,12 @@ export class GetAllLectureService {
     console.log(object);
 
     return this.client.post<UserInClassDto[]>(this.Base_URL6, object);
+
+  }
+  public GenerateCodeLecture(object: GenrateCodeDto): Observable< CodeLecDto[]> {
+    console.log(object);
+
+    return this.client.post<CodeLecDto[]>(this.Base_URL7, object);
 
   }
 

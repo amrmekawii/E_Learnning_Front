@@ -1,114 +1,111 @@
-
 <mat-toolbar color="dark">
 
 
-  
+
 
 </mat-toolbar>
 
 <div class="p">
-    <div class="progress-bar "></div>
+  <div class="progress-bar "></div>
 
-  <mat-expansion-panel
-    style="
+  <mat-expansion-panel style="
       border-style: outset;
       border-radius: 20px;
       width: 80%;
       border-color: rgb(255, 136, 0);
-    "
-  >
+    ">
     <mat-expansion-panel-header>
       <p>Add Lecture</p>
     </mat-expansion-panel-header>
 
-   
+
     <mat-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="firstFormGroup" label="Select Class">
-            <form [formGroup]="firstFormGroup">
-              <mat-form-field>
-                <mat-label>Select Class</mat-label>
-                <mat-select formControlName="ClassId">
-                  <mat-option *ngFor="let class of ClassList" [value]="class.id">{{ class.name }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <div>
-                <button [disabled]="!firstFormGroup.valid" mat-button matStepperNext>Next</button>
-              </div>
-            </form>
-          </mat-step>
-        
-      
-        <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
-          <form [formGroup]="secondFormGroup">
-            <mat-form-field>
-              <mat-label>Name Lecture</mat-label>
-              <input matInput formControlName="Header" placeholder="Name For This Lecture" required minlength="5">
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-
-
-           <mat-step  label="Links Video">
-            <form [formGroup]="myFormGroup">
-
-             
-
-                    <div formArrayName="addvideos">
-                      <div *ngFor="let video of addvideos.controls; let i = index">
-
-                        <div [formGroupName]="i">
-                          <input type="file" (change)="Uplodfile($event, i)">
-
-                          <mat-form-field>
-                            
-                            <input matInput formControlName="link" placeholder="Video Link" required >
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput formControlName="partHeader" placeholder="Part Header" required>
-                          </mat-form-field>
-                          <mat-form-field>
-                            <input matInput formControlName="number" type="number" placeholder="Part Number" required>
-                          </mat-form-field>
-                          <button mat-icon-button (click)="removeVideo(i)">
-                            <mat-icon>delete</mat-icon>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Video</button>
+      <mat-step [stepControl]="firstFormGroup" label="Select Class">
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field>
+            <mat-label>Select Class</mat-label>
+            <mat-select formControlName="ClassId">
+              <mat-option *ngFor="let class of ClassList" [value]="class.id">{{ class.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button [disabled]="!firstFormGroup.valid" mat-button matStepperNext>Next</button>
+          </div>
         </form>
+      </mat-step>
 
-            <div>
-              <button mat-button matStepperPrevious >Back</button>
-              <button [disabled]="addvideos.controls.length==0 || !myFormGroup.valid"  mat-button matStepperNext >Next</button>
-            </div>
-        </mat-step>
 
-        <mat-step>
-          <ng-template matStepLabel (click)="print()">Done</ng-template>
+      <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
+        <form [formGroup]="secondFormGroup">
+          <mat-form-field>
+            <mat-label>Name Lecture</mat-label>
+            <input matInput formControlName="Header" placeholder="Name For This Lecture" required minlength="5">
+          </mat-form-field>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="print()" >Add Lecture</button>
+            <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
           </div>
-        </mat-step>
-      </mat-stepper>
-      
+        </form>
+      </mat-step>
+
+
+      <mat-step label="Links Video">
+        <form [formGroup]="myFormGroup">
+
+
+
+          <div formArrayName="addvideos">
+            <div *ngFor="let video of addvideos.controls; let i = index">
+
+              <div [formGroupName]="i">
+                <input type="file" (change)="Uplodfile($event, i)">
+
+                <mat-form-field>
+
+                  <input matInput formControlName="link" placeholder="Video Link" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="partHeader" placeholder="Part Header" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="number" type="number" placeholder="Part Number" required>
+                </mat-form-field>
+                <button mat-icon-button (click)="removeVideo(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Video</button>
+        </form>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button [disabled]="addvideos.controls.length==0 || !myFormGroup.valid" mat-button
+            matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel (click)="print()">Done</ng-template>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="print()">Add Lecture</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
   </mat-expansion-panel>
 
 </div>
 
 <app-class-corsal (Task)="onMyVariableChange($event)"></app-class-corsal>
-
 <header class="table-title" style="font-style: oblique 40deg;">
   <div class="col-md-3 " style="margin-top: 1%; margin-bottom: 1%;">
     <div class="card card-3">
       <h2>{{ClassNameHeader}}</h2>
     </div>
-  </div></header>
+  </div>
+</header>
 
 
 <div class="Container-fluid" style="margin-top: 1%;">
@@ -118,22 +115,26 @@
   </mat-form-field>
 
 
-  <table class="table table-hover ">
+  <table class="table table-hover lecture-table ">
     <thead class="thead-dark">
       <tr>
         <th>Lecture ID</th>
-        <th>Class Name</th>
         <th>Header</th>
+        <th>Class Name</th>
         <th class="">Edit / Details</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let lecture of ClassLecId | search: searchText">
         <td>{{ lecture.lectureId }}</td>
-        <td>{{ lecture.className }}</td>
         <td>{{ lecture.header }}</td>
+        <td>{{ lecture.className }}</td>
         <td class="btncolr">
-          <a class="btn btn-outline-warning"  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">Edit / Details</a>
+          <!-- <a class="btn btn-outline-warning"
+            (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">
+             Details</a> -->
+              <a class="btn btn-danger" >Delete</a> |
+              <a  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )" class="btn btn-success">Details</a>
         </td>
       </tr>
     </tbody>

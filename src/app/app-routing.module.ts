@@ -22,8 +22,6 @@ import { LectureAssighmentComponent } from './Components/Student/lecture-assighm
 import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
 import { LectureComponent } from './Components/Student/lecture/lecture.component';
 import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
-import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-details.component';
-import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
 
 const routes: Routes = [
 

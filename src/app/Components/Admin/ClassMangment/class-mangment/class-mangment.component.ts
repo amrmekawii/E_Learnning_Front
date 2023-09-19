@@ -22,7 +22,7 @@ ngOnInit(){
   this.GetAllLectureService.GetAllClass().subscribe({
 
 
-    next :(data :ClassAllDto)  => this.classes= data
+    next :(data :ClassAllDto[])  => this.classes= data
   })
   this.UserService.GetClassRequists(1).subscribe({
     next: (data)=> {this.ClassesRequists=data

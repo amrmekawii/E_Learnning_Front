@@ -89,11 +89,10 @@ import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-m
     QuizHomeComponent,
     QuizDetailsComponent,
     UpdateQuationAnswerComponent,
+    ClassMangmentComponent,
+StudentProfileComponent,
 
-    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
- ,
- SearchPipe
-  ],
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

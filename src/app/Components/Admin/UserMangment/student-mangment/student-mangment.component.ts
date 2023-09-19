@@ -64,7 +64,7 @@ this.allyears=data
     this.GetAllLectureService.GetAllClass().subscribe({
 
 
-      next :(data :ClassAllDto)  => this.classes= data
+      next :(data :ClassAllDto[])  => this.classes= data
     })
 
   }

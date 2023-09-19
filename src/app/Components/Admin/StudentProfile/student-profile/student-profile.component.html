@@ -1,0 +1,257 @@
+
+<h1 style="margin: auto; width: 50% ;">
+    {{studentData.username}}
+</h1>
+
+<mat-expansion-panel  hideToggle="true " class="white"  [expanded]="open==true "
+style="
+  border-style: outset;
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 20px;
+  width: 80%;
+  border-color:  rgb(201, 136, 17);"
+>
+<mat-expansion-panel-header style="width: 100%;"   >
+    <div style="   margin: auto;  width: 100%; ">
+  <h2  style="text-align: center; "  mat-grid-tile-header  >Update Student </h2>
+</div>
+</mat-expansion-panel-header>
+
+   
+
+<form [formGroup]="RegisterForm"   (ngSubmit)="UpdateStudent(RegisterForm)">
+    <div class="row w-75 mx-auto">
+      <div class="col-md-4   mb-3">
+        <label><i class="fa-solid fa-user me-2"></i>First Name</label>
+        <input   type="text" class="form-control"   formControlName="firstName"  placeholder="First Name" />
+<div *ngIf=" RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: red;">
+<span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('minlength')  "    style="color: red;" > minLength is 3 letter</span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+
+</div>
+
+<div *ngIf=" !RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: rgb(23, 245, 71);">
+  <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+  </div>
+  
+      </div>
+      <div class="col-md-4 mb-3">
+        <label><i class="fa-solid fa-user me-2"></i>Second Name</label>
+        <input type="text" class="form-control" formControlName="secondName"   placeholder="Second Name"  />
+
+
+
+        <div *ngIf=" RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+          
+      </div>
+      <div class="col-md-4 mb-3">
+        <label
+          ><i class="fa-solid fa-user-tie me-2"></i>Last Name</label
+        >
+        <input type="text" class="form-control"   formControlName="lastName" placeholder="Last Name "  [disabled]="view"/>
+
+
+
+        <div *ngIf=" RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  style="color: red;"  *ngIf=" RegisterForm.get('lastName')?.getError('minlength')" > minLength is 3 letter</span>
+          <span  style="color: red;" *ngIf=" RegisterForm.get('lastName')?.getError('required')" > this feild is Requird</span>
+          
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+        
+      </div>
+
+
+
+      <div class="col-md-4 mb-3">
+        <label
+          ><i class="fa-solid fa-user-tie me-2"></i>password</label
+        >
+        <input type="text" class="form-control"   formControlName="password" placeholder="password "   />
+
+
+
+        <div *ngIf=" RegisterForm.get('password')?.errors  && RegisterForm.get('password')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  style="color: red;"  *ngIf=" RegisterForm.get('password')?.getError('minlength')" > minLength is 5 letter</span>
+          <span  style="color: red;" *ngIf=" RegisterForm.get('password')?.getError('required')" > this feild is Requird</span>
+          
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('password')?.errors  && RegisterForm.get('password')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+        
+      </div>
+
+
+      
+      <div class="col-md-3 mb-2">
+        <label
+          ><i class="fa-solid fa-mobile-screen-button me-2"></i>Phone
+          Number</label
+        >
+        <input type=" time" class="form-control"     formControlName="phoneNumber"     placeholder="Your number"  [disabled]="view"
+      />
+
+
+
+
+      <div *ngIf=" RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: red;">
+        <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('required')" > this feild is Requird</span>
+
+        </div>
+        
+        <div *ngIf=" !RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+          <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+          </div>
+
+
+      </div>
+      <div class="col-md-3">
+        <label
+          ><i class="fa-solid fa-mobile-screen-button me-2"></i>Parent
+          Phone Number</label
+        >
+        <input  type="text" class="form-control"    formControlName="parentPhoneNumber"    placeholder="Parent number"  />
+     
+     
+        <div *ngIf=" RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: red;">
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+          <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('required')" > this feild is Requird</span>
+  
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+  
+     
+     
+      </div>
+    </div>
+
+    <div class="text-center w-50 mx-auto">
+
+      <input  class="btn btn-primary  w-20 "  style="color:#000 ; "   value="Update"  (click)="RegisterForm.enable()"  [hidden]="!RegisterForm.disabled"type="button">
+      <input  class="btn btn btn-success  w-20 "  style="color:#000 ; "   value="Save" [hidden]="RegisterForm.disabled" [disabled]="!RegisterForm.valid" type="submit">
+      <input  class="btn btn btn-danger w-20 "  style="color:#000 ; "   value="Clancel" [hidden]="RegisterForm.disabled"  (click)="CancelUpdate()" type="button">
+
+    </div>
+  </form>
+
+</mat-expansion-panel>
+
+<div class="box  container" >
+    <h3>Student Result </h3>
+    <div class="row">
+        <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
+          <div class="card card-3"  (click)="GetAssighmentResult()">
+            <p>Assighment result  </p>
+          </div>
+        </div>
+
+        <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" (click)="GetSolvedQuiz()">
+          <div class="card card-3">
+            <p>Quizs Result </p>
+          </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" (click)=" GetUserattendance ()">
+          <div class="card card-3">
+            <p>Lecture Attendance </p>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="Container" style="margin-top: 3%;">
+        <mat-form-field class="example-full-width white " style="width: 100%;">
+          <mat-label>Search</mat-label>
+          <input matInput placeholder="Search" [(ngModel)]="searchText">
+        </mat-form-field>
+        
+        <table class="table table-hover " *ngIf="userAttendance !=null">
+          <thead class="thead-dark">
+            <tr >
+              <th>Lecture Name</th>
+              <th>Acess Type</th>
+              <th>Start</th>
+              <th>End</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let Lecture of userAttendance.lectureuserAcessds| search: searchText "  >
+              <td>{{Lecture.lectureName}}</td>
+              <td>{{Lecture.acessType}}</td>
+              <td>{{Lecture.start}}</td>
+              <td>{{Lecture.end}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+
+
+
+
+    <table class="table table-hover lecture-table container" *ngIf="UserAssighment !=null">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>Assighment Name</th>
+                <th> Quistions</th>
+                <th> Model Answer</th>
+                <th> solved</th>
+                <th> comment</th>
+                <th > Checked</th>
+                <th >User Answer</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <!-- studentid?: string;
+            assighmentid?: number; -->
+        
+        
+            <tr *ngFor="let lecture of UserAssighment | search: searchText let i =index"  >
+               
+              <td>{{ lecture.assighmentFile.header }}</td>
+              <td><a style=" text-decoration: none;" target="_blank" href={{lecture.assighmentFile.filePath}}> Veiw <i
+                class="fa-solid fa-file-lines"></i></a></td>               
+                <td><a style=" text-decoration: none;" target="_blank" href={{lecture.assighmentFile.modelAnswerFilePath}}> Veiw <i
+                  class="fa-solid fa-file-lines"></i></a></td>               
+  
+                <td>{{ lecture.solved }}
+                    <i *ngIf="lecture.solved "  class="fa-regular fa-circle-check" style="color: #00ff00;"></i>
+                    <i *ngIf="!lecture.solved "  class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
+                </td>   
+                <td>{{ lecture.comment }}</td>
+                <td>{{ lecture.checked }}
+                    <i *ngIf="lecture.checked "  class="fa-regular fa-circle-check" style="color: #00ff00;"></i>
+                    <i *ngIf="!lecture.checked "  class="fa-regular fa-circle-xmark" style="color: #ff0000;"></i>
+                </td>
+                <td><a style=" text-decoration: none;" target="_blank" href={{lecture.userAnswerFilePath}}> Veiw <i
+                            class="fa-solid fa-file-lines"></i></a></td>
+                
+            </tr>   
+        </tbody>
+    </table>

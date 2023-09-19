@@ -62,6 +62,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-details.component';
 import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
+import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
+import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +90,9 @@ import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-qua
     QuizDetailsComponent,
     UpdateQuationAnswerComponent,
 
+    PopUpCangePassComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
+ ,
+ SearchPipe
   ],
   imports: [
     BrowserModule,

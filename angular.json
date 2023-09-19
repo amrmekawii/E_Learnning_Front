@@ -44,8 +44,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "src/assets/js/code.jquery.com_jquery-3.7.0.min.js",
               "src/assets/js/unpkg.com_@popperjs_core@2.11.8_dist_umd_popper.min.js",
-              "src/assets/js/playerjs.js",
-              "src/assets/js/playerjs.js",
+              "src/assets/js/playerjs.js"    , 
               "src/assets/js/aos.js"
             ]
           },

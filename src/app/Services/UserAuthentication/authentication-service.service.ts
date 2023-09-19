@@ -31,7 +31,7 @@ export class AuthenticationServiceService {
 
   }
 
-  private readonly Add_User_url = "http://localhost:7206/api/User/StudentRigster";
+  private readonly Add_User_url = "https://localhost:7206/api/User/StudentRigster";
 
 
   public AddUser(newUser: AddUserDto )   {

@@ -62,3 +62,6 @@ button:active{
 
 
 
+.unclickable { 
+  pointer-events: none; 
+} 

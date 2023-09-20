@@ -1,54 +1,150 @@
 import { Component, OnInit ,OnDestroy} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { AuthenticationServiceService } from 'src/app/Services/UserAuthentication/authentication-service.service';
+import { GenralServiceService } from 'src/app/Services/GenralServices/genral-service.service';
 import { RegisterDto } from 'src/app/TypeDto/Register';
+import {  FormControl, FormArray } from '@angular/forms';
+import { AddUserDto } from 'src/app/TypeDto/AddUserDto';
+import { Role } from 'src/app/TypeDto/Role';
+import { UserYearDTO } from 'src/app/TypeDto/YearsDto';
+import { userClassDTOs } from 'src/app/TypeDto/Register';
+import { UserClassDTO } from 'src/app/TypeDto/UserClassDTO';
+import { NodeEventHandler } from 'rxjs/internal/observable/fromEvent';
+import { Event } from '@angular/router';
+import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
+import { AuthenticationServiceService } from 'src/app/Services/UserAuthentication/authentication-service.service';
+import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
+import { ModalDismissReasons, NgbDatepickerModule, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/Services/UserService/user.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit ,OnDestroy  {
- constructor(private toastr: ToastrService,private authService :AuthenticationServiceService, private router: Router, private formBuilder: FormBuilder ) { }
- private video!: HTMLVideoElement;
 
-  form1?: FormGroup;
 
-  public Rdto: RegisterDto
-    = {
-      firstName: "string",
-      secondName: "string",
-      lastttName: "string",
-      password: "string",
-      phoneNumber: "string",
-      parentPhoneNumber: "string",
-      yearid: 0,
-      role: 0,
-      userClassDTO: {},
-    };
+  private video!: HTMLVideoElement;
+  _GenralService;
+
+  classes:any;
+  AvtiveStudents:any;
+  allyears :  any ;
+
+  ClassesByYear:any;
+  deleteUser:any;
+
+ constructor(private toastr: ToastrService,private authService :AuthenticationServiceService, private router: Router, private formBuilder: FormBuilder 
+ , private readonly GenralService : GenralServiceService ,
+    private AuthenticationServiceService : AuthenticationServiceService,
+    private GetAllLectureService:GetAllLectureService,
+    config: NgbModalConfig, private modalService: NgbModal,
+    private  UserService: UserService
+  
+  ) { 
+    config.backdrop = 'static';
+		config.keyboard = false;
+
+
+this._GenralService= GenralService
+
+
+
+
+
+
+ }
+
+  
+
 
   ngOnInit(): void {
-    this.form1 = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      secondName: ['', Validators.required],
-      lastttName: ['', Validators.required],
-      password: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      parentPhoneNumber: ['', Validators.required],
-      yearid: ['', Validators.required],
-      role: ['', Validators.required],
-      userClassId: ['', Validators.required],
-      userClassName: ['', Validators.required],
-    })
+
+
+
     this.video = document.querySelector('#video') as HTMLVideoElement;
     this.video.play();
 
 
+    this._GenralService.GetAllYears().subscribe({
+
+
+      next: (data)=> { console.log(data)
+console.log(this.allyears)
+
+this.allyears=data
+      },
+
+    error : (err)=> console.log(console.error("THere iS NO "))
+    })
+
+
+    this.GetAllLectureService.GetAllClass().subscribe({
+
+
+      next :(data :ClassAllDto[])  => this.classes= data
+    })
+
+
   }
+
+  searchText = '';
+NewUser :AddUserDto = new AddUserDto();
+
+
+
+  RegisterForm : FormGroup =new FormGroup({
+    firstName: new FormControl ("" ,[ Validators.required, Validators.minLength(3)]),
+    secondName: new FormControl ("", [ Validators.required, Validators.minLength(3)]),
+    lastName: new FormControl ("",[ Validators.required, Validators.minLength(3)]),
+    phoneNumber: new FormControl ("" ,[ Validators.required, Validators.pattern("^01[0125][0-9]{8}$")]),
+    parentPhoneNumber: new FormControl ("" ,[ Validators.required, Validators.pattern("^01[0125][0-9]{8}$")]),
+    yearid: new FormControl (0 , Validators.required ),
+    role:new FormControl (Role.Student),
+    
+    active: new FormControl(false)
+
+   } )
+
+
   ngOnDestroy(): void {
     this.video.pause();
   }
+
+
+  Responce:any;
+  AddStudent(RegisterForm: FormGroup,content: any){
+  
+  if (RegisterForm.valid){
+    let form = RegisterForm.value;
+  
+  
+  let adduser2: AddUserDto=form
+  this.AuthenticationServiceService.AddUser(adduser2).subscribe({
+  
+  
+    next: (data)=> {console.log(data)
+      this.Responce=data;
+  
+  console.log(this.Responce)
+  this.modalService.open(content)
+  //this.Responce=null;
+      RegisterForm.reset();
+      this.ClassesByYear=null
+    
+    } ,
+  
+    error:(Error)=> console.log(Error)
+  });
+  }
+    
+  }
+  
+
+  
 
   // register(rgister: FormGroup): void {
   //   console.log(rgister.value);

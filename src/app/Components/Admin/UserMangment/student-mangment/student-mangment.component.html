@@ -191,7 +191,7 @@ style="
     <h3>NonActive Students </h3>
     <div class="row">
         <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
-          <div class="card card-3">
+          <div class="card card-3" (click)="GetUserRequist()">
             <p>Student Requests </p>
           </div>
         </div>
@@ -202,13 +202,13 @@ style="
 </div>
 
 
-<div class="Container" style="margin-top: 3%;">
+<div class="Container" style="margin-top: 3%;" >
   <mat-form-field class="example-full-width white " style="width: 100%;">
     <mat-label>Search</mat-label>
     <input matInput placeholder="Search" [(ngModel)]="searchText">
   </mat-form-field>
   
-  <table class="table table-hover ">
+  <table class="table table-hover " *ngIf=" Active== true ">
     <thead class="thead-dark">
       <tr >
         <th>Full Name</th>
@@ -242,6 +242,44 @@ style="
     </tbody>
   </table>
 </div>
+
+
+<table class="table table-hover " *ngIf="Active==false">
+  <thead class="thead-dark">
+    <tr >
+      <th>Full Name</th>
+      <th>User Name</th>
+      <th>Password</th>
+      <th>Phone Number</th>
+      <th>Parent Number</th>
+      <th>Action</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Student of AvtiveStudents | search: searchText"  >
+      <td>{{Student.name}}</td>
+      <td>{{Student.username}}</td>
+
+      <td>{{Student.pasword}}</td>
+      <td>{{Student.phoneNumber}}</td>
+      <td>{{Student.parentPhoneNumber}}</td>
+
+      <td style="width: 30%">
+
+        <button mat-fab extended style="background-color:aliceblue;" (click)="Statue(Student.id, true)"><mat-icon style="color: green;"  >done</mat-icon></button>      
+                
+          <button mat-fab extended  (click)="Statue(Student.id, false )"> <mat-icon style="color: red;">clear</mat-icon> </button>
+
+        </td>
+
+
+        
+    </tr>
+  </tbody>
+</table>
+
 
 
 

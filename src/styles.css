@@ -267,3 +267,9 @@ html, body { height: 100%;  background-color: white;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .white {   color: #d2870d !important; }
+.unclickable{
+  pointer-events: none;
+  background-color: blue;
+  width: 100%;
+  
+}

@@ -18,31 +18,122 @@
           <div class="d-flex flex-column align-items-center">
             <h3 class="mb-4">Register</h3>
 
-            <form>
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">User Data!</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+                <p>username : {{Responce.userName}} </p>
+                <p>Password : {{Responce.password}} </p>
+            
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Ok</button>
+              </div>
+            </ng-template>
+            
+
+            <form [formGroup]="RegisterForm"   (ngSubmit)="AddStudent(RegisterForm, content)">
               <div class="row w-75 mx-auto">
-                <div class="col-md-6 mb-3">
-                  <label><i class="fa-solid fa-user me-2"></i>Student Name</label>
-                  <input type="text" class="form-control" placeholder="Enter your name"/>
+                <div class="col-md-4   mb-3">
+                  <label><i class="fa-solid fa-user me-2"></i>First Name</label>
+                  <input type="text" class="form-control"   formControlName="firstName"  placeholder="First Name"/>
+          <div *ngIf=" RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: red;">
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('firstName')?.getError('minlength')  "    style="color: red;" > minLength is 3 letter</span>
+          <span  *ngIf=" RegisterForm.get('firstName')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+          
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+            
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
+                  <label><i class="fa-solid fa-user me-2"></i>Second Name</label>
+                  <input type="text" class="form-control" formControlName="secondName"   placeholder="Second Name"/>
+          
+          
+          
+                  <div *ngIf=" RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" >
+                    <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+                    <span  *ngIf=" RegisterForm.get('secondName')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+                    <span  *ngIf=" RegisterForm.get('secondName')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+          
+                    </div>
+                    
+                    <div *ngIf=" !RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" style="color: rgb(23, 245, 71);">
+                      <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+                      </div>
+                    
+                </div>
+                <div class="col-md-4 mb-3">
                   <label
-                    ><i class="fa-solid fa-user-tie me-2"></i>Parent Name</label
+                    ><i class="fa-solid fa-user-tie me-2"></i>Last Name</label
                   >
-                  <input type="text" class="form-control" placeholder="parent name "/>
+                  <input type="text" class="form-control"   formControlName="lastName" placeholder="Last Name "/>
+          
+          
+          
+                  <div *ngIf=" RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" >
+                    <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+                    <span  style="color: red;"  *ngIf=" RegisterForm.get('lastName')?.getError('minlength')" > minLength is 3 letter</span>
+                    <span  style="color: red;" *ngIf=" RegisterForm.get('lastName')?.getError('required')" > this feild is Requird</span>
+                    
+                    </div>
+                    
+                    <div *ngIf=" !RegisterForm.get('lastName')?.errors  && RegisterForm.get('lastName')?.touched" style="color: rgb(23, 245, 71);">
+                      <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+                      </div>
+                  
                 </div>
                 <div class="col-md-6 mb-2">
                   <label
                     ><i class="fa-solid fa-mobile-screen-button me-2"></i>Phone
                     Number</label
                   >
-                  <input type="text" class="form-control" placeholder="Your number"/>
+                  <input type=" time" class="form-control"     formControlName="phoneNumber"     placeholder="Your number"
+                />
+          
+          
+          
+          
+                <div *ngIf=" RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: red;">
+                  <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+                  <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+                  <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('required')" > this feild is Requird</span>
+          
+                  </div>
+                  
+                  <div *ngIf=" !RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+                    <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+                    </div>
+          
+          
                 </div>
                 <div class="col-md-6">
                   <label
                     ><i class="fa-solid fa-mobile-screen-button me-2"></i>Parent
                     Phone Number</label
                   >
-                  <input type="text" class="form-control" placeholder="Parent number"/>
+                  <input type="text" class="form-control"    formControlName="parentPhoneNumber"    placeholder="Parent number"/>
+               
+               
+                  <div *ngIf=" RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: red;">
+                    <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+                    <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+                    <span  *ngIf=" RegisterForm.get('parentPhoneNumber')?.getError('required')" > this feild is Requird</span>
+            
+                    </div>
+                    
+                    <div *ngIf=" !RegisterForm.get('parentPhoneNumber')?.errors  && RegisterForm.get('parentPhoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+                      <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+                      </div>
+            
+               
+               
                 </div>
               </div>
               <div class="my-3 mb-5 w-50 mx-auto">
@@ -50,16 +141,29 @@
                   ><i class="fa-solid fa-graduation-cap me-2"></i>School
                   Year</label
                 >
-                <select class="form-control">
-                  <option value="1">First Secondary</option>
-                  <option value="2">Second Secondary </option>
-                  <option value="3">Third Secondary</option>
-                </select>
+                <mat-select class="form-control"  #Year formControlName="yearid"    >
+           
+                  <mat-option   *ngFor="let year of  allyears"       [value]="year.id"   style="color: chocolate !important;" >   {{year.name}}  </mat-option>
+                </mat-select>
+                <div *ngIf=" RegisterForm.get('yearid')?.errors  && RegisterForm.get('yearid')?.touched" style="color: red;">
+                  <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+                  <span  *ngIf=" RegisterForm.get('yearid')?.getError('required')" > this feild is Requird</span>
+          
+                  </div>
+                  
+                  <div *ngIf=" !RegisterForm.get('yearid')?.errors  && RegisterForm.get('yearid')?.touched" style="color: rgb(23, 245, 71);">
+                    <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+                    </div>
+          
+                
+          
+           
               </div>
+          
               <div class="text-center w-50 mx-auto">
-                <button class="btn log-btn w-100">Register</button>
-                <a  routerLink="/Login"  >Already have acount ?</a>
-
+          
+                <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!RegisterForm.valid"    type="submit">
+          
               </div>
             </form>
           </div>

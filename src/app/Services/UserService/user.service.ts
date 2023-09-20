@@ -25,6 +25,7 @@ private readonly  lurl = "https://localhost:7206/api/Lecture/getLecturestowatch/
 private readonly  getlecture  = "https://localhost:7206/api/Lecture/GettheLecture/"
 
 private readonly  Startwatch  = "https://localhost:7206/api/Lecture/startWatching/"
+private readonly  changeStatue  = "https://localhost:7206/api/User/ChangeStudentStatu"
 
   public GetStudents(Filter:any)
   {
@@ -58,10 +59,6 @@ public DeleteStudentFromClass(userclass:any)
          }
 
 
-         public GetClassRequists(c:any)
-         {
-            return this.client.get(this.Base_URL7+c);  
-          }
  
           public AcceptOrDeclineClassRequist(c:any)
           {
@@ -83,4 +80,16 @@ public DeleteStudentFromClass(userclass:any)
                 return this.client.get(this.Startwatch+c);  
               }
           
+              public GetClassRequists(c:any)
+              {
+                 return this.client.get(this.Base_URL7+c);  
+               }
+     
+     
+               public changestatue(c:any)
+               {
+                  return this.client.put(this.changeStatue,c );  
+                }
+ 
+         
             }

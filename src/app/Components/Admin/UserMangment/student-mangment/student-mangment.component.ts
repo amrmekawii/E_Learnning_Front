@@ -22,7 +22,7 @@ import { UserService } from 'src/app/Services/UserService/user.service';
 })
 export class StudentMangmentComponent {
  _GenralService;
-
+Active =true;
  classes:any;
  AvtiveStudents:any;
  
@@ -32,7 +32,10 @@ export class StudentMangmentComponent {
     config: NgbModalConfig, private modalService: NgbModal,
     private  UserService: UserService
     
-    ){		config.backdrop = 'static';
+    ){
+      
+      
+      config.backdrop = 'static';
 		config.keyboard = false;
 
 
@@ -227,6 +230,71 @@ this.GetStudents(Class)
 }
 })
 }
+
+GetUserRequist(){
+  this.Active= false ;
+  
+  
+  type  z = {active:boolean}
+  let s:z  = {
+    active:false
+  }; 
+  console.log(s);
+  this.UserService.GetStudents(s).subscribe({
+  next: (data)=> { 
+    this.AvtiveStudents= data
+    console.log(this.AvtiveStudents)
+  
+  
+  },
+  error  : (err)=>console.log(err)
+  })
+  
+  }
+  
+  
+  
+  Statue(id:any, b:any ){
+  
+    let x = {
+      id: id ,
+      active :b}
+  
+  console.log(x)
+      this.UserService.changestatue(x).subscribe({
+  
+  next:(data)=> {
+  
+    type  z = {active:boolean}
+    let s:z  = {
+      active:false
+    }; 
+    console.log(s);
+    this.UserService.GetStudents(s).subscribe({
+    
+    
+    
+    next: (data)=> { 
+      this.AvtiveStudents= data
+      console.log(this.AvtiveStudents)
+    
+    
+    },
+    error  : (err)=>console.log(err)
+    })
+    
+  
+  
+  
+  }
+  
+  
+  
+  
+      })
+  
+  }
+  
 
 
 

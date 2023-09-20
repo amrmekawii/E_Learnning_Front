@@ -24,6 +24,9 @@
         </div>
     
 <div  *ngIf="theLecture.started==true" >
+
+
+  
     <div *ngFor=" let video of theLecture.videoParts  "    >
 
         <div >
@@ -50,19 +53,17 @@
         <p>Please Solve the quiz first </p>    
     
         </div>
-    
-    
-    
-
-
-     
-
-
-
+  
 <a >{{theLecture.assighmentid}}</a>
 </div>
 
 
+<div   style="width: 800px;  height: 500px; " class="plyr__video-embed"  id="player"  >  
+<div class="unclickable">
+  <iframe  src="https://www.youtube.com/embed/VKM4PPv3UPA"
+  allow="autoplay">
+</iframe>
+</div>
+</div>
 
 
-    

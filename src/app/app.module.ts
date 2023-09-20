@@ -64,6 +64,10 @@ import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-
 import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
+import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-student.component';
+import { ShowQuizResultComponent } from './Components/Student/show-quiz-result/show-quiz-result.component';
+import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
+import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-code.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +95,10 @@ import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-m
     UpdateQuationAnswerComponent,
     ClassMangmentComponent,
 StudentProfileComponent,
+QuizStudentComponent,
+ShowQuizResultComponent,
+QuizsAvailableComponent,
+LectureCodeComponent,
 
    ],
   imports: [

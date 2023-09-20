@@ -1,11 +1,14 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FilesService } from 'src/app/Services/FileUp/files.service';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
+import { DeleteLectureDto } from 'src/app/TypeDto/AssighmentAddDto';
+import { AssignmentAndQuizCascadeDto } from 'src/app/TypeDto/AssighmentAllDto';
 import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
 import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
@@ -24,8 +27,15 @@ export class LuctureHComponent implements OnInit {
     private AddLec: GetAllLectureService,
     private router: Router,
     private sharedService: SharedService,
-    private fileUplode: FilesService
+    private fileUplode: FilesService,
+    private modalservice: NgbModal,
+
   ) { }
+  nameForm!: FormGroup;
+  AssighmentNameDelete: string = '';
+  AssighmentIdDelete: number = 0;
+  @ViewChild('content') popupview!: ElementRef;
+  Delateass = new DeleteLectureDto();
 
   ClassList!: any
   myFormGroup!: FormGroup;
@@ -36,15 +46,20 @@ export class LuctureHComponent implements OnInit {
   EditOrDeatails = new EditOrDetailsDto()
   FiristId: any
   searchText = '';
-
+  AssignmentCascadeDto:AssignmentAndQuizCascadeDto[]=[]
+  QuizCascadeDto:AssignmentAndQuizCascadeDto[]=[]
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
+    AssighmentID: [0, Validators.required],
+    QuizID: [0, Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     Header: ['', [Validators.required, Validators.minLength(5)]],
   });
   LastForm = this._formBuilder.group({
     ClassId: [0, Validators.required],
+    assighnmentid: [0, Validators.required],
+    quizid: [0, Validators.required],
     Header: ['', [Validators.required, Validators.minLength(5)]],
     vedio: [[], Validators.required]
   });
@@ -77,6 +92,28 @@ export class LuctureHComponent implements OnInit {
       addvideos: this._formBuilder.array([])
     })
   }
+  //////////////
+  GetAssandQuiz(calssID:number){
+    console.log(calssID+"..................");
+    
+this.AddLec.GetAllAssighmentsByClass(calssID).subscribe({
+  next: (data) => {
+ this.AssignmentCascadeDto =data
+  },
+  error: (err) => {
+    console.log(err);
+  }
+})
+this.AddLec.GetAllQuizsByClass(calssID).subscribe({
+  next: (data) => {
+ this.QuizCascadeDto =data
+  },
+  error: (err) => {
+    console.log(err);
+  }
+})
+  }
+
   //////////////////////////////////handelfile
   Uplodfile(e: Event,index: number) {
     const input = e.target as HTMLInputElement;
@@ -121,6 +158,8 @@ export class LuctureHComponent implements OnInit {
 
     console.log(data.value)
     this.ClasssDto.classid = data.value.ClassId
+    this.ClasssDto.assighnmentid = data.value.assighnmentid
+    this.ClasssDto.quizid = data.value.quizid
     this.ClasssDto.header = data.value.Header
     this.ClasssDto.addvideos = data.value.vedio
     console.log(this.ClasssDto)
@@ -149,6 +188,8 @@ export class LuctureHComponent implements OnInit {
     // console.log(this.firstFormGroup.value.ClassId)
     // console.log(this.secondFormGroup.value.Header)
     this.LastForm.value.ClassId = this.firstFormGroup.value.ClassId
+    this.LastForm.value.assighnmentid = this.firstFormGroup.value.AssighmentID
+    this.LastForm.value.quizid = this.firstFormGroup.value.QuizID
     this.LastForm.value.Header = this.secondFormGroup.value.Header
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value
     this.AddLecture(this.LastForm);
@@ -191,6 +232,45 @@ export class LuctureHComponent implements OnInit {
   /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
     this.addvideos.removeAt(index);   
+  }
+
+   /////DeLETE
+   showpdf(anmeASS: string, Id: number) {
+    this.AssighmentIdDelete = Id;
+    this.AssighmentNameDelete = anmeASS;
+    this.nameForm = this._formBuilder.group({
+      name: ['', [Validators.required]],
+    });
+    this.modalservice.open(this.popupview, { size: 'lg' });
+  }
+
+  onSubmit() {
+    this.Delateass.id = this.AssighmentIdDelete;
+    this.Delateass.name = this.nameForm.value.name;
+    console.log("...........................................");
+    console.log(this.Delateass);
+    this.AddLec.DeleteLecture(this.Delateass).subscribe({
+      next: (data) => {
+        this.toastr.success('Lecture (' + this.Delateass.name + ') Deleted');
+
+        // Remove the deleted assignment from the list
+        const index = this.ClassLecId.findIndex(
+          (assignment) => assignment.lectureId === this.Delateass.id
+        );
+  
+        this.modalservice.dismissAll()
+
+        setTimeout(() => {
+          if (index !== -1) {
+            this.ClassLecId.splice(index, 1);
+          }
+        }, 1500);
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error(error.error.title);
+      },
+    });
   }
 }
 

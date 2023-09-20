@@ -1,0 +1,39 @@
+/* show-quiz-result.component.css */
+
+/* Style for the outer container */
+.quiz-result-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style for the quiz result header */
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the individual result properties */
+  p {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  /* Style for the close button */
+  button.close-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.close-button:hover {
+    background-color: #c0392b;
+  }
+  

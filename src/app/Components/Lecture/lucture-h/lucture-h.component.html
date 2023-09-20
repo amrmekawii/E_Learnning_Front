@@ -19,13 +19,26 @@
     </mat-expansion-panel-header>
 
 
+    
     <mat-stepper [linear]="isLinear" #stepper>
       <mat-step [stepControl]="firstFormGroup" label="Select Class">
         <form [formGroup]="firstFormGroup">
           <mat-form-field>
             <mat-label>Select Class</mat-label>
-            <mat-select formControlName="ClassId">
-              <mat-option *ngFor="let class of ClassList" [value]="class.id">{{ class.name }}</mat-option>
+            <mat-select formControlName="ClassId" >
+              <mat-option *ngFor="let class of ClassList" [value]="class.id"(onSelectionChange)="GetAssandQuiz(class.id)" >{{ class.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Select Assighment</mat-label>
+            <mat-select formControlName="AssighmentID">
+              <mat-option *ngFor="let class of AssignmentCascadeDto" [value]="class.id">{{ class.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Select Quiz</mat-label>
+            <mat-select formControlName="QuizID">
+              <mat-option *ngFor="let class of QuizCascadeDto" [value]="class.id">{{ class.name }}</mat-option>
             </mat-select>
           </mat-form-field>
           <div>
@@ -33,7 +46,6 @@
           </div>
         </form>
       </mat-step>
-
 
       <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
         <form [formGroup]="secondFormGroup">
@@ -129,10 +141,37 @@
         <td>{{ lecture.className }}</td>
         <td class="btncolr">
       
-              <a class="btn btn-danger" >Delete</a> |
+              <a class="btn btn-danger"(click)="showpdf(lecture.header ,lecture.lectureId)" >Delete</a> |
               <a  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )" class="btn btn-success">Details</a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+      <!-- BODY HERE -->
+      <header class="head">Lecture Name: {{AssighmentNameDelete}}</header>
+
+      <form [formGroup]="nameForm">
+          <mat-form-field style="width: 100%;">
+              <mat-label>Enter Lecture Name</mat-label>
+              <input matInput formControlName="name">
+              <mat-error *ngIf="nameForm.get('name')?.hasError('required')">Name is required</mat-error>
+          </mat-form-field>
+          <div class="ButonPop">
+              <button type="submit" class="btn btn-danger ancor" (click)="onSubmit()">Delete</button>
+          </div>
+      </form>
+
+  </div>
+
+
+
+</ng-template>

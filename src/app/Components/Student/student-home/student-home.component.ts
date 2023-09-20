@@ -6,6 +6,7 @@ import { StudentService } from 'src/app/Services/Student/student.service';
 import { StudentHomeDto } from 'src/app/TypeDto/StudentHomeDto';
 import { AddClassRequestdTO } from 'src/app/TypeDto/AddClassRequestDto';
 import { ToastrService } from 'ngx-toastr';
+import { LectureCodeComponent } from '../lecture-code/lecture-code.component';
 
 @Component({
   selector: 'app-student-home',
@@ -73,4 +74,15 @@ export class StudentHomeComponent implements OnInit {
 
     });
   }
+  CodeI(){
+    var _popup = this.dialog.open(LectureCodeComponent, {
+      width: '45%',
+      exitAnimationDuration: '1000ms',
+      enterAnimationDuration:'1000ms',
+      disableClose: true,
+   
+    });
+  }
+
+
 }

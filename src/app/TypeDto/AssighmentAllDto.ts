@@ -4,3 +4,9 @@ export class AssignmentDto {
     filePath?: string;
     classid?: number|string;
 }
+
+export class AssignmentAndQuizCascadeDto {
+    id?: number;
+    name?: string;
+    filePath?: string;
+  }

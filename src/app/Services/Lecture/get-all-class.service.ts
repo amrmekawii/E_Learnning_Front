@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
@@ -10,6 +10,8 @@ import { ClassActive } from 'src/app/TypeDto/ClassIdActive';
 import { UserInClassDto } from 'src/app/TypeDto/GetStudents';
 import { Data } from '@angular/router';
 import { CodeLecDto, GenrateCodeDto } from 'src/app/TypeDto/CodeGenrateDto';
+import { AssignmentAndQuizCascadeDto } from 'src/app/TypeDto/AssighmentAllDto';
+import { DeleteLectureDto } from 'src/app/TypeDto/AssighmentAddDto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class GetAllLectureService {
   private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
   private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
   private readonly Base_URL7 = "https://localhost:7206/api/Lecture/GenerateCodes";
+
+  private readonly Base_URL20 = "https://localhost:7206/api/Assighment/GetAllAssighmentsByClass?Classid=";
+  private readonly Base_URL21 = "https://localhost:7206/api/Quiz/GetAllQuizsByClass?Classid=";
+  private readonly Base_URL22 = "https://localhost:7206/api/Lecture/DeleteLecture";
 
 
 
@@ -77,6 +83,25 @@ export class GetAllLectureService {
     return this.client.post<CodeLecDto[]>(this.Base_URL7, object);
 
   }
+  public GetAllAssighmentsByClass(id: number): Observable<any> {
+    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL20+id);
+  }
+  public GetAllQuizsByClass(id: number): Observable<any> {
+    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL21+id);
+  }
 
+  public DeleteLecture(deleteObject: DeleteLectureDto): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    // Define the custom options object
+    const options = {
+      headers: headers,
+      body: deleteObject, // Set the request body to your deleteObject
+    };
+
+    return this.client.delete<any>(this.Base_URL22,options);
+  }
 
 }

@@ -10,3 +10,7 @@ export class DeleteAssighmentDto{
     id?:number;
     name?:string
 }
+export class DeleteLectureDto{
+    id?:number;
+    name?:string
+}

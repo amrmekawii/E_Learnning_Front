@@ -1,0 +1,13 @@
+.head {
+    background-color: rgb(194, 34, 69);
+    font-size: 24px;
+    padding: 10px;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 250px;
+  
+  }

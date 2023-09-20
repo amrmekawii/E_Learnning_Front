@@ -22,24 +22,24 @@ export class UpdateQuationAnswerComponent implements OnInit {
     this.IdParams = myRoute.snapshot.paramMap.get('id');
   }
   IdParams!: any;
-  QutionType:any
+  QutionType: any
   QuationDat = new GetQuestionsDto()
-  QuationUpdateData=new UpdateQuestionsDto()
+  QuationUpdateData = new UpdateQuestionsDto()
   updateForm = this._formBuilder.group({
-    id: [0], 
-    header: ['', Validators.required], 
-    answerDTOs: this._formBuilder.array([]), 
+    id: [0],
+    header: ['', Validators.required],
+    answerDTOs: this._formBuilder.array([]),
   });
 
   ngOnInit(): void {
     this.QuizServ.GetQuationId(this.IdParams).subscribe({
       next: (data) => {
         this.QuationDat = data
-        console.log(this.QutionType +"0000000000");
+        console.log(this.QutionType + "0000000000");
 
-        this.QutionType=data.questionType
-        console.log(this.QutionType +"0000000000");
-        
+        this.QutionType = data.questionType
+        console.log(this.QutionType + "0000000000");
+
         console.log(this.QuationDat);
         this.updateForm.patchValue({
           id: data.questionID,
@@ -67,18 +67,18 @@ export class UpdateQuationAnswerComponent implements OnInit {
 
   }
 
-    //////////////////////////////////handelfile
-    Uplodfile(e: Event) {
-      const input = e.target as HTMLInputElement;
-      const file = input.files?.[0];
-  
-      if (!file) return;
-      this.fileUplode.Upload(file).subscribe((response) => {
-        console.log(response);
-        this.updateForm.get('header')?.setValue(response.url)
-      })
-    }
-    //////
+  //////////////////////////////////handelfile
+  Uplodfile(e: Event) {
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+    this.fileUplode.Upload(file).subscribe((response) => {
+      console.log(response);
+      this.updateForm.get('header')?.setValue(response.url)
+    })
+  }
+  //////
   get answers(): FormArray {
     return this.updateForm.get('answerDTOs') as FormArray;
   }
@@ -100,21 +100,23 @@ export class UpdateQuationAnswerComponent implements OnInit {
   updateQuestion() {
     if (this.updateForm.valid) {
       console.log("lplppllplplplplplp");
-this.QuationUpdateData.id =this.updateForm.value.id as number
-this.QuationUpdateData.header =this.updateForm.value.header as string
-this.QuationUpdateData.answerDTOs =this.updateForm.value.answerDTOs as UpdateAnswersDto[]
-console.log(this.QuationUpdateData);
+      this.QuationUpdateData.id = this.updateForm.value.id as number
+      this.QuationUpdateData.header = this.updateForm.value.header as string
+      this.QuationUpdateData.answerDTOs = this.updateForm.value.answerDTOs as UpdateAnswersDto[]
+      console.log(this.QuationUpdateData);
 
-this.QuizServ.UpdateQuation(this.QuationUpdateData).subscribe({
-  next:(data)=>{
-    this.toastr.success("Done", "success Update")
+      this.QuizServ.UpdateQuation(this.QuationUpdateData).subscribe({
+        next: (data) => {
+          this.toastr.success("Done", "success Update")
 
-  },
-  error:(err)=>{
-    this.toastr.error(err.error[0])
+        },
+        error: (err) => {
+          console.log(err);
 
-  }
-})
+          this.toastr.error(err.error[0])
+
+        }
+      })
 
     } else {
       this.toastr.success("Finish Data Full First !!")

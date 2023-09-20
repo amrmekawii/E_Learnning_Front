@@ -24,6 +24,8 @@ import { LectureComponent } from './Components/Student/lecture/lecture.component
 import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
 import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-details.component';
 import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
+import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-student.component';
+import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 
 const routes: Routes = [
 
@@ -59,6 +61,8 @@ const routes: Routes = [
   { path: 'LectureAssighment', component: LectureAssighmentComponent },
   { path: 'StudentHome', component: StudentHomeComponent },
   { path: 'Lectures/:id', component: LectureComponent },
+  { path: 'QuizStudent/:id', component: QuizStudentComponent },
+  { path: 'QuizsAvailable', component: QuizsAvailableComponent },
   { path: '**', component: ErrorComponent }
 ];
 

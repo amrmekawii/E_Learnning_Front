@@ -119,6 +119,22 @@
     background-size: 100% 100%;
     height: 150PX
   }  
+  .card-6 {
+    background-image: url(https://img.freepik.com/free-vector/quiz-show-concept-illustration_114360-9751.jpg?w=1380&t=st=1695152935~exp=1695153535~hmac=a3683f3f981e79d56e797e8dc989cdbc28f78647c2589b46a009bea8e7f695f1);
+  
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100% 100%;
+    height: 150PX
+  }  
+  .card-7 {
+    background-image: url(https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg?w=996&t=st=1695200439~exp=1695201039~hmac=c8963c4d4c6983922b20d17232c54f1076fb795683b4f25d4df2349554fcd9d6);
+  
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 100% 100%;
+    height: 150PX
+  }  
   
 .headera:hover {
     background: #ff8d03;

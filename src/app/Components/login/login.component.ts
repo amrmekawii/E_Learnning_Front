@@ -53,6 +53,17 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.log(data);
           this.toastr.success("Done", "success Register")
           console.log(data.token);
+          
+
+          console.log(this.authService.UserData.role);
+          if(this.authService.UserData.role=="Admin"){
+            this.router.navigateByUrl('/AdminHome/GlobalScreen')
+
+          }
+          if(this.authService.UserData.role=="Student"){
+            this.router.navigateByUrl('/StudentHome')
+
+          }
 
         },
         error: (err) => {

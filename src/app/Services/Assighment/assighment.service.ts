@@ -23,7 +23,6 @@ export class AssighmentService {
   private readonly Base_URL5 = "https://localhost:7206/api/Assighment/CorrectUserAss";
   private readonly Base_URL6 = "https://localhost:7206/api/Assighment/AddUserAssihgment";
 
-
   public GetAllAssoghment(): Observable<AssignmentDto[]> {
     return this.client.get<AssignmentDto[]>(this.Base_URL);
   }
@@ -55,6 +54,7 @@ export class AssighmentService {
   public AddUserAssighAnswer(Object: UserAssighAnswerDTO): Observable<any> {
     return this.client.post(this.Base_URL6,Object);
   }
+
 
 
 }

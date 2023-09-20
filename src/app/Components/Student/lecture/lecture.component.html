@@ -1,1 +1,68 @@
-<p>lecture works!</p>
+<div class="box  container" >
+    <h3>My Lecture </h3>
+    <div class="row">
+        <div class="col-md-3" style="margin-top: 3%; margin-bottom: 3%;" *ngFor="let a of lectures">
+          <button class="card card-3"  (click)="GetLectur(a.id)   ">
+    {{a.name}}
+          </button>
+        </div>
+        </div>
+    </div>
+
+    <div >
+
+        <a >{{theLecture.quizid}}</a>
+
+<div *ngIf="theLecture.videoParts!=null">
+     
+
+
+    <div  *ngIf="theLecture.started==false" >
+      
+              <button (click)="startPlaying(theLecture.lectureid)"> Start Playing</button>
+    
+        </div>
+    
+<div  *ngIf="theLecture.started==true" >
+    <div *ngFor=" let video of theLecture.videoParts  "    >
+
+        <div >
+            <iframe
+              [src]=safeUrl
+              allowfullscreen
+              allowtransparency
+              allow="autoplay"
+            ></iframe>
+          </div>
+          
+          
+
+    </div>
+
+
+</div>
+</div>
+
+
+<div *ngIf="theLecture.videoParts==null">
+     
+    
+        <p>Please Solve the quiz first </p>    
+    
+        </div>
+    
+    
+    
+
+
+     
+
+
+
+<a >{{theLecture.assighmentid}}</a>
+</div>
+
+
+
+
+    

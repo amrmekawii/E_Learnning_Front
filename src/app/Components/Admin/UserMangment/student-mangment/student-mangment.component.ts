@@ -39,10 +39,7 @@ export class StudentMangmentComponent {
 this._GenralService= GenralService
 
   }
-
-
-
-  allyears :  any ;
+ allyears :  any ;
 
   ClassesByYear:any;
   deleteUser:any;
@@ -68,16 +65,6 @@ this.allyears=data
     })
 
   }
-
-
-
-  data = [
-    { id: 1, name: "Angular" },
-    { id: 2, name: "React" },
-    { id: 3, name: "Vue" },
-    { id: 4, name: "Bootstrap" },
-    { id: 5, name: "Foundation" },
-  ]
 
   searchText = '';
 NewUser :AddUserDto = new AddUserDto();
@@ -209,7 +196,6 @@ this.modalService.open(Delete)
 }
 
 DeleteFinal(){
-
 
 
 

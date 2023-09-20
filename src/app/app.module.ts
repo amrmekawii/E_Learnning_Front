@@ -55,7 +55,7 @@ import { MatCardModule } from '@angular/material/card';
 import { StudentHomeComponent } from './Components/Student/student-home/student-home.component';
 import { LectureComponent } from './Components/Student/lecture/lecture.component';
 import { FooterComponent } from './Components/Footer/footer/footer.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './Interceptors/loading.interceptor';
 import { QuizHomeComponent } from './Components/Admin/Quiz/quiz-home/quiz-home.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -77,7 +77,7 @@ import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-
     HomeComponent,
     PopUpComponent,
     GlobalScreenComponent,
-    PopUpCangePassComponent, StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
+    PopUpCangePassComponent, ClassMangmentComponent, StudentProfileComponent,StudentMangmentComponent, LuctureHComponent, ClassCorsalComponent, LecDetailsComponent, ChooseOptionComponent, LecAudeanceComponent, AddUserAccessComponent
     ,
     SearchPipe,
     ErrorComponent,

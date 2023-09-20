@@ -21,6 +21,10 @@ export class UserService {
   private readonly Base_URL7="https://localhost:7206/api/Class/GetAllClassesRequists/"
 
   private readonly Base_URL8="https://localhost:7206/api/Class/AcceptDeclineClassrequest"
+private readonly  lurl = "https://localhost:7206/api/Lecture/getLecturestowatch/"
+private readonly  getlecture  = "https://localhost:7206/api/Lecture/GettheLecture/"
+
+private readonly  Startwatch  = "https://localhost:7206/api/Lecture/startWatching/"
 
   public GetStudents(Filter:any)
   {
@@ -64,4 +68,19 @@ public DeleteStudentFromClass(userclass:any)
              return this.client.post(this.Base_URL8,c);  
            }
  
-}
+           public GetLectowatch(c:any, l:any)
+           {
+              return this.client.get(this.lurl+c+"/"+l);  
+            }
+            public GetTheLecture(c:any)
+            {
+               return this.client.get(this.getlecture+c);  
+             }
+          
+          
+             public StartWatch(c:any)
+             {
+                return this.client.get(this.Startwatch+c);  
+              }
+          
+            }

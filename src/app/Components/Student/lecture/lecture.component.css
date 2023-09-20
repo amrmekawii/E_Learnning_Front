@@ -1,0 +1,64 @@
+.box {
+    margin-top: 5%;
+    width: 50%;
+    height: auto;
+    border: 1px solid black;
+ 
+}
+ .box > h3 {
+    position: absolute;
+    background-color:rgb(253, 253, 253);
+    height: 20px;
+    margin-top: -12px;
+    margin-left: 10px;
+    padding: 0 3px;
+margin-bottom: 5%;
+ }
+
+
+
+ .card{
+    margin-top: 2%;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 10%  10% 10% 10%;
+  cursor: pointer;
+  min-height: 8%;
+}
+
+.card:hover{
+     transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  background-color: rgb(240, 167, 72);
+  color: white;
+}
+
+.card h3{
+  font-weight: 600;
+}
+
+.card img{
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+
+
+.card-3{
+   background-image: url(src/assets/imgs/theming-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 20%;
+}
+
+button:active{
+  background:rgb(255, 255, 255);
+  color: black !important;
+}
+
+
+
+
+

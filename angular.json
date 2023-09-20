@@ -37,14 +37,15 @@
               "src/assets/css/font.css",
               "node_modules/aos/dist/aos.css",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "node_modules/Ngx-spinner/animations/ball-spin-clockwise.css"
+              "node_modules/Ngx-spinner/animations/ball-spin-clockwise.css",
+              "src/assets/playercss.css"
 
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "src/assets/js/code.jquery.com_jquery-3.7.0.min.js",
               "src/assets/js/unpkg.com_@popperjs_core@2.11.8_dist_umd_popper.min.js",
-              "src/assets/js/playerjs.js"    , 
+              "src/assets/playerjs.js"    , 
               "src/assets/js/aos.js"
             ]
           },
@@ -108,15 +109,12 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/assets/css/plyr.css",
               "src/assets/css/aos.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
               "src/assets/js/code.jquery.com_jquery-3.7.0.min.js",
               "src/assets/js/unpkg.com_@popperjs_core@2.11.8_dist_umd_popper.min.js",
-              "src/assets/js/playerjs.js",
-              "src/assets/js/playerjs.js",
               "src/assets/js/aos.js"
             ]
           }

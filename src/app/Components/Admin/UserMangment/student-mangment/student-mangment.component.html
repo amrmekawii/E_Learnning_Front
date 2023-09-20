@@ -231,7 +231,7 @@ style="
         <td>{{Student.parentPhoneNumber}}</td>
 
         <td style="width: 30%">
-          <a class="btn btn-primary" >Profile</a> | 
+          <a class="btn btn-primary"  [routerLink]="['/AdminHome/StudentProfile',Student.id]" >Profile</a> | 
           <button class="btn btn-danger" (click)="DeleteStudent(Student ,Delete)" >Delete</button> |
           
           

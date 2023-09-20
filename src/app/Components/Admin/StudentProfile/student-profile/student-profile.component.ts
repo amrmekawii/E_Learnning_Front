@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Role } from 'src/app/TypeDto/Role';
 import { UserService } from 'src/app/Services/UserService/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-profile',
@@ -11,18 +12,20 @@ import { UserService } from 'src/app/Services/UserService/user.service';
 export class StudentProfileComponent {
   searchText = '';
 
-  id= "5a8da54b-7ce6-40dd-9238-47c1286d1dcb";
   open=true; 
   view :boolean =true;
 studentData: any ;
 userAttendance: any ;
 QuizGrades: any;
 UserAssighment:any
-constructor(  private UserService: UserService ){
+IdParams:any
+constructor(  private UserService: UserService,private myRoute: ActivatedRoute, ){
+  this.IdParams = myRoute.snapshot.paramMap.get('id');
+
 this.userAttendance=null;
 this.QuizGrades=null;
 this.UserAssighment=null
-this.UserService.GetStudentDetails(this.id).subscribe({
+this.UserService.GetStudentDetails(this.IdParams).subscribe({
 
 
   next: (data)=> {this.studentData =data;
@@ -72,7 +75,7 @@ RegisterForm : FormGroup =new FormGroup({
 
 
       next: ()=> {
-        this.UserService.GetStudentDetails(this.id).subscribe({
+        this.UserService.GetStudentDetails(this.IdParams).subscribe({
 
 
           next: (data)=> {this.studentData =data;

@@ -46,20 +46,20 @@ export class LuctureHComponent implements OnInit {
   EditOrDeatails = new EditOrDetailsDto()
   FiristId: any
   searchText = '';
-  AssignmentCascadeDto:AssignmentAndQuizCascadeDto[]=[]
-  QuizCascadeDto:AssignmentAndQuizCascadeDto[]=[]
+  AssignmentCascadeDto: AssignmentAndQuizCascadeDto[] = []
+  QuizCascadeDto: AssignmentAndQuizCascadeDto[] = []
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
-    AssighmentID: [0, Validators.required],
-    QuizID: [0, Validators.required],
+    AssighmentID: [0,[]],
+    QuizID: [0],
   });
   secondFormGroup = this._formBuilder.group({
     Header: ['', [Validators.required, Validators.minLength(5)]],
   });
   LastForm = this._formBuilder.group({
     ClassId: [0, Validators.required],
-    assighnmentid: [0, Validators.required],
-    quizid: [0, Validators.required],
+    assighnmentid: [0],
+    quizid: [0],
     Header: ['', [Validators.required, Validators.minLength(5)]],
     vedio: [[], Validators.required]
   });
@@ -93,29 +93,29 @@ export class LuctureHComponent implements OnInit {
     })
   }
   //////////////
-  GetAssandQuiz(calssID:number){
-    console.log(calssID+"..................");
-    
-this.AddLec.GetAllAssighmentsByClass(calssID).subscribe({
-  next: (data) => {
- this.AssignmentCascadeDto =data
-  },
-  error: (err) => {
-    console.log(err);
-  }
-})
-this.AddLec.GetAllQuizsByClass(calssID).subscribe({
-  next: (data) => {
- this.QuizCascadeDto =data
-  },
-  error: (err) => {
-    console.log(err);
-  }
-})
+  GetAssandQuiz(calssID: number) {
+    console.log(calssID + "..................");
+
+    this.AddLec.GetAllAssighmentsByClass(calssID).subscribe({
+      next: (data) => {
+        this.AssignmentCascadeDto = data
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+    this.AddLec.GetAllQuizsByClass(calssID).subscribe({
+      next: (data) => {
+        this.QuizCascadeDto = data
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 
   //////////////////////////////////handelfile
-  Uplodfile(e: Event,index: number) {
+  Uplodfile(e: Event, index: number) {
     const input = e.target as HTMLInputElement;
     const file = input.files?.[0];
 
@@ -154,32 +154,36 @@ this.AddLec.GetAllQuizsByClass(calssID).subscribe({
 
   /////////////////////ForAddLect2
   AddLecture(data: FormGroup) {
-    if (data.valid) {
+    console.log(data);
 
-    console.log(data.value)
-    this.ClasssDto.classid = data.value.ClassId
-    this.ClasssDto.assighnmentid = data.value.assighnmentid
-    this.ClasssDto.quizid = data.value.quizid
-    this.ClasssDto.header = data.value.Header
-    this.ClasssDto.addvideos = data.value.vedio
-    console.log(this.ClasssDto)
-    this.AddLec.AddLec(this.ClasssDto).subscribe({
 
-      next: (data) => {
-        console.log(data);
-        this.toastr.success("Done", "success Added")
+      console.log(data.value)
+      this.ClasssDto.classid = data.value.ClassId
+      if(this.firstFormGroup.value?.AssighmentID!=0){
+        this.ClasssDto.assighnmentid = data.value.assighnmentid
+  
+      }
+      if(this.firstFormGroup.value?.QuizID!=0){
+        this.ClasssDto.quizid = data.value.quizid
+  
+      }
+      this.ClasssDto.header = data.value.Header
+      this.ClasssDto.addvideos = data.value.vedio
+      console.log(this.ClasssDto)
+      this.AddLec.AddLec(this.ClasssDto).subscribe({
 
-      },
-      error: (err) => {
-        console.log(err)
-        this.toastr.error(err.error)
+        next: (data) => {
+          console.log(data);
+          this.toastr.success("Done", "success Added")
 
-      },
-    })}
-    else{
-      this.toastr.warning("Enter Full Data First")
+        },
+        error: (err) => {
+          console.log(err)
+          this.toastr.error(err.error)
 
-    }
+        },
+      })
+  
   }
   /////////////////////ForAddLect1
   print() {
@@ -188,8 +192,19 @@ this.AddLec.GetAllQuizsByClass(calssID).subscribe({
     // console.log(this.firstFormGroup.value.ClassId)
     // console.log(this.secondFormGroup.value.Header)
     this.LastForm.value.ClassId = this.firstFormGroup.value.ClassId
-    this.LastForm.value.assighnmentid = this.firstFormGroup.value.AssighmentID
-    this.LastForm.value.quizid = this.firstFormGroup.value.QuizID
+    if(this.firstFormGroup.value?.AssighmentID!=0){
+      this.LastForm.value.assighnmentid = this.firstFormGroup.value?.AssighmentID
+
+    }
+    else{
+      this.LastForm.value.assighnmentid = 0
+    }
+    if(this.firstFormGroup.value?.QuizID!=0){
+      this.LastForm.value.quizid = this.firstFormGroup.value?.QuizID
+
+    }else{
+      this.LastForm.value.quizid =0
+    }
     this.LastForm.value.Header = this.secondFormGroup.value.Header
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value
     this.AddLecture(this.LastForm);
@@ -215,7 +230,7 @@ this.AddLec.GetAllQuizsByClass(calssID).subscribe({
 
   /////////////////CallWhenAddVedioInList
   addVideo() {
-  const  videoFormGroup = this._formBuilder.group({
+    const videoFormGroup = this._formBuilder.group({
       link: ['', Validators.required],
       partHeader: ['', [Validators.required, Validators.minLength(5)]],
       number: [0, Validators.required]
@@ -228,14 +243,14 @@ this.AddLec.GetAllQuizsByClass(calssID).subscribe({
 
   get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
 
-  
+
   /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
-    this.addvideos.removeAt(index);   
+    this.addvideos.removeAt(index);
   }
 
-   /////DeLETE
-   showpdf(anmeASS: string, Id: number) {
+  /////DeLETE
+  showpdf(anmeASS: string, Id: number) {
     this.AssighmentIdDelete = Id;
     this.AssighmentNameDelete = anmeASS;
     this.nameForm = this._formBuilder.group({
@@ -257,7 +272,7 @@ this.AddLec.GetAllQuizsByClass(calssID).subscribe({
         const index = this.ClassLecId.findIndex(
           (assignment) => assignment.lectureId === this.Delateass.id
         );
-  
+
         this.modalservice.dismissAll()
 
         setTimeout(() => {

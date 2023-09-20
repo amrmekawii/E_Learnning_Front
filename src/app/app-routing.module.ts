@@ -26,6 +26,8 @@ import { QuizDetailsComponent } from './Components/Admin/Quiz/quiz-details/quiz-
 import { UpdateQuationAnswerComponent } from './Components/Admin/Quiz/update-quation-answer/update-quation-answer.component';
 import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-student.component';
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
+import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
+import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 
 const routes: Routes = [
 
@@ -55,6 +57,9 @@ const routes: Routes = [
       { path: 'QuizHome', component: QuizHomeComponent },
       { path: 'QuizDetails/:id', component: QuizDetailsComponent},
       { path: 'UpdateQuationAnswer/:id', component: UpdateQuationAnswerComponent},
+      { path: 'ClassMangment', component: ClassMangmentComponent },
+      { path: 'StudentProfile/:id', component: StudentProfileComponent },
+
 
     ]
   },

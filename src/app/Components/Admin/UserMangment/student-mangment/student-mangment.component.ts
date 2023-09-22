@@ -170,6 +170,7 @@ this.modalService.open(content)
 
 
 GetStudents(id:number ){
+  this.Active = true ;
   console.log(id);
   type  x = {classid:number}
   let s:x  = {

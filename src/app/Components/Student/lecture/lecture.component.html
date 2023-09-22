@@ -24,9 +24,6 @@
         </div>
     
 <div  *ngIf="theLecture.started==true" >
-
-
-  
   <mat-form-field>
     <mat-label>Select Quiz</mat-label>
     <mat-select formControlName="QuizID">
@@ -57,18 +54,88 @@
         <button class="buton" [routerLink]="['/QuizStudent',theLecture.quizid]"> Start Education <i
           class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i> </button>    
         </div>
-  
+    
+    
+    
+
+
+     
+
+
+
 <a >{{theLecture.assighmentid}}</a>
 </div>
 
 
-<div   style="width: 800px;  height: 500px; " class="plyr__video-embed"  id="player"  >  
-<div class="unclickable">
-  <iframe  src="https://www.youtube.com/embed/VKM4PPv3UPA"
-  allow="autoplay">
-</iframe>
-</div>
-</div>
 
 
+     -->
+
+     <div class="lecture-container">
+      <h3>My Lecture</h3>
+      <div class="lecture-list">
+        <div class="lecture-item" *ngFor="let a of lectures">
+          <button class="lecture-button" (click)="GetLectur(a.id)">
+            {{ a.name }}
+          </button>
+        </div>
+      </div>
+    
+      <div class="lecture-details">
+        <a>{{ theLecture.quizid }}</a>
+    
+        <div *ngIf="theLecture.videoParts.length != 0">
+          <div *ngIf="!theLecture.started" class="start-button">
+            <button (click)="startPlaying(theLecture.lectureid)">Start Playing</button>
+          </div>
+    
+          <div *ngIf="theLecture.started" class="video-player">
+            <mat-form-field>
+              <mat-label>Select Quiz</mat-label>
+              <mat-select formControlName="QuizID">
+                <mat-option
+                  *ngFor="let class of theLecture.videoParts"
+                  (onSelectionChange)="print(class.link)"
+                  [value]="class.id"
+                >
+                  {{ class.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+    
+            <div class="iframe-container">
+              <iframe [src]="safeUrl" allowfullscreen allowtransparency allow="autoplay"></iframe>
+            </div>
+    
+            <button class="quiz-button" [routerLink]="['/QuizStudent', theLecture.quizid]">
+              Start Education
+              <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
+            </button>
+          </div>
+        </div>
+    
+        <div *ngIf="theLecture.videoParts.length ==0" class="quiz-section">
+          <p>Please solve the quiz first.</p>
+          <button class="start-button" [routerLink]="['/QuizStudent', theLecture.quizid]">
+            Start Education
+            <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
+          </button>
+        </div>
+    
+        <a>{{ theLecture.assighmentid }}</a>
+      </div>
+    </div>
+
+
+    <div class="plyr__video-embed" id="player" style=" width: 200px ; height: 200px;">
+
+      <div class="unclickable">
+      <iframe
+        src="https://www.youtube.com/embed/bTqVqk7FSmY?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+      ></iframe>
+    </div>
+    </div>
     

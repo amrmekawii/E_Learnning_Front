@@ -88,7 +88,7 @@ public DeleteStudentFromClass(userclass:any)
      
                public changestatue(c:any)
                {
-                  return this.client.put(this.changeStatue,c );  
+                  return this.client.post(this.changeStatue,c );  
                 }
  
          

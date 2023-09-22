@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject , OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/Services/UserAuthentication/authentication-service.service';
 import { UserService } from 'src/app/Services/UserService/user.service';
 
 @Component({
@@ -15,8 +16,10 @@ export class LectureComponent  implements OnInit  {
   theLecture:any
   safeUrl: SafeHtml ='';
   myScriptElement:any;
-constructor(private myRoute: ActivatedRoute, private  UserService: UserService , private sanitizer: DomSanitizer ,    @Inject(DOCUMENT)  private   document: Document  ){
+  StudentID:any
+constructor(private myRoute: ActivatedRoute, private  UserService: UserService , private sanitizer: DomSanitizer ,private Auth :AuthenticationServiceService ,    @Inject(DOCUMENT)  private   document: Document  ){
   this.IdParams = myRoute.snapshot.paramMap.get('id');
+  this.StudentID= this.Auth.UserData.Id
 console.log(this.IdParams);
 
 this.safeUrl =  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/VKM4PPv3UPA");
@@ -24,7 +27,7 @@ this.safeUrl =  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtu
 
 
 
-this.UserService.GetLectowatch("1fdd718d-d679-438c-96b3-b40156f13418", 2).subscribe({
+this.UserService.GetLectowatch( this.StudentID,  this.IdParams).subscribe({
 
 
   next:(data)=>{ this.lectures=data 
@@ -40,10 +43,9 @@ this.UserService.GetLectowatch("1fdd718d-d679-438c-96b3-b40156f13418", 2).subscr
   }
 })
 
-
-
-
 }
+
+
 
 ngOnInit(): void{
 
@@ -61,7 +63,11 @@ this.UserService.GetTheLecture(id).subscribe({
 
 }
 
+print(Id:any){
+  console.log(Id);
+  this.safeUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(Id);
 
+}
 
 startPlaying(lectureid:any){
 this.UserService.StartWatch(lectureid).subscribe({

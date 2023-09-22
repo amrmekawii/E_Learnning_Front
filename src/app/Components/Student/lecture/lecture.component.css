@@ -65,3 +65,108 @@ button:active{
 .unclickable { 
   pointer-events: none; 
 } 
+.lecture-container {
+  margin: 20px;
+}
+
+.lecture-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.lecture-item {
+  width: calc(25% - 20px);
+  margin-top: 20px;
+}
+
+.lecture-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.lecture-button:hover {
+  background-color: #e0e0e0;
+}
+
+.lecture-details {
+  margin-top: 20px;
+}
+
+.start-button button {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button button:hover {
+  background-color: #0c7cd5;
+}
+
+.video-player {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.iframe-container {
+  width: 80%;
+  height: 500px;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.quiz-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-button:hover {
+  background-color: #449d45;
+}
+
+.quiz-section p {
+  margin-bottom: 10px;
+}
+
+.quiz-section button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-section button:hover {
+  background-color: #449d45;
+}
+
+a {
+  display: block;
+  margin-bottom: 10px;
+  color: #333;
+  text-decoration: underline;
+}

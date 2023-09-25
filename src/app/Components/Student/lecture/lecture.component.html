@@ -82,7 +82,6 @@
       </div>
     
       <div class="lecture-details">
-        <a>{{ theLecture.quizid }}</a>
     
         <div *ngIf="theLecture.videoParts.length != 0">
           <div *ngIf="!theLecture.started" class="start-button">
@@ -103,9 +102,10 @@
               </mat-select>
             </mat-form-field>
     
-            <div class="iframe-container">
+             <div class="iframe-container">
               <iframe [src]="safeUrl" allowfullscreen allowtransparency allow="autoplay"></iframe>
             </div>
+          
     
             <button class="quiz-button" [routerLink]="['/QuizStudent', theLecture.quizid]">
               Start Education
@@ -122,11 +122,14 @@
           </button>
         </div>
     
-        <a>{{ theLecture.assighmentid }}</a>
+        <button class="start-button" [routerLink]="['/LectureAssighment', theLecture.assighmentid]">
+          Solve Assighment
+          <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
+        </button>
       </div>
     </div>
 
-
+<!-- 
     <div class="plyr__video-embed" id="player" style=" width: 200px ; height: 200px;">
 
       <div class="unclickable">
@@ -138,4 +141,4 @@
       ></iframe>
     </div>
     </div>
-    
+     -->

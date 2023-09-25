@@ -1,10 +1,4 @@
-<mat-toolbar color="dark">
 
-  <div class="logo mb-5 ">
-    <img src="assets/imgs/logo.png" alt="" height="50px" />
-  </div>
-  <span class="toolbar-item-spacer"></span>
-</mat-toolbar>
 
 <div class="container">
 
@@ -32,8 +26,8 @@
           <mat-form-field>
 
             <mat-label class="label">Quiz Name:</mat-label>
-            <mat-select formControlName="assignmentId">
-              <mat-option *ngFor="let Assigh of AllAssighment" [value]="Assigh.id">{{ Assigh.header }}</mat-option>
+            <mat-select formControlName="quizId">
+              <mat-option *ngFor="let Assigh of Quizghment" [value]="Assigh.id">{{ Assigh.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -48,7 +42,7 @@
             <mat-label class="label">Assignment Name:</mat-label>
             <mat-select formControlName="assignmentId">
               <mat-option *ngFor="let Assigh of AllAssighment" [value]="Assigh.id"
-                (onSelectionChange)="PassPath(Assigh.filePath)">{{ Assigh.header }}</mat-option>
+                (onSelectionChange)="PassPath(Assigh.filePath)">{{ Assigh.name }}</mat-option>
             </mat-select>
           </mat-form-field>
           <button (click)="showpdf()"> View Assighment</button>

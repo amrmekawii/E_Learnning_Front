@@ -16,6 +16,13 @@ export class LectuterAddDto {
       }
   
   
+      export   class UpdateLucturDto {
+        lectureId?: number;
+        classid?: number;
+        header?: string;
+        quizid?: number;
+        assighnmentid?: number;
+      }
   
   
 

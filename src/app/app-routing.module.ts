@@ -28,6 +28,7 @@ import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-stu
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
+import { AdminGuard } from './Components/Guards/admin.guard';
 
 const routes: Routes = [
 
@@ -35,16 +36,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'intro', pathMatch: 'full' },
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
+
   {
-    path: 'EditOrDetailsLecture', component: LecDetailsComponent,
-    children: [
-      { path: 'ChooseOption', component: ChooseOptionComponent },
-      { path: 'ShowAudance/:id', component: LecAudeanceComponent },
-      { path: 'AddUserAcces', component: AddUserAccessComponent }
-    ]
-  },
-  {
-    path: "AdminHome", component: HomeComponent,
+    path: "AdminHome", canActivate: [AdminGuard], component: HomeComponent,
     children: [
       { path: "StudentMangment", component: StudentMangmentComponent },
       { path: 'Lecture', component: LuctureHComponent },
@@ -59,15 +53,22 @@ const routes: Routes = [
       { path: 'UpdateQuationAnswer/:id', component: UpdateQuationAnswerComponent},
       { path: 'ClassMangment', component: ClassMangmentComponent },
       { path: 'StudentProfile/:id', component: StudentProfileComponent },
-
+      {
+        path: 'EditOrDetailsLecture', canActivate: [AdminGuard], component: LecDetailsComponent,
+        children: [
+          { path: 'ChooseOption', component: ChooseOptionComponent },
+          { path: 'ShowAudance/:id', component: LecAudeanceComponent },
+          { path: 'AddUserAcces', component: AddUserAccessComponent }
+        ]
+      },
 
     ]
   },
-  { path: 'LectureAssighment', component: LectureAssighmentComponent },
-  { path: 'StudentHome', component: StudentHomeComponent },
-  { path: 'Lectures/:id', component: LectureComponent },
-  { path: 'QuizStudent/:id', component: QuizStudentComponent },
-  { path: 'QuizsAvailable', component: QuizsAvailableComponent },
+  { path: 'LectureAssighment/:id', canActivate: [AuthLogGuard], component: LectureAssighmentComponent },
+  { path: 'StudentHome', canActivate: [AuthLogGuard], component: StudentHomeComponent },
+  { path: 'Lectures/:id', canActivate: [AuthLogGuard], component: LectureComponent },
+  { path: 'QuizStudent/:id', canActivate: [AuthLogGuard], component: QuizStudentComponent },
+  { path: 'QuizsAvailable', canActivate: [AuthLogGuard], component: QuizsAvailableComponent },
   { path: '**', component: ErrorComponent }
 ];
 

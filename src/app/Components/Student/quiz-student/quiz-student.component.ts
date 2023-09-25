@@ -39,8 +39,6 @@ export class QuizStudentComponent implements OnInit {
   StudentSolve = new SubmitQuizDto()
   GetUserQuizAnswer= new GetUserQuizAnswersDto()
   ngOnInit(): void {
-    console.log(this.StudentId);
-
     this.CheckQuiz.userid = this.StudentId
     this.CheckQuiz.quizid = this.IdParams
     this.QuizServ.CheckQuizIssolved(this.CheckQuiz).subscribe({
@@ -127,6 +125,8 @@ export class QuizStudentComponent implements OnInit {
 
       },
       error: (err) => {
+        console.log(err);
+        
         this.toastr.error("Some Thing Wrong", err.error[0])
 
       }
@@ -151,14 +151,19 @@ export class QuizStudentComponent implements OnInit {
   
 
   setupTimer() {
-    const startDate = new Date(this.QuizToSolv.start as Date);
+    const startDate1 = new Date(this.QuizToSolv.start as Date);
+    const startDate =  new Date();
+
     const endDate = new Date(this.QuizToSolv.end as Date);
     const timeDifferenceInMilliseconds = endDate.getTime() - startDate.getTime();
+        console.log(timeDifferenceInMilliseconds);
+
     const timeDifferenceInMinutes = timeDifferenceInMilliseconds / (1000 * 60);
 
     console.log(timeDifferenceInMinutes);
 
     let remainingTime = timeDifferenceInMinutes * 60 * 1000; // Convert minutes to milliseconds
+    console.log(remainingTime);
 
     const timerInterval = setInterval(() => {
       remainingTime -= 1000; // Subtract one second
@@ -166,6 +171,7 @@ export class QuizStudentComponent implements OnInit {
       if (remainingTime <= 0) {
         clearInterval(timerInterval);
         this.timeRemaining = 'Time is up!';
+        this.SubmitQuiz()
       } else {
         const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
         const seconds = Math.floor((remainingTime / 1000) % 60);
@@ -174,22 +180,24 @@ export class QuizStudentComponent implements OnInit {
     }, 1000);
 
   }
-  submitQuiz() {
-    const selectedAnswers = [];
 
-    for (let i = 0; i < this.QuizToSolv.quiestions!.getQuestionsDtos.length; i++) {
-      const selectedAnswerID = this.quizForm.get('question_' + i)?.value;
-      const questionID = this.QuizToSolv.quiestions?.getQuestionsDtos[i].questionID;
 
-      if (selectedAnswerID !== null && questionID !== null) {
-        selectedAnswers.push({
-          questionID,
-          answerID: selectedAnswerID,
-        });
-      }
-    }
+  // submitQuiz() {
+  //   const selectedAnswers = [];
 
-    console.log(selectedAnswers);
-  }
+  //   for (let i = 0; i < this.QuizToSolv.quiestions!.getQuestionsDtos.length; i++) {
+  //     const selectedAnswerID = this.quizForm.get('question_' + i)?.value;
+  //     const questionID = this.QuizToSolv.quiestions?.getQuestionsDtos[i].questionID;
+
+  //     if (selectedAnswerID !== null && questionID !== null) {
+  //       selectedAnswers.push({
+  //         questionID,
+  //         answerID: selectedAnswerID,
+  //       });
+  //     }
+  //   }
+
+  //   console.log(selectedAnswers);
+  // }
 
 }

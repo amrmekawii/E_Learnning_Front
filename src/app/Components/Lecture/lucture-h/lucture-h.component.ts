@@ -221,7 +221,7 @@ export class LuctureHComponent implements OnInit {
     console.log(this.EditOrDeatails)
     this.sharedService.setObject(this.EditOrDeatails);
     this.sharedService.SetLecandClssname({ ClassName: clasj, LectureName: Header });
-    this.router.navigate(['EditOrDetailsLecture']);
+    this.router.navigate(['AdminHome/EditOrDetailsLecture']);
 
 
 

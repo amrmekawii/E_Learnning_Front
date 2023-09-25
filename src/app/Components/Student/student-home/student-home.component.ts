@@ -7,6 +7,7 @@ import { StudentHomeDto } from 'src/app/TypeDto/StudentHomeDto';
 import { AddClassRequestdTO } from 'src/app/TypeDto/AddClassRequestDto';
 import { ToastrService } from 'ngx-toastr';
 import { LectureCodeComponent } from '../lecture-code/lecture-code.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-home',
@@ -18,7 +19,7 @@ export class StudentHomeComponent implements OnInit {
     private auth: AuthenticationServiceService,
     private stud: StudentService,
     private toastr: ToastrService,
-
+    private route: Router,
   ) {
 
   }
@@ -35,6 +36,20 @@ export class StudentHomeComponent implements OnInit {
 
       }
     })
+  }
+  logout() {
+
+
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token')
+      this.auth.isLoggedIn$.next(false);
+
+      this.route.navigate([''])
+
+      console.log(this.route.url)
+    }
+
+
   }
 
   EnrollReq(ClassId: any ) {

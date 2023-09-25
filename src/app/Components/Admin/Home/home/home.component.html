@@ -7,24 +7,32 @@
       </button>
   
       <mat-nav-list>
-          <mat-list-item  routerLink="/AdminHome/GlobalScreen"> 
-          <mat-icon mat-list-icon>person</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Home</h4>
+        <mat-list-item routerLink="/AdminHome/GlobalScreen">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>person</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Home</h4>
+          </div>
         </mat-list-item>
-        <mat-list-item  routerLink="/AdminHome/StudentMangment">
-          <mat-icon mat-list-icon>assignment</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Student Mangment </h4>
+        <mat-list-item routerLink="/AdminHome/StudentMangment">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>assignment</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Student Management</h4>
+          </div>
         </mat-list-item>
-        <mat-list-item  routerLink="/AdminHome/Lecture">
-          <mat-icon mat-list-icon>domain</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Lecture Mangment</h4>
+        <mat-list-item routerLink="/AdminHome/Lecture">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>domain</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Lecture Management</h4>
+          </div>
         </mat-list-item>
         <mat-list-item>
-          <mat-icon mat-list-icon>folder_shared</mat-icon>
-          <h4 mat-line *ngIf="isExpanded">Management X</h4>
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>folder_shared</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Management X</h4>
+          </div>
         </mat-list-item>
-
-    </mat-nav-list>
+      </mat-nav-list>
+      
 
         <mat-nav-list  >
             <mat-list-item  style="margin-top: 10px;">
@@ -47,17 +55,10 @@
           <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu   class="white"  #userAccountMenu [overlapTrigger]="false" yPosition="below">
-          <button mat-menu-item >
-              <mat-icon>person</mat-icon><span>My Account</span>
-          </button>
-          <button mat-menu-item >
-              <mat-icon>settings</mat-icon><span>Settings</span>
-          </button>
-          <button mat-menu-item >
-              <mat-icon>help</mat-icon><span>Help</span>
-          </button>
+        
+
           <mat-divider></mat-divider>
-          <button mat-menu-item >
+          <button mat-menu-item (click)="logout()" >
               <mat-icon>exit_to_app</mat-icon>Logout
           </button>
       </mat-menu>

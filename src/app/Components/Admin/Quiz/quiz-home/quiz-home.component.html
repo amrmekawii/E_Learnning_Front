@@ -51,8 +51,8 @@
                 <mat-form-field class="form-field">
                     <mat-label for="quizRequirement">Quiz Type:</mat-label>
                     <mat-select formControlName="quizRequirement" >
-                      <mat-option [value]=1>Month</mat-option>
-                      <mat-option [value]=2>Lecture</mat-option>
+                      <mat-option [value]=0>Month</mat-option>
+                      <mat-option [value]=1>Lecture</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <div>
@@ -63,7 +63,7 @@
           </mat-step>
 
 
-          <mat-step [stepControl]="secondFormGroup" label="Quiz Time" *ngIf="quizForm.value.quizRequirement==1">
+          <mat-step [stepControl]="secondFormGroup" label="Quiz Time" *ngIf="quizForm.value.quizRequirement==0">
             <form [formGroup]="timeForm">
                 <div class="form-group">
                   <mat-form-field>

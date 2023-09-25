@@ -9,6 +9,9 @@
                 <h2> Student Name :{{UserData.name}}</h2>
             </header>
         </div>
+        <button class="px-4" mat-menu-item  (click)="logout()">
+            <mat-icon>reply</mat-icon>sign out
+          </button>
 
     </div>
 
@@ -74,7 +77,7 @@
     </section>
 
     <section class=" d-flex align-items-center justify-content-center flex-wrap  container-fluid"
-        *ngIf="[StudentHomeData.userrequists.length!=0]">
+        *ngIf="StudentHomeData.userrequists.length!=0">
         <header class="head2">
             <h2> Student Request</h2>
 

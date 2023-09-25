@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LectuterAddDto } from 'src/app/TypeDto/LectureAddDto';
+import { LectuterAddDto, UpdateLucturDto } from 'src/app/TypeDto/LectureAddDto';
 import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
 import { userLectureAttendancesDto } from 'src/app/TypeDto/StudentAudeanceDto';
@@ -26,6 +26,7 @@ export class GetAllLectureService {
   private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
   private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
   private readonly Base_URL7 = "https://localhost:7206/api/Lecture/GenerateCodes";
+  private readonly Base_URL8 = "https://localhost:7206/api/Lecture/UpdateLecture";
 
   private readonly Base_URL20 = "https://localhost:7206/api/Assighment/GetAllAssighmentsByClass?Classid=";
   private readonly Base_URL21 = "https://localhost:7206/api/Quiz/GetAllQuizsByClass?Classid=";
@@ -88,6 +89,9 @@ export class GetAllLectureService {
   }
   public GetAllQuizsByClass(id: number): Observable<any> {
     return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL21+id);
+  }
+  public UpdateLecture(Obj: UpdateLucturDto): Observable<any> {
+    return this.client.put(this.Base_URL8,Obj);
   }
 
   public DeleteLecture(deleteObject: DeleteLectureDto): Observable<any> {

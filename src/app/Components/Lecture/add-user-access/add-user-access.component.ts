@@ -31,12 +31,14 @@ export class UserDto {
 
 
 export class AddUserAccessComponent implements OnInit {
+  disableRowSelection = true;
 
   EditOrDetails = new EditOrDetailsDto()
   ClassLecNam : any
   ClassIdAcriveStudent = new ClassActive()
   UserData: UserDto[] = []
   durationForAll: number = 1; 
+
   objectUserForAccessService: AddUserAccessDto[]=[]
   constructor(private ShareService: SharedService, private GetAllActive: GetAllLectureService,    private toastr: ToastrService
     ) { }
@@ -58,8 +60,6 @@ export class AddUserAccessComponent implements OnInit {
           this.UserData[i].QuizRequird = false
           this.UserData[i].Duration = 0
           this.UserData[i].position = i + 1
-
-
         }
 
         console.log(this.UserData)
@@ -111,6 +111,11 @@ export class AddUserAccessComponent implements OnInit {
       this.objectUserForAccessService[i].duration =selectedRows[i].Duration
       this.objectUserForAccessService[i].quizRequired =selectedRows[i].QuizRequird 
     }
+    console.log("++++++++++++");
+    
+    console.log(this.objectUserForAccessService);
+    console.log("++++++++++++");
+
     this.GetAllActive.UserAddAccess(this.objectUserForAccessService).subscribe({
       next:(data)=>{
         this.toastr.success("Done", "success Added Access ")

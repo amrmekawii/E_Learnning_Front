@@ -5,9 +5,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { isEmpty } from 'rxjs';
 import { AssighmentService } from 'src/app/Services/Assighment/assighment.service';
+import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 import { SharedService } from 'src/app/Services/Shared/shared.service';
-import { AssignmentDto } from 'src/app/TypeDto/AssighmentAllDto';
+import { AssignmentAndQuizCascadeDto, AssignmentDto } from 'src/app/TypeDto/AssighmentAllDto';
 import { EditOrDetailsDto } from 'src/app/TypeDto/EditOrDetailsDto';
+import { UpdateLucturDto } from 'src/app/TypeDto/LectureAddDto';
 
 @Component({
   selector: 'app-lec-details',
@@ -19,6 +21,7 @@ export class LecDetailsComponent implements OnInit {
     private sharedService: SharedService,
     private fb: FormBuilder,
     private asighm: AssighmentService,
+    private asighm2: GetAllLectureService,
     private modalservice: NgbModal,
     private toastr: ToastrService,
     
@@ -26,15 +29,16 @@ export class LecDetailsComponent implements OnInit {
   ) {
     ;
   }
-  receivedObject!: EditOrDetailsDto;
+  receivedObject=new EditOrDetailsDto();
   receivedObject2!: any;
 
   editOrDetailsForm!: FormGroup;
   isReadOnly = true; // Initially, the form is in read-only mode
   editMode = false; // Indicates whether we're in edit mode or not
   IdAud?: number
-  AllAssighment: AssignmentDto[] = []
-
+  AllAssighment: AssignmentAndQuizCascadeDto[] = []
+  Quizghment: AssignmentAndQuizCascadeDto[] = []
+  UpdateLecture =new UpdateLucturDto()
   pdfurl: string = '';
   path: any
   @ViewChild('content') popupview !: ElementRef;
@@ -61,6 +65,8 @@ export class LecDetailsComponent implements OnInit {
   
 
   ngOnInit() {
+    this.receivedObject = this.sharedService.getObject();
+
     // Create the form controls
     this.editOrDetailsForm = this.fb.group({
       lectureId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
@@ -70,7 +76,7 @@ export class LecDetailsComponent implements OnInit {
       assignmentId: [{ value: null, disabled: this.isReadOnly }],
     });
 
-    this.asighm.GetAllAssoghment().subscribe({
+    this.asighm2.GetAllAssighmentsByClass(this.receivedObject.classId as number).subscribe({
       next: (data) => {
         this.AllAssighment = data
         this.receivedObject = this.sharedService.getObject(); 
@@ -89,7 +95,16 @@ export class LecDetailsComponent implements OnInit {
 
       }
     })
-    this.receivedObject = this.sharedService.getObject();
+    this.asighm2.GetAllQuizsByClass(this.receivedObject.classId as number).subscribe({
+      next: (data) => {
+        this.Quizghment = data
+        
+      },
+      error: (err) => {
+        console.log(err);
+
+      }
+    })
 
     this.receivedObject2 = this.sharedService.getObject2();
 
@@ -111,9 +126,27 @@ export class LecDetailsComponent implements OnInit {
   updateData(form: FormGroup) {
 
     console.log(form.value);
+this.UpdateLecture.lectureId =form.value.lectureId
+this.UpdateLecture.classid =form.value.classId
+this.UpdateLecture.header =form.value.header
+this.UpdateLecture.assighnmentid =form.value.assignmentId
+this.UpdateLecture.quizid =form.value.quizId
+console.log(this.UpdateLecture);
 
+this.asighm2.UpdateLecture(this.UpdateLecture).subscribe({
+  next:()=>{
+    this.toastr.success("Update Done")
+
+  },
+  error:(err)=>{
+    this.toastr.warning("Cant Update")
+console.log(err);
+
+  }
+})
     this.editMode = false;
     this.editOrDetailsForm.disable();
   }
 }
 
+ 

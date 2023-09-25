@@ -72,6 +72,12 @@ export class QuizService {
   }
   public StudentSolveZ(Obj: SubmitQuizDto): Observable<any> {
 
+    console.log("Here..........");
+    
+    console.log(Obj);
+
+    console.log("Here..........");
+
     return this.client.post<QuizResult>(this.Base_URL9 , Obj);
 
   }

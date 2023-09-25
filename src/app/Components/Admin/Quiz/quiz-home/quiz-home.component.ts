@@ -108,7 +108,9 @@ export class QuizHomeComponent implements OnInit {
       quizType: this.quizForm.value.quizRequirement,
       duration: this.Duration.value.timer,
     });
-    if (this.quizForm.value.quizRequirement == 1) {
+    if (this.quizForm.value.quizRequirement == 0) {
+      console.log("Lecture Month +++");
+      
       this.AddQuizForm.patchValue({
         startTime: this.timeForm.value.startTime,
         endTime: this.timeForm.value.endTime,
@@ -123,10 +125,16 @@ export class QuizHomeComponent implements OnInit {
       this.AddQuiz.classid = data.value.classid
       this.AddQuiz.header = data.value.header
       this.AddQuiz.quizType = data.value.quizType
-      this.AddQuiz.endTime = data.value.endTime
-      if (this.quizForm.value.quizRequirement == 1) {
-        this.AddQuiz.duration = data.value.duration
+      this.AddQuiz.duration = data.value.duration
+    
+      if (this.quizForm.value.quizRequirement == 0) {
+        console.log("Lecture Month +++");
+
+        this.AddQuiz.endTime = data.value.endTime
         this.AddQuiz.startTime = data.value.startTime
+      }else{
+        this.AddQuiz.endTime = new Date()
+        this.AddQuiz.startTime = new Date()
       }
       console.log(this.AddQuiz)
       this.QuizService.AddQuiz(this.AddQuiz).subscribe({

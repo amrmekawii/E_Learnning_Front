@@ -11,7 +11,7 @@
                 </mat-card-header>
                 <mat-card-content>
                     <div class="assignment-details">
-                        <div class="assignment-property2">
+                        <div class="assignment-property2" hidden>
                             <span class="property-label">Quiz Id:</span>
                             <span class="property-value">{{  DataQuiz.quizid }}</span>
                         </div>
@@ -21,7 +21,8 @@
                         </div>
                         <div class="assignment-property2">
                             <span class="property-label">Quiz Type:</span>
-                            <span class="property-value">{{  DataQuiz.quizType }}</span>
+                            <span *ngIf="  DataQuiz.quizType ==0" class="property-value">Month</span>
+                            <span *ngIf="  DataQuiz.quizType ==1" class="property-value">Lecture</span>
                         </div>
                       
                     </div>
@@ -41,7 +42,7 @@
       border-color: rgb(255, 136, 0);
     ">
     <mat-expansion-panel-header>
-      <p class="xp">Add Lecture</p>
+      <p class="xp">Add Question</p>
     </mat-expansion-panel-header>
 
 
@@ -49,7 +50,7 @@
       <mat-step [stepControl]="quizForm" label="Quation Type">
         <form [formGroup]="quizForm">
             <mat-form-field class="form-field">
-                <mat-label for="quizRequirement">Quation Type:</mat-label>
+                <mat-label for="quizRequirement">Question  Type:</mat-label>
                 <mat-select formControlName="quizRequirement" >
                   <mat-option [value]=0>Text</mat-option>
                   <mat-option [value]=1>Image</mat-option>
@@ -62,7 +63,7 @@
         </form>
       </mat-step>
       
-      <mat-step [stepControl]="secondFormGroup" label="Name your Lecture">
+      <mat-step [stepControl]="secondFormGroup" label="your Question ">
         <form [formGroup]="secondFormGroup">
 
             
@@ -85,7 +86,7 @@
       </mat-step>
 
 
-      <mat-step label="Links Video">
+      <mat-step label="Question Answer">
         <form [formGroup]="myFormGroup">
 
 
@@ -111,7 +112,7 @@
               </div>
             </div>
           </div>
-          <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Video</button>
+          <button mat-button [disabled]="!myFormGroup.valid" (click)="addVideo()">Add Answer</button>
         </form>
 
         <div>
@@ -125,7 +126,7 @@
         <ng-template matStepLabel >Done</ng-template>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="print()">Add Lecture</button>
+          <button mat-button (click)="print()">Add Question</button>
         </div>
       </mat-step>
 
@@ -139,22 +140,22 @@
     <div class="questions-list   ">
       <h2>Questions List</h2>
       <ul>
-        <li *ngFor="let question of DataQuiz.getQuestionsDtos" class="question-item">
+        <li *ngFor="let question of DataQuiz.getQuestionsDtos let i =index" class="question-item">
           <div class="CardQuition ">
 
             <!-- assignment.component.html -->
             <mat-card class=" ">
                 <mat-card-header>
-                    <mat-card-title>Question ID: {{ question.questionID }}</mat-card-title>
+                    <mat-card-title>Question Number: {{ i+1}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="">
                      
-                        <div class="assignment-property" *ngIf="!image">
+                        <div class="assignment-property" *ngIf="question.questionType ==0 ">
                             <span class="property-label">Question Header:</span>
                             <span class="property-value">{{ question.questionHeader}}</span>
                         </div>
-                        <div class="assignment-property" *ngIf="image">
+                        <div class="assignment-property" *ngIf="question.questionType ==1">
                             <span  class="property-label">Question Header:</span>
                             <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
                             </span>

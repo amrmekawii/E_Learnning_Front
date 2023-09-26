@@ -35,7 +35,6 @@ export class QuizDetailsComponent implements OnInit {
 
   QuiationUdForDelete:any|number
   IdParams!: any;
-  image: boolean = false
   DataQuiz = new GetQustionWithAnswersDto()
   //
   QuizAddQuation=new QuizAddQuationDto()
@@ -62,9 +61,7 @@ export class QuizDetailsComponent implements OnInit {
       next: (data) => {
         this.DataQuiz = data
         console.log(this.DataQuiz);
-        if (this.DataQuiz.quizType as number == QuestionType.Image) {
-          this.image = true
-        }
+    
 
       },
       error: (err) => { }
@@ -133,7 +130,7 @@ export class QuizDetailsComponent implements OnInit {
         next: (data) => {
           console.log(data);
           this.toastr.success("Done", "success Added")
-  
+this.ngOnInit()
         },
         error: (err) => {
           console.log(err)

@@ -10,3 +10,9 @@ export class QuizAddQuationDto {
     rightAnswer?: boolean;
   }
   
+
+  export class QuizAddAnswerDto {
+    questionid?: number;
+    header?: string;
+    rightAnswer?: boolean;
+  }

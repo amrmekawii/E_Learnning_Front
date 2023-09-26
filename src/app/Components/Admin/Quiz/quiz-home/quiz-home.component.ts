@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
@@ -17,15 +18,21 @@ export class QuizHomeComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private Getcalsss: GetAllLectureService,
     private QuizService: QuizService,
+    private modalservice: NgbModal,
+
   ) {
 
   }
+  @ViewChild('content') popupview!: ElementRef;
+
   isLinear = false;
-  ClassList!: any
+  ClassList!: any[]
   ClassLecId: QuizAllDto[] = []
   FiristId: any
   searchText = '';
   AddQuiz = new QuizAddDto()
+  QuizIdForDelete!:number
+  //////forms for steper 
   firstFormGroup = this._formBuilder.group({
     ClassId: [0, Validators.required],
   });
@@ -53,8 +60,6 @@ export class QuizHomeComponent implements OnInit {
 
 
   ngOnInit() {
-
-
     this.Getcalsss.GetAllClass().subscribe({
       next: (data) => {
         this.ClassList = data
@@ -157,5 +162,41 @@ export class QuizHomeComponent implements OnInit {
 
     }
 
+  }
+
+
+  /////////////////////////Delate quiz
+  Delete( Id: number) {
+this.QuizIdForDelete =Id
+    this.modalservice.open(this.popupview, { size: 'lg' });
+  }
+
+  Delete2() {
+
+    this.QuizService.DeleteQuiz(this.QuizIdForDelete).subscribe({
+      next: (data) => {
+        this.toastr.success('Quiz Deleted');
+
+        // Remove the deleted assignment from the list
+        const index = this.ClassList.findIndex(
+          (assignment) => assignment.id === this.QuizIdForDelete
+        );
+  
+        this.modalservice.dismissAll()
+
+        setTimeout(() => {
+          if (index !== -1) {
+            console.log("delete +++++++++++");
+            console.log(index);
+            
+            this.ClassList.splice(index, 1);
+          }
+        }, 1500);
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error(error.error);
+      },
+    });
   }
 }

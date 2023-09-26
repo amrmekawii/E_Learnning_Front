@@ -175,7 +175,7 @@
               
             </li>
           </ul>
-          <a class="btn btn-danger" >Delete</a> |
+          <a class="btn btn-danger" (click)="Delete(question.questionID)" >Delete</a> |
           <a   class="btn btn-success" [routerLink]="['/AdminHome/UpdateQuationAnswer',question.questionID]">Update</a>
         </li>
       </ul>
@@ -183,3 +183,21 @@
   </div>
   
 
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+  
+        <!-- BODY HERE -->
+        <header class="head">You Delete Quiz !!!</header>
+  
+  
+        <div class="ButonPop">
+          <button type="submit" class="btn btn-danger ancor" (click)="Delete2()">Delete</button>
+      </div>
+    </div>
+  
+  
+  
+  </ng-template>

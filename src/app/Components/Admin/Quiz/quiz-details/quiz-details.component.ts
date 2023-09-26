@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild  } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { FilesService } from 'src/app/Services/FileUp/files.service';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
@@ -23,12 +24,16 @@ export class QuizDetailsComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private fileUplode: FilesService,
     private toastr: ToastrService,
+    private modalservice: NgbModal,
 
 
   ) {
     this.IdParams = myRoute.snapshot.paramMap.get('id');
     console.log(this.IdParams);
   }
+  @ViewChild('content') popupview!: ElementRef;
+
+  QuiationUdForDelete:any|number
   IdParams!: any;
   image: boolean = false
   DataQuiz = new GetQustionWithAnswersDto()
@@ -141,6 +146,42 @@ export class QuizDetailsComponent implements OnInit {
 
       }
     }
+
+
+
+    Delete( Id: any) {
+      this.QuiationUdForDelete =Id
+          this.modalservice.open(this.popupview, { size: 'lg' });
+        }
+      
+        Delete2() {
+      
+          this.QuizServ.DeleteQuaition(this.QuiationUdForDelete).subscribe({
+            next: (data) => {
+              this.toastr.success('Quiz Deleted');
+      
+              // Remove the deleted assignment from the list
+              const index = this.DataQuiz.getQuestionsDtos.findIndex(
+                (assignment) => assignment.questionID === this.QuiationUdForDelete
+              );
+        
+              this.modalservice.dismissAll()
+      
+              setTimeout(() => {
+                if (index !== -1) {
+                  console.log("delete +++++++++++");
+                  console.log(index);
+                  
+                  this.DataQuiz.getQuestionsDtos.splice(index, 1);
+                }
+              }, 1500);
+            },
+            error: (error) => {
+              console.log(error);
+              this.toastr.error(error.error);
+            },
+          });
+        }
 }
 
 

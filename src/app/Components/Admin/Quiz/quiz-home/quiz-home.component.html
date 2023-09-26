@@ -105,7 +105,7 @@
             <ng-template matStepLabel >Done</ng-template>
             <div>
               <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="print()">Add Lecture</button>
+              <button mat-button (click)="print()">Add Quiz</button>
             </div>
           </mat-step>
 
@@ -140,10 +140,29 @@
           <!-- <a class="btn btn-outline-warning"
             (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )">
              Details</a> -->
-              <a class="btn btn-danger" >Delete</a> |
+              <a class="btn btn-danger" (click)="Delete(lecture.id)" >Delete</a> |
               <a   class="btn btn-success" [routerLink]="['/AdminHome/QuizDetails',lecture.id]">Details</a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+      <!-- BODY HERE -->
+      <header class="head">You Delete Quiz !!!</header>
+
+
+      <div class="ButonPop">
+        <button type="submit" class="btn btn-danger ancor" (click)="Delete2()">Delete</button>
+    </div>
+  </div>
+
+
+
+</ng-template>

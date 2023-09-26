@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FilesService } from 'src/app/Services/FileUp/files.service';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
+import { QuizAddAnswerDto } from 'src/app/TypeDto/QuizAddQuatioDto';
 import { GetQuestionsDto, UpdateAnswersDto, UpdateQuestionsDto } from 'src/app/TypeDto/QuizDetailsDto';
 
 @Component({
@@ -24,6 +25,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
   IdParams!: any;
   QutionType: any
   QuationDat = new GetQuestionsDto()
+  QuizAddAnswer = new QuizAddAnswerDto()
   QuationUpdateData = new UpdateQuestionsDto()
   updateForm = this._formBuilder.group({
     id: [0],
@@ -62,7 +64,9 @@ export class UpdateQuationAnswerComponent implements OnInit {
         }
       },
 
-      error: () => { }
+      error: (err) => {
+        console.log(err);
+      }
     })
 
   }
@@ -84,17 +88,43 @@ export class UpdateQuationAnswerComponent implements OnInit {
   }
 
   addAnswer() {
-    this.answers.push(
-      this._formBuilder.group({
-        id: [0],
-        header: ['', Validators.required],
-        rightAnswer: [false, Validators.required],
-      })
-    );
+    // this.answers.push(
+    //   this._formBuilder.group({
+    //     id: [0],
+    //     header: ['', Validators.required],
+    //     rightAnswer: [false, Validators.required],
+    //   })
+    // );
+    this.QuizAddAnswer.questionid = this.IdParams
+    this.QuizServ.AddQuizAnswer(this.QuizAddAnswer).subscribe({
+      next: () => {
+        this.toastr.success("Done", "success Add Answer")
+        this.answers.clear()
+        this.ngOnInit()
+      },
+      error: (err) => {
+        console.log(err);
+
+      },
+    })
+
   }
 
   removeAnswer(index: number) {
     this.answers.removeAt(index);
+    console.log(this.answers.value);
+    
+    this.QuizServ.DeleteAnswer(index).subscribe({
+      next: () => {
+        this.toastr.success("Done", "success Delete Answer")
+        this.answers.clear()
+        this.ngOnInit()
+      },
+      error: (err) => {
+        console.log(err);
+
+      },
+    })
   }
 
   updateQuestion() {
@@ -119,7 +149,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
       })
 
     } else {
-      this.toastr.success("Finish Data Full First !!")
+      this.toastr.warning("Finish Data Full First !!")
 
     }
   }

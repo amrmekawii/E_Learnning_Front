@@ -94,6 +94,12 @@ export class LuctureHComponent implements OnInit {
   }
   //////////////
   GetAssandQuiz(calssID: number) {
+
+    this.AssignmentCascadeDto = [];
+    
+    this.QuizCascadeDto = [];
+
+
     console.log(calssID + "..................");
 
     this.AddLec.GetAllAssighmentsByClass(calssID).subscribe({

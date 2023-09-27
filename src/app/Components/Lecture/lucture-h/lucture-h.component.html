@@ -25,8 +25,8 @@
         <form [formGroup]="firstFormGroup">
           <mat-form-field>
             <mat-label>Select Class</mat-label>
-            <mat-select formControlName="ClassId" >
-              <mat-option *ngFor="let class of ClassList" [value]="class.id"(onSelectionChange)="GetAssandQuiz(class.id)" >{{ class.name }}</mat-option>
+            <mat-select formControlName="ClassId" #c (selectionChange)="GetAssandQuiz(c.value)" >
+              <mat-option *ngFor="let class of ClassList" [value]="class.id" >{{ class.name }}</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field>

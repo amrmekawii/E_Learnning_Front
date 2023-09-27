@@ -14,7 +14,6 @@ export class LectureComponent  implements OnInit  {
   IdParams!: any;
   lectures:any 
   theLecture:any
-  safeUrl: SafeHtml ='';
   myScriptElement:any;
   StudentID:any
 constructor(private myRoute: ActivatedRoute, private  UserService: UserService , private sanitizer: DomSanitizer ,private Auth :AuthenticationServiceService ,    @Inject(DOCUMENT)  private   document: Document  ){
@@ -22,7 +21,6 @@ constructor(private myRoute: ActivatedRoute, private  UserService: UserService ,
   this.StudentID= this.Auth.UserData.Id
 console.log(this.IdParams);
 
-this.safeUrl =  this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/VKM4PPv3UPA");
 
 
 
@@ -31,12 +29,18 @@ this.UserService.GetLectowatch( this.StudentID,  this.IdParams).subscribe({
 
 
   next:(data)=>{ this.lectures=data 
+
+    console.log(data)
   
   
     this.UserService.GetTheLecture(this.lectures[0].id).subscribe({
 
 
-      next : (data)=>this.theLecture=data
+      next : (data)=> {this.theLecture=data
+
+
+        console.log(data)
+      }      
     })
     
   
@@ -52,20 +56,21 @@ ngOnInit(): void{
 
 }
 GetLectur(id:any){
-
+this.theLecture= null;
 this.UserService.GetTheLecture(id).subscribe({
 
 
-  next : (data)=>this.theLecture=data
+  next :  (data)=> {this.theLecture=data
+  
+    console.log(data)
+
+  
+  }
 })
-
-
-
 }
 
 print(Id:any){
   console.log(Id);
-  this.safeUrl =  this.sanitizer.bypassSecurityTrustResourceUrl(Id);
 
 }
 

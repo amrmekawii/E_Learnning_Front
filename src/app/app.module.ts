@@ -115,8 +115,9 @@ LectureCodeComponent,
     MatSlideToggleModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule,
     MatTooltipModule, MatButtonModule, MatSidenavModule, MatMenuModule, MatSlideToggleModule,
     FormsModule,
-    MatDialogModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatInputModule, MatRadioModule, NgbPaginationModule
-    , NgbPaginationModule,
+    MatDialogModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatInputModule
+    , MatRadioModule, NgbPaginationModule
+    , NgbPaginationModule,PlyrModule,
 
     MatStepperModule,
     MatFormFieldModule,

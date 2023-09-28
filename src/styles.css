@@ -273,3 +273,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   
 }
+iframe{
+
+  pointer-events: none;
+}

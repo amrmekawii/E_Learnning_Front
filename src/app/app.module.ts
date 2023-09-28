@@ -68,6 +68,7 @@ import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-stu
 import { ShowQuizResultComponent } from './Components/Student/show-quiz-result/show-quiz-result.component';
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-code.component';
+import { PlyrModule } from 'ngx-plyr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -102,7 +103,7 @@ LectureCodeComponent,
 
    ],
   imports: [
-    BrowserModule,
+    BrowserModule,PlyrModule, 
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
@@ -114,8 +115,9 @@ LectureCodeComponent,
     MatSlideToggleModule, MatToolbarModule, MatIconModule, MatListModule, MatExpansionModule,
     MatTooltipModule, MatButtonModule, MatSidenavModule, MatMenuModule, MatSlideToggleModule,
     FormsModule,
-    MatDialogModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatInputModule, MatRadioModule, NgbPaginationModule
-    , NgbPaginationModule,
+    MatDialogModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatInputModule
+    , MatRadioModule, NgbPaginationModule
+    , NgbPaginationModule,PlyrModule,
 
     MatStepperModule,
     MatFormFieldModule,

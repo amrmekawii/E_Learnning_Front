@@ -1,4 +1,4 @@
-<!-- <div class="box  container" >
+<div class="box  container" >
     <h3>My Lecture </h3>
     <div class="row">
         <div class="col-md-3" style="margin-top: 3%; margin-bottom: 3%;" *ngFor="let a of lectures">
@@ -24,24 +24,13 @@
         </div>
     
 <div  *ngIf="theLecture.started==true" >
-  <mat-form-field>
-    <mat-label>Select Quiz</mat-label>
-    <mat-select formControlName="QuizID">
-      <mat-option *ngFor="let class of theLecture.videoParts" (onSelectionChange)="print(class.link)" [value]="class.id">{{ class.name }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-  
-            <iframe
-              [src]=safeUrl
-              allowfullscreen
-              allowtransparency
-              allow="autoplay"
-            ></iframe>
-          
-          
-
   
 
+  
+  <div *ngFor="let part of theLecture.videoParts "    plyr style="width: 50%; height: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
+  
+  [plyrSources]=" [{ src: part.link , provider: 'youtube'}]"  >  </div>
+          
 
 </div>
 </div>
@@ -51,7 +40,7 @@
      
     
         <p>Please Solve the quiz first </p>   
-        <button class="buton" [routerLink]="['/QuizStudent',theLecture.quizid]"> Start Education <i
+        <button class="buton" [routerLink]="['/QuizStudent',theLecture.quizid]"> Solve  Quiz <i
           class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i> </button>    
         </div>
     
@@ -69,65 +58,6 @@
 
 
 
-     -->
-
-     <div class="lecture-container">
-      <h3>My Lecture</h3>
-      <div class="lecture-list">
-        <div class="lecture-item" *ngFor="let a of lectures">
-          <button class="lecture-button" (click)="GetLectur(a.id)">
-            {{ a.name }}
-          </button>
-        </div>
-      </div>
-    
-      <div class="lecture-details">
-    
-        <div *ngIf="theLecture.videoParts.length != 0">
-          <div *ngIf="!theLecture.started" class="start-button">
-            <button (click)="startPlaying(theLecture.lectureid)">Start Playing</button>
-          </div>
-    
-          <div *ngIf="theLecture.started" class="video-player">
-            <mat-form-field>
-              <mat-label>Select Quiz</mat-label>
-              <mat-select formControlName="QuizID">
-                <mat-option
-                  *ngFor="let class of theLecture.videoParts"
-                  (onSelectionChange)="print(class.link)"
-                  [value]="class.id"
-                >
-                  {{ class.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-    
-             <div class="iframe-container">
-              <iframe [src]="safeUrl" allowfullscreen allowtransparency allow="autoplay"></iframe>
-            </div>
-          
-    
-            <button class="quiz-button" [routerLink]="['/QuizStudent', theLecture.quizid]">
-              Start Education
-              <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
-            </button>
-          </div>
-        </div>
-    
-        <div *ngIf="theLecture.videoParts.length ==0" class="quiz-section">
-          <p>Please solve the quiz first.</p>
-          <button class="start-button" [routerLink]="['/QuizStudent', theLecture.quizid]">
-            Start Education
-            <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
-          </button>
-        </div>
-    
-        <button class="start-button" [routerLink]="['/LectureAssighment', theLecture.assighmentid]">
-          Solve Assighment
-          <i class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i>
-        </button>
-      </div>
-    </div>
 
 <!-- 
     <div class="plyr__video-embed" id="player" style=" width: 200px ; height: 200px;">
@@ -140,5 +70,5 @@
         allow="autoplay"
       ></iframe>
     </div>
-    </div>
+    </div>  
      -->

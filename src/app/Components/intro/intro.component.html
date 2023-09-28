@@ -1,6 +1,6 @@
 <header class="header">
     <nav
-      class="navbar navbar-expand-lg bg-transparent position-fixed top-0 w-100  "
+      class="navbar navbar-expand-lg  position-fixed  w-100  "[ngClass]="{'scrolled-navbar': isScrolled}"
     >
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -17,7 +17,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class=" btn btn-outline-danger active"routerLink="/StudentHome" aria-current="page" href="#">Home</a>
@@ -35,23 +35,28 @@
               <a routerLink="/LectureAssighment" class=" btn btn-outline-danger" href="#">Assignments</a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </nav>
   
     <div class="container">
       <div class="row py-5">
         <div class="col-md-6 d-flex align-items-center">
-          <div class="text-content text-white" data-aos="fade-up">
+          <div class="text-content text-center " style="font-size: xx-large;" data-aos="fade-up"  >
 
             <h1>Mr.Amr Nabil</h1>
-            <h4>Mathematic Teacher</h4>
+            <h3 style=" font-size: x-large;">Mathematic Teacher</h3>
   
-            <h4>Welcome to the world of logical ideas and true imagination</h4>
+            <h3 style="color:rgb(228, 97, 97); font-size: x-large;" >Welcome to the world of logical ideas and true imagination</h3>
   
-            <div class="btn-home mt-5 ">
+            <div class="btn-home mt-5 " *ngIf="!Islogin">
               <button routerLink="/Login" class="btn btn-1 ">Login</button>
               <button routerLink="/Register" class="btn btn-1 " style=" margin-left: 2%;">Register</button>
+            </div>
+
+            <div class="btn-home mt-5 " *ngIf="Islogin">
+              <button *ngIf="role=='Student'" routerLink="/StudentHome" class="btn btn-1 ">Home</button>
+              <button  *ngIf="role=='Admin'" routerLink="/AdminHome/Lecture"   class="btn btn-1 " style=" margin-left: 2%;">Home</button>
             </div>
           </div>
         </div>
@@ -132,7 +137,7 @@
             <section class="card-2  ">
 
           <div class="container-fluid">
-            <div class="row" style="margin-top: -10%; margin-bottom: 5%;" >                <h2 style="text-align: center; width: 50%; margin: auto ; color: rgb(255, 255, 255); " >classes</h2>
+            <div class="row" style="margin-top: -10%; margin-bottom: 5%;" >                <h2 style="color:rgb(0, 0, 0); font-size: xx-large; text-align: center; width: 50%; margin: auto ;  " >classes</h2>
             </div>
             <div class="row  align-items-center">
               <div class="col-md-3">

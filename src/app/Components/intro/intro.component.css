@@ -45,7 +45,7 @@ video {
 .header{
   min-height: 100vh;
   width: 100%;
-  background-image: url(src/assets/imgs/blob.svg);
+  background-image: url(https://images.pexels.com/photos/7130490/pexels-photo-7130490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-position: center;
   background-size: cover;
 }
@@ -86,6 +86,7 @@ header .btn-1:hover, header .btn-1:focus, header .btn-1:active{
  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
  -webkit-transform: scale(1.1);
  transform: scale(1.1);
+ color: #000;
 }
 header .btn-2{
  background: #BA704D;
@@ -170,7 +171,7 @@ header .btn-2{
 
 /* card 2 */
 .card-2{
-  background-image: url(src/assets/imgs/circle-scatter-haikei.svg);
+  background-image: url(https://images.pexels.com/photos/7130490/pexels-photo-7130490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -259,4 +260,10 @@ footer{
 
 footer a{
   text-decoration: none;
+}
+
+.scrolled-navbar {
+  z-index: 5;
+
+  background-color:#e9e1a0
 }

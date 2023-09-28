@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Role } from 'src/app/TypeDto/Role';
-import { UserService } from 'src/app/Services/UserService/user.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
-
+import { AuthenticationServiceService } from 'src/app/Services/UserAuthentication/authentication-service.service';
+import { UserService } from 'src/app/Services/UserService/user.service';
 @Component({
-  selector: 'app-student-profile',
-  templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.css']
+  selector: 'app-userresult',
+  templateUrl: './userresult.component.html',
+  styleUrls: ['./userresult.component.css']
 })
-export class StudentProfileComponent {
+export class UserresultComponent {
   searchText = '';
 
   open=true; 
@@ -20,13 +19,15 @@ userAttendance: any ;
 QuizGrades: any;
 UserAssighment:any
 IdParams:any
-constructor(  private UserService: UserService,private myRoute: ActivatedRoute ,private QuizServ: QuizService ){
-  this.IdParams = myRoute.snapshot.paramMap.get('id');
+StudentId:any;
+constructor(  private UserService: UserService, private Auth: AuthenticationServiceService
+  ,private myRoute: ActivatedRoute ,private QuizServ: QuizService ){
+  this.StudentId = this.Auth.UserData.Id
 
 this.userAttendance=null;
 this.QuizGrades=null;
 this.UserAssighment=null
-this.UserService.GetStudentDetails(this.IdParams).subscribe({
+this.UserService.GetStudentDetails(this.StudentId).subscribe({
 
 
   next: (data)=> {this.studentData =data;
@@ -127,7 +128,8 @@ RegisterForm : FormGroup =new FormGroup({
 
    GetUserattendance (){
 this.UserAssighment=null;
-this.UserService.GetUserLectureAttedance(this.studentData.id).subscribe({
+this.QuizGrades=null
+this.UserService.GetUserLectureAttedance(this.StudentId).subscribe({
 
   next:(data)=> {
 
@@ -144,7 +146,7 @@ this.userAttendance=data
 this.UserAssighment=null;
 this.userAttendance=null;
 
-this.QuizServ.GetUserQuizesResult(this.studentData.id).subscribe({
+this.QuizServ.GetUserQuizesResult(this.StudentId).subscribe({
 
 
   next: (data)=>{
@@ -162,7 +164,7 @@ this.QuizServ.GetUserQuizesResult(this.studentData.id).subscribe({
     this.QuizGrades=null;
     this.userAttendance=null;
 
-    this.UserService.GetUserAssighments(this.studentData.id).subscribe({
+    this.UserService.GetUserAssighments(this.StudentId).subscribe({
 
 
       next: (data)=> {
@@ -179,18 +181,4 @@ this.QuizServ.GetUserQuizesResult(this.studentData.id).subscribe({
 
 
 }
-
-export interface StudentData{
-
-  
-    "id": string ;
-    "username": string;
-    "firstName": string;
-    "secondName": string;
-    "lastName": string;
-    "phoneNumber": string;
-    "parentPhoneNumber": string;
-    "password": string;
-  } 
-
 

@@ -9,54 +9,130 @@
         </div>
     </div>
 
+<div class="container"> 
+    <div class="row">
+
+      <div class="col-6" >
+
+        <button    class="btn border border-light  rounded-pill " [routerLink]="['/QuizStudent',theLecture.quizid]" style="background-color:  rgb(240, 105, 15) !important; color: white; margin-left: 10%;"> Go To Quiz <i
+          class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl" ></i> </button>   
+      </div>
+
+
+      <div class="col-6" >
+
+        <button  class="btn border border-light  rounded-pill " [routerLink]="['/LectureAssighment',theLecture.assighmentid]"
+         style="background-color:  rgb(240, 105, 15) !important; color: white; margin-left: 10%;"> Go To Assighment <i
+          class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl" ></i> </button>   
+      </div>
+
+    </div> 
     <div >
 
-        <a >{{theLecture.quizid}}</a>
+
+
 
 <div *ngIf="theLecture.videoParts!=null">
      
 
 
-    <div  *ngIf="theLecture.started==false" >
-      
-              <button (click)="startPlaying(theLecture.lectureid)"> Start Playing</button>
-    
+    <div  *ngIf="theLecture.started==false"  class="row " style=" margin: 
+    3%; height: 10%; "  >
+      <div       class="rounded-pill"   style="background-color: rgb(230, 117, 76);"
+      >
+              <button 
+              style="background-color: rgb(230, 117, 76); width: 100%; height: 100%; border: none;"
+ class=" rounded-pill "
+              (click)="startPlaying(theLecture.lectureid)"><i
+              class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl ">Start Playing</i> </button>
+            </div>
         </div>
     
 <div  *ngIf="theLecture.started==true" >
   
+  <div class="box  container" style="width: 80%;" >
+    <h3>Lecture Parts </h3>
+    <div class="row">
+      <div *ngFor="let part of theLecture.videoParts "   class="col-md-3" style="margin-top: 1%; margin-bottom: 1%;">
+        <button   class="card card-3"    (click)="SelectPart(part.id)"  >
+  {{part.name}}
+        </button>
+      </div>
+  
+        </div>
+    </div>
 
+
+  <div *ngFor="let part of theLecture.videoParts "  >
+
+    <div *ngIf="part.id==selected"    plyr style="width: 80%; height: auto; margin: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
   
-  <div *ngFor="let part of theLecture.videoParts "    plyr style="width: 50%; height: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
+    [plyrSources]=" [{ src: part.link , provider: 'youtube'}]"  >  </div>
   
-  [plyrSources]=" [{ src: part.link , provider: 'youtube'}]"  >  </div>
+  </div>
+  
           
 
 </div>
 </div>
 
 
-<div *ngIf="theLecture.videoParts==null">
+<div *ngIf="theLecture.videoParts==null" style="margin-top: 2%;">
      
     
-        <p>Please Solve the quiz first </p>   
-        <button class="buton" [routerLink]="['/QuizStudent',theLecture.quizid]"> Solve  Quiz <i
-          class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl"></i> </button>    
+         
+    
+        <div class="alert alert-danger" role="alert">
+          Please Solve the quiz first        </div>
+        
+    
+
+
         </div>
-    
-    
-    
-
-
-     
 
 
 
-<a >{{theLecture.assighmentid}}</a>
+
+
+</div>
+
+<div  *ngFor="let part of theLecture.videoFiles "  >
+
+
+</div>
 </div>
 
 
 
+<table class="table table-hover lecture-table container" >
+  <thead class="thead-dark">
+      <tr>
+          
+          <th>File </th>
+          
+          
+
+      </tr>
+  </thead>
+  <tbody>
+      <!-- studentid?: string;
+      assighmentid?: number; -->
+  
+  
+      <tr *ngFor="let part of theLecture.videoFiles "  >
+         
+       
+          <td>
+
+              <a style=" text-decoration: none;" target="_blank" href={{part.path}}> {{part.name}} <i
+              class="fa-solid fa-file-lines"></i></a>
+            
+
+          </td>
+          
+      </tr>   
+  </tbody>
+</table>
 
 
 <!-- 

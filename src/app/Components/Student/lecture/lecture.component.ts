@@ -11,6 +11,7 @@ import { UserService } from 'src/app/Services/UserService/user.service';
   styleUrls: ['./lecture.component.css']
 })
 export class LectureComponent  implements OnInit  {
+  selected:any;
   IdParams!: any;
   lectures:any 
   theLecture:any
@@ -94,4 +95,9 @@ next :(data)=>{
 
 }
 
+
+
+SelectPart(part :any ){
+this.selected=part
+}
 }

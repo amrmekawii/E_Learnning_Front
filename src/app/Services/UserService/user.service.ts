@@ -26,6 +26,7 @@ private readonly  getlecture  = "https://localhost:7206/api/Lecture/GettheLectur
 
 private readonly  Startwatch  = "https://localhost:7206/api/Lecture/startWatching/"
 private readonly  changeStatue  = "https://localhost:7206/api/User/ChangeStudentStatu"
+private readonly  Deletes  = "https://localhost:7206/api/User/DeleteUser"
 
   public GetStudents(Filter:any)
   {
@@ -91,5 +92,10 @@ public DeleteStudentFromClass(userclass:any)
                   return this.client.post(this.changeStatue,c );  
                 }
  
+                public DeleteStuudent(c:any)
+                {
+                   return this.client.post(this.Deletes,c);  
+                 }
+      
          
             }

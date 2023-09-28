@@ -29,6 +29,7 @@ import { QuizsAvailableComponent } from './Components/Student/quizs-available/qu
 import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 import { AdminGuard } from './Components/Guards/admin.guard';
+import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 
 const routes: Routes = [
 
@@ -69,6 +70,8 @@ const routes: Routes = [
   { path: 'Lectures/:id', canActivate: [AuthLogGuard], component: LectureComponent },
   { path: 'QuizStudent/:id', canActivate: [AuthLogGuard], component: QuizStudentComponent },
   { path: 'QuizsAvailable', canActivate: [AuthLogGuard], component: QuizsAvailableComponent },
+  { path: 'Userres', canActivate: [AuthLogGuard], component: UserresultComponent },
+
   { path: '**', component: ErrorComponent }
 ];
 

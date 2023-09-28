@@ -70,6 +70,7 @@ import { QuizsAvailableComponent } from './Components/Student/quizs-available/qu
 import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-code.component';
 import { PlyrModule } from 'ngx-plyr';
 import { AuthInterceptor } from './Interceptors/auth.interceptor';
+import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ QuizStudentComponent,
 ShowQuizResultComponent,
 QuizsAvailableComponent,
 LectureCodeComponent,
+UserresultComponent,
 
    ],
   imports: [

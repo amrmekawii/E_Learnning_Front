@@ -55,7 +55,7 @@ export class LecDetailsComponent implements OnInit {
       this.toastr.warning("Has No Assighment")
 
     } else {
-      this.modalservice.open(this.popupview, { size: 'lg' });
+      // this.modalservice.open(this.popupview, { size: 'lg' });
       window.open(this.pdfurl)
     }
   }

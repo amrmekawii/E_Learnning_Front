@@ -49,7 +49,7 @@ export class LectureAssighmentComponent implements OnInit {
     console.log(this.StudentId + 'student');
 
     //GetAssighmentById
-    this.assigh.GetAssimentBtId(7).subscribe({
+    this.assigh.GetAssimentBtId(this.IdAssighment).subscribe({
       next: (data) => {
         this.Assighent = data
         this.allUserAssighent = this.Assighent.userAssighments

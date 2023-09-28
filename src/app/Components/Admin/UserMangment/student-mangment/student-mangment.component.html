@@ -294,11 +294,11 @@ style="
 		<p>Are You Sure you want Delete {{deleteUser.name}}</p>
   </div>
 
-<form   [formGroup]="DeleteForm" (ngSubmit)="DeleteFinal()">
-  <input type="text" class="form-control"   formControlName="Password"  placeholder="Password"/>
-<div *ngIf=" DeleteForm.get('Password')?.errors  && DeleteForm.get('Password')?.touched" style="color: red;">
+<form   [formGroup]="DeleteForm" (ngSubmit)="DeleteFinal(Delete)">
+  <input type="text" class="form-control"   #x formControlName="adminPassword"  placeholder="adminPassword"/>
+<div *ngIf=" DeleteForm.get('adminPassword')?.errors  && DeleteForm.get('adminPassword')?.touched" style="color: red;">
 <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
-<span  *ngIf=" DeleteForm.get('Password')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+<span  *ngIf=" DeleteForm.get('adminPassword')?.getError('required')"   style="color: red;"> this feild is Requird</span>
 
 </div>
 

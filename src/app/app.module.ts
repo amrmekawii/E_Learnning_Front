@@ -69,6 +69,7 @@ import { ShowQuizResultComponent } from './Components/Student/show-quiz-result/s
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-code.component';
 import { PlyrModule } from 'ngx-plyr';
+import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,6 +101,7 @@ QuizStudentComponent,
 ShowQuizResultComponent,
 QuizsAvailableComponent,
 LectureCodeComponent,
+UserresultComponent,
 
    ],
   imports: [

@@ -1,8 +1,9 @@
 .box {
     margin-top: 5%;
-    width: 50%;
     height: auto;
     border: 1px solid black;
+    margin-bottom: 5%;
+
  
 }
  .box > h3 {

@@ -192,16 +192,34 @@ this.UserService.GetStudents(s).subscribe({
 
 }
 DeleteForm : FormGroup =new FormGroup({
-  Password: new FormControl ("" , Validators.required)
+  adminPassword: new FormControl ("c" , Validators.required)
 })
 DeleteStudent(student:any ,Delete:any){
 this.deleteUser=student;
 this.modalService.open(Delete)
 }
 
-DeleteFinal(){
+DeleteFinal(Delete:any){
+
+  let x:any  = this.DeleteForm.value
+  let  y= x.adminPassword
+let d = {   "userId": this.deleteUser.id,
+ "adminPassword" : y}
+console.log (d)
+this.UserService.DeleteStuudent(d).subscribe({
 
 
+  next: (data)=> {
+
+    this.modalService.dismissAll(Delete)
+
+    
+  },
+error:  (err)=>{ console.log(err)  
+
+  this.modalService.dismissAll(Delete)
+} 
+});
 
 }
 Canceldelete(Delete:any){

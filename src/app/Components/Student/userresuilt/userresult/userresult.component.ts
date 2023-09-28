@@ -20,8 +20,12 @@ QuizGrades: any;
 UserAssighment:any
 IdParams:any
 StudentId:any;
+UserData: any
+
 constructor(  private UserService: UserService, private Auth: AuthenticationServiceService
   ,private myRoute: ActivatedRoute ,private QuizServ: QuizService ){
+    this.UserData = this.Auth.UserData
+
   this.StudentId = this.Auth.UserData.Id
 
 this.userAttendance=null;

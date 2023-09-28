@@ -38,9 +38,12 @@ export class LectureAssighmentComponent implements OnInit {
   UserSolveAssighment: boolean = true
   assignmentForm!: FormGroup;
   datasolveed=new UserAssighAnswerDTO()
+  UserData: any
 
 
   ngOnInit(): void {
+    this.UserData = this.StudentData.UserData
+
     this.assignmentForm = this.formBuilder.group({
       modelAnswerFilePath: ['', Validators.required],
     });

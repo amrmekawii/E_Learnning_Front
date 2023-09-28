@@ -1,6 +1,6 @@
 <mat-toolbar color="dark">
 
-  <div class="logo">
+  <div class="logo" routerLink="">
       <div class=" mb-5 ">
           <img src="assets/imgs/logo.png" alt="" height="50px" />
       </div>
@@ -9,9 +9,7 @@
               <h2> Student Name :{{UserData.name}}</h2>
           </header>
       </div>
-      <button class="px-4" mat-menu-item  >
-          <mat-icon>reply</mat-icon>sign out
-        </button>
+
 
   </div>
 
@@ -93,3 +91,4 @@
       </tbody>
     </table>
   </div>
+  <app-footer></app-footer>

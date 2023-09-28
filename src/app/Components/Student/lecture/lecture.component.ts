@@ -17,6 +17,8 @@ export class LectureComponent  implements OnInit  {
   theLecture:any
   myScriptElement:any;
   StudentID:any
+  UserData: any
+
 constructor(private myRoute: ActivatedRoute, private  UserService: UserService , private sanitizer: DomSanitizer ,private Auth :AuthenticationServiceService ,    @Inject(DOCUMENT)  private   document: Document  ){
   this.IdParams = myRoute.snapshot.paramMap.get('id');
   this.StudentID= this.Auth.UserData.Id
@@ -53,6 +55,7 @@ this.UserService.GetLectowatch( this.StudentID,  this.IdParams).subscribe({
 
 
 ngOnInit(): void{
+  this.UserData = this.Auth.UserData
 
 
 }

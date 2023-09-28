@@ -15,6 +15,7 @@ export class QuizsAvailableComponent implements OnInit {
   }
   StudentId!: any
   searchText = '';
+  UserData: any
 
   GetUserQuizesRes: UserQuizDto[] = []
   QuizMonthInfo: QuizMonthInfoDto[] = []
@@ -37,6 +38,7 @@ export class QuizsAvailableComponent implements OnInit {
       },
       error: () => { }
     })
+    this.UserData = this.Auth.UserData
 
   }
 

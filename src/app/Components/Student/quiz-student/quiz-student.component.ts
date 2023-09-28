@@ -37,8 +37,12 @@ export class QuizStudentComponent implements OnInit {
   CheckQuiz = new CheckQuizIssolvedDto()
   QuizToSolv = new GetQuizToSolveDto()
   StudentSolve = new SubmitQuizDto()
+  UserData: any
+
   GetUserQuizAnswer= new GetUserQuizAnswersDto()
   ngOnInit(): void {
+    this.UserData = this.Auth.UserData
+
     this.CheckQuiz.userid = this.StudentId
     this.CheckQuiz.quizid = this.IdParams
     this.QuizServ.CheckQuizIssolved(this.CheckQuiz).subscribe({

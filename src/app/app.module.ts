@@ -69,6 +69,7 @@ import { ShowQuizResultComponent } from './Components/Student/show-quiz-result/s
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 import { LectureCodeComponent } from './Components/Student/lecture-code/lecture-code.component';
 import { PlyrModule } from 'ngx-plyr';
+import { AuthInterceptor } from './Interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -139,7 +140,12 @@ LectureCodeComponent,
       provide: HTTP_INTERCEPTORS,
       useClass: LoadingInterceptor,
       multi: true
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,     //For the interceptor
+      useClass: AuthInterceptor,
+      multi: true,
+    },
     
   ],
   bootstrap: [AppComponent]

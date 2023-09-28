@@ -109,7 +109,7 @@ export class AddUserAccessComponent implements OnInit {
       this.objectUserForAccessService[i].userId = selectedRows[i].UserId 
       this.objectUserForAccessService[i].accessType =1
       this.objectUserForAccessService[i].duration =selectedRows[i].Duration
-      this.objectUserForAccessService[i].quizRequired =selectedRows[i].QuizRequird 
+      this.objectUserForAccessService[i].quizrequird =selectedRows[i].QuizRequird 
     }
     console.log("++++++++++++");
     

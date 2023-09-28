@@ -39,6 +39,7 @@ export class LuctureHComponent implements OnInit {
 
   ClassList!: any
   myFormGroup!: FormGroup;
+  myFormGroupFile!: FormGroup;
   ClasssDto = new LectuterAddDto();
   isLinear = false;
   ClassLecId: GetLectByClassIdDto[] = []
@@ -49,7 +50,7 @@ export class LuctureHComponent implements OnInit {
   AssignmentCascadeDto: AssignmentAndQuizCascadeDto[] = []
   QuizCascadeDto: AssignmentAndQuizCascadeDto[] = []
   firstFormGroup = this._formBuilder.group({
-    ClassId: [0, Validators.required],
+    ClassId: [null, Validators.required],
     AssighmentID: [0,[]],
     QuizID: [0],
   });
@@ -61,7 +62,8 @@ export class LuctureHComponent implements OnInit {
     assighnmentid: [0],
     quizid: [0],
     Header: ['', [Validators.required, Validators.minLength(5)]],
-    vedio: [[], Validators.required]
+    vedio: [[], Validators.required],
+    file: [[], Validators.required]
   });
 
   /////////////////////////////////////////////OninIt
@@ -88,9 +90,13 @@ export class LuctureHComponent implements OnInit {
         console.log(err)
       }
     })
+    this.myFormGroupFile = this._formBuilder.group({
+      addvideosFile: this._formBuilder.array([])
+    })
     this.myFormGroup = this._formBuilder.group({
       addvideos: this._formBuilder.array([])
     })
+
   }
   //////////////
   GetAssandQuiz(calssID: number) {
@@ -129,6 +135,16 @@ export class LuctureHComponent implements OnInit {
     this.fileUplode.Upload(file).subscribe((response) => {
       console.log(response);
       this.addvideos.at(index).get('link')?.setValue(response.url)
+    })
+  }
+  Uplodfile2(e: Event, index: number) {
+    const input = e.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+    this.fileUplode.Upload(file).subscribe((response) => {
+      console.log(response);
+      this.addvideosFile.at(index).get('path')?.setValue(response.url)
     })
   }
 
@@ -175,6 +191,7 @@ export class LuctureHComponent implements OnInit {
       }
       this.ClasssDto.header = data.value.Header
       this.ClasssDto.addvideos = data.value.vedio
+      this.ClasssDto.addFiles = data.value.file
       console.log(this.ClasssDto)
       this.AddLec.AddLec(this.ClasssDto).subscribe({
 
@@ -213,6 +230,7 @@ export class LuctureHComponent implements OnInit {
     }
     this.LastForm.value.Header = this.secondFormGroup.value.Header
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value
+    this.LastForm.value.file = this.myFormGroupFile.get('addvideosFile')?.value
     this.AddLecture(this.LastForm);
   }
 
@@ -246,13 +264,28 @@ export class LuctureHComponent implements OnInit {
       this.addvideos.push(videoFormGroup);
     }
   }
+  addFile() {
+    const videoFormGroup2 = this._formBuilder.group({
+      path: ['', Validators.required],
+      partHeader: ['', [Validators.required, Validators.minLength(5)]],
+      number: [0, Validators.required]
+    });
+
+    if (this.myFormGroupFile.get('addvideosFile')?.valid || this.addvideosFile.controls.length == 0) {
+      this.addvideosFile.push(videoFormGroup2);
+    }
+  }
 
   get addvideos(): FormArray { return this.myFormGroup.get('addvideos') as FormArray; }
+  get addvideosFile(): FormArray { return this.myFormGroupFile.get('addvideosFile') as FormArray; }
 
 
   /////////////////CallWhenRemoveVedioInList
   removeVideo(index: number) {
     this.addvideos.removeAt(index);
+  }
+  removeFile(index: number) {
+    this.addvideosFile.removeAt(index);
   }
 
   /////DeLETE

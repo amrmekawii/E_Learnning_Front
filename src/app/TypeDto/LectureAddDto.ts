@@ -6,13 +6,21 @@ export class LectuterAddDto {
     assighnmentid?: number;
     number?: number;
     addvideos : addvideosDTOs[]=[]  ;
+    addFiles? : addFilesDTOs[]=[]  ;
   }
   
   export class addvideosDTOs 
       {
         link?: string ;
         partHeader?: string ;
-        PartNumber?: number;
+        number?: number;
+      }
+  
+  export class addFilesDTOs 
+      {
+        path?: string ;
+        partHeader?: string ;
+        number?: number;
       }
   
   

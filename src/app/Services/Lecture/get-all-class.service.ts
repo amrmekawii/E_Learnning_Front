@@ -67,31 +67,35 @@ export class GetAllLectureService {
   }
 
   public UserAddAccess(object: AddUserAccessDto[]): Observable<any> {
+    console.log("++++++++++++------------");
+
+    console.log(object);
+    console.log("++++++++++++------------");
 
     return this.client.post(this.Base_URL5, object);
 
   }
 
-  public UserActive(object: ClassActive): Observable< UserInClassDto[]> {
+  public UserActive(object: ClassActive): Observable<UserInClassDto[]> {
     console.log(object);
 
     return this.client.post<UserInClassDto[]>(this.Base_URL6, object);
 
   }
-  public GenerateCodeLecture(object: GenrateCodeDto): Observable< CodeLecDto[]> {
+  public GenerateCodeLecture(object: GenrateCodeDto): Observable<CodeLecDto[]> {
     console.log(object);
 
     return this.client.post<CodeLecDto[]>(this.Base_URL7, object);
 
   }
   public GetAllAssighmentsByClass(id: number): Observable<any> {
-    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL20+id);
+    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL20 + id);
   }
   public GetAllQuizsByClass(id: number): Observable<any> {
-    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL21+id);
+    return this.client.get<AssignmentAndQuizCascadeDto[]>(this.Base_URL21 + id);
   }
   public UpdateLecture(Obj: UpdateLucturDto): Observable<any> {
-    return this.client.put(this.Base_URL8,Obj);
+    return this.client.put(this.Base_URL8, Obj);
   }
 
   public DeleteLecture(deleteObject: DeleteLectureDto): Observable<any> {
@@ -105,7 +109,7 @@ export class GetAllLectureService {
       body: deleteObject, // Set the request body to your deleteObject
     };
 
-    return this.client.delete<any>(this.Base_URL22,options);
+    return this.client.delete<any>(this.Base_URL22, options);
   }
 
 }

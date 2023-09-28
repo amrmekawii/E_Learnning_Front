@@ -96,11 +96,47 @@
         </div>
       </mat-step>
 
+
+      <mat-step label="Add Files">
+        <form [formGroup]="myFormGroupFile">
+
+          <div formArrayName="addvideosFile">
+            <div *ngFor="let video of addvideosFile.controls; let i = index">
+
+              <div [formGroupName]="i">
+                <input type="file" (change)="Uplodfile2($event, i)">
+
+                <mat-form-field>
+
+                  <input matInput formControlName="path" placeholder="path Link" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="partHeader" placeholder="Part Header" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput formControlName="number" type="number" placeholder="file Number" required>
+                </mat-form-field>
+                <button mat-icon-button (click)="removeFile(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button mat-button (click)="addFile()">Add file</button>
+        </form>
+
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button  mat-button
+            matStepperNext>Next</button>
+        </div>
+      </mat-step>
+
       <mat-step>
         <ng-template matStepLabel (click)="print()">Done</ng-template>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="print()">Add Lecture</button>
+          <button [disabled]=" addvideos.controls.length==0 || !myFormGroup.valid||!firstFormGroup.valid ||!secondFormGroup.valid"  mat-button (click)="print()">Add Lecture</button>
         </div>
       </mat-step>
     </mat-stepper>

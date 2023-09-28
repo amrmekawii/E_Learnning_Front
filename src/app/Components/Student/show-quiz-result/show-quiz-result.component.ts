@@ -26,5 +26,4 @@ export class ShowQuizResultComponent implements OnInit{
     this.ref.close('Closed using function');
   }
   
-
 }

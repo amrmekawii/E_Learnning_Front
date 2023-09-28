@@ -6,11 +6,9 @@
     align-items: center;
     justify-content: center;
     margin: 20px;
-    padding: 20px;
     background-color: #f0f0f0;
     border: 3px solid #ff8c00;
     border-radius: 25px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
   
   .quiz-info h2 {
@@ -29,9 +27,9 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 20px;
+    margin: 20px;
     text-align: center;
-    width: 70%;
+    width: 100%;
 
   }
  
@@ -39,11 +37,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 20px;
+    margin: 20px;
     text-align: center;
   }
   .Imgsiz{
-    width: 700px;
+    width: 800px;
     height: 250px;
   }
   .questions-list h2 {
@@ -53,12 +51,11 @@
   }
   
   .question-item {
-    margin: 10px 0;
+    margin: 20px ;
     padding: 10px;
-    border: 2px solid #dbd6d6;
+    border: 2px solid #fcc68b;
     border-radius: 10px;
     background-color: #fff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   }
   
   .question-item p {
@@ -206,39 +203,14 @@ cursor: pointer;
 
   @media only screen and (max-width: 600px) {
     .Imgsiz{
-        width: 300px;
-        height: 250px;
+      width: 100%; /* Adjust the width as needed */
+      height: 250px;
       }
       
-    .assignment-card {
-        width: 300px; /* Adjust the width as needed */
+      .CardQuition{
+        width:100%; /* Adjust the width as needed */
         margin: 20px;
-        font-size: 15px; /* Adjust the font size as needed */
       }
-      .form-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh;
-        background-color: rgb(229, 243, 255);
-        margin: 20px;
-        border: 3px solid  rgb(239, 155, 0);
-        border-radius: 25px;
-        flex-direction: column;
-        padding-top: 20px;
-        
-      }
-      .head {
-        background-color: #eaeefe;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        margin: 20px;
-        width: 300px;
-        border-radius: 25px;
-      
-      }
+   
+
 }

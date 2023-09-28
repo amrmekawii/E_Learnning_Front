@@ -5,11 +5,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 100px;
-  margin-top: 10px;
+ 
   background-color: #ddd;
-  padding: 100px;
-  padding-top: 50px;
+  margin: 10px;
+  padding: 20px;
 }
 
 .lecture-table th,
@@ -26,7 +25,6 @@
   text-align: center;
   font-family: Arial, sans-serif;
   margin: 20px;
-  width: 300px;
   border-radius: 25px;
 
 }
@@ -36,7 +34,6 @@
   display: flex;
   justify-content: end;
   padding: 20px;
-  padding-right: 150px;
 }
 
 button {
@@ -45,7 +42,7 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  width: 250px;
+  width: 100%;
   border-radius: 25px;
   margin-bottom: 10px;
   font-size: large;
@@ -67,4 +64,82 @@ button:hover {
   justify-content: center;
   align-items: center;
 
+}
+.table-responsive {
+  overflow-x: auto;
+}
+
+.lecture-table {
+  width: 100%; /* or use max-width for a fluid width */
+}
+
+@media (min-width: 768px) {
+  /* Adjustments for medium-sized screens */
+  .Containe {
+    margin: 50px;
+    padding: 50px;
+  }
+
+  .head {
+    width: 500px;
+  }
+
+  .posto {
+    padding-right: 100px;
+  }
+
+  button {
+    width: 300px;
+  }
+
+  .ancor {
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  /* Adjustments for large screens */
+  .Containe {
+    margin: 100px;
+    padding: 100px;
+  }
+
+  .head {
+    width: 600px;
+  }
+
+  .posto {
+    padding-right: 150px;
+  }
+
+  button {
+    width: 350px;
+  }
+
+  .ancor {
+    width: 350px;
+  }
+}
+@media (max-width: 576px) {
+  /* Adjustments for small screens */
+  .lecture-table th,
+  .lecture-table td {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Adjustments for medium-sized screens */
+  .lecture-table th,
+  .lecture-table td {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  /* Adjustments for large screens */
+  .lecture-table th,
+  .lecture-table td {
+    font-size: 16px;
+  }
 }

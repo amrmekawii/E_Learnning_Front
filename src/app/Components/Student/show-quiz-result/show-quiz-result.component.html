@@ -2,9 +2,7 @@
 
 <div class="quiz-result-container">
     <h1>Quiz Result</h1>
-    <p>colEfected: {{ inputdata.colEfected }}</p>
-    <p>numberOfQuestions: {{ inputdata.numberOfQuestions }}</p>
-    <p>userGrade: {{ inputdata.userGrade }}</p>
+    <p>userGrade: {{ inputdata.userGrade }} /{{ inputdata.numberOfQuestions }}</p>
   
     <div mat-dialog-actions>
       <button (click)="closepopup()" class="close-button" mat-raised-button color="warn">Close</button>

@@ -83,4 +83,32 @@ width: 200px;
     text-align: center;
     border-bottom: 3px solid #ddd;
   }
+  /* Styles for screens smaller than 768px */
+@media (max-width: 767px) {
+  .form-container {
+    margin: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
   
+  .head {
+    width: 100%;
+  }
+  
+  input {
+    width: 100%;
+  }
+}
+
+/* Styles for screens larger than or equal to 768px */
+@media (min-width: 768px) {
+  .form-container {
+    margin: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  
+  .head {
+    width: 300px;
+  }
+}

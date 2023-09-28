@@ -13,31 +13,34 @@
     </mat-form-field>
 
 
-    <table class="table table-hover lecture-table">
-        <thead class="thead-dark">
-            <tr>
-                <th>Assighment ID</th>
-                <th>Assighment Name</th>
-                <th>Assighment Calss Name</th>
-                <th>Assighment File</th>
-                <th >Delete / Details</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let lecture of AllAssighment | search: searchText">
-                <td>{{ lecture.id }}</td>
-                <td>{{ lecture.header }}</td>
-                <td>{{ lecture.classid }}</td>
-                <td><a style=" text-decoration: none;" target="_blank" href={{lecture.filePath}}> Veiw <i
-                            class="fa-solid fa-file-lines"></i></a></td>
-                <td class="btncolr">
-                    <a class="btn btn-danger" (click)="showpdf(lecture.header ,lecture.id)">Delete</a> |
-                    <a [routerLink]="['/AdminHome/DetailsAssighment', lecture.id]" class="btn btn-success">Details</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover lecture-table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Assighment ID</th>
+                    <th>Assighment Name</th>
+                    <th>Assighment Calss Name</th>
+                    <th>Assighment File</th>
+                    <th >Delete / Details</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lecture of AllAssighment | search: searchText">
+                    <td>{{ lecture.id }}</td>
+                    <td>{{ lecture.header }}</td>
+                    <td>{{ lecture.classid }}</td>
+                    <td><a style=" text-decoration: none;" target="_blank" href={{lecture.filePath}}> Veiw <i
+                                class="fa-solid fa-file-lines"></i></a></td>
+                    <td class="btncolr">
+                        <a class="btn btn-danger" (click)="showpdf(lecture.header ,lecture.id)">Delete</a> |
+                        <a [routerLink]="['/AdminHome/DetailsAssighment', lecture.id]" class="btn btn-success">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+ 
 </div>
 
 

@@ -170,9 +170,9 @@
           <!-- Display answers if needed -->
           <ul>
             <li [ngStyle]="{'background-color':answer.right  == true ? 'rgb(0, 255, 0,.1)' : 'rgb(255, 0, 0,.1)' }" *ngFor="let answer of question.getAnswersDtos" class="answer-item">
-              <p>Answer ID: {{ answer.answerID }}</p>
-              <p  >Is Right: {{ answer.right }}</p>
-              <p>Answer Header: {{ answer.header }}</p>
+              <!-- <p>Answer ID: {{ answer.answerID }}</p> -->
+              <!-- <p  >Is Right: {{ answer.right }}</p> -->
+              <p style="font-size: larger;">- {{ answer.header }}</p>
               
             </li>
           </ul>

@@ -44,7 +44,7 @@ export class AssighmentComponent implements OnInit {
       next: (data) => {
         this.AllAssighment = data.map((item) => {
           const assignment = new AssignmentDto();
-          assignment.classid = item.id;
+          assignment.classid = item.classid;
           assignment.filePath = item.filePath;
           assignment.id = item.id;
           assignment.header = item.header;
@@ -68,10 +68,12 @@ export class AssighmentComponent implements OnInit {
           classDto.name = item.name;
           return classDto;
         });
+        console.log(this.AllCalss);
+        
 
         // Update the class names for the assignments
         this.AllAssighment.forEach((assignment) => {
-          const classData = this.AllCalss.find((x) => x.id == assignment.id);
+          const classData = this.AllCalss.find(x => x.id === assignment.classid);
           if (classData) {
             assignment.classid = classData.name;
           }

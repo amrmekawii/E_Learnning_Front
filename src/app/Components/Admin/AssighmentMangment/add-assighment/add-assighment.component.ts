@@ -38,6 +38,8 @@ export class AddAssighmentComponent implements OnInit {
     this.Getcalsss.GetAllClass().subscribe({
       next: (data) => {
         this.AllClasses = data;
+        console.log(this.AllClasses);
+        
       },
       error: (error) => {
         console.log('Assighment error: ' + error);
@@ -66,6 +68,8 @@ export class AddAssighmentComponent implements OnInit {
     this.DataAddAssghment.filePath = form.value.filePath
     this.DataAddAssghment.header = form.value.header
     this.DataAddAssghment.modelAnswerFilePath = form.value.modelAnswerFilePath
+    console.log(this.DataAddAssghment);
+    
     if (this.assignmentForm.valid) {
       this.assghm.AddAssiment(this.DataAddAssghment).subscribe({
 

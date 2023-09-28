@@ -11,3 +11,14 @@
     width: 250px;
   
   }
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.head2 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding-bottom: 15px;
+}

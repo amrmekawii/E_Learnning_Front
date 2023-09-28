@@ -25,24 +25,28 @@
             <h4 mat-line *ngIf="isExpanded">Lecture Management</h4>
           </div>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item routerLink="/AdminHome/AllAssighment">
           <div class="list-item-content">
             <mat-icon mat-list-icon>folder_shared</mat-icon>
-            <h4 mat-line *ngIf="isExpanded">Management X</h4>
+            <h4 mat-line *ngIf="isExpanded">Assighment Management</h4>
+          </div>
+        </mat-list-item>
+        <mat-list-item routerLink="/AdminHome/QuizHome">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>folder_shared</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Quiz Management</h4>
+          </div>
+        </mat-list-item>
+        <mat-list-item routerLink="/AdminHome/CodeGen">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>folder_shared</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">CodeGen Management</h4>
           </div>
         </mat-list-item>
       </mat-nav-list>
       
 
-        <mat-nav-list  >
-            <mat-list-item  style="margin-top: 10px;">
-                
-                <mat-icon>dashboard</mat-icon><span *ngIf="isExpanded"> >Dashboard</span>
-            </mat-list-item  >
-            
-
-
-      </mat-nav-list>
+    
     </mat-drawer>
     <mat-toolbar class="white"     style="border-color:coral  ; border-bottom-style :groove ;   background-color: white;"   >
     

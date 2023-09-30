@@ -81,7 +81,7 @@ NewUser :AddUserDto = new AddUserDto();
     phoneNumber: new FormControl ("" ,[ Validators.required, Validators.pattern("^01[0125][0-9]{8}$")]),
     parentPhoneNumber: new FormControl ("" ,[ Validators.required, Validators.pattern("^01[0125][0-9]{8}$")]),
     yearid: new FormControl (0 , Validators.required ),
-    role:new FormControl (Role.Student),
+    role:new FormControl (Role.Student  ),
     userClassDTOs: new FormArray( [] ) ,
     active: new FormControl(true)
 
@@ -141,6 +141,7 @@ this.ClassesByYear=data;
       });}
 }
 Responce:any;
+
 AddStudent(RegisterForm: FormGroup,content: any){
 
 if (RegisterForm.valid){
@@ -148,6 +149,11 @@ if (RegisterForm.valid){
 
 
 let adduser2: AddUserDto=form
+if( adduser2.role==null){
+adduser2.role= Role.Student
+adduser2.active=true
+}
+console.log(adduser2+"sadasdasddsd")
 this.AuthenticationServiceService.AddUser(adduser2).subscribe({
 
 
@@ -156,8 +162,6 @@ this.AuthenticationServiceService.AddUser(adduser2).subscribe({
 
 console.log(this.Responce)
 this.modalService.open(content)
-//this.Responce=null;
-    RegisterForm.reset();
     this.ClassesByYear=null
   
   } ,
@@ -165,7 +169,8 @@ this.modalService.open(content)
   error:(Error)=> console.log(Error)
 });
 }
-  
+RegisterForm.reset();
+
 }
 
 

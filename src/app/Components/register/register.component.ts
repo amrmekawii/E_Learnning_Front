@@ -139,6 +139,9 @@ NewUser :AddUserDto = new AddUserDto();
   
     error:(Error)=> console.log(Error)
   });
+
+  RegisterForm.reset();
+
   }
     
   }

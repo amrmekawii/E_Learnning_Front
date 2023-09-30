@@ -35,7 +35,6 @@ export class AuthenticationServiceService {
 
 
   public AddUser(newUser: AddUserDto )   {
-    console.log(newUser)
 
     return this.client.post(this.Add_User_url, newUser);
 

@@ -127,6 +127,7 @@ RegisterForm : FormGroup =new FormGroup({
 
    GetUserattendance (){
 this.UserAssighment=null;
+this.QuizGrades= null
 this.UserService.GetUserLectureAttedance(this.studentData.id).subscribe({
 
   next:(data)=> {

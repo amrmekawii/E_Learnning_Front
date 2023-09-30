@@ -45,7 +45,7 @@ video {
 .header{
   min-height: 100vh;
   width: 100%;
-  background-image: url(https://images.pexels.com/photos/7130490/pexels-photo-7130490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-image: url(src\assets\imgs\Newback.png);
   background-position: center;
   background-size: cover;
 }
@@ -171,7 +171,7 @@ header .btn-2{
 
 /* card 2 */
 .card-2{
-  background-image: url(https://images.pexels.com/photos/7130490/pexels-photo-7130490.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-image: url(src/assets/imgs/Newback.png);
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -192,7 +192,7 @@ footer{
   height: 120px;
   width: 100%;
   place-items: center;
-  background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+  background: #ffffff;
   
 }
 .wrapper .button{
@@ -280,5 +280,5 @@ footer a{
 .scrolled-navbar {
   z-index: 5;
 
-  background-color:#e9e1a0
+  background-color:#ffffff
 }

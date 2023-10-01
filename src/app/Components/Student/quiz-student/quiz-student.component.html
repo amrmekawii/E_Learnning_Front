@@ -29,17 +29,17 @@
       <h2>Questions List</h2>
       <p>Time Remaining: {{ timeRemaining }}</p>
 
-      <ul>
-        <li *ngFor="let question of QuizToSolv.quiestions?.getQuestionsDtos  let i =index"   class="question-item">
-          <div class="CardQuition ">
+      <div>
+        <div  *ngFor="let question of QuizToSolv.quiestions?.getQuestionsDtos  let i =index"   class="question-item">
+          <div class="CardQuition " >
 
             <!-- assignment.component.html -->
-            <mat-card class=" ">
-                <mat-card-header>
+            <mat-card >
+                <!-- <mat-card-header>
                     <mat-card-title>Question Num: {{ i+1 }}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <div class="">
+                </mat-card-header> -->
+                <mat-card-content >
+                    <div >
                      
                         <div class="assignment-property" *ngIf="question.questionType ==0">
                             <span class="property-label">Question Header:</span>
@@ -63,8 +63,8 @@
               <label>{{ answer.header }}</label>
             </li>
           </ul>
-        </li>
-      </ul>
+        </div>
+      </div>
       <button *ngIf="!Show && !Solve" class="btn btn-primary"(click)="SubmitQuiz()">Submit</button>
 
     </div>

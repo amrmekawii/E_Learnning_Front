@@ -8,8 +8,8 @@ import { StudentHomeDto } from 'src/app/TypeDto/StudentHomeDto';
   providedIn: 'root'
 })
 export class StudentService {
-  private readonly Base_URL = "https://localhost:7206/api/User/userHome?userid=";
-  private readonly Base_URL1 = "https://localhost:7206/api/Class/AddClassrequest";
+  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/User/userHome?userid=";
+  private readonly Base_URL1 = "https://e-learning-api.conveyor.cloud/api/Class/AddClassrequest";
 
   constructor(private myClient: HttpClient) { }
 

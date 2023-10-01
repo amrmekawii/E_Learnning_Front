@@ -8,7 +8,7 @@ import {  Observable } from 'rxjs';
 })
 export class ChangePassService {
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://localhost:7206/api/User/ChangePassword";
+  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/User/ChangePassword";
 
 
   public UpUser(User: ChangePassDto): Observable<any> {

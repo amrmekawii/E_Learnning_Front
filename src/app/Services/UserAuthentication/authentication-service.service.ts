@@ -31,7 +31,7 @@ export class AuthenticationServiceService {
 
   }
 
-  private readonly Add_User_url = "https://localhost:7206/api/User/StudentRigster";
+  private readonly Add_User_url = "https://e-learning-api.conveyor.cloud/api/User/StudentRigster";
 
 
   public AddUser(newUser: AddUserDto )   {
@@ -42,7 +42,7 @@ export class AuthenticationServiceService {
 
   public login(credentials: LoginDto): Observable<TokenDto> {
     return this.client
-      .post<TokenDto>('https://localhost:7206/api/User/StudentLogin', credentials)
+      .post<TokenDto>('https://e-learning-api.conveyor.cloud/api/User/StudentLogin', credentials)
       .pipe(
         tap((tokenDto) => {
           this.isLoggedIn$.next(true);

@@ -10,23 +10,23 @@ export class UserService {
 
   constructor(private client: HttpClient) { }
 
-  private readonly Base_URL3 ="https://localhost:7206/api/User/GetStudents"
-  private readonly Base_URL1="https://localhost:7206/api/Class/DeleteUserFromClass"
-  private readonly Base_URL2=" https://localhost:7206/api/User/GetUser/"
-  private readonly Base_URL4="  https://localhost:7206/api/User/UpdateUser"
+  private readonly Base_URL3 ="https://e-learning-api.conveyor.cloud/api/User/GetStudents"
+  private readonly Base_URL1="https://e-learning-api.conveyor.cloud/api/Class/DeleteUserFromClass"
+  private readonly Base_URL2=" https://e-learning-api.conveyor.cloud/api/User/GetUser/"
+  private readonly Base_URL4="  https://e-learning-api.conveyor.cloud/api/User/UpdateUser"
 
-  private readonly Base_URL5="https://localhost:7206/api/Lecture/GetStudentLectureAttendence/"
-  private readonly Base_URL6="https://localhost:7206/api/Assighment/GetUserAssighmentsByUserId?UserId="
+  private readonly Base_URL5="https://e-learning-api.conveyor.cloud/api/Lecture/GetStudentLectureAttendence/"
+  private readonly Base_URL6="https://e-learning-api.conveyor.cloud/api/Assighment/GetUserAssighmentsByUserId?UserId="
 
-  private readonly Base_URL7="https://localhost:7206/api/Class/GetAllClassesRequists/"
+  private readonly Base_URL7="https://e-learning-api.conveyor.cloud/api/Class/GetAllClassesRequists/"
 
-  private readonly Base_URL8="https://localhost:7206/api/Class/AcceptDeclineClassrequest"
-private readonly  lurl = "https://localhost:7206/api/Lecture/getLecturestowatch/"
-private readonly  getlecture  = "https://localhost:7206/api/Lecture/GettheLecture/"
+  private readonly Base_URL8="https://e-learning-api.conveyor.cloud/api/Class/AcceptDeclineClassrequest"
+private readonly  lurl = "https://e-learning-api.conveyor.cloud/api/Lecture/getLecturestowatch/"
+private readonly  getlecture  = "https://e-learning-api.conveyor.cloud/api/Lecture/GettheLecture/"
 
-private readonly  Startwatch  = "https://localhost:7206/api/Lecture/startWatching/"
-private readonly  changeStatue  = "https://localhost:7206/api/User/ChangeStudentStatu"
-private readonly  Deletes  = "https://localhost:7206/api/User/DeleteUser"
+private readonly  Startwatch  = "https://e-learning-api.conveyor.cloud/api/Lecture/startWatching/"
+private readonly  changeStatue  = "https://e-learning-api.conveyor.cloud/api/User/ChangeStudentStatu"
+private readonly  Deletes  = "https://e-learning-api.conveyor.cloud/api/User/DeleteUser"
 
   public GetStudents(Filter:any)
   {

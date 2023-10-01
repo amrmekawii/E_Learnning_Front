@@ -13,23 +13,23 @@ export class QuizService {
 
 
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://localhost:7206/api/Quiz/GetAllQuizsByClass?Classid=";
-  private readonly Base_URL2 = "https://localhost:7206/api/Quiz/AddQuiz";
-  private readonly Base_URL3 = "https://localhost:7206/api/Quiz/GetAllQAByQuiz/";
-  private readonly Base_URL4 = "https://localhost:7206/api/Quiz/AddQuestion";
-  private readonly Base_URL5 = "https://localhost:7206/api/Quiz/GetQId?QId=";
-  private readonly Base_URL6 = "https://localhost:7206/api/Quiz/UpdateQuestion";
-  private readonly Base_URL7 = "https://localhost:7206/api/Quiz/CheckQuizIssolved";
-  private readonly Base_URL8 = "https://localhost:7206/api/Quiz/GetQuizToSolve";
-  private readonly Base_URL9 = "https://localhost:7206/api/Quiz/StudentSolveQuiz";
-  private readonly Base_URL910 = "https://localhost:7206/api/Quiz/GetUserQuizAnswers";
-  private readonly Base_URL911 = "https://localhost:7206/api/Quiz/GetUserQuizesResult/";
-  private readonly Base_URL912 = "https://localhost:7206/api/Quiz/GetMonthExams/";
-  private readonly Base_URL913 = "https://localhost:7206/api/Lecture/AcessLectureByCode/";
-  private readonly Base_URL914 = "https://localhost:7206/api/Quiz/DeleteQuiz/";
-  private readonly Base_URL915 = "https://localhost:7206/api/Quiz/DeleteQuestion/";
-  private readonly Base_URL91 = "https://localhost:7206/api/Quiz/AddAnswer";
-  private readonly Base_URL96 = "https://localhost:7206/api/Quiz/DeleteAnswer/";
+  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/Quiz/GetAllQuizsByClass?Classid=";
+  private readonly Base_URL2 = "https://e-learning-api.conveyor.cloud/api/Quiz/AddQuiz";
+  private readonly Base_URL3 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetAllQAByQuiz/";
+  private readonly Base_URL4 = "https://e-learning-api.conveyor.cloud/api/Quiz/AddQuestion";
+  private readonly Base_URL5 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetQId?QId=";
+  private readonly Base_URL6 = "https://e-learning-api.conveyor.cloud/api/Quiz/UpdateQuestion";
+  private readonly Base_URL7 = "https://e-learning-api.conveyor.cloud/api/Quiz/CheckQuizIssolved";
+  private readonly Base_URL8 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetQuizToSolve";
+  private readonly Base_URL9 = "https://e-learning-api.conveyor.cloud/api/Quiz/StudentSolveQuiz";
+  private readonly Base_URL910 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetUserQuizAnswers";
+  private readonly Base_URL911 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetUserQuizesResult/";
+  private readonly Base_URL912 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetMonthExams/";
+  private readonly Base_URL913 = "https://e-learning-api.conveyor.cloud/api/Lecture/AcessLectureByCode/";
+  private readonly Base_URL914 = "https://e-learning-api.conveyor.cloud/api/Quiz/DeleteQuiz/";
+  private readonly Base_URL915 = "https://e-learning-api.conveyor.cloud/api/Quiz/DeleteQuestion/";
+  private readonly Base_URL91 = "https://e-learning-api.conveyor.cloud/api/Quiz/AddAnswer";
+  private readonly Base_URL96 = "https://e-learning-api.conveyor.cloud/api/Quiz/DeleteAnswer/";
 
 
 

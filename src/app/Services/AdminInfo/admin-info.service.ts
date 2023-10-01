@@ -8,7 +8,7 @@ import {  Observable } from 'rxjs';
 export class AdminInfoService {
 
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://localhost:7206/api/User/GetUser/";
+  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/User/GetUser/";
 
   
   public GetUser(User: any): Observable<any> {

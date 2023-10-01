@@ -19,18 +19,18 @@ import { DeleteLectureDto } from 'src/app/TypeDto/AssighmentAddDto';
 export class GetAllLectureService {
 
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://localhost:7206/api/Class/GetAllClasses";
-  private readonly Base_URL2 = "https://localhost:7206/api/Lecture/addLecture";
-  private readonly Base_URL3 = "https://localhost:7206/api/Lecture/GetLectureList/";
-  private readonly Base_URL4 = "https://localhost:7206/api/Lecture/GetLectureAttendance/";
-  private readonly Base_URL5 = "https://localhost:7206/api/Lecture/AddAcessToUser";
-  private readonly Base_URL6 = "https://localhost:7206/api/User/GetStudents";
-  private readonly Base_URL7 = "https://localhost:7206/api/Lecture/GenerateCodes";
-  private readonly Base_URL8 = "https://localhost:7206/api/Lecture/UpdateLecture";
+  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/Class/GetAllClasses";
+  private readonly Base_URL2 = "https://e-learning-api.conveyor.cloud/api/Lecture/addLecture";
+  private readonly Base_URL3 = "https://e-learning-api.conveyor.cloud/api/Lecture/GetLectureList/";
+  private readonly Base_URL4 = "https://e-learning-api.conveyor.cloud/api/Lecture/GetLectureAttendance/";
+  private readonly Base_URL5 = "https://e-learning-api.conveyor.cloud/api/Lecture/AddAcessToUser";
+  private readonly Base_URL6 = "https://e-learning-api.conveyor.cloud/api/User/GetStudents";
+  private readonly Base_URL7 = "https://e-learning-api.conveyor.cloud/api/Lecture/GenerateCodes";
+  private readonly Base_URL8 = "https://e-learning-api.conveyor.cloud/api/Lecture/UpdateLecture";
 
-  private readonly Base_URL20 = "https://localhost:7206/api/Assighment/GetAllAssighmentsByClass?Classid=";
-  private readonly Base_URL21 = "https://localhost:7206/api/Quiz/GetAllQuizsByClass?Classid=";
-  private readonly Base_URL22 = "https://localhost:7206/api/Lecture/DeleteLecture";
+  private readonly Base_URL20 = "https://e-learning-api.conveyor.cloud/api/Assighment/GetAllAssighmentsByClass?Classid=";
+  private readonly Base_URL21 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetAllQuizsByClass?Classid=";
+  private readonly Base_URL22 = "https://e-learning-api.conveyor.cloud/api/Lecture/DeleteLecture";
 
 
 

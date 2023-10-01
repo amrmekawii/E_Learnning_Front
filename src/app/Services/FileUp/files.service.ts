@@ -15,6 +15,6 @@ export class FilesService {
       var form = new FormData();
       form.append("file", file) //Like we did in post man the key is file and value is the image file itself
       console.log(file)
-      return this.myClient.post<UploadFileDto>('https://localhost:7206/api/Assighment', form); //we will submit the form
+      return this.myClient.post<UploadFileDto>('https://e-learning-api.conveyor.cloud/api/Assighment', form); //we will submit the form
     }
 }

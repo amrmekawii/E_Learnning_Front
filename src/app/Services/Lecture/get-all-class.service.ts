@@ -19,18 +19,18 @@ import { DeleteLectureDto } from 'src/app/TypeDto/AssighmentAddDto';
 export class GetAllLectureService {
 
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/Class/GetAllClasses";
-  private readonly Base_URL2 = "https://e-learning-api.conveyor.cloud/api/Lecture/addLecture";
-  private readonly Base_URL3 = "https://e-learning-api.conveyor.cloud/api/Lecture/GetLectureList/";
-  private readonly Base_URL4 = "https://e-learning-api.conveyor.cloud/api/Lecture/GetLectureAttendance/";
-  private readonly Base_URL5 = "https://e-learning-api.conveyor.cloud/api/Lecture/AddAcessToUser";
-  private readonly Base_URL6 = "https://e-learning-api.conveyor.cloud/api/User/GetStudents";
-  private readonly Base_URL7 = "https://e-learning-api.conveyor.cloud/api/Lecture/GenerateCodes";
-  private readonly Base_URL8 = "https://e-learning-api.conveyor.cloud/api/Lecture/UpdateLecture";
+  private readonly Base_URL = "https://amrbackend.azurewebsites.net/api/Class/GetAllClasses";
+  private readonly Base_URL2 = "https://amrbackend.azurewebsites.net/api/Lecture/addLecture";
+  private readonly Base_URL3 = "https://amrbackend.azurewebsites.net/api/Lecture/GetLectureList/";
+  private readonly Base_URL4 = "https://amrbackend.azurewebsites.net/api/Lecture/GetLectureAttendance/";
+  private readonly Base_URL5 = "https://amrbackend.azurewebsites.net/api/Lecture/AddAcessToUser";
+  private readonly Base_URL6 = "https://amrbackend.azurewebsites.net/api/User/GetStudents";
+  private readonly Base_URL7 = "https://amrbackend.azurewebsites.net/api/Lecture/GenerateCodes";
+  private readonly Base_URL8 = "https://amrbackend.azurewebsites.net/api/Lecture/UpdateLecture";
 
-  private readonly Base_URL20 = "https://e-learning-api.conveyor.cloud/api/Assighment/GetAllAssighmentsByClass?Classid=";
-  private readonly Base_URL21 = "https://e-learning-api.conveyor.cloud/api/Quiz/GetAllQuizsByClass?Classid=";
-  private readonly Base_URL22 = "https://e-learning-api.conveyor.cloud/api/Lecture/DeleteLecture";
+  private readonly Base_URL20 = "https://amrbackend.azurewebsites.net/api/Assighment/GetAllAssighmentsByClass?Classid=";
+  private readonly Base_URL21 = "https://amrbackend.azurewebsites.net/api/Quiz/GetAllQuizsByClass?Classid=";
+  private readonly Base_URL22 = "https://amrbackend.azurewebsites.net/api/Lecture/DeleteLecture";
 
 
 

@@ -15,13 +15,13 @@ export class AssighmentService {
 
   constructor(private client: HttpClient) { }
 
-  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/Assighment/GetAllAssighment";
-  private readonly Base_URL1 = "https://e-learning-api.conveyor.cloud/api/Assighment/GetAssighmentById?id=";
-  private readonly Base_URL2 = "https://e-learning-api.conveyor.cloud/api/Assighment/AddAssihgment";
-  private readonly Base_URL3 = "https://e-learning-api.conveyor.cloud/api/Assighment/UpdateAssigmenty";
-  private readonly Base_URL4 = "https://e-learning-api.conveyor.cloud/api/Assighment/DeleteAssigment";
-  private readonly Base_URL5 = "https://e-learning-api.conveyor.cloud/api/Assighment/CorrectUserAss";
-  private readonly Base_URL6 = "https://e-learning-api.conveyor.cloud/api/Assighment/AddUserAssihgment";
+  private readonly Base_URL = "https://amrbackend.azurewebsites.net/api/Assighment/GetAllAssighment";
+  private readonly Base_URL1 = "https://amrbackend.azurewebsites.net/api/Assighment/GetAssighmentById?id=";
+  private readonly Base_URL2 = "https://amrbackend.azurewebsites.net/api/Assighment/AddAssihgment";
+  private readonly Base_URL3 = "https://amrbackend.azurewebsites.net/api/Assighment/UpdateAssigmenty";
+  private readonly Base_URL4 = "https://amrbackend.azurewebsites.net/api/Assighment/DeleteAssigment";
+  private readonly Base_URL5 = "https://amrbackend.azurewebsites.net/api/Assighment/CorrectUserAss";
+  private readonly Base_URL6 = "https://amrbackend.azurewebsites.net/api/Assighment/AddUserAssihgment";
 
   public GetAllAssoghment(): Observable<AssignmentDto[]> {
     return this.client.get<AssignmentDto[]>(this.Base_URL);

@@ -8,12 +8,11 @@ import {  Observable } from 'rxjs';
 export class AdminInfoService {
 
   constructor(private client: HttpClient) { }
-  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/User/GetUser/";
+  private readonly Base_URL = "https://amrbackend.azurewebsites.net/api/User/GetUser/";
 
   
   public GetUser(User: any): Observable<any> {
     console.log(User)
-
     return this.client.get(this.Base_URL+User);
 
   }

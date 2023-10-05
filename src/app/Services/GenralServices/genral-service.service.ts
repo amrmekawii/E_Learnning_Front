@@ -19,8 +19,8 @@ export class GenralServiceService {
 
   constructor(private client: HttpClient) { }
 
-  private readonly Base_URL = "https://e-learning-api.conveyor.cloud/api/Class/GetAllYers";
-  private readonly Base_URL2 = "https://e-learning-api.conveyor.cloud/api/Class/GetClassByYear/";
+  private readonly Base_URL = "https://amrbackend.azurewebsites.net/api/Class/GetAllYers";
+  private readonly Base_URL2 = "https://amrbackend.azurewebsites.net/api/Class/GetClassByYear/";
 
 
 public GetAllYears () : Observable<UserYearDTO>  {

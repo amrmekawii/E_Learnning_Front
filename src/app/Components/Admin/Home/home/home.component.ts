@@ -17,7 +17,7 @@ export class HomeComponent {
       localStorage.removeItem('token')
       this.auth.isLoggedIn$.next(false);
 
-      this.route.navigate(['/Property'])
+      this.route.navigate([''])
 
       console.log(this.route.url)
     }

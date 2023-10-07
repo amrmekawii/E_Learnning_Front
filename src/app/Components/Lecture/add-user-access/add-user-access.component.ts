@@ -32,6 +32,7 @@ export class UserDto {
 
 export class AddUserAccessComponent implements OnInit {
   disableRowSelection = true;
+  searchText = '';
 
   EditOrDetails = new EditOrDetailsDto()
   ClassLecNam : any
@@ -140,4 +141,13 @@ export class AddUserAccessComponent implements OnInit {
       user.Duration = this.durationForAll;
     });
   }
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+}
+
+
+
 }

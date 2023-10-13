@@ -120,11 +120,41 @@ export class AddUserAccessComponent implements OnInit {
     this.GetAllActive.UserAddAccess(this.objectUserForAccessService).subscribe({
       next:(data)=>{
         this.toastr.success("Done", "success Added Access ")
+        this.selection.clear()
+       this.toggleAllQuizRequird(false)
+
+       this.GetAllActive.UserActive(this.ClassIdAcriveStudent).subscribe({
+        next: (data) => {
+          console.log(data);
+          for (let i = 0; i < data.length; i++) {
+            this.UserData[i] = new UserDto()
+            this.UserData[i].UserId = data[i].id
+            this.UserData[i].UserName = data[i].name
+            this.UserData[i].Phone = data[i].phoneNumber
+            this.UserData[i].QuizRequird = false
+            this.UserData[i].Duration = 0
+            this.UserData[i].position = i + 1
+          }
+  
+          console.log(this.UserData)
+          this.dataSource = new MatTableDataSource<UserDto>(this.UserData);
+  
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      })
+  
       },
       error:(error)=>{
         this.toastr.warning(error)
       }
     })
+  
+  
+  
+  
+  
   }
 // الزرار ال ف الجدول الكويز والوقت total
   toggleAllQuizRequird(value: boolean): void {

@@ -45,9 +45,10 @@ video {
 .header{
   min-height: 100vh;
   width: 100%;
-  background-image: url(src\assets\imgs\Newback.png);
+  background-image: url(src\assets\imgs\BCAK.png);
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
  header .navbar-brand{
   width: 10%;
@@ -93,23 +94,8 @@ header .btn-2{
  margin-left: 15px;
 }
 
-@media (max-width: 992px) {
 
-  h1{
-    font-size: 30px !important;
-
-  }
-  h3{
-
-    font-size: 20px !important;
-  }
-  button{
-
-    font-size: 15px !important;
-  }
-  img{
-    margin-top:-3% !important;
-  }
+body{
 }
 
 
@@ -179,7 +165,7 @@ header .btn-2{
   margin: 0px auto;
   margin-bottom: 34px;
   text-align: center;
-  box-shadow: 0px 0px 0px 10px #e9e1a0;
+  box-shadow: 0px 0px 0px 10px #efb287;
   transition: color 500ms, background-color 500ms, box-shadow 500ms ,transform 500ms;
 }
 .services span:hover{
@@ -188,14 +174,14 @@ header .btn-2{
 
 .services .item > div:hover span {
   color: #100d0d;
-  background-color: #d8cd34;
+  background-color: #dd722f;
 
 }
 
 
 /* card 2 */
 .card-2{
-  background-image: url(src/assets/imgs/Newback.png);
+  background-image: url(src/assets/imgs/card1.jpg);
   background-size: cover;
   min-height: 100vh;
   display: flex;
@@ -306,3 +292,6 @@ footer a{
 
   background-color:#ffffff
 }
+
+
+

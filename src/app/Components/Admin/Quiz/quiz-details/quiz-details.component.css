@@ -44,7 +44,7 @@
 
 .Imgsiz {
   width: 700px;
-  height: 250px;
+  height: 500px;
 }
 
 .questions-list h2 {
@@ -100,7 +100,7 @@
 @media only screen and (max-width: 600px) {
   .Imgsiz {
     width: 300px;
-    height: 250px;
+    height: 300px;
   }
 
   .questions-list {

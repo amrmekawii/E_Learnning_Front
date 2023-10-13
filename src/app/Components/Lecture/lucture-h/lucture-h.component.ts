@@ -56,12 +56,14 @@ export class LuctureHComponent implements OnInit {
   });
   secondFormGroup = this._formBuilder.group({
     Header: ['', [Validators.required, Validators.minLength(5)]],
+    number: [1, [Validators.required]]
   });
   LastForm = this._formBuilder.group({
     ClassId: [0, Validators.required],
     assighnmentid: [0],
     quizid: [0],
     Header: ['', [Validators.required, Validators.minLength(5)]],
+    number: [ 0, [Validators.required]],
     vedio: [[], Validators.required],
     file: [[], Validators.required]
   });
@@ -190,6 +192,7 @@ export class LuctureHComponent implements OnInit {
   
       }
       this.ClasssDto.header = data.value.Header
+      this.ClasssDto.number=data.value.number
       this.ClasssDto.addvideos = data.value.vedio
       this.ClasssDto.addFiles = data.value.file
       console.log(this.ClasssDto)
@@ -229,6 +232,7 @@ export class LuctureHComponent implements OnInit {
       this.LastForm.value.quizid =0
     }
     this.LastForm.value.Header = this.secondFormGroup.value.Header
+    this.LastForm.value.number=this.secondFormGroup.value.number
     this.LastForm.value.vedio = this.myFormGroup.get('addvideos')?.value
     this.LastForm.value.file = this.myFormGroupFile.get('addvideosFile')?.value
     this.AddLecture(this.LastForm);

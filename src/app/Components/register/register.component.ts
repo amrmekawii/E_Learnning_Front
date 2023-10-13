@@ -27,7 +27,6 @@ import { UserService } from 'src/app/Services/UserService/user.service';
 export class RegisterComponent implements OnInit ,OnDestroy  {
 
 
-  private video!: HTMLVideoElement;
   _GenralService;
 
   classes:any;
@@ -65,8 +64,6 @@ this._GenralService= GenralService
 
 
 
-    this.video = document.querySelector('#video') as HTMLVideoElement;
-    this.video.play();
 
 
     this._GenralService.GetAllYears().subscribe({
@@ -111,7 +108,7 @@ NewUser :AddUserDto = new AddUserDto();
 
 
   ngOnDestroy(): void {
-    this.video.pause();
+
   }
 
 

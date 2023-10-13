@@ -30,6 +30,7 @@ import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-m
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
 import { AdminGuard } from './Components/Guards/admin.guard';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
+import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
 
 const routes: Routes = [
 
@@ -54,6 +55,8 @@ const routes: Routes = [
       { path: 'UpdateQuationAnswer/:id', component: UpdateQuationAnswerComponent},
       { path: 'ClassMangment', component: ClassMangmentComponent },
       { path: 'StudentProfile/:id', component: StudentProfileComponent },
+      {path: '', redirectTo:'GlobalScreen', pathMatch:'full' },
+      
       {
         path: 'EditOrDetailsLecture', canActivate: [AdminGuard], component: LecDetailsComponent,
         children: [
@@ -71,7 +74,7 @@ const routes: Routes = [
   { path: 'QuizStudent/:id', canActivate: [AuthLogGuard], component: QuizStudentComponent },
   { path: 'QuizsAvailable', canActivate: [AuthLogGuard], component: QuizsAvailableComponent },
   { path: 'Userres', canActivate: [AuthLogGuard], component: UserresultComponent },
-
+  { path: 'userquiz/:lid/:sid/:n', canActivate: [AdminGuard], component: UserQuizComponent },
   { path: '**', component: ErrorComponent }
 ];
 

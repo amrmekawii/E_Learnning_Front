@@ -1,0 +1,136 @@
+<!-- quiz-info.component.html -->
+
+<mat-toolbar color="dark">
+
+    <div class="logo" routerLink="">
+        <div class=" mb-5 ">
+            <img src="assets/imgs/logo.png" alt="" height="50px" />
+        </div>
+        <div>
+            <header class="head2">
+                <h2> Student Name :{{sname}}</h2>
+            </header>
+        </div>
+  
+  
+    </div>
+  
+  </mat-toolbar>
+  
+  <div class="quiz-container">
+  
+    
+  
+  
+  
+  
+  
+      <div class="questions-list   " *ngIf="!Show && !Solve" >
+        <h2>Questions List</h2>
+        <p>Time Remaining: {{ timeRemaining }}</p>
+  
+        <div>
+          <div  *ngFor="let question of QuizToSolv.quiestions?.getQuestionsDtos  let i =index"   class="question-item">
+            <div class="CardQuition " >
+  
+              <!-- assignment.component.html -->
+              <mat-card >
+                  <!-- <mat-card-header>
+                      <mat-card-title>Question Num: {{ i+1 }}</mat-card-title>
+                  </mat-card-header> -->
+                  <mat-card-content >
+                      <div >
+                       
+                          <div class="assignment-property" *ngIf="question.questionType ==0">
+                              <span class="property-value">{{ question.questionHeader}}</span>
+                          </div>
+                          <div class="assignment-property" *ngIf="question.questionType ==1">
+                              <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
+                              </span>
+                          </div>
+                
+                        
+                      </div>
+                  </mat-card-content>
+              </mat-card>
+          
+          </div>
+          <ul>
+              <li style="background-color: azure;" *ngFor="let answer of question.getAnswersDtos" class="answer-item">
+                <input type="radio" name="answer{{ i }}" [value]="answer.header"  (click)="saveAnswer(answer.questionID ,answer.answerID)">
+                <label>{{ answer.header }}</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button *ngIf="!Show && !Solve" class="btn btn-primary"(click)="SubmitQuiz()">Submit</button>
+  
+      </div>
+  
+  
+  
+      <div class="questions-list   " *ngIf="!Show && Solve" >
+          <div class="loading-container">
+              <div class="loading-text">Wait result !!!</div>
+            </div>
+            
+          
+      </div>
+  
+   
+      <div class="questions-list   " *ngIf="Show && Solve" >
+          <header class="head">
+              <h2> Quiz Name: {{ GetUserQuizAnswer.quizHeader }}</h2>
+  
+            </header>
+          <h2> Quiz Grade : {{GetUserQuizAnswer.grade}} <i class="fa-regular fa-star fa-shake fa-lg" style="color: #f8b525;"></i></h2>
+  
+          <ul>
+            <li *ngFor="let question of GetUserQuizAnswer.answers  let i =index"   class="question-item">
+              <div class="CardQuition ">
+    
+                <!-- assignment.component.html -->
+                <mat-card class=" ">
+                    <mat-card-content>
+                        <div class="">
+                         
+                            <div class="assignment-property" *ngIf="question.questionType ==0">
+                                <span class="property-value">{{ question.questionHeader}}</span>
+                            </div>
+                            <div class="assignment-property" *ngIf="question.questionType ==1">
+                                <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
+                                </span>
+                            </div>
+                  
+                          
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            
+            </div>
+            <ul>
+                <li style="background-color: rgb(123, 225, 101);"  class="answer-item">
+                  <label>{{ question.rightAnswer }}</label>
+                  <i *ngIf="question.answerType=='R'" class="fa-regular fa-circle-check fa-fade fa-lg" style="color: #306f15;"></i>
+                </li>
+                <li  style="background-color: rgba(235, 120, 84, 0.476);"  class="answer-item" *ngIf="question.answerType=='W'">
+                  <label>{{ question.wrongAnswer }}</label>
+                  <i  *ngIf="question.answerType=='W'" class="fa-regular fa-circle-xmark fa-beat-fade fa-lg" style="color: #ff0000;"></i>
+                </li>
+                <li style="background-color: rgb(68, 100, 229);"  class="answer-item" *ngIf="question.answerType=='N'">
+                  <input  name="answerRight"  >
+                  <label>UnSelect</label>
+                </li>
+              </ul>
+            </li>
+          </ul>
+    
+        </div>
+    
+    </div>
+  
+  
+  
+  
+  
+    <app-footer></app-footer>

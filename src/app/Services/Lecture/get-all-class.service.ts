@@ -33,6 +33,7 @@ export class GetAllLectureService {
   private readonly Base_URL22 = "https://amrbackend.azurewebsites.net/api/Lecture/DeleteLecture";
 
 
+  private readonly Base_URL23 = "https://amrbackend.azurewebsites.net/api/Lecture/DeleteLecture";
 
 
 

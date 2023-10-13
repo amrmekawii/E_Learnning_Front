@@ -11,7 +11,6 @@ import { AuthenticationServiceService } from 'src/app/Services/UserAuthenticatio
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  private video!: HTMLVideoElement;
   constructor(
     private authService: AuthenticationServiceService,
     private toastr: ToastrService,
@@ -31,13 +30,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: ['', Validators.required],
     });
 
-    this.video = document.querySelector('#video') as HTMLVideoElement;
-    this.video.play();
+  
 
 
   }
   ngOnDestroy(): void {
-    this.video.pause();
+
   }
 
 

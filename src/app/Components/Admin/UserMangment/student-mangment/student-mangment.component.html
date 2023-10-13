@@ -211,6 +211,7 @@ style="
   <table class="table table-hover " *ngIf=" Active== true ">
     <thead class="thead-dark">
       <tr >
+        <th>#</th>
         <th>Full Name</th>
         <th>User Name</th>
         <th>Password</th>
@@ -222,7 +223,8 @@ style="
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let Student of AvtiveStudents | search: searchText"  >
+      <tr *ngFor="let Student of AvtiveStudents | search: searchText ; let i = index"  >
+        <td>{{i+1}}</td>
         <td>{{Student.name}}</td>
         <td>{{Student.username}}</td>
 

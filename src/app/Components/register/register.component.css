@@ -17,12 +17,12 @@ body{
   margin-top: 3rem;
 }
 .video-content{
-    height: 100vh;
+  height: 100vh;
 }
 video {
-  object-fit: fill;
-  height: 100% !important;
-  width: 100%;
+object-fit: fill;
+height: 100% !important;
+width: 100%;
 
 }
 .log-btn{

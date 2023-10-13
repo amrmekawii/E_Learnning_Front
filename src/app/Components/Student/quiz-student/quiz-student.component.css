@@ -43,7 +43,7 @@
 
 .Imgsiz {
   width: 800px;
-  height: 250px;
+  height: 500px;
 }
 
 .questions-list h2 {
@@ -221,7 +221,7 @@ h5 {
   .Imgsiz {
     width: 100%;
     /* Adjust the width as needed */
-    height: 250px;
+    height: 300px;
   }
 
   .CardQuition {

@@ -2,8 +2,8 @@
 
 <mat-toolbar color="dark">
 
-  <div class="logo" routerLink="">
-      <div class=" mb-5 ">
+  <div class="logo" routerLink="/StudentHome">
+    <div class=" mb-5 ">
           <img src="assets/imgs/logo.png" alt="" height="50px" />
       </div>
       <div>
@@ -83,7 +83,7 @@
             <h2> Quiz Name: {{ GetUserQuizAnswer.quizHeader }}</h2>
 
           </header>
-        <h2>Your Quation Grade : {{GetUserQuizAnswer.grade}} <i class="fa-regular fa-star fa-shake fa-lg" style="color: #f8b525;"></i></h2>
+        <h2>Your Quiz Grade : {{GetUserQuizAnswer.grade}} <i class="fa-regular fa-star fa-shake fa-lg" style="color: #f8b525;"></i></h2>
 
         <ul>
           <li *ngFor="let question of GetUserQuizAnswer.answers  let i =index"   class="question-item">
@@ -91,18 +91,13 @@
   
               <!-- assignment.component.html -->
               <mat-card class=" ">
-                  <mat-card-header>
-                      <mat-card-title>Question Num: {{ i+1 }}</mat-card-title>
-                  </mat-card-header>
                   <mat-card-content>
                       <div class="">
                        
                           <div class="assignment-property" *ngIf="question.questionType ==0">
-                              <span class="property-label">Question Header:</span>
                               <span class="property-value">{{ question.questionHeader}}</span>
                           </div>
                           <div class="assignment-property" *ngIf="question.questionType ==1">
-                              <span  class="property-label">Question Header:</span>
                               <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
                               </span>
                           </div>

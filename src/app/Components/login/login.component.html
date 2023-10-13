@@ -2,9 +2,13 @@
     <div class="row m-0 g-0">
       <div class="col-md-6 p-0 hidden">
         <div class="video-content">
-          <video id="video" loop="true"  autoplay="true" muted="true"  >
-            <source src="assets/videos/header.mp4" type="video/mp4" />
-          </video>
+          <div id="video" loop="true"  autoplay="true" muted="true"  >
+            
+            <div style="height: 100%; ">
+            <img src="assets/imgs/log.jpg"  style="width: 100%; height: 100%;" alt="" srcset="">
+            
+            </div>
+          </div>
         </div>
       </div>
 
@@ -24,7 +28,7 @@
           <h3 class="mb-4">Login</h3>
 
 
-            <form [formGroup]="form" (submit)="handleSubmit(form)" class="w-100 mx-auto" style="margin: auto !important;">
+            <form [formGroup]="form" (submit)="handleSubmit(form)" class="w-100 mx-auto form-group" style="margin: auto !important; ">
               <div class="my-3">
                 <label for=""
                   ><i class="fa-solid fa-user me-2"></i> User Name</label
@@ -36,7 +40,9 @@
                 <label for=""
                   ><i class="fa-solid fa-lock me-2"></i> Password</label
                 >
-                <input formControlName="password" type="password" class="form-control" />
+                <input matInput  formControlName="password" type="password" class="form-control" />
+
+                
               </div>
               <!-- <div class="my-3">
                 <input

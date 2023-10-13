@@ -191,6 +191,7 @@ style="
         <table class="table table-hover " *ngIf="userAttendance !=null">
           <thead class="thead-dark">
             <tr >
+              <th>#</th>
               <th>Lecture Name</th>
               <th>Acess Type</th>
               <th>Start</th>
@@ -198,7 +199,8 @@ style="
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let Lecture of userAttendance.lectureuserAcessds| search: searchText "  >
+            <tr *ngFor="let Lecture of userAttendance.lectureuserAcessds| search: searchText  ;let i = index"  >
+              <td>{{i+1}}</td>
               <td>{{Lecture.lectureName}}</td>
               <td>{{Lecture.acessType}}</td>
               <td>{{Lecture.start}}</td>
@@ -216,7 +218,7 @@ style="
     <table class="table table-hover lecture-table container" *ngIf="UserAssighment !=null">
         <thead class="thead-dark">
             <tr>
-                
+                <th>#</th>
                 <th>Assighment Name</th>
                 <th> Quistions</th>
                 <th> Model Answer</th>
@@ -232,8 +234,8 @@ style="
             assighmentid?: number; -->
         
         
-            <tr *ngFor="let lecture of UserAssighment | search: searchText let i =index"  >
-               
+            <tr *ngFor="let lecture of UserAssighment | search: searchText ;let i =index"  >
+               <td>{{i+1}}</td>
               <td>{{ lecture.assighmentFile.header }}</td>
               <td><a style=" text-decoration: none;" target="_blank" href={{lecture.assighmentFile.filePath}}> Veiw <i
                 class="fa-solid fa-file-lines"></i></a></td>               
@@ -257,9 +259,10 @@ style="
     </table>
 
 
-    <table class="table table-hover lecture-table ">
+    <table class="table table-hover lecture-table " *ngIf="QuizGrades !=null">
       <thead class="thead-dark">
         <tr>
+          <th>#</th>
           <th>Student Name </th>
           <th>Quiz Name</th>
           <th>Quiz Grade</th>
@@ -267,13 +270,13 @@ style="
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let lecture of QuizGrades | search: searchText">
+        <tr *ngFor="let lecture of QuizGrades | search: searchText; let i = index">
+          {{i+1}}
           <td>{{ lecture.username }}</td>
           <td>{{ lecture.quizname }}</td>
           <td>{{ lecture.quizGrade }}</td>
           <td class="btncolr">
-        
-                <a   class="btn btn-success" [routerLink]="['/QuizStudent',lecture.quizId]">Details</a>
+                <a   class="btn btn-success" [routerLink]="['/userquiz',lecture.quizId,IdParams , lecture.username ]">Details</a>
           </td>
         </tr>
       </tbody>

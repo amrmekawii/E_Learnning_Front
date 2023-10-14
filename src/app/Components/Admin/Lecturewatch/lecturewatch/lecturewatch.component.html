@@ -1,0 +1,118 @@
+  <div class="box  container" >
+
+    <div class="row">
+
+      
+  
+  
+  
+      </div> 
+  
+
+
+
+      <div class="row">
+            <h1  style="text-align: center;"     >
+      {{theLecture.lectureName}}
+            </h1>
+          </div>
+          </div>
+  
+  <div class="container"> 
+     
+    
+    <div class="col-6" >
+  
+        <button    class="btn border border-light  rounded-pill " [routerLink]="['/AdminHome/QuizDetails',theLecture.quizid]" style="background-color:  rgb(240, 105, 15) !important; color: white; margin-left: 10%;"> Go To Quiz <i
+          class="fa-sharp fa-solid fa-right-to-bracket fa-beat-fade fa-xl" ></i> </button>   
+      </div>
+
+    
+    <div >
+  
+  <div *ngIf="theLecture.videoParts!=null">
+  
+      
+  <div  *ngIf="theLecture.started==true" >
+    
+    <div class="box  container" style="width: 80%;" >
+      <h3>Lecture Parts </h3>
+      <div class="row">
+        <div *ngFor="let part of theLecture.videoParts "   class="col-md-3" style="margin-top: 1%; margin-bottom: 1%;">
+          <button   class="card card-3"    (click)="SelectPart(part.id)"  >
+    {{part.name}}
+          </button>
+        </div>
+    
+          </div>
+      </div>
+  
+  
+    <div *ngFor="let part of theLecture.videoParts "  >
+  
+      <div *ngIf="part.id==selected"    plyr style="width: 80%; height: auto; margin: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
+    
+      [plyrSources]=" [{ src: part.link , provider: 'youtube'}]"  >  </div>
+    
+    </div>
+    
+            
+  
+  </div>
+  </div>
+  
+  
+  <div *ngIf="theLecture.videoParts==null" style="margin-top: 2%;">
+       
+      
+           
+      
+          <div class="alert alert-danger" role="alert">
+          there is no part to this lecture</div>
+          
+      
+  
+  
+          </div>
+  
+  
+  
+  
+  
+  </div>
+  
+  </div>
+  
+  
+  
+  <table class="table table-hover lecture-table container" >
+    <thead class="thead-dark">
+        <tr>
+            
+            <th>File </th>
+            
+            
+  
+        </tr>
+    </thead>
+    <tbody>
+        <!-- studentid?: string;
+        assighmentid?: number; -->
+    
+    
+        <tr *ngFor="let part of theLecture.videoFiles "  >
+           
+         
+            <td>
+  
+                <a style=" text-decoration: none;" target="_blank" href={{part.path}}> {{part.name}} <i
+                class="fa-solid fa-file-lines"></i></a>
+              
+  
+            </td>
+            
+        </tr>   
+    </tbody>
+  </table>
+  
+  

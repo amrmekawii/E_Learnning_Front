@@ -20,6 +20,8 @@
         <th>userName</th>
         <th>start</th>
         <th>END</th>
+        <th>Action</th>
+
       </tr>
     </thead>
     <tbody *ngIf="Headershow">
@@ -28,12 +30,16 @@
         <td>{{ lecture.userName }}</td>
         <td>{{ lecture.start}}</td>
         <td>{{ lecture.end }}</td>
+        <td >           <button class="btn btn-danger" (click)="DeleteAccess(lecture.id )" >Delete</button> |
+        </td>
 
       </tr>
       <tr>
         <td style="background-color: rgb(255, 166, 0);"></td>
         <td style="background-color: rgb(255, 166, 0);"></td>
         <td style="background-color: rgb(255, 166, 0);"></td>
+        <td style="background-color: rgb(255, 166, 0);"></td>
+
       </tr>
     </tbody>
 

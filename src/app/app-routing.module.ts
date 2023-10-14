@@ -31,6 +31,7 @@ import { StudentProfileComponent } from './Components/Admin/StudentProfile/stude
 import { AdminGuard } from './Components/Guards/admin.guard';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
+import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewatch/lecturewatch.component';
 
 const routes: Routes = [
 
@@ -56,7 +57,7 @@ const routes: Routes = [
       { path: 'ClassMangment', component: ClassMangmentComponent },
       { path: 'StudentProfile/:id', component: StudentProfileComponent },
       {path: '', redirectTo:'GlobalScreen', pathMatch:'full' },
-      
+      {path : 'Lecture/lecturestudent/:id' , component: LecturewatchComponent} ,
       {
         path: 'EditOrDetailsLecture', canActivate: [AdminGuard], component: LecDetailsComponent,
         children: [

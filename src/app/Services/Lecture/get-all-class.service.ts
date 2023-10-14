@@ -35,8 +35,24 @@ export class GetAllLectureService {
 
   private readonly Base_URL23 = "https://amrbackend.azurewebsites.net/api/Lecture/DeleteLecture";
 
+  
+  private readonly Base_URL24 = "https://amrbackend.azurewebsites.net/api/Lecture/GetLectureWithUsers/";
 
+  private readonly Base_URL25= "https://amrbackend.azurewebsites.net/api/Lecture/deleteLectueAccess/"
 
+private readonly bas_url26 = "https://localhost:7206/api/Lecture/GettheLectureToadmin/"
+
+public GettheLectureToadmin(aid:any) {
+
+  return this.client.get(this.bas_url26+aid);
+
+}
+
+  public Deleteaccess(aid:any) {
+
+    return this.client.delete(this.Base_URL25+aid);
+
+  }
 
 
   public GetAllClass(): Observable<ClassAllDto[]> {
@@ -81,6 +97,14 @@ export class GetAllLectureService {
     console.log(object);
 
     return this.client.post<UserInClassDto[]>(this.Base_URL6, object);
+
+  }
+
+
+  public Studentforacces( lectureId : any){
+
+return this.client.get(this.Base_URL24+lectureId)
+
 
   }
   public GenerateCodeLecture(object: GenrateCodeDto): Observable<CodeLecDto[]> {

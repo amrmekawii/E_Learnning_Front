@@ -173,7 +173,8 @@
         <th>Lecture ID</th>
         <th>Header</th>
         <th>Class Name</th>
-        <th class="">Edit / Details</th>
+        <th class="">Action</th>
+
       </tr>
     </thead>
     <tbody>
@@ -185,7 +186,8 @@
         <td class="btncolr">
       
               <a class="btn btn-danger"(click)="showpdf(lecture.header ,lecture.lectureId)" >Delete</a> |
-              <a  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )" class="btn btn-success">Details</a>
+              <a  (click)="EditOrDetails(lecture.lectureId , (FiristId) , lecture.header ,lecture.quizid,lecture.assighnmentid ,lecture.className )" class="btn btn-success">Details</a>|
+              <a class="btn btn-primary"  [routerLink]="['lecturestudent',lecture.lectureId]"  >Watch</a> 
         </td>
       </tr>
     </tbody>

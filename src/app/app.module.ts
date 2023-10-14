@@ -72,6 +72,7 @@ import { PlyrModule } from 'ngx-plyr';
 import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
+import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewatch/lecturewatch.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +106,7 @@ QuizsAvailableComponent,
 LectureCodeComponent,
 UserresultComponent,
 UserQuizComponent,
+LecturewatchComponent,
 
    ],
   imports: [

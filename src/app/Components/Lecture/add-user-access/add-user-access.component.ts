@@ -50,14 +50,14 @@ export class AddUserAccessComponent implements OnInit {
     this.ClassLecNam = this.ShareService.getObject2()
     this.ClassIdAcriveStudent.classid = this.EditOrDetails.classId
     this.ClassIdAcriveStudent.active = true
-    this.GetAllActive.UserActive(this.ClassIdAcriveStudent).subscribe({
-      next: (data) => {
+    this.GetAllActive.Studentforacces(this.EditOrDetails.lectureId).subscribe({
+      next: (data:any) => {
         console.log(data);
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.users.length; i++) {
           this.UserData[i] = new UserDto()
-          this.UserData[i].UserId = data[i].id
-          this.UserData[i].UserName = data[i].name
-          this.UserData[i].Phone = data[i].phoneNumber
+          this.UserData[i].UserId = data.users[i].id
+          this.UserData[i].UserName = data.users[i].userName
+          this.UserData[i].Phone = data.users[i].phoneNumber
           this.UserData[i].QuizRequird = false
           this.UserData[i].Duration = 0
           this.UserData[i].position = i + 1
@@ -123,14 +123,14 @@ export class AddUserAccessComponent implements OnInit {
         this.selection.clear()
        this.toggleAllQuizRequird(false)
 
-       this.GetAllActive.UserActive(this.ClassIdAcriveStudent).subscribe({
-        next: (data) => {
+       this.GetAllActive.Studentforacces(this.EditOrDetails.lectureId).subscribe({
+        next: (data:any) => {
           console.log(data);
-          for (let i = 0; i < data.length; i++) {
+          for (let i = 0; i < data.users.length; i++) {
             this.UserData[i] = new UserDto()
-            this.UserData[i].UserId = data[i].id
-            this.UserData[i].UserName = data[i].name
-            this.UserData[i].Phone = data[i].phoneNumber
+            this.UserData[i].UserId = data.users[i].id
+            this.UserData[i].UserName = data.users[i].userName
+            this.UserData[i].Phone = data.users[i].phoneNumber
             this.UserData[i].QuizRequird = false
             this.UserData[i].Duration = 0
             this.UserData[i].position = i + 1

@@ -45,7 +45,8 @@ export class QuizDetailsComponent implements OnInit {
     Header: ['', [Validators.required,]],
   });
   quizForm = this._formBuilder.group({
-    quizRequirement: [0, Validators.required],
+    quizRequirement: [0, Validators.required], 
+    Grade :[1, Validators.required]
   });
   LastForm = this._formBuilder.group({
       header: ['', Validators.required],

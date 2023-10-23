@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -30,6 +31,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
   updateForm = this._formBuilder.group({
     id: [0],
     header: ['', Validators.required],
+    Grade: [1, Validators.required],
     answerDTOs: this._formBuilder.array([]),
   });
 
@@ -46,6 +48,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
         this.updateForm.patchValue({
           id: data.questionID,
           header: data.questionHeader,
+          Grade:data.grade, 
           answerDTOs: data.getAnswersDtos,
         })
         // Populate existing answer data
@@ -131,6 +134,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
     if (this.updateForm.valid) {
       console.log("lplppllplplplplplp");
       this.QuationUpdateData.id = this.updateForm.value.id as number
+      this.QuationUpdateData.Grade = this.updateForm.value.Grade 
       this.QuationUpdateData.header = this.updateForm.value.header as string
       this.QuationUpdateData.answerDTOs = this.updateForm.value.answerDTOs as UpdateAnswersDto[]
       console.log(this.QuationUpdateData);

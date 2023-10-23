@@ -40,7 +40,7 @@ export class GetAllLectureService {
 
   private readonly Base_URL25= "https://amrbackend.azurewebsites.net/api/Lecture/deleteLectueAccess/"
 
-private readonly bas_url26 = "https://localhost:7206/api/Lecture/GettheLectureToadmin/"
+private readonly bas_url26 = "https://amrbackend.azurewebsites.net/api/Lecture/GettheLectureToadmin/"
 
 public GettheLectureToadmin(aid:any) {
 

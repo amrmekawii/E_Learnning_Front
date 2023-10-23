@@ -20,9 +20,13 @@
                             <span class="property-value">{{  DataQuiz.quizHeader }}</span>
                         </div>
                         <div class="assignment-property2">
-                            <span class="property-label">Quiz Type:</span>
-                            <span *ngIf="  DataQuiz.quizType ==0" class="property-value">Month</span>
-                            <span *ngIf="  DataQuiz.quizType ==1" class="property-value">Lecture</span>
+                          <span class="property-label">Quiz Name:</span>
+                          <span class="property-value">{{  DataQuiz.quizHeader }}</span>
+                      </div>
+
+                        <div class="assignment-property2">
+                            <span class="property-label">Quiz Grade:</span>
+                            <span  class="property-value">{{DataQuiz.quizGrade}}</span>
                         </div>
                       
                     </div>
@@ -50,12 +54,25 @@
       <mat-step [stepControl]="quizForm" label="Quation Type">
         <form [formGroup]="quizForm">
             <mat-form-field class="form-field">
-                <mat-label for="quizRequirement">Question  Type:</mat-label>
+                <mat-label for="quizRequirement">Question  Type :</mat-label>
                 <mat-select formControlName="quizRequirement" >
                   <mat-option [value]=0>Text</mat-option>
                   <mat-option [value]=1>Image</mat-option>
                 </mat-select>
+
+               
+
               </mat-form-field>
+
+              <mat-form-field class="form-field">
+                <mat-label for="quizRequirement">Question  Grade:</mat-label>
+                <input  matInput formControlName="Grade" placeholder="Grade" required>
+  
+               
+
+              </mat-form-field>
+
+
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button [disabled]="!quizForm.valid" matStepperNext>Next</button>
@@ -78,6 +95,9 @@
                   <div *ngIf="quizForm.value.quizRequirement==0" width="400px" height="200px" style="margin: 15px; border: 2px solid black; border-radius: 25px;   text-align: center;                  ">
                     {{secondFormGroup.get('Header')?.value}}
                   </div>  
+
+
+
           <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button [disabled]="!secondFormGroup.valid" matStepperNext>Next</button>
@@ -146,17 +166,15 @@
             <!-- assignment.component.html -->
             <mat-card class=" ">
                 <mat-card-header>
-                    <mat-card-title>Question Number: {{ i+1}}</mat-card-title>
+                    <mat-card-title> Grade: {{ question.grade}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="">
                      
                         <div class="assignment-property" *ngIf="question.questionType ==0 ">
-                            <span class="property-label">Question Header:</span>
                             <span class="property-value">{{ question.questionHeader}}</span>
                         </div>
                         <div class="assignment-property" *ngIf="question.questionType ==1">
-                            <span  class="property-label">Question Header:</span>
                             <span class="property-value"><img class="Imgsiz" src={{question.questionHeader}} alt="Smiley face"  style="border:5px solid rgb(255, 255, 255)">
                             </span>
                         </div>

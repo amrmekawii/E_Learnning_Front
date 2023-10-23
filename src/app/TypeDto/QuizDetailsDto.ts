@@ -10,6 +10,7 @@ export class GetQuestionsDto {
     questionID: number | null = null;
     questionType: QuestionType | null = null;
     questionHeader: string | null = null;
+    grade : any;
     getAnswersDtos: GetAnswersDto[] = [];
 }
 
@@ -17,6 +18,7 @@ export class GetQustionWithAnswersDto {
     quizid: number | null = null;
     quizHeader: string | null = null;
     quizType: QuizType | null = null;
+    quizGrade:any ; 
     getQuestionsDtos: GetQuestionsDto[] = [];
 }
 export class GetQuizToSolveDto {
@@ -27,6 +29,7 @@ export class GetQuizToSolveDto {
 export class UpdateQuestionsDto {
     id?: number ;
     header: string | null = null;
+    Grade: any ; 
     answerDTOs: UpdateAnswersDto[] = [];
 }
 export class UpdateAnswersDto {

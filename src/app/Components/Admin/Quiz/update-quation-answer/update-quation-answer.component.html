@@ -6,7 +6,6 @@
   
       <!-- Question Header -->
       <div class="form-group" *ngIf="QutionType==0">
-        <label for="header">Question Header:</label>
         <input type="text" id="header" formControlName="header" class="form-control" required>
       </div>
       <div class="form-group" *ngIf="QutionType==1">
@@ -14,7 +13,17 @@
         <input type="file" (change)="Uplodfile($event)" >
         <img  style="margin-left: 10px;"   [src]="updateForm.get('header')?.value" alt="Smiley face" width="700px" height="300px"  >
       </div>
-  
+
+      <mat-form-field class="form-field">
+        <mat-label for="quizRequirement">Question  Grade:</mat-label>
+        <input  matInput formControlName="Grade" placeholder="Grade" required>
+
+       
+
+      </mat-form-field>
+
+
+
       <!-- Answers -->
       <div formArrayName="answerDTOs">
         <div *ngFor="let answer of answers.controls; let i = index" class="answer-item">

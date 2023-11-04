@@ -42,8 +42,9 @@
 }
 
 .Imgsiz {
-  width: 800px;
-  height: 500px;
+
+max-width: 100% !important;
+max-height: 400px  !important;
 }
 
 .questions-list h2 {
@@ -218,11 +219,6 @@ h5 {
 
 
 @media only screen and (max-width: 600px) {
-  .Imgsiz {
-    width: 100%;
-    /* Adjust the width as needed */
-    height: 300px;
-  }
 
   .CardQuition {
     display: flex;

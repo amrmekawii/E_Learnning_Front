@@ -92,30 +92,30 @@ export class QuizStudentComponent implements OnInit {
     })
   }
 
-  selectedAnswers2: UserAnswerDto[] = [];
-  saveAnswer(questionId: any, answerID: any) {
-    const existingIndex = this.selectedAnswers2.findIndex(item => item.questionId === questionId);
+  saveAnswer(questionId: any, answerID: any , Grade : any )  {
+this.QuizServ.SaveAnswer({userquizid:this.QuizToSolv.userquiz, questionid:questionId, answerid:answerID ,userid:this.StudentId }).subscribe({
 
-    if (existingIndex !== -1) {
-      if (answerID) {
-        this.selectedAnswers2[existingIndex].answerID = answerID;
-      } else {
-        this.selectedAnswers2.splice(existingIndex, 1);
-      }
-    } else {
-      this.selectedAnswers2.push({ questionId: questionId, answerID: answerID });
-    }
+next:(data)=> {
+
+  this.toastr.success("your Answer  is saved ")
+  console.log(data)
+} ,error : ()=> {
+  this.toastr.error("Try Again ")
+
+}
+
+})
+
+   
   }
 
 
   SubmitQuiz() {
-    console.log(this.selectedAnswers2);
     this.StudentSolve.userid = this.StudentId
     this.StudentSolve.quizid = this.IdParams
-    this.StudentSolve.userAnswerDtos = this.selectedAnswers2
     console.log(this.StudentSolve);
     console.log("123455555555555555555555555");
-    
+    clearInterval(this.timerInterval)
     
     this.QuizServ.StudentSolveZ(this.StudentSolve).subscribe({
       next: (data) => {
@@ -155,10 +155,15 @@ export class QuizStudentComponent implements OnInit {
   
 
   setupTimer() {
-    const startDate1 = new Date(this.QuizToSolv.start as Date);
-    const startDate =  new Date();
+    let startDate =  new Date() ;
+    console.log("this date is new ")
+console.log(new Date()  )
+let endDate = new Date( this.QuizToSolv.end  as Date)
 
-    const endDate = new Date(this.QuizToSolv.end as Date);
+let ndDate = Date.parse(this.QuizToSolv.end as unknown  as string)
+
+
+    console.log(endDate  +  "            " + startDate)
     const timeDifferenceInMilliseconds = endDate.getTime() - startDate.getTime();
         console.log(timeDifferenceInMilliseconds);
 
@@ -169,15 +174,15 @@ export class QuizStudentComponent implements OnInit {
     let remainingTime = timeDifferenceInMinutes * 60 * 1000; // Convert minutes to milliseconds
     console.log(remainingTime);
 
-    const timerInterval = setInterval(() => {
+    this.timerInterval = setInterval(() => {
       remainingTime -= 1000; // Subtract one second
-
+console.log(remainingTime *1000)
       if (remainingTime <= 0) {
-        clearInterval(timerInterval);
+        clearInterval(this.timerInterval);
         this.timeRemaining = 'Time is up!';
         this.SubmitQuiz()
       } else {
-        const minutes = Math.floor((remainingTime / (1000 * 60)) % 60);
+        const minutes = Math.floor((remainingTime / (1000 * 60)) );
         const seconds = Math.floor((remainingTime / 1000) % 60);
         this.timeRemaining = `${minutes} min ${seconds} sec`;
       }
@@ -185,7 +190,7 @@ export class QuizStudentComponent implements OnInit {
 
   }
 
-
+  timerInterval:any
   // submitQuiz() {
   //   const selectedAnswers = [];
 

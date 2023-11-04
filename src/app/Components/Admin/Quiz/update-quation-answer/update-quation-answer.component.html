@@ -11,7 +11,7 @@
       <div class="form-group" *ngIf="QutionType==1">
     
         <input type="file" (change)="Uplodfile($event)" >
-        <img  style="margin-left: 10px;"   [src]="updateForm.get('header')?.value" alt="Smiley face" width="700px" height="300px"  >
+        <img  style="margin-left: 10px; max-width: 100% !important; max-height: 100% !important;"     [src]="updateForm.get('header')?.value" alt="Smiley face" width="700px" height="300px"  >
       </div>
 
       <mat-form-field class="form-field">

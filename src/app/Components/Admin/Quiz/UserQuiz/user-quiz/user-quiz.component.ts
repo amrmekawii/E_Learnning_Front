@@ -63,6 +63,7 @@ sname:any;
 
       },
       error: (error) => {
+        this.GetUserQuizAnswers()
 
       }
     })
@@ -97,7 +98,7 @@ sname:any;
   }
 
   selectedAnswers2: UserAnswerDto[] = [];
-  saveAnswer(questionId: any, answerID: any) {
+  saveAnswer(questionId: any, answerID: any , Grade : any ) {
     const existingIndex = this.selectedAnswers2.findIndex(item => item.questionId === questionId);
 
     if (existingIndex !== -1) {
@@ -107,7 +108,7 @@ sname:any;
         this.selectedAnswers2.splice(existingIndex, 1);
       }
     } else {
-      this.selectedAnswers2.push({ questionId: questionId, answerID: answerID });
+      this.selectedAnswers2.push({ questionId: questionId, answerID: answerID , grade : Grade });
     }
   }
 

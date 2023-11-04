@@ -51,6 +51,8 @@ export class UpdateQuationAnswerComponent implements OnInit {
           Grade:data.grade, 
           answerDTOs: data.getAnswersDtos,
         })
+        console.log(data.grade)
+
         // Populate existing answer data
         const existingAnswers = data.getAnswersDtos;
         if (existingAnswers && existingAnswers.length > 0) {
@@ -142,6 +144,7 @@ export class UpdateQuationAnswerComponent implements OnInit {
       this.QuizServ.UpdateQuation(this.QuationUpdateData).subscribe({
         next: (data) => {
           this.toastr.success("Done", "success Update")
+          
 
         },
         error: (err) => {

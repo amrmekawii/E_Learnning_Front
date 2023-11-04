@@ -8,12 +8,19 @@ import { QuizService } from 'src/app/Services/Quiz/quiz.service';
 import { QuizAllDto } from 'src/app/TypeDto/GetAllQuiz';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
 import { QuizAddDto } from 'src/app/TypeDto/QuizAddDto';
+
+
+
 @Component({
   selector: 'app-quiz-home',
   templateUrl: './quiz-home.component.html',
   styleUrls: ['./quiz-home.component.css']
 })
 export class QuizHomeComponent implements OnInit {
+
+  @ViewChild('picker') picker: any;
+  
+
   constructor(private toastr: ToastrService,
     private _formBuilder: FormBuilder,
     private Getcalsss: GetAllLectureService,
@@ -22,6 +29,7 @@ export class QuizHomeComponent implements OnInit {
 
   ) {
 
+    
   }
   @ViewChild('content') popupview!: ElementRef;
 
@@ -46,14 +54,14 @@ export class QuizHomeComponent implements OnInit {
     timer: [0, [Validators.required, Validators.pattern('^[0-9]+$')]],
   });
   timeForm = this._formBuilder.group({
-    startTime: [null, [Validators.required]],
-    endTime: [null, [Validators.required]],
+    startTime: [ null, ],
+    endTime: [null, ],
   });
   AddQuizForm = this._formBuilder.group({
     header: ['', Validators.required],
-    startTime: [DateAdapter, Validators.required],
+    startTime: [   , ],
     classid: [0, Validators.required],
-    endTime: [DateAdapter, Validators.required],
+    endTime: [ , ],
     duration: [0, Validators.required],
     quizType: [0, Validators.required]
   });
@@ -136,7 +144,7 @@ export class QuizHomeComponent implements OnInit {
         console.log("Lecture Month +++");
 
         this.AddQuiz.endTime = data.value.endTime
-        this.AddQuiz.startTime = data.value.startTime
+        this.AddQuiz.startTime = data.value.startTime 
       }else{
         this.AddQuiz.endTime = new Date()
         this.AddQuiz.startTime = new Date()

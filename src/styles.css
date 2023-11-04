@@ -5,8 +5,9 @@ body{
 
 }
 ::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
+
 .register {
   background-color: #d2870d;
   height: 100vh;

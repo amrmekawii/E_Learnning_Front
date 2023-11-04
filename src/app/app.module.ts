@@ -73,6 +73,10 @@ import { AuthInterceptor } from './Interceptors/auth.interceptor';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
 import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewatch/lecturewatch.component';
+
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { QuizgradesComponent } from './Components/Admin/Quiz/QuizGrades/quizgrades/quizgrades.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,14 +111,18 @@ LectureCodeComponent,
 UserresultComponent,
 UserQuizComponent,
 LecturewatchComponent,
+QuizgradesComponent,
 
    ],
   imports: [
+    MatDatepickerModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
     BrowserModule,PlyrModule, 
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,NgxMatNativeDateModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'

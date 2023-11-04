@@ -11,6 +11,7 @@ export class GetQuestionsDto {
     questionType: QuestionType | null = null;
     questionHeader: string | null = null;
     grade : any;
+    usernswer:any;
     getAnswersDtos: GetAnswersDto[] = [];
 }
 
@@ -24,6 +25,7 @@ export class GetQustionWithAnswersDto {
 export class GetQuizToSolveDto {
     start?: Date;
     end?: Date;
+    userquiz:any
     quiestions?:GetQustionWithAnswersDto
   }
 export class UpdateQuestionsDto {
@@ -60,7 +62,8 @@ export class SubmitQuizDto {
 }
 export class UserAnswerDto {
     questionId: number = 0;
-    answerID: number = 0
+    answerID: number = 0 
+    grade :any
 }
 
 export class QuizResult {
@@ -82,6 +85,7 @@ export class GetUserQuizAnswersDto {
     questionType?: QuestionType;
     rightAnswer?: string;
     wrongAnswer?: string;
+    grade :any
   }
   
 

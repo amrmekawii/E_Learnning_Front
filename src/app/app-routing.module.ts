@@ -32,6 +32,8 @@ import { AdminGuard } from './Components/Guards/admin.guard';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
 import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewatch/lecturewatch.component';
+import { QuizResult } from './TypeDto/QuizDetailsDto';
+import { QuizgradesComponent } from './Components/Admin/Quiz/QuizGrades/quizgrades/quizgrades.component';
 
 const routes: Routes = [
 
@@ -54,6 +56,8 @@ const routes: Routes = [
       { path: 'QuizHome', component: QuizHomeComponent },
       { path: 'QuizDetails/:id', component: QuizDetailsComponent},
       { path: 'UpdateQuationAnswer/:id', component: UpdateQuationAnswerComponent},
+      { path: 'resquiz/:id', component: QuizgradesComponent},
+
       { path: 'ClassMangment', component: ClassMangmentComponent },
       { path: 'StudentProfile/:id', component: StudentProfileComponent },
       {path: '', redirectTo:'GlobalScreen', pathMatch:'full' },
@@ -76,6 +80,8 @@ const routes: Routes = [
   { path: 'QuizsAvailable', canActivate: [AuthLogGuard], component: QuizsAvailableComponent },
   { path: 'Userres', canActivate: [AuthLogGuard], component: UserresultComponent },
   { path: 'userquiz/:lid/:sid/:n', canActivate: [AdminGuard], component: UserQuizComponent },
+  { path: 'resquiz/:id', canActivate: [AdminGuard], component: QuizgradesComponent },
+
   { path: '**', component: ErrorComponent }
 ];
 

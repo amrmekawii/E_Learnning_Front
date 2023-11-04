@@ -85,8 +85,10 @@
           <td>{{ lecture.Type }}</td>
           <td class="btncolr">
         
-                <a   class="btn btn-success" [routerLink]="['/QuizStudent',lecture.quizid]">Details</a>
-          </td>
+                <a   *ngIf="lecture.quizid!=-1"  class="btn btn-success" [routerLink]="['/QuizStudent',lecture.quizid]">Start</a>
+                <a   *ngIf="lecture.quizid==-1" class="btn btn-gray" >Wait for Exam </a>
+
+          </td> 
         </tr>
       </tbody>
     </table>

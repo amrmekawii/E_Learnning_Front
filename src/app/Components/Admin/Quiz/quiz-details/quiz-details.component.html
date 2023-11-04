@@ -119,12 +119,8 @@
 
                   <input matInput formControlName="header" placeholder="Answer ?" required>
                 </mat-form-field>
-                <mat-form-field>
-                  <mat-select formControlName="rightAnswer" >
-                    <mat-option [value]=true>True</mat-option>
-                    <mat-option [value]=false>False</mat-option>
-                  </mat-select>
-                </mat-form-field>
+                  <mat-checkbox formControlName="rightAnswer" >
+                  </mat-checkbox>
                
                 <button mat-icon-button (click)="removeVideo(i)">
                   <mat-icon>delete</mat-icon>
@@ -164,12 +160,12 @@
           <div class="CardQuition ">
 
             <!-- assignment.component.html -->
-            <mat-card class=" ">
+            <mat-card class=" " >
                 <mat-card-header>
                     <mat-card-title> Grade: {{ question.grade}}</mat-card-title>
                 </mat-card-header>
-                <mat-card-content>
-                    <div class="">
+                <mat-card-content style="padding: 0% ;" >
+                    <div   >
                      
                         <div class="assignment-property" *ngIf="question.questionType ==0 ">
                             <span class="property-value">{{ question.questionHeader}}</span>

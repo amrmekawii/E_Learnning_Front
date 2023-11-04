@@ -2,6 +2,7 @@ export class QuizAddQuationDto {
     header?: string;
     type?: number;
     quizId?: number;
+    grade ? :any;
     answerDTOs: AnswerDTO[]=[];
   }
   

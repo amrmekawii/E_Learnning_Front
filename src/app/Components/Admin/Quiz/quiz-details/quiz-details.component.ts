@@ -52,6 +52,7 @@ export class QuizDetailsComponent implements OnInit {
       header: ['', Validators.required],
       type: [0, Validators.required],
       quizId: [0, Validators.required],
+      Grade :[1, Validators.required],
       answerDTOs:  [[], Validators.required]
   });
   //
@@ -89,7 +90,7 @@ export class QuizDetailsComponent implements OnInit {
   addVideo() {
     const videoFormGroup = this._formBuilder.group({
       header: ['', Validators.required],
-      rightAnswer: ['true', Validators.required]
+      rightAnswer: [false, Validators.required]
     });
 
     if (this.myFormGroup.get('addvideos')?.valid || this.addvideos.controls.length == 0) {
@@ -111,7 +112,7 @@ export class QuizDetailsComponent implements OnInit {
     this.LastForm.patchValue({
       header: this.secondFormGroup.get('Header')?.value,
       type: this.quizForm.get('quizRequirement')?.value,
-      quizId: this.IdParams,
+      quizId: this.IdParams, Grade : this.quizForm.get('Grade')?.value ,
       answerDTOs: this.myFormGroup.get('addvideos')?.value
     });
     this.AddLecture(this.LastForm);
@@ -124,6 +125,7 @@ export class QuizDetailsComponent implements OnInit {
       this.QuizAddQuation.header = data.value.header
       this.QuizAddQuation.type = data.value.type
       this.QuizAddQuation.quizId = data.value.quizId
+      this.QuizAddQuation.grade=data.value.Grade;
       this.QuizAddQuation.answerDTOs = data.value.answerDTOs
       console.log(this.QuizAddQuation)
       this.QuizServ.AddQuizQuation(this.QuizAddQuation).subscribe({

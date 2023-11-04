@@ -57,7 +57,7 @@
           </div>
           <ul>
               <li style="background-color: azure;" *ngFor="let answer of question.getAnswersDtos" class="answer-item">
-                <input type="radio" name="answer{{ i }}" [value]="answer.header"  (click)="saveAnswer(answer.questionID ,answer.answerID)">
+                <input type="radio" name="answer{{ i }}" [value]="answer.header"  (click)="saveAnswer(answer.questionID ,answer.answerID , question.grade)">
                 <label>{{ answer.header }}</label>
               </li>
             </ul>

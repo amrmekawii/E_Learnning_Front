@@ -22,7 +22,7 @@ export class QuizService {
   private readonly Base_URL7 = "https://amrbackend.azurewebsites.net/api/Quiz/CheckQuizIssolved";
   private readonly Base_URL8 = "https://amrbackend.azurewebsites.net/api/Quiz/GetQuizToSolve";
   private readonly Base_URL9 = "https://amrbackend.azurewebsites.net/api/Quiz/StudentSolveQuiz";
-  private readonly Base_URL910 = "https://amrbackend.azurewebsites.net/api/Quiz/GetUserQuizAnswers";
+  private readonly Base_URL910 = "https://amrbackend.azurewebsites.net/api/Quiz/GetUserQuizAnswers2";
   private readonly Base_URL911 = "https://amrbackend.azurewebsites.net/api/Quiz/GetUserQuizesResult/";
   private readonly Base_URL912 = "https://amrbackend.azurewebsites.net/api/Quiz/GetMonthExams/";
   private readonly Base_URL913 = "https://amrbackend.azurewebsites.net/api/Lecture/AcessLectureByCode/";
@@ -31,12 +31,27 @@ export class QuizService {
   private readonly Base_URL91 = "https://amrbackend.azurewebsites.net/api/Quiz/AddAnswer";
   private readonly Base_URL96 = "https://amrbackend.azurewebsites.net/api/Quiz/DeleteAnswer/";
 
+  private readonly Base_URL9111 = "https://amrbackend.azurewebsites.net/api/Quiz/GetQuizResult/"
 
-
+  private readonly Base_saveuseranswer = "https://amrbackend.azurewebsites.net/api/Quiz/Adduseranswer"
+  private readonly delteuserquiz = " https://amrbackend.azurewebsites.net/api/Quiz/deleteuserquiz/"
 
   public GetClassByClassId(id: number): Observable<QuizAllDto[]> {
 
     return this.client.get<QuizAllDto[]>(this.Base_URL + id);
+
+  }
+  public delteuserquizm(id: number) {
+
+    return this.client.delete(this.delteuserquiz + id);
+
+  }
+
+
+
+  public SaveAnswer(Answer: any) {
+
+    return this.client.post(this.Base_saveuseranswer , Answer);
 
   }
   public GetQuationId(id: number): Observable<any> {
@@ -100,6 +115,14 @@ export class QuizService {
     return this.client.get<UserQuizDto[]>(this.Base_URL911+id);
 
   }
+
+
+  public GetQuizesResult(id: any): Observable<any> {
+
+    return this.client.get(this.Base_URL9111+id);
+
+  }
+
   public GetMonthExams(id: string): Observable<any> {
 
     return this.client.get<QuizMonthInfoDto[]>(this.Base_URL912+id);

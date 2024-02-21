@@ -1,0 +1,273 @@
+<title class="mb-3" style="margin-left: 40%; color: #000; margin-top: 50px;  font-weight:400; width: 50%;">Parent Mangment </title>
+
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">User Data!</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+
+    <p> Parent  username : {{Responce.username}} </p>
+    <p>Parent  Password : {{Responce.password}} </p>
+
+
+	</div>
+	<div class="modal-footer justify-content-center">
+		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Ok</button>
+	</div>
+</ng-template>
+
+
+<mat-expansion-panel  hideToggle="true " class="white"
+style="
+  border-style: outset;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 20px;
+  width: 80%;
+  border-color:  rgb(201, 136, 17);"
+>
+<mat-expansion-panel-header style="width: 100%;"   >
+    <div style="   margin: auto;  width: 100%; ">
+  <h2  style="text-align: center; "  mat-grid-tile-header  >Add New Parent </h2>
+</div>
+</mat-expansion-panel-header>
+
+   
+
+<form [formGroup]="RegisterForm"   (ngSubmit)="AddStudent(RegisterForm, content)">
+    <div class="row w-75 mx-auto">
+      <div class="col-md-4   mb-3">
+        <label><i class="fa-solid fa-user me-2"></i>First Name</label>
+        <input type="text" class="form-control"   formControlName="firstName"  placeholder="First Name"/>
+<div *ngIf=" RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: red;">
+<span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('minlength')  "    style="color: red;" > minLength is 3 letter</span>
+<span  *ngIf=" RegisterForm.get('firstName')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+
+</div>
+
+<div *ngIf=" !RegisterForm.get('firstName')?.errors  && RegisterForm.get('firstName')?.touched" style="color: rgb(23, 245, 71);">
+  <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+  </div>
+  
+      </div>
+      <div class="col-md-4 mb-3">
+        <label><i class="fa-solid fa-user me-2"></i>Second Name</label>
+        <input type="text" class="form-control" formControlName="secondName"   placeholder="Second Name"/>
+
+
+
+        <div *ngIf=" RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+          <span  *ngIf=" RegisterForm.get('secondName')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+
+          </div>
+          
+          <div *ngIf=" !RegisterForm.get('secondName')?.errors  && RegisterForm.get('secondName')?.touched" style="color: rgb(23, 245, 71);">
+            <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+            </div>
+          
+      </div>
+      <div class="col-md-4 mb-2">
+        <label
+          ><i class="fa-solid fa-mobile-screen-button me-2"></i>Phone
+          Number</label
+        >
+        <input type=" time" class="form-control"     formControlName="phoneNumber"     placeholder="Your number"
+      />
+
+
+
+
+      <div *ngIf=" RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: red;">
+        <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('pattern')" > Please enter valid Egyptian phone number </span>
+        <span  *ngIf=" RegisterForm.get('phoneNumber')?.getError('required')" > this feild is Requird</span>
+
+        </div>
+        
+        <div *ngIf=" !RegisterForm.get('phoneNumber')?.errors  && RegisterForm.get('phoneNumber')?.touched" style="color: rgb(23, 245, 71);">
+          <span style="color: rgb(19, 192, 19);"><mat-icon >done_all</mat-icon> </span>
+          </div>
+
+
+      </div>
+    </div>
+
+
+    
+    
+    <div class="text-center w-50 mx-auto">
+
+      <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!RegisterForm.valid"    type="submit">
+
+    </div>
+
+
+    
+  </form>
+  <table class="table table-hover " *ngIf=" Active== true ">
+    <thead class="thead-dark">
+      <tr >
+        <th>Child Username</th>
+        <th>Action</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let child of addchildren "  >
+        <td>{{child. username}}</td>
+        
+
+        <td style="width: 30%">
+          <button class="btn btn-danger" (click)="Deleteunsavechild(child. username)" >Delete</button> 
+
+          
+            </td>
+          
+      </tr>
+
+
+
+     <td><input #t  [(ngModel)]="ouneuser"    type="text" name="" id=""> </td> 
+    <td>  <button class="btn btn-primary" (click)="addtochildlist(ouneuser)" >Add child </button> </td> 
+
+    </tbody>
+  </table>
+
+
+
+
+</mat-expansion-panel>
+
+
+<div class="Container">
+  <div class="row">
+<div class="box  col-md-6" >
+<h3>Get  Parent </h3>
+<div class="row">
+    <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" *ngFor="let Class of classes">
+      <button class="card card-3" #cl  (click)="GetParents(Class.id)">
+{{Class.name}}
+      </button>
+    </div>
+
+    <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" >
+        <button class="card card-3" #cl  (click)="GetParents(0)">
+All Parents        </button>
+      </div>
+    </div>
+
+
+    
+  </div>
+
+ 
+    </div>
+</div>
+
+
+<div class="Container" style="margin-top: 3%;" >
+  <mat-form-field class="example-full-width white " style="width: 100%;">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="Search" [(ngModel)]="searchText">
+  </mat-form-field>
+  
+  <table class="table table-hover " *ngIf=" Active== true ">
+    <thead class="thead-dark">
+      <tr >
+        <th>#</th>
+        <th style="width: 10%;" >First Name</th>
+        <th style="width: 10%;" >Second Name</th>
+        <th style="width: 20%;" >Phone Number</th>
+        <th style="width: 10%;">User Name</th>
+        <th style="width: 5%;">Password</th>
+        <th>Children</th>
+        <th>Action</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Parent of Parents | search: searchText ; let i = index"  >
+        <td>{{i+1}}</td>
+        <td >   <input #fname style="width: 100%;" type="text" [value]="Parent .parent.parentFirstName" [disabled]="updatep!=Parent.parent.parentId"></td>
+        <td>  <input #lname style="width: 100%; "  type="text" [value]="Parent .parent.parentSecondName" [disabled]="updatep!=Parent.parent.parentId"></td>
+        <td>  <input #number style="width: 100%; " type="text" [value]="Parent .parent.parentPhoneNumber" [disabled]="updatep!=Parent.parent.parentId"></td>
+
+        <td>{{Parent.parent.parentuserName}}</td>
+        <td>{{Parent.parent.parentPassword}}</td>
+        <td> 
+            <span *ngFor="let s of Parent.children"     >
+            <input class="col-6 m-1 "   type="text" name=""  [value]="s.childName" id="" [disabled]="true" >
+            <button class="btn btn-danger mb-1"   (click)="DeleteChildFromParent(Parent.parent.parentId, s.childId )" >Delete Child</button> 
+
+        </span>
+        <div class="col-12"     >
+        <input    #p [value]="addchildusername"     class="col-md-6 m-1"  type="text" name="" id="">
+        <button class="btn   log-btn  m-1 col-md-4"  (click)=" AddChildToParent(Parent.parent.parentId , p.value)">Add Child</button> 
+    </div>
+        </td>
+        <td style="width: 15%;">
+          <button  class="btn btn-primary m-1"  (click)="updatep=Parent.parent.parentId"  *ngIf="updatep==null">Update </button> 
+          <button class="btn btn-danger" (click)="DeleteStudent(Parent.parent.parentId ,Delete)"   *ngIf="updatep==null" >Delete</button> 
+          <button class="btn btn-primary  m-1 "  (click)="savedata(fname.value, lname.value, number.value , Parent.parent.parentId)"  *ngIf="updatep==Parent.parent.parentId">Save </button> 
+          <button  class="btn btn-danger"  (click)="updatep=null ; fname.value =Parent .parent.parentFirstName ; lname.value = Parent .parent.parentSecondName;number.value= Parent .parent.parentPhoneNumber"  *ngIf="updatep==Parent.parent.parentId">Cancel</button> 
+
+            </td>
+          
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<table class="table table-hover " *ngIf="Active==false">
+  <thead class="thead-dark">
+    <tr >
+      <th>Full Name</th>
+      <th>User Name</th>
+      <th>Password</th>
+      <th>Phone Number</th>
+      <th>Parent Number</th>
+      <th>Action</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+
+
+
+
+
+<ng-template #Delete let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Delete User</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="Canceldelete(Delete)"></button>
+	</div>
+	<div class="modal-body">
+		<p>Are You Sure you want Delete {{deleteUser.name}}</p>
+  </div>
+
+<form   [formGroup]="DeleteForm" (ngSubmit)="DeleteFinal(Delete)">
+  <input type="text" class="form-control"   #x formControlName="adminPassword"  placeholder="adminPassword"/>
+<div *ngIf=" DeleteForm.get('adminPassword')?.errors  && DeleteForm.get('adminPassword')?.touched" style="color: red;">
+<span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+<span  *ngIf=" DeleteForm.get('adminPassword')?.getError('required')"   style="color: red;"> this feild is Requird</span>
+
+</div>
+
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-outline-dark"  [disabled]="!DeleteForm.valid">Yes</button>
+	</div>
+</form>
+
+</ng-template>
+

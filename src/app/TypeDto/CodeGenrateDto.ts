@@ -1,8 +1,10 @@
 export class GenrateCodeDto {
-    lectureid?: number;
-    numberofCode?: number;
-    quizRequired?: boolean;
-    duration?: number;
+    lectureid?: any;
+    numberofCode?: any;
+    QuizRequird?: any;
+    duration?: any;
+    classid?: any;
+    CodeTybe:any
 };
 
 

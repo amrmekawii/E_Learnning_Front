@@ -1,0 +1,208 @@
+
+<div >
+    <div  style="width: 50%; margin: auto; padding: 5%;" >
+        <h1 style="text-align: center;">{{usertoquiz.quizname}} </h1>
+        
+        </div>
+    
+    
+
+        <div class="box  container" >
+          <h3>Student Case </h3>
+          <div class="row">
+              <div *ngFor="let x of Places "   class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
+                <div class="card card-3"  (click)="getStudents(false, x.id,false)">
+                  <p>{{x.name}}  </p>
+                </div>
+              </div>
+      
+              <div    class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
+                <div class="card card-3"  (click)="getStudents( false, null,false)">
+                  <p>All  Places </p>
+                </div>
+              </div>
+              <div    class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
+                <div class="card card-3"   (click)="getStudents(true  , null,false)">
+                  <p>No Places </p>
+                </div>
+              </div>
+
+
+              <div    class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
+                <div class="card card-3"   (click)="getStudents(true  , null,true)">
+                  <p>Online </p>
+                </div>
+              </div>
+
+
+              </div>
+            </div>
+      
+   
+<div style=" text-align: center ; margin: auto ; width: 50%;">
+            <h1>{{placename}}</h1>
+          </div>
+
+          <div class="Container-fluid" style="margin-top: 3%;">
+            <mat-form-field class="example-full-width white " style="width: 100%;">
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Search" [(ngModel)]="searchText">
+            </mat-form-field>
+        
+            <table class="table table-hover  "  *ngIf="offline==true"  >
+                <thead class="thead-dark">
+                  <tr>
+                   
+                    <th># </th>
+                    <th>Student Name </th>
+                    <th>Parent Number </th>
+                    <th> Attendance </th>
+                    <th> Place </th>
+                    <th > QuizGrades </th>
+                    <th > Quiz Attendance </th>
+                    <th> Assigment Grade </th>
+                    <th> Assigment  Attendance </th>
+                    <th> Note </th>
+                    <th> Action </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let quiz of usertoquiz.studentWithgrades   | search: searchText; let i = index" id="{{quiz.id}}">
+                   
+                   
+                    <td style="width: 1%;">{{i+1}}</td>
+                    <td style="width: 5%;"  id="{{quiz.userid}}" >{{ quiz.userName }}</td>
+                    <td style="width: 4%;"  id="{{quiz.userid}}" >{{ quiz.parentNumber }}</td>
+
+
+                        <td> 
+
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #attend  [checked]="quiz.attend==true" [disabled]="!quiz.edit">
+                          </div>
+
+            
+                         </td>
+
+
+                         <td  > 
+                          <select [disabled]="!quiz.edit"  #plac name="Places"   >
+                         <option  [value]="null"> Choose Place</option>
+                     
+                         <option *ngFor="let x of Places " [value]="x.id" [selected]=" x.id==quiz.placeid">{{x.name}}</option>
+                     
+                     
+                     
+                     </select>
+                     
+                     </td>
+
+
+                     <td   style="width: 5%;">   <input   #quizgrade class="form-control" type="number"  [disabled]="!quiz.edit"  [value]="quiz.quizGrade" > </td>
+
+                     <td style="width: 5%;"> 
+
+                      <div   class="form-check form-switch">
+                        <input    class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #quizeattend  [checked]="quiz.quizAttend==true" [disabled]="!quiz.edit">
+                      </div>
+                
+                      
+                     </td>
+                     
+                     <td >   <input   #assighmentgrade class="form-control" type="number"  [disabled]="!quiz.edit"  [value]="quiz.assighmentGrade" > </td>
+
+                     <td  > 
+
+                      <div   class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #assateend [checked]="quiz.assighmentAttend==true" [disabled]="!quiz.edit">
+                      </div>
+                
+                      
+                     </td>
+                     <td style="width: 100%;">   <input  style="width: 100% !important; "  #note class="form-control" type="text"   [disabled]="!quiz.edit"  [value]="quiz.note"> </td>
+
+
+
+<td  style="width: 10%;">  
+        <input class="form-check-input" type="button"  class="btn btn-primary" id="flexSwitchCheckDefault"   value="Add"  (click)="updateGrade(null, quiz.userid ,idpram, attend.checked , quizeattend.checked,assateend.checked  ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , null )" *ngIf=" quiz.id ==null"   [disabled]="!quiz.edit">
+      
+      <button  type="button"  class="btn btn-primary"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked ,assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , false )"    *ngIf=" quiz.id !=null">Update</button>  
+
+      <button  type="button"  class="btn btn-Danger"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked  , assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , true )"   *ngIf="  quiz.id !=null">Delete</button>  
+
+ 
+</td>
+    
+                </tr>
+                </tbody>
+              </table>
+            
+        
+        
+
+
+              <table class="table table-hover  lecture-table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>#</th>
+                    <th>userName</th>
+                    <th>AccessType</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
+            
+                    <th>start</th>
+                    <th>END</th>
+                    <th> Assigment Grade </th>
+                    <th> Assigment  Attendance </th>
+            
+                    <th>Action</th>
+            
+                  </tr>
+                </thead>
+                <tbody *ngIf="!offline">
+                  <tr *ngFor="let lecture of StudAud.userLectureAttendances | search: searchText ;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{ lecture.userName }}</td>
+                    <td>{{ lecture.accesstype }}</td>
+                    <td>{{ lecture.accessby }}</td>
+                    <td>{{ lecture.accessdate }}</td>
+                    <td>{{ lecture.start}}</td>
+                    <td>{{ lecture.end }}</td>
+                  
+                    <td style="width: 10%;">   <input   #assonline class="form-control" type="number"   [value]="lecture.assigmentgrade" > </td>
+
+                    <td> 
+
+                     <div class="form-check form-switch">
+                       <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #onlineattend [checked]="lecture.assigmentattent==true">
+                     </div>
+               
+                     
+                    </td>
+
+            
+                    <td >           <button class="btn btn-primary" [disabled]="lecture.place !=null "   (click)="UpdateOinline(lecture.id, assonline.value, onlineattend.checked )" >Update</button> |
+                    </td>
+            
+                  </tr>
+                  <tr>
+                    <td style="background-color: rgb(255, 166, 0);"></td>
+                    <td style="background-color: rgb(255, 166, 0);"></td>
+                    <td style="background-color: rgb(255, 166, 0);"></td>
+                    <td style="background-color: rgb(255, 166, 0);"></td>
+            
+                  </tr>
+                </tbody>
+            
+              </table>
+            
+        
+    
+    
+        </div>
+      
+    </div>
+    
+    
+  

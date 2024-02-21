@@ -1,0 +1,184 @@
+
+<div style="height: 10%; width: 30%;  margin: auto; margin-top: 2% ; border-style: dashed;  border-color: orange; border-radius: 10px;   text-align: center;">
+
+    <h1 >Place Time Mangment </h1>
+
+</div>
+
+<div >
+    <div  style="width: 50%; margin: auto; padding: 5%;" >
+        <h1 style="text-align: center;">{{usertoquiz.quizname}} </h1>
+        
+        </div>
+    
+    
+    
+   
+    
+          <div class="Container" style="margin-top: 3%;">
+            <mat-form-field class="example-full-width white " style="width: 100%;">
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Search" [(ngModel)]="searchText">
+            </mat-form-field>
+        
+            <table class="table table-hover lecture-table "   >
+                <thead class="thead-dark">
+                  <tr>
+                   
+    <th>CLass</th>
+
+                    <th>Place Name </th>
+                    <th>Day </th>
+
+                    <th>Start </th>
+                    <th>End </th>
+                    <th>Type </th>
+
+                    <th> Action </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let quiz of usertoquiz  | search: searchText; let i = index" id="{{quiz.id}}">
+                   
+                    <td > 
+                        <select   #Class name="Class"   >
+                       <option  [value]="null"> Choose Class</option>
+                   
+                       <option *ngFor="let x of classes " [value]="x.id" [selected]=" x.id==quiz.classid">{{x.name}}</option>
+                   
+                   
+                   
+                   </select>
+                </td>
+                   <td > 
+                    <select   #place name="places"   >
+                   <option  [value]="null"> Choose Place</option>
+               
+                   <option *ngFor="let x of Places " [value]="x.id" [selected]=" x.id==quiz.placeId">{{x.name}}</option>
+               
+               
+               
+               </select>
+            </td>
+
+        <td > 
+         <select [id]="quiz.day"  #week name="places"   >
+        <option #Sunday  [selected]=" week.id==Sunday.value" [value]="0">Sunday </option>
+        <option #Monday   [selected]=" week.id==Monday.value" [value]="1">Monday </option>
+        <option #Tuesday     [selected]=" week.id==Tuesday.value" [value]="2">Tuesday </option>
+        <option #Wednesday    [selected]=" week.id==Wednesday.value"  [value]="3">Wednesday </option>
+        <option #Thursday     [selected]=" week.id==Thursday.value" [value]="4">Thursday </option>
+        <option  #Friday     [selected]=" week.id==Friday.value" [value]="5">Friday </option>
+        <option #Saturday    [selected]=" week.id==Saturday.value" [value]="6">Saturday </option>
+
+    
+    
+    
+    </select>
+ </td>
+                    <td style="width: 10%;"  > <input type="text" #start [value]="quiz.start"></td>
+                    <td style="width: 10%;"  > <input type="text" #end [value]="quiz.end"></td>
+
+                    <td > 
+                        <select [id]="quiz.type"  #Type name="places"   >
+                       <option #math  [selected]=" Type.id==math.value"  [value]="0">Math </option>
+                       <option #mecha  [selected]=" Type.id==mecha.value" [value]="1">Mechanics </option>
+                       <option  #both  [selected]=" Type.id==both.value"  [value]="2">Both </option>
+               
+                   
+                   
+                   
+                   </select>
+                </td>
+                     
+<td  style="width: 10%;">  
+  
+      
+      <button  type="button"  class="btn btn-primary"  (click)="EditPlace(quiz.id ,place.value ,start.value,end.value,week.value,Type.value,Class.value,null)"   >Update</button>  
+
+      <button  type="button"  class="btn btn-Danger"  (click)="EditPlace(quiz.id ,place.value ,start.value,end.value,week.value,Type.value,Class.value,true)"  >Delete</button>  
+
+ 
+</td>
+    
+                </tr>
+
+
+
+                <tr  >
+                   
+                    <td > 
+                        <select   #Class name="Class"   >
+                       <option  [value]="null"> Choose Class</option>
+                   
+                       <option *ngFor="let x of classes " [value]="x.id" >{{x.name}}</option>
+                   
+                   
+                   
+                   </select>
+                </td>
+                   <td > 
+                    <select   #place name="places"   >
+                   <option  [value]="null"> Choose Place</option>
+               
+                   <option *ngFor="let x of Places " [value]="x.id" >{{x.name}}</option>
+               
+               
+               
+               </select>
+            </td>
+
+        <td > 
+         <select  #week name="places"   >
+        <option #Sunday   [value]="0">Sunday </option>
+        <option #Monday   [value]="1">Monday </option>
+        <option #Tuesday      [value]="2">Tuesday </option>
+        <option #Wednesday     [value]="3">Wednesday </option>
+        <option #Thursday   [value]="4">Thursday </option>
+        <option  #Friday     [value]="5">Friday </option>
+        <option #Saturday     [value]="6">Saturday </option>
+
+    
+    
+    
+    </select>
+ </td>
+                    <td style="width: 10%;"  > <input type="text" #start ></td>
+                    <td style="width: 10%;"  > <input type="text" #end ></td>
+
+                    <td > 
+                        <select  #Type       name="places"   >
+                       <option   [value]="0">Math </option>
+                       <option    [value]="1">Mechanics </option>
+                       <option   [value]="2">Both </option>
+               
+                   
+                   
+                   
+                   </select>
+                </td>
+                     
+<td  style="width: 10%;">  
+  
+      
+    <button  type="button"  class="btn btn-secondary"  (click)="EditPlace(null ,place.value ,start.value,end.value,week.value,Type.value,Class.value,null)"   >Add</button>  
+
+ 
+</td>
+    
+                </tr>
+                </tbody>
+              </table>
+            
+        
+        
+        
+    
+    
+        </div>
+      
+    </div>
+    
+    
+  

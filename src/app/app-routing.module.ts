@@ -28,12 +28,20 @@ import { QuizStudentComponent } from './Components/Student/quiz-student/quiz-stu
 import { QuizsAvailableComponent } from './Components/Student/quizs-available/quizs-available.component';
 import { ClassMangmentComponent } from './Components/Admin/ClassMangment/class-mangment/class-mangment.component';
 import { StudentProfileComponent } from './Components/Admin/StudentProfile/student-profile/student-profile.component';
-import { AdminGuard } from './Components/Guards/admin.guard';
+import { AdminGuard, ParentGuard } from './Components/Guards/admin.guard';
 import { UserresultComponent } from './Components/Student/userresuilt/userresult/userresult.component';
 import { UserQuizComponent } from './Components/Admin/Quiz/UserQuiz/user-quiz/user-quiz.component';
 import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewatch/lecturewatch.component';
 import { QuizResult } from './TypeDto/QuizDetailsDto';
 import { QuizgradesComponent } from './Components/Admin/Quiz/QuizGrades/quizgrades/quizgrades.component';
+import { QuizAcessComponent } from './Components/Admin/Quiz/QuizAcess/quiz-acess/quiz-acess.component';
+import { ParentMangmentComponent } from './Components/Admin/ParentMangment/parent-mangment/parent-mangment.component';
+import { ParentHomeComponent } from './Components/Parent/ParentHome/parent-home/parent-home.component';
+import { ChildGradesComponent } from './Components/Parent/ChildGrades/child-grades/child-grades.component';
+import { QuizentryComponent } from './Components/Admin/Dataentry/Quizentry/quizentry/quizentry.component';
+import { LectureEntryComponent } from './Components/Admin/Dataentry/LectureEntry/lecture-entry/lecture-entry.component';
+import { PlaceMangmentComponent } from './Components/Admin/PlaceMangment/place-mangment/place-mangment.component';
+import { PlaceTimeComponent } from './Components/Admin/PlaceTimeMangment/place-time/place-time.component';
 
 const routes: Routes = [
 
@@ -45,6 +53,8 @@ const routes: Routes = [
   {
     path: "AdminHome", canActivate: [AdminGuard], component: HomeComponent,
     children: [
+      { path: "ParentMangment", component: ParentMangmentComponent },
+
       { path: "StudentMangment", component: StudentMangmentComponent },
       { path: 'Lecture', component: LuctureHComponent },
       { path: 'GlobalScreen', component: GlobalScreenComponent },
@@ -55,8 +65,14 @@ const routes: Routes = [
       { path: 'CorrectAns', component: CorrectAnsComponent },
       { path: 'QuizHome', component: QuizHomeComponent },
       { path: 'QuizDetails/:id', component: QuizDetailsComponent},
+      { path: 'Quizentry/:id', component: QuizentryComponent},
+      { path: 'Lectureentry/:id', component: LectureEntryComponent},
+      { path: 'PlaceMangment', component: PlaceMangmentComponent},
+      { path: 'PlaceTime', component: PlaceTimeComponent},
+
       { path: 'UpdateQuationAnswer/:id', component: UpdateQuationAnswerComponent},
       { path: 'resquiz/:id', component: QuizgradesComponent},
+      { path: 'QuizAcess/:id', canActivate: [AdminGuard], component: QuizAcessComponent },
 
       { path: 'ClassMangment', component: ClassMangmentComponent },
       { path: 'StudentProfile/:id', component: StudentProfileComponent },
@@ -74,6 +90,9 @@ const routes: Routes = [
     ]
   },
   { path: 'LectureAssighment/:id', canActivate: [AuthLogGuard], component: LectureAssighmentComponent },
+  { path: 'ParentHome', canActivate: [ParentGuard], component: ParentHomeComponent },
+  { path: 'Childresult/:id', canActivate: [ParentGuard], component: ChildGradesComponent },
+
   { path: 'StudentHome', canActivate: [AuthLogGuard], component: StudentHomeComponent },
   { path: 'Lectures/:id', canActivate: [AuthLogGuard], component: LectureComponent },
   { path: 'QuizStudent/:id', canActivate: [AuthLogGuard], component: QuizStudentComponent },
@@ -81,6 +100,7 @@ const routes: Routes = [
   { path: 'Userres', canActivate: [AuthLogGuard], component: UserresultComponent },
   { path: 'userquiz/:lid/:sid/:n', canActivate: [AdminGuard], component: UserQuizComponent },
   { path: 'resquiz/:id', canActivate: [AdminGuard], component: QuizgradesComponent },
+
 
   { path: '**', component: ErrorComponent }
 ];

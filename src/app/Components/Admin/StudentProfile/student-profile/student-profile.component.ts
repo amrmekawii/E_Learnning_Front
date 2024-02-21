@@ -4,7 +4,7 @@ import { Role } from 'src/app/TypeDto/Role';
 import { UserService } from 'src/app/Services/UserService/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from 'src/app/Services/Quiz/quiz.service';
-
+import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.service';
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.component.html',
@@ -20,17 +20,32 @@ userAttendance: any ;
 QuizGrades: any;
 UserAssighment:any
 IdParams:any
-constructor(  private UserService: UserService,private myRoute: ActivatedRoute ,private QuizServ: QuizService ){
+places :any
+placeid :any
+constructor(  private UserService: UserService,private myRoute: ActivatedRoute ,private QuizServ: QuizService  , private  allservice : GetAllLectureService){
   this.IdParams = myRoute.snapshot.paramMap.get('id');
 
 this.userAttendance=null;
 this.QuizGrades=null;
 this.UserAssighment=null
+
 this.UserService.GetStudentDetails(this.IdParams).subscribe({
 
 
   next: (data)=> {this.studentData =data;
+  console.log(data);
   
+
+
+  this.places = this.allservice.GetPlacessuser(this.studentData.classid).subscribe({
+    next: (data)=>{this.places = data
+    
+    console.log(this.places)
+    
+    }
+  
+  })
+
     this.RegisterForm.get("firstName")?.setValue(this.studentData.firstName)
     this.RegisterForm.get("secondName")?.setValue(this.studentData.secondName)
     this.RegisterForm.get("lastName")?.setValue(this.studentData.lastName)
@@ -39,9 +54,9 @@ this.UserService.GetStudentDetails(this.IdParams).subscribe({
     this.RegisterForm.get("password")?.setValue(this.studentData.password)
     this.RegisterForm.get("username")?.setValue(this.studentData.username)
     this.RegisterForm.get("id")?.setValue(this.studentData.id)
+    this.RegisterForm.get("placeTimeId")?.setValue(this.studentData.placeTimeId)
 
-
-  
+    
   }
 
    ,
@@ -65,12 +80,12 @@ RegisterForm : FormGroup =new FormGroup({
   password: new FormControl ("" ,[ Validators.required, Validators.minLength(5)]),
   id: new FormControl ("" ,[ Validators.required ]),
   username: new FormControl ("",[ Validators.required]),
-
+  placeTimeId:new FormControl (null,[ ]) 
 
  } )
 
    UpdateStudent(RegisterForm :any){
-
+  
     this.UserService.UpdateUser(RegisterForm.value).subscribe({
 
 
@@ -89,7 +104,8 @@ RegisterForm : FormGroup =new FormGroup({
             this.RegisterForm.get("password")?.setValue(this.studentData.password)
             this.RegisterForm.get("username")?.setValue(this.studentData.username)
             this.RegisterForm.get("id")?.setValue(this.studentData.id)
-        
+            this.RegisterForm.get("placeTimeId")?.setValue(this.studentData.placeTimeId)
+
         
           
           }
@@ -117,6 +133,7 @@ RegisterForm : FormGroup =new FormGroup({
     this.RegisterForm.get("phoneNumber")?.setValue(this.studentData.phoneNumber)
     this.RegisterForm.get("parentPhoneNumber")?.setValue(this.studentData.parentPhoneNumber)
     this.RegisterForm.get("password")?.setValue(this.studentData.password)
+    this.RegisterForm.get("placeTimeId")?.setValue(this.studentData.placeTimeId)
 
     this.RegisterForm.disable();
 

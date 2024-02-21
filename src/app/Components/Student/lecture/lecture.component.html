@@ -1,12 +1,12 @@
-<mat-toolbar color="dark">
+<mat-toolbar color="dark" class=" Container-fluid">
 
   <div class="logo" routerLink="/StudentHome">
       <div class=" mb-5 ">
           <img src="assets/imgs/logo.png" alt="" height="50px" />
       </div>
       <div>
-          <header class="head2">
-              <h2> Student Name :{{UserData.name}}</h2>
+          <header >
+              <h2> {{UserData.name}}</h2>
           </header>
       </div>
 
@@ -14,6 +14,53 @@
   </div>
 
 </mat-toolbar>
+
+<mat-expansion-panel  hideToggle="true " class="white"
+style="
+  border-style: outset;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 20px;
+  width: 80%;
+  border-color:  rgb(201, 136, 17);"
+>
+<mat-expansion-panel-header style="width: 100%;"   >
+    <div style="   margin: auto;  width: 100%; ">
+  <h2  style="text-align: center; "  mat-grid-tile-header  >All  Lectures</h2>
+</div>
+</mat-expansion-panel-header>
+
+
+<table class="table table-hover ">
+  <thead class="thead-dark">
+    <tr >
+      <th>NO.</th>
+
+      <th>Lecture Name </th>
+      <th>Access code </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let Requist of all_lectures  let index = index " >
+      <td>{{index+1}}</td>
+      <td>{{Requist.lecturename}}</td>
+      <td> <input type="text" #c  >    <button  (click)="GetLectureAcess(c.value , Requist.id , c) " class="btn btn-success m-3 r-20">Get Lecture   </button> </td>
+
+
+    </tr>
+  </tbody>
+</table>
+
+</mat-expansion-panel>
+
+
+
+
+
+<div *ngIf="!nolecture">
+ 
+
 <div class="box  container" >
     <h3>My Lecture </h3>
     <div class="row">
@@ -35,7 +82,7 @@
       </div>
 
 
-      <div class="col-6" >
+      <div  *ngIf="theLecture.assighmentid !=null" class="col-6" >
 
         <button  class="btn border border-light  rounded-pill " [routerLink]="['/LectureAssighment',theLecture.assighmentid]"
          style="background-color:  rgb(240, 105, 15) !important; color: white; margin-left: 10%;"> Go To Assighment <i
@@ -149,6 +196,21 @@
       </tr>   
   </tbody>
 </table>
+</div>
+
+
+<div *ngIf="nolecture" style="margin-top: 2%;">
+     
+    
+         
+    
+  <div class="alert alert-danger" role="alert">
+    you don`t have acess to any lecture  , talk to your assistant if you want one        </div>
+  
+
+
+
+  </div>
 
 
 <!-- 

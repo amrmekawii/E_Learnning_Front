@@ -7,6 +7,7 @@ import { GetAllLectureService } from 'src/app/Services/Lecture/get-all-class.ser
 import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
 import { CodeLecDto, GenrateCodeDto } from 'src/app/TypeDto/CodeGenrateDto';
 import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
+import autoTable from 'jspdf-autotable'
 
 @Component({
   selector: 'app-code-genration',
@@ -14,13 +15,17 @@ import { GetLectByClassIdDto } from 'src/app/TypeDto/GetLectByClassIdDto';
   styleUrls: ['./code-genration.component.css']
 })
 export class CodeGenrationComponent implements OnInit {
-
+codetype: any =0 ;
   quizForm!: FormGroup;
   lecturers: any[] = [];
   ClassList: ClassAllDto[]=[]
   LectureList:GetLectByClassIdDto[]=[]
   ObjectToGenerateCodes= new GenrateCodeDto()
-  CodeList:CodeLecDto[]=[]
+  CodeList:any[]=[]
+
+  reuslt:any = false ;
+  reusltlist:any[]=[] 
+
   constructor(private formBuilder: FormBuilder,private Getcalsss: GetAllLectureService,private GetLectureBclassId :GetAllLectureService,private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -39,15 +44,19 @@ export class CodeGenrationComponent implements OnInit {
     
     
     this.quizForm = this.formBuilder.group({
-      lectureId: ['', Validators.required],
+      lectureId: ['' ],
       quizRequirement: ['', Validators.required],
       duration: ['', Validators.required],
-      numcode: ['', Validators.required]
+      numcode: ['', Validators.required] ,
+      classid:[''], 
+      codetype:['' ]
     });
   }
 
 
   PathcalssId(calssid:any){
+
+    
 this.GetLectureBclassId.GetLecByClassId(calssid).subscribe({
   next:(data)=>{
 this.LectureList = data
@@ -57,53 +66,117 @@ this.LectureList = data
   }
 })
 
-  }
+   } 
   submitForm(form:FormGroup) {
-    if (this.quizForm.valid) {
+    this.reuslt=false
+    if (this.quizForm.valid) { 
      
-      this.ObjectToGenerateCodes.lectureid =form.value.lectureId;
-      this.ObjectToGenerateCodes.numberofCode =form.value.numcode;
-      this.ObjectToGenerateCodes.quizRequired =form.value.quizRequirement;
-      this.ObjectToGenerateCodes.duration =form.value.duration;
+      form.get("codetype")?.setValue(this.codetype);
+  console.log(form.value)
+if (form.value.codetype==0){
+  this.ObjectToGenerateCodes.lectureid =null
+   this.ObjectToGenerateCodes.classid=null
+}
+else if (form.value.codetype==1){
+   this.ObjectToGenerateCodes.lectureid =null
+
+   this.ObjectToGenerateCodes.classid=form.value.classid
+}
+
+
+else if (form.value.codetype==2){
+   this.ObjectToGenerateCodes.lectureid =form.value.lectureId
+
+  this.ObjectToGenerateCodes.classid=form.value.classid
+}
+this.ObjectToGenerateCodes.numberofCode =form.value.numcode;
+
+   this.ObjectToGenerateCodes.CodeTybe=form.value.codetype;
+       this.ObjectToGenerateCodes.QuizRequird =form.value.quizRequirement;
+
+    this.ObjectToGenerateCodes.duration =form.value.duration;
 
       this.GetLectureBclassId.GenerateCodeLecture(this.ObjectToGenerateCodes).subscribe({
         next:(data)=>{
           this.CodeList = data
+
           this.toastr.success("Generation Done")
 
-            },
-            error:(error)=>{
+          setTimeout(() => {
           
+           
+         this.handleExport(this.ObjectToGenerateCodes.CodeTybe);
+          
+
+
+        }  , 1000);
+          this.quizForm.reset()
+        },
+            error:(error)=>{
+              this.toastr.error("something went wrong ")
+
             }
       })
-      this.quizForm.reset();
+    }else{
+      this.toastr.error("complete data ")
+
     }
   }
 
 
-  handleExport() {
+  handleExport(c:any) {
     if( this.CodeList.length !==0){
-    const invoiceContentElement=document.getElementById('Print_invice') as HTMLElement;
-    html2canvas(invoiceContentElement,{}).then(canvas=>{
-      // is convert the canvas into base64 string url
-      const imgData=canvas.toDataURL('image/png');
-      // page width
-      const pageWidth=210;
-      const pageHeight=297;
-      // calcuate the image actual height to fit with canvas and pdf
-      const height=canvas.height*pageWidth/canvas.width;
-      // initialize the PDF
-      const pdf=new jsPDF("p","mm","a4");
-      // add the image into pdf
-      pdf.addImage(imgData,'PNG',0,0,pageWidth,height);
 
-      pdf.save('invoice.pdf');
+   
+      // is convert the canvas into base64 string url
+      const doc = new jsPDF()
       
-    })
+      autoTable(doc, { html: '#Print_invice' })
+
+      //pdf.autoTable({ html: '#Print_invice' })
+
+      // add the image into pdf
+let d = new Date().toDateString()
+ if (c==0) {
+  doc.save("super master code " + d);
+
+ }
+ else if (c==1) {
+  doc.save("Master code " + d);
+ 
+ } else if (c==2) {
+  doc.save("Lecture  code " + d);
+
+ }
+      
+  
   }
   else{
     this.toastr.warning("Nmuber of Generation code Zero","Genrate Codes First")
 
   }
 }
+changecodetype(valu:any){
+this.codetype=valu
+this.quizForm.reset()
+
+}
+
+
+Getprinted(){
+
+  this.reuslt=true
+  this.GetLectureBclassId.Getcode().subscribe({
+
+    next:(data :any) =>{
+this.reusltlist = data;
+      console.log(data);
+    }
+  })
+}
+
+}
+ enum CodeType {
+
+  super, master,lecture 
 }

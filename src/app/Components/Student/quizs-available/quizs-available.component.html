@@ -32,6 +32,9 @@
           <th>Student Name </th>
           <th>Quiz Name</th>
           <th>Quiz Grade</th>
+          <th>Quiz Type</th>
+          <th>Quiz Place</th>
+
           <th > Watch <i class="fa-regular fa-eye" style="color: #ffa200;"></i></th>
         </tr>
       </thead>
@@ -40,7 +43,10 @@
           <td>{{ lecture.username }}</td>
           <td>{{ lecture.quizname }}</td>
           <td>{{ lecture.quizGrade }}</td>
-          <td class="btncolr">
+          <td>{{ lecture.quizType }}</td>
+          <td>{{ lecture.place }}</td>
+
+          <td *ngIf="lecture.place==null" class="btncolr">
         
                 <a   class="btn btn-success" [routerLink]="['/QuizStudent',lecture.quizId]">Details</a>
           </td>
@@ -56,7 +62,7 @@
 
 
   <header class="head">
-    <h2> Quiz Month / Lecture </h2>
+    <h2> Quiz Month  </h2>
 
   </header>
 
@@ -93,4 +99,49 @@
       </tbody>
     </table>
   </div>
-  <app-footer></app-footer>
+
+
+
+
+
+
+
+
+  <header class="head">
+    <h2>  Lecture  Quiz </h2>
+
+  </header>
+
+<div class="Container-fluid" style="margin-top: 1%;">
+    <mat-form-field class="example-full-width white " style="width: 100%;">
+      <mat-label>Search</mat-label>
+      <input matInput placeholder="Search" [(ngModel)]="searchText">
+    </mat-form-field>
+  
+  
+    <table class="table table-hover lecture-table ">
+      <thead class="thead-dark">
+        <tr>
+          <th>Quiz Name</th>
+          <th > Start <i class="fa-regular fa-eye" style="color: #ffa200;"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quiz of lecquiz | search: searchText">
+          <td>{{ quiz.quizName }}</td>
+          <td class="btncolr">
+        
+                <a   *ngIf="quiz.quizid!=-1"  class="btn btn-success" [routerLink]="['/QuizStudent',quiz.quizid]">Start</a>
+
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-footer>            
+
+
+
+    
+  </app-footer>

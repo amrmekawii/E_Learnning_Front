@@ -6,8 +6,13 @@
 		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
 	</div>
 	<div class="modal-body">
-		<p>username : {{Responce.userName}} </p>
-    <p>Password : {{Responce.password}} </p>
+		<p> Student  username : {{Responce.studentusername}} </p>
+    <p>Student  Password : {{Responce.studentpassword}} </p>
+
+    <p> Parent  username : {{Responce.parentusername}} </p>
+    <p>Parent  Password : {{Responce.parentpaswword}} </p>
+    <p  *ngIf="Responce.parentexist">Parent Already Have an Acount </p>
+
 
 	</div>
 	<div class="modal-footer">
@@ -15,6 +20,32 @@
 	</div>
 </ng-template>
 
+
+
+
+<ng-template #Parentcontent let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">User Data!</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body"*ngIf="!Responce.parentexist" >
+		<p>parentusername : {{Responce.parentusername}} </p>
+    <p>parentpaswword : {{Responce.parentpaswword}} </p>
+
+	</div>
+
+
+  <div class="modal-body"*ngIf="Responce.parentexist" >
+		<p>parentusername : {{Responce.parentusername}} </p>
+    <p>parentpaswword : {{Responce.parentpaswword}} </p>
+    <p>Parent Already Have an Acount </p>
+
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Ok</button>
+	</div>
+</ng-template>
 
 
 <mat-expansion-panel  hideToggle="true " class="white"
@@ -145,6 +176,12 @@ style="
  
         <mat-option   *ngFor="let year of  allyears"       [value]="year.id"   style="color: chocolate !important;" >   {{year.name}}  </mat-option>
       </mat-select>
+
+
+
+
+
+
       <div *ngIf=" RegisterForm.get('yearid')?.errors  && RegisterForm.get('yearid')?.touched" style="color: red;">
         <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
         <span  *ngIf=" RegisterForm.get('yearid')?.getError('required')" > this feild is Requird</span>
@@ -161,11 +198,40 @@ style="
  
     </div>
 
+
+
+
+
+
+    <div class="my-3 mb-5 w-50 mx-auto">
+      <label
+        ><i class="fa-solid fa-graduation-cap me-2"></i>Choose Place</label
+      >
+      <mat-select class="form-control"  #plac formControlName="placeTimeId"   >
+        <mat-option  [value]="null" >Choose Place </mat-option>
+
+        <mat-option    *ngFor="let x of places " [value]="x.id" >{{x.name}} </mat-option>
+      </mat-select>
+
+
+
+
+
+      
+     
+ 
+    </div>
+
+
+
     <div class="text-center w-50 mx-auto">
 
       <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!RegisterForm.valid"    type="submit">
 
     </div>
+
+
+
   </form>
 
 </mat-expansion-panel>
@@ -227,7 +293,6 @@ style="
         <td>{{i+1}}</td>
         <td>{{Student.name}}</td>
         <td>{{Student.username}}</td>
-
         <td>{{Student.pasword}}</td>
         <td>{{Student.phoneNumber}}</td>
         <td>{{Student.parentPhoneNumber}}</td>
@@ -235,7 +300,8 @@ style="
         <td style="width: 30%">
           <a class="btn btn-primary"  [routerLink]="['/AdminHome/StudentProfile',Student.id]" >Profile</a> | 
           <button class="btn btn-danger" (click)="DeleteStudent(Student ,Delete)" >Delete</button> |
-          
+          <button class="btn btn-primary" (click)="AddParent(Student.id , Parentcontent)"  [disabled]="Student.haveparent == true" >Add Parent</button> |
+
           
           <button class="btn btn-warning " *ngFor="let Class of Student.userYear.classes"  (click)="DeleteFromClass(Class.id,Student.id )">Delete From  {{Class.name}}</button> |
             </td>

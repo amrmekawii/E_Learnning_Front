@@ -42,6 +42,223 @@ export class GetAllLectureService {
 
 private readonly bas_url26 = "https://amrbackend.azurewebsites.net/api/Lecture/GettheLectureToadmin/"
 
+
+private readonly getusertoaceessquiz  = "https://amrbackend.azurewebsites.net/api/Quiz/GetStudenttoUserAcess/"
+
+private readonly savequizacess = "https://amrbackend.azurewebsites.net/api/Quiz/AddAcesstoQuiz"
+private readonly GetQuizAcessToAdminN = "https://amrbackend.azurewebsites.net/api/Quiz/GetQuizAcessToAdmin/"
+private DeleteUserAcessQuizu= "https://amrbackend.azurewebsites.net/api/Quiz/DeleteUserAcessQuiz/"
+private getvideopart = "https://amrbackend.azurewebsites.net/api/Lecture/GetLecturePartsToUpdate/"
+
+private readonly addvideolink ="https://amrbackend.azurewebsites.net/api/Lecture/AddVideoPart"
+private readonly deletevideolink ="https://amrbackend.azurewebsites.net/api/Lecture/DeleteVideoPart/"
+private readonly updatevideolink ="https://amrbackend.azurewebsites.net/api/Lecture/UpdateVideoPart"
+
+
+private readonly addfilelink ="https://amrbackend.azurewebsites.net/api/Lecture/AddVideofile"
+private readonly deletefilelink ="https://amrbackend.azurewebsites.net/api/Lecture/DeleteVideofile/"
+private readonly updatefilelink ="https://amrbackend.azurewebsites.net/api/Lecture/UpdateVideofile"
+private readonly  getcodes = "https://amrbackend.azurewebsites.net/api/Lecture/GetCodes"
+
+
+private readonly  Getquizattendance = "https://amrbackend.azurewebsites.net/api/Quiz/GetStudentsWithUserQuiz/"
+
+private readonly  GetPlaces = "https://amrbackend.azurewebsites.net/api/Lecture/GetTimePlaces/"
+private readonly  GetPlacesuser = "https://amrbackend.azurewebsites.net/api/Lecture/GetTimePlacesUser/"
+
+private readonly  AddUpdateDeleteQuiz = "https://amrbackend.azurewebsites.net/api/Quiz/AddUpdateDeleteQuiz"
+
+private readonly  GetLectureattendance = "https://amrbackend.azurewebsites.net/api/Lecture/GetStudentsWithOfflineLecture/"
+
+private readonly  AddUpdateDeleteLecture = "https://amrbackend.azurewebsites.net/api/Lecture/AddEditDeleteOfflineLecture"
+
+private readonly  GetAllPlac = "https://amrbackend.azurewebsites.net/api/Lecture/GetPlaces"
+
+private readonly  Addplace = "https://amrbackend.azurewebsites.net/api/Lecture/AddEditDeletePlace"
+
+
+private readonly  GetAllTIMEPlac = "https://amrbackend.azurewebsites.net/api/Lecture/GetTimePlacesToEdit"
+private readonly  AddEditDeleteTimePlace = "https://amrbackend.azurewebsites.net/api/Lecture/AddEditDeleteTimePlace"
+
+private readonly  Updateassighmentonline = "https://amrbackend.azurewebsites.net/api/Lecture/AddAssighmentOnlineGrade"
+
+
+public AddGradeOnline(x:any ) {
+
+  return this.client.post(this.Updateassighmentonline , x );
+
+}
+
+
+
+public GetPlacessuser(x:any ) {
+
+  return this.client.get(this.GetPlacesuser + x );
+
+}
+
+
+
+public Addedittimeplace(x:any ) {
+
+  return this.client.post(this.AddEditDeleteTimePlace,x);
+
+}
+
+public GetAlltimePlaces( ) {
+
+  return this.client.get(this.GetAllTIMEPlac);
+
+}
+
+
+public Addeditplace(x:any ) {
+
+  return this.client.post(this.Addplace,x);
+
+}
+
+public GetAllPlaces( ) {
+
+  return this.client.get(this.GetAllPlac);
+
+}
+
+public AddUpdateDeleteLecturee( x:any) {
+
+  return this.client.post(this.AddUpdateDeleteLecture,x);
+
+}
+
+
+public GetLectureattendancee( id :any , none:any , place:any) {
+
+  if (place!=null)
+  return this.client.get(this.GetLectureattendance+id+'/'+none+"?PlaceTimeId="+place);
+else
+return this.client.get(this.GetLectureattendance+id+'/'+none);
+
+}
+
+public AddUpdateDeleteQuizz( x:any) {
+
+  return this.client.post(this.AddUpdateDeleteQuiz,x);
+
+}
+
+
+public GetPlacess(x:any ) {
+
+  return this.client.get(this.GetPlaces + x );
+
+}
+
+
+public Getquizattendancee( id :any) {
+
+  return this.client.get(this.Getquizattendance+id);
+
+}
+
+
+
+public Getcode() {
+
+  return this.client.get(this.getcodes);
+
+}
+
+
+
+public deletefile(aid:any) {
+
+  return this.client.delete(this.deletefilelink+aid);
+
+}
+
+
+public updatefile(aid:any) {
+
+  return this.client.put(this.updatefilelink , aid);
+
+}
+
+public addfile(aid:any) {
+
+  return this.client.post(this.addfilelink, aid);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public deletevideo(aid:any) {
+
+  return this.client.delete(this.deletevideolink+aid);
+
+}
+
+
+public updatevideo(aid:any) {
+
+  return this.client.put(this.updatevideolink , aid);
+
+}
+
+public addvideo(aid:any) {
+
+  return this.client.post(this.addvideolink, aid);
+
+}
+
+public getvideoparts(aid:any) {
+
+  return this.client.get(this.getvideopart+aid);
+
+}
+
+
+public DeleteUserAcessQuiz(aid:any) {
+
+  return this.client.delete(this.DeleteUserAcessQuizu+aid);
+
+}
+
+public GetQuizAcessToAdmin(aid:any) {
+
+  return this.client.get(this.GetQuizAcessToAdminN+aid);
+
+}
+
+
+public GetUsertoAcessQuiz(aid:any) {
+
+  return this.client.get(this.getusertoaceessquiz+aid);
+
+}
+
+public SavequizAcess(usersid:any) {
+
+  return this.client.post(this.savequizacess, usersid);
+
+}
+
+
+
 public GettheLectureToadmin(aid:any) {
 
   return this.client.get(this.bas_url26+aid);

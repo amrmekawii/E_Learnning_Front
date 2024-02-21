@@ -1,5 +1,9 @@
   <div class="box  container" >
 
+
+
+
+
     <div class="row">
 
       
@@ -20,6 +24,8 @@
   
   <div class="container"> 
      
+
+
     
     <div class="col-6" >
   
@@ -30,6 +36,142 @@
     
     <div >
   
+
+
+      <mat-expansion-panel  hideToggle="true " class="white"
+      style="
+        border-style: outset;
+        margin: auto;
+        margin-top: 100px;
+        border-radius: 20px;
+        width: 100%;
+        border-color:  rgb(201, 136, 17);"
+      >
+      <mat-expansion-panel-header style="width: 100%;"   >
+          <div style="   margin: auto;  width: 100%; ">
+        <h2  style="text-align: center; "  mat-grid-tile-header  >Update videos </h2>
+      </div>
+      </mat-expansion-panel-header>
+
+
+      <table class="table table-hover lecture-table container" >
+        <thead class="thead-dark">
+            <tr>
+                
+                <th>video Header </th>
+                <th>video Url </th>
+                <th>video Number </th>
+                <th>Action </th>
+
+      
+            </tr>
+        </thead>
+        <tbody>
+            <!-- studentid?: string;
+            assighmentid?: number; -->
+                </tbody>
+
+      </table>
+
+      <div class="row"  *ngFor="let part of theLecture.videoParts ">
+
+
+      <div class="col-md-3 mb-3"> 
+        <label>video Header	</label>
+        <input  style="width: 100%;" [disabled]="udpate!=part.id" #h value="{{part.name}}" type="text">  
+
+      </div>
+
+      <div class="col-md-3 mb-3"> 
+        <label>video Url	</label>
+
+        <input  style="width: 100%;" [disabled]="udpate!=part.id" #l value="{{part.link}}" type="text">  
+
+      </div>
+
+
+      <div class="col-md-3 mb-3"> 
+        <label>video Number	</label>
+
+        <input  style="width: 100%;"  [disabled]="udpate!=part.id" #n  value="{{part.partnumber}}" type="number">  
+
+      </div>
+      <div class="col-md-3 mb-3"> 
+
+        <div *ngIf="udpate!=part.id && saved==false"><button class="btn btn-success" (click)="udpate=part.id; saved =  true " >Update  </button> /
+          <button class="btn btn-danger" (click)="deletevideo(part.id)" >Delete </button> 
+        
+        </div>
+        <button class="btn btn-success" (click)="saveupdate(part.id ,n.value , l.value ,h.value) " *ngIf="udpate==part.id "   >Save  </button> 
+        
+        <span>  </span>
+        <button class="btn btn-danger" (click)="udpate=0 ;saved = false  ; n.value=part.partnumber; l.value =part.link;
+        h.value=part.name
+        " *ngIf="udpate==part.id">Cancel  </button> 
+        
+        
+      </div>
+
+
+    </div>
+    
+
+
+      <form [formGroup]="AddVideoForm"   (ngSubmit)="Addvideo(AddVideoForm)">
+        <div class="row">
+
+        <div class="col-md-3 mb-3">
+
+        <input type="text" class="form-control" formControlName="PartHeader"   placeholder="Part  Header"/>
+        <div *ngIf=" AddVideoForm.get('PartHeader')?.errors  && AddVideoForm.get('PartHeader')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" AddVideoForm.get('PartHeader')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+          <span  *ngIf=" AddVideoForm.get('PartHeader')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+          <input type="text" class="form-control" formControlName="link"   placeholder="Youtube id "/>
+          <div *ngIf=" AddVideoForm.get('link')?.errors  && AddVideoForm.get('link')?.touched" >
+            <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+            <span  *ngIf=" AddVideoForm.get('link')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+            <span  *ngIf=" AddVideoForm.get('link')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+  
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+
+            <input type="number" class="form-control" formControlName="partNumber"   placeholder="part Number "/>
+            <div *ngIf=" AddVideoForm.get('partNumber')?.errors  && AddVideoForm.get('link')?.touched" >
+              <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+              <span  *ngIf=" AddVideoForm.get('partNumber')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+    
+              </div>
+
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+              <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!AddVideoForm.valid"   value="add video"  type="submit">
+        
+            </div>
+        
+           
+          </div>
+
+
+
+      </form>
+
+      </mat-expansion-panel>
+      
+
+
+
   <div *ngIf="theLecture.videoParts!=null">
   
       
@@ -84,6 +226,149 @@
   </div>
   
   
+
+<div class=" container">
+  <mat-expansion-panel  hideToggle="true " class="white"
+  style="
+    border-style: outset;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 20px;
+    width: 100%;
+    border-color:  rgb(201, 136, 17);"
+  >
+  <mat-expansion-panel-header style="width: 100%;"   >
+      <div style="   margin: auto;  width: 100%; ">
+    <h2  style="text-align: center; "  mat-grid-tile-header  >Update files </h2>
+  </div>
+  </mat-expansion-panel-header>
+
+
+  <table class="table table-hover lecture-table container" >
+    <thead class="thead-dark">
+        <tr>
+            
+            <th>file Header </th>
+            <th>file Url </th>
+            <th>file Number </th>
+            <th>Action </th>
+
+  
+        </tr>
+    </thead>
+    <tbody>
+        <!-- studentid?: string;
+        assighmentid?: number; -->
+            </tbody>
+
+  </table>
+
+  <div class="row"  *ngFor="let part of theLecture.videoFiles ">
+
+
+  <div class="col-md-3 mb-3"> 
+    <label>file Header	</label>
+    <input  style="width: 100%;" [disabled]="udpatef!=part.id" #h value="{{part.name}}" type="text">  
+
+  </div>
+
+  <div class="col-md-3 mb-3"> 
+    <label>file Url	</label>
+
+    <input  style="width: 100%;" disabled  #l value="{{part.path}}" type="text">  
+
+
+  </div>
+
+
+  <div class="col-md-3 mb-3"> 
+    <label>file Number	</label>
+
+    <input  style="width: 100%;"  [disabled]="udpatef!=part.id" #n  value="{{part.partnumber}}" type="number">  
+
+  </div>
+  <div class="col-md-3 mb-3"> 
+
+    <div *ngIf="udpatef!=part.id && savedf==false"><button class="btn btn-success" (click)="udpatef=part.id; savedf =  true " >Update  </button> /
+      <button class="btn btn-danger" (click)="deletefile(part.id)" >Delete </button> 
+    
+    </div>
+    <button class="btn btn-success" (click)="saveupdatefile(part.id ,n.value , l.value ,h.value) " *ngIf="udpatef==part.id "   >Save  </button> 
+    
+    <span>  </span>
+    <button class="btn btn-danger" (click)="udpatef=0 ;savedf = false  ; n.value=part.partnumber; l.value =part.path;
+    h.value=part.name
+    " *ngIf="udpatef==part.id">Cancel  </button> 
+    
+    
+  </div>
+
+
+</div>
+
+
+
+  <form [formGroup]="AddfileForm"   (ngSubmit)="Addfile(AddfileForm)">
+    <div class="row">
+
+    <div class="col-md-3 mb-3">
+
+    <input type="text" class="form-control" formControlName="PartHeader"   placeholder="Part  Header"/>
+    <div *ngIf=" AddfileForm.get('PartHeader')?.errors  && AddfileForm.get('PartHeader')?.touched" >
+      <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+      <span  *ngIf=" AddfileForm.get('PartHeader')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+      <span  *ngIf=" AddfileForm.get('PartHeader')?.getError('minlength')" style="color: rgb(214, 3, 3);"> minLength is 3 letter</span>
+
+      </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+<div class="row">
+      <div class="col-md-6 mb-6">
+
+      <input  type="file" (change)="Uplodfile($event)">
+    </div>
+
+<div class="col-md-6 mb-6">
+      <input   type="text"  formControlName="link"    placeholder="file path "/>
+      <div *ngIf=" AddfileForm.get('link')?.errors  && AddfileForm.get('link')?.touched" >
+        <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+        <span  *ngIf=" AddfileForm.get('link')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+
+        </div>
+
+      </div>
+      </div>
+    </div>
+      <div class="col-md-3 mb-3">
+
+        <input type="number" class="form-control" formControlName="partNumber"   placeholder="part Number "/>
+        <div *ngIf=" AddfileForm.get('partNumber')?.errors  && AddfileForm.get('link')?.touched" >
+          <span style="color: red;"><mat-icon >highlight_off </mat-icon> </span>
+          <span  *ngIf=" AddfileForm.get('partNumber')?.getError('required')"  style="color: red;"> this feild is Requird</span>
+
+          </div>
+
+
+        </div>
+
+        <div class="col-md-3 mb-3">
+
+          <input  class="btn log-btn w-100 "  style="color:#000"  [disabled]="!AddfileForm.valid"   value="add file"  type="submit">
+    
+        </div>
+    
+       
+      </div>
+
+
+
+  </form>
+
+  </mat-expansion-panel>
+  
+</div>
+
   
   <table class="table table-hover lecture-table container" >
     <thead class="thead-dark">

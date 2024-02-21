@@ -123,7 +123,10 @@
         <th>Quiz ID</th>
         <th>Quiz Name</th>
         <th class="">Edit / Details</th>
+        <th>Acess</th>
         <th class="">Grades</th>
+        <th class="">Data Entry</th>
+
       </tr>
     </thead>
     <tbody>
@@ -138,12 +141,22 @@
               <a   class="btn btn-success" [routerLink]="['/AdminHome/QuizDetails',lecture.id]">Details</a>
 
         </td>
+        <td class="btncolr">
+         
+          <a   class="btn btn-success" [routerLink]="['/AdminHome/QuizAcess',lecture.id]">Acess</a>
 
+    </td>
         <td class="btncolr">
          
               <a   class="btn btn-success" [routerLink]="['/AdminHome/resquiz',lecture.id]">Grades</a>
 
         </td>
+        <td class="btncolr">
+         
+          <a   class="btn btn-success" [routerLink]="['/AdminHome/Quizentry',lecture.id]">DataEntry</a>
+
+    </td>
+        
       </tr>
     </tbody>
   </table>

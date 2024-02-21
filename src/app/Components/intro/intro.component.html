@@ -54,6 +54,8 @@
             <div class="btn-home mt-5 " *ngIf="Islogin">
               <button *ngIf="role=='Student'" routerLink="/StudentHome" class="btn btn-1 ">Home</button>
               <button  *ngIf="role=='Admin'" routerLink="/AdminHome/GlobalScreen"   class="btn btn-1 " style=" margin-left: 2%;">Home</button>
+              <button  *ngIf="role=='Parent'" routerLink="/ParentHome"   class="btn btn-1 " style=" margin-left: 2%;">Home</button>
+
             </div>
           </div>
         </div>

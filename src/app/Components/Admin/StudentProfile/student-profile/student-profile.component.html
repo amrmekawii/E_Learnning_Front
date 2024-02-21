@@ -149,6 +149,15 @@ style="
       </div>
     </div>
 
+    <select   #plac name="Places"    formControlName="placeTimeId"  >
+      <option  [value]="null"> Choose Place</option>
+  
+      <option *ngFor="let x of places " [value]="x.id" [selected]=" x.id==studentData.placeTimeId">{{x.name}}</option>
+  
+  
+  
+  </select>
+
     <div class="text-center w-50 mx-auto">
 
       <input  class="btn btn-primary  w-20 "  style="color:#000 ; "   value="Update"  (click)="RegisterForm.enable()"  [hidden]="!RegisterForm.disabled"type="button">
@@ -196,6 +205,11 @@ style="
               <th>Acess Type</th>
               <th>Start</th>
               <th>End</th>
+              <th>Lecture Type</th>
+              <th>place</th>
+
+
+
             </tr>
           </thead>
           <tbody>
@@ -205,6 +219,8 @@ style="
               <td>{{Lecture.acessType}}</td>
               <td>{{Lecture.start}}</td>
               <td>{{Lecture.end}}</td>
+              <td>{{ Lecture.lectureType }}</td>
+              <td>{{ Lecture.place }}</td>
 
             </tr>
           </tbody>
@@ -266,6 +282,9 @@ style="
           <th>Student Name </th>
           <th>Quiz Name</th>
           <th>Quiz Grade</th>
+          <th>Quiz Type</th>
+          <th>Quiz Place</th>
+
           <th > Watch <i class="fa-regular fa-eye" style="color: #ffa200;"></i></th>
         </tr>
       </thead>
@@ -274,8 +293,13 @@ style="
           {{i+1}}
           <td>{{ lecture.username }}</td>
           <td>{{ lecture.quizname }}</td>
-          <td>{{ lecture.quizGrade }}</td>
-          <td class="btncolr">
+          <td>{{ lecture.quizGrade }}</td>      
+                <td>{{ lecture.quizType }}</td>
+          <td>{{ lecture.place }}</td>
+
+
+
+          <td *ngIf="lecture.place !=null" class="btncolr">
                 <a   class="btn btn-success" [routerLink]="['/userquiz',lecture.quizId,IdParams , lecture.username ]">Details</a>
           </td>
         </tr>

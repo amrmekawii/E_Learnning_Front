@@ -18,8 +18,15 @@
       <tr>
         <th>#</th>
         <th>userName</th>
+        <th>AccessType</th>
+        <th>Created By</th>
+        <th>Created Date</th>
+
         <th>start</th>
         <th>END</th>
+        <th>Lecture Type</th>
+        <th>Place</th>
+
         <th>Action</th>
 
       </tr>
@@ -28,9 +35,17 @@
       <tr *ngFor="let lecture of StudAud.userLectureAttendances | search: searchText ;let i = index">
         <td>{{i+1}}</td>
         <td>{{ lecture.userName }}</td>
+
+        <td>{{ lecture.accesstype }}</td>
+        <td>{{ lecture.accessby }}</td>
+        <td>{{ lecture.accessdate }}</td>
+
         <td>{{ lecture.start}}</td>
         <td>{{ lecture.end }}</td>
-        <td >           <button class="btn btn-danger" (click)="DeleteAccess(lecture.id )" >Delete</button> |
+        <td>{{ lecture.lectureType }}</td>
+        <td>{{ lecture.place }}</td>
+
+        <td >           <button class="btn btn-danger" [disabled]="lecture.place !=null " (click)="DeleteAccess(lecture.id )" >Delete</button> |
         </td>
 
       </tr>

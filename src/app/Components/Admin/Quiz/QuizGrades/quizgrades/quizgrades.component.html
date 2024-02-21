@@ -24,8 +24,11 @@
         <th>tine</th>
 
         <th>Quiz Grade</th>
+        <th>Quiz Type</th>
+        <th>Quiz Place</th>
 
         <th > Watch <i class="fa-regular fa-eye" style="color: #ffa200;"></i></th>
+
         <th>Delete</th>
 
       </tr>
@@ -38,15 +41,16 @@
         <td>{{ lecture.start }}</td>
         <td>{{ lecture.end }}</td>
         <td>{{ lecture.time }}</td>
-
-
         <td>{{ lecture.quizGrade }}</td>
+        <td>{{ lecture.quizType }}</td>
+        <td>{{ lecture.place }}</td>
 
-        <td class="btncolr">
-              <a   class="btn btn-success" [routerLink]="['/userquiz',lecture.quizid,lecture.userid , lecture.username ]">Details</a>
+
+        <td  class="btncolr">
+              <a    *ngIf="lecture.place==null"  class="btn btn-success" [routerLink]="['/userquiz',lecture.quizid,lecture.userid , lecture.username ]">Details</a>
         </td>
 
-        <td >  <button class="btn btn-danger"  (click)="deleteuserquiz(lecture.userquiz)">  delete</button></td>
+        <td >  <button  *ngIf="lecture.place==null"  class="btn btn-danger"  (click)="deleteuserquiz(lecture.userquiz)">  delete</button></td>
 
     </tr>
     </tbody>

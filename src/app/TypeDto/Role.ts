@@ -1,5 +1,5 @@
 export enum Role{
 
 
-    Sadmin, Student, Admin
+    Sadmin, Student, Admin,parent
 }

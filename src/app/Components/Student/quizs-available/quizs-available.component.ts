@@ -19,6 +19,8 @@ export class QuizsAvailableComponent implements OnInit {
 
   GetUserQuizesRes: UserQuizDto[] = []
   QuizMonthInfo: QuizMonthInfoDto[] = []
+
+  lecquiz:any;
   ngOnInit(): void {
 
     this.QuizServ.GetUserQuizesResult(this.StudentId).subscribe({
@@ -39,6 +41,17 @@ export class QuizsAvailableComponent implements OnInit {
       error: () => { }
     })
     this.UserData = this.Auth.UserData
+
+
+    this.QuizServ.GetQuizAcessToStudent(this.StudentId).subscribe({
+
+
+      next:(data)=>{
+
+this.lecquiz=data;
+        console.log(data)
+      }
+    })
 
   }
 

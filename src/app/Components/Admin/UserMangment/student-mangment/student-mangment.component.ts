@@ -14,6 +14,8 @@ import { AuthenticationServiceService } from 'src/app/Services/UserAuthenticatio
 import { ClassAllDto } from 'src/app/TypeDto/ClassAll';
 import { ModalDismissReasons, NgbDatepickerModule, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/UserService/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-student-mangment',
@@ -25,16 +27,27 @@ export class StudentMangmentComponent {
 Active =true;
  classes:any;
  AvtiveStudents:any;
- 
+ lastClass:any;
+ places:any;
   constructor( private readonly GenralService : GenralServiceService ,
     private AuthenticationServiceService : AuthenticationServiceService,
     private GetAllLectureService:GetAllLectureService,
     config: NgbModalConfig, private modalService: NgbModal,
-    private  UserService: UserService
+    private  UserService: UserService , private toastr: ToastrService ,private allclass :GetAllLectureService
     
     ){
       
       
+      this.places = this.allclass.GetPlacessuser(0).subscribe({
+        next: (data)=>{this.places = data
+        
+        console.log(this.places)
+        
+        }
+      
+      })
+
+
       config.backdrop = 'static';
 		config.keyboard = false;
 
@@ -82,8 +95,9 @@ NewUser :AddUserDto = new AddUserDto();
     parentPhoneNumber: new FormControl ("" ,[ Validators.required, Validators.pattern("^01[0125][0-9]{8}$")]),
     yearid: new FormControl (0 , Validators.required ),
     role:new FormControl (Role.Student  ),
-    userClassDTOs: new FormArray( [] ) ,
-    active: new FormControl(true)
+    userClassDTOs: new FormArray( [] ,Validators.required) ,
+    active: new FormControl(true) ,
+    placeTimeId: new FormControl(null)
 
    } )
 
@@ -92,8 +106,9 @@ NewUser :AddUserDto = new AddUserDto();
 
 
    ChangeYear(year :any ){
-    const formArray: FormArray = this.RegisterForm.get('userClassDTOs') as FormArray;
+    const formArray: FormArray = this.RegisterForm.get('userClassDTOs') as FormArray ;
 formArray.clear();
+this.RegisterForm.get('userClassDTOs')?.reset()
     this._GenralService.GetAllClassesByYear(year).subscribe({
 
 
@@ -132,7 +147,11 @@ this.ClassesByYear=data;
       formArray.controls.forEach((ctrl: any) => {
         if(ctrl.value == event.target.value) {
           // Remove the unselected element from the arrayForm
-          formArray.removeAt(i);
+    
+            formArray.removeAt(i);
+
+          
+          
           console.log("SGgs");
                     return;
         }
@@ -146,6 +165,7 @@ AddStudent(RegisterForm: FormGroup,content: any){
 
 if (RegisterForm.valid){
   let form = RegisterForm.value;
+  
 
 
 let adduser2: AddUserDto=form
@@ -166,7 +186,8 @@ this.modalService.open(content)
   
   } ,
 
-  error:(Error)=> console.log(Error)
+  error:(Error :HttpErrorResponse)=>         this.toastr.error(Error.error.error)
+
 });
 }
 RegisterForm.reset();
@@ -178,6 +199,7 @@ GetStudents(id:number ){
   this.Active = true ;
   console.log(id);
   type  x = {classid:number}
+  this.lastClass=id;
   let s:x  = {
     classid:id
   }; 
@@ -320,6 +342,29 @@ GetUserRequist(){
   }
   
 
+  AddParent(id : any , Parentcontent:any ){
 
+    this.UserService.add_parent(id).subscribe({
+  
+      next:(data)=> {
+      
+        this.Responce=data;
+
+        console.log(this.Responce)
+        this.modalService.open(Parentcontent)
+        
+      this.GetStudents(this.lastClass);
+      }, error:(err)=> {
+
+        this.toastr.error(err.error)
+      }
+      
+      
+      
+      
+          })
+      
+    
+  }
 
 }

@@ -25,6 +25,15 @@
             <h4 mat-line *ngIf="isExpanded">Lecture Management</h4>
           </div>
         </mat-list-item>
+
+
+        <mat-list-item routerLink="/AdminHome/ClassMangment">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>domain</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Class Management</h4>
+          </div>
+        </mat-list-item>
+
         <mat-list-item routerLink="/AdminHome/AllAssighment">
           <div class="list-item-content">
             <mat-icon mat-list-icon>folder_shared</mat-icon>
@@ -43,6 +52,13 @@
             <h4 mat-line *ngIf="isExpanded">Code  Management</h4>
           </div>
         </mat-list-item>
+        <mat-list-item routerLink="/AdminHome/ParentMangment">
+          <div class="list-item-content">
+            <mat-icon mat-list-icon>person</mat-icon>
+            <h4 mat-line *ngIf="isExpanded">Parent Mangment</h4>
+          </div>
+        </mat-list-item>
+
       </mat-nav-list>
       
 

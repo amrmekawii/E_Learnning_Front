@@ -21,6 +21,7 @@ UserAssighment:any
 IdParams:any
 StudentId:any;
 UserData: any
+  all_lectures: any;
 
 constructor(  private UserService: UserService, private Auth: AuthenticationServiceService
   ,private myRoute: ActivatedRoute ,private QuizServ: QuizService ){
@@ -31,6 +32,10 @@ constructor(  private UserService: UserService, private Auth: AuthenticationServ
 this.userAttendance=null;
 this.QuizGrades=null;
 this.UserAssighment=null
+
+
+
+
 this.UserService.GetStudentDetails(this.StudentId).subscribe({
 
 

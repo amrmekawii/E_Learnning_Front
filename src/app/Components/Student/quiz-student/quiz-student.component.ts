@@ -38,7 +38,8 @@ export class QuizStudentComponent implements OnInit {
   QuizToSolv = new GetQuizToSolveDto()
   StudentSolve = new SubmitQuizDto()
   UserData: any
-
+right:any
+wrong : any
   GetUserQuizAnswer= new GetUserQuizAnswersDto()
   ngOnInit(): void {
     this.UserData = this.Auth.UserData
@@ -98,10 +99,14 @@ this.QuizServ.SaveAnswer({userquizid:this.QuizToSolv.userquiz, questionid:questi
 next:(data)=> {
 
   this.toastr.success("your Answer  is saved ")
+
+this.right=questionId;
+this.wrong=null
   console.log(data)
 } ,error : ()=> {
   this.toastr.error("Try Again ")
-
+this.wrong=questionId
+this.right=null
 }
 
 })
@@ -175,6 +180,13 @@ let ndDate = Date.parse(this.QuizToSolv.end as unknown  as string)
     console.log(remainingTime);
 
     this.timerInterval = setInterval(() => {
+
+      let x = new Date()
+      let timeDifferenceInMilliseconds = endDate.getTime() - x.getTime();
+      console.log(timeDifferenceInMilliseconds);
+
+  let timeDifferenceInMinutes = timeDifferenceInMilliseconds / (1000 * 60);
+  let remainingTime = timeDifferenceInMinutes * 60 * 1000
       remainingTime -= 1000; // Subtract one second
 console.log(remainingTime *1000)
       if (remainingTime <= 0) {
@@ -189,6 +201,8 @@ console.log(remainingTime *1000)
     }, 1000);
 
   }
+
+
 
   timerInterval:any
   // submitQuiz() {

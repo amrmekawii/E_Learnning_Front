@@ -11,6 +11,9 @@ export class UserService {
   constructor(private client: HttpClient) { }
 
   private readonly Base_URL3 ="https://amrbackend.azurewebsites.net/api/User/GetStudents"
+
+  private readonly Add_parent ="https://amrbackend.azurewebsites.net/api/User/AddParent/"
+
   private readonly Base_URL1="https://amrbackend.azurewebsites.net/api/Class/DeleteUserFromClass"
   private readonly Base_URL2=" https://amrbackend.azurewebsites.net/api/User/GetUser/"
   private readonly Base_URL4="  https://amrbackend.azurewebsites.net/api/User/UpdateUser"
@@ -27,6 +30,26 @@ private readonly  getlecture  = "https://amrbackend.azurewebsites.net/api/Lectur
 private readonly  Startwatch  = "https://amrbackend.azurewebsites.net/api/Lecture/startWatching/"
 private readonly  changeStatue  = "https://amrbackend.azurewebsites.net/api/User/ChangeStudentStatu"
 private readonly  Deletes  = "https://amrbackend.azurewebsites.net/api/User/DeleteUser"
+private readonly GetlistofLecture = "https://amrbackend.azurewebsites.net/api/Lecture/GetLectureListToStudent/"
+
+ private readonly addacess = "https://amrbackend.azurewebsites.net/api/Lecture/AcessLectureByCode/"
+
+ public add_parent( uswrid: any)
+{
+   return this.client.get(this.Add_parent+uswrid);  
+ }
+
+
+
+ public addacessservice( code :any,  userid :any,  lectureid :any,  classid:any)
+{
+   return this.client.get(this.addacess+code+'/'+userid+'/'+lectureid+'/'+classid);  
+ }
+
+public GetlistofLectureForStudent(id:any)
+{
+   return this.client.get(this.GetlistofLecture+id);  
+ }
 
   public GetStudents(Filter:any)
   {

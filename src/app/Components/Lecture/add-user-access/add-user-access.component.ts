@@ -78,7 +78,6 @@ export class AddUserAccessComponent implements OnInit {
   dataSource = new MatTableDataSource<UserDto>(this.UserData);
   selection = new SelectionModel<UserDto>(true, []);
 
-
   isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;

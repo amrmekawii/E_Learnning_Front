@@ -31,7 +31,7 @@ export class AuthenticationServiceService {
 
   }
 
-  private readonly Add_User_url = "https://amrbackend.azurewebsites.net/api/User/StudentRigster";
+  private readonly Add_User_url = "https://amrbackend.azurewebsites.net/api/User/UserRegister";
 
 
   public AddUser(newUser: AddUserDto )   {

@@ -60,6 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/StudentHome')
 
           }
+          if(this.authService.UserData.role=="Parent"){
+            this.router.navigateByUrl('/ParentHome')
+
+          }
+
+
 
         },
         error: (err) => {

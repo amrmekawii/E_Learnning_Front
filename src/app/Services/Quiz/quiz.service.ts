@@ -36,6 +36,15 @@ export class QuizService {
   private readonly Base_saveuseranswer = "https://amrbackend.azurewebsites.net/api/Quiz/Adduseranswer"
   private readonly delteuserquiz = " https://amrbackend.azurewebsites.net/api/Quiz/deleteuserquiz/"
 
+  private readonly getquizlecacess = "https://amrbackend.azurewebsites.net/api/Quiz/GetQuizAcessToStudent/"
+
+  public GetQuizAcessToStudent(id: any) {
+
+    return this.client.get(this.getquizlecacess+id);
+
+  }
+
+
   public GetClassByClassId(id: number): Observable<QuizAllDto[]> {
 
     return this.client.get<QuizAllDto[]>(this.Base_URL + id);

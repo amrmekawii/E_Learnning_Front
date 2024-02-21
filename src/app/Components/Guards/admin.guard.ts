@@ -26,3 +26,27 @@ export const AdminGuard: CanActivateFn = (route, state) => {
   router.navigateByUrl('/Login');
   return false;
 };
+
+
+export const ParentGuard: CanActivateFn = (route, state) => {
+  const authenticationService = inject(AuthenticationServiceService);
+  const router = inject(Router);
+
+  if (authenticationService.isLoggedIn$.value) {
+  
+    if(authenticationService.UserData.role=='Parent')
+    {
+      return true;
+
+    }
+    else{
+      router.navigateByUrl('');
+    return false
+    }
+
+  }
+
+  console.log(authenticationService.isLoggedIn$.value)
+  router.navigateByUrl('/Login');
+  return false;
+};

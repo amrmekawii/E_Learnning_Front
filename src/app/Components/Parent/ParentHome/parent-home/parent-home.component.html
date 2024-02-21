@@ -1,0 +1,63 @@
+<mat-toolbar color="dark">
+
+    <div class="logo">
+        <div class=" mb-5 ">
+            <img src="assets/imgs/logo.png" alt="" height="50px" />
+        </div>
+        <div>
+            <header class="head">
+                <h2> {{UserData.name}}</h2>
+            </header>
+        </div>
+        <button class="px-4" mat-menu-item  (click)="logout()">
+            <mat-icon>reply</mat-icon>sign out
+          </button>
+
+    </div>
+
+</mat-toolbar>
+
+<div class="body">
+
+    <section class="    align-items-center justify-content-center flex-wrap  container-fluid row"
+        >
+
+        <header class="head2">
+            <h2> Parent Children</h2>
+        </header>
+
+
+        <div class="col-md-3 headera  " style="margin: 2%;"  [routerLink]="['/Childresult',child.childId]"  *ngFor="let child of parents.children ">
+
+            <h1>{{child.childName}} </h1>
+            <div class="card1 card-3">
+        
+            </div>
+          </div>
+        
+
+    </section>
+
+
+
+    
+
+
+    <section class="  align-items-center justify-content-center flex-wrap  container-fluid row">
+
+
+        <div class="col-md-4 headera  " style="margin-top: 1%; margin-bottom: 4%; " (click)="Openpopup2()">
+        <header class="head2">
+            <h2> Parent  Control</h2>
+        </header>
+
+            <h1> Change Password</h1>
+            <div class="card1 card-4">
+            </div>
+        </div>
+    
+    </section>
+
+</div>
+
+<app-footer></app-footer>

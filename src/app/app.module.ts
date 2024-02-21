@@ -76,6 +76,14 @@ import { LecturewatchComponent } from './Components/Admin/Lecturewatch/lecturewa
 
 import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
 import { QuizgradesComponent } from './Components/Admin/Quiz/QuizGrades/quizgrades/quizgrades.component';
+import { QuizAcessComponent } from './Components/Admin/Quiz/QuizAcess/quiz-acess/quiz-acess.component';
+import { ParentMangmentComponent } from './Components/Admin/ParentMangment/parent-mangment/parent-mangment.component';
+import { ParentHomeComponent } from './Components/Parent/ParentHome/parent-home/parent-home.component';
+import { ChildGradesComponent } from './Components/Parent/ChildGrades/child-grades/child-grades.component';
+import { QuizentryComponent } from './Components/Admin/Dataentry/Quizentry/quizentry/quizentry.component';
+import { LectureEntryComponent } from './Components/Admin/Dataentry/LectureEntry/lecture-entry/lecture-entry.component';
+import { PlaceMangmentComponent } from './Components/Admin/PlaceMangment/place-mangment/place-mangment.component';
+import { PlaceTimeComponent } from './Components/Admin/PlaceTimeMangment/place-time/place-time.component';
 
 @NgModule({
   declarations: [
@@ -112,6 +120,14 @@ UserresultComponent,
 UserQuizComponent,
 LecturewatchComponent,
 QuizgradesComponent,
+QuizAcessComponent,
+ParentMangmentComponent,
+ParentHomeComponent,
+ChildGradesComponent,
+QuizentryComponent,
+LectureEntryComponent,
+PlaceMangmentComponent,
+PlaceTimeComponent,
 
    ],
   imports: [

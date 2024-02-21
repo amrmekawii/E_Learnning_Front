@@ -1,0 +1,79 @@
+
+<div style="height: 10%; width: 30%;  margin: auto; margin-top: 2% ; border-style: dashed;  border-color: orange; border-radius: 10px;   text-align: center;">
+
+  <h1 >Place  Mangment </h1>
+
+</div>
+
+
+
+<div >
+    <div  style="width: 50%; margin: auto; padding: 5%;" >
+        <h1 style="text-align: center;">{{usertoquiz.quizname}} </h1>
+        
+        </div>
+    
+    
+    
+   
+    
+          <div class="Container" style="margin-top: 3%;">
+            <mat-form-field class="example-full-width white " style="width: 100%;">
+              <mat-label>Search</mat-label>
+              <input matInput placeholder="Search" [(ngModel)]="searchText">
+            </mat-form-field>
+        
+            <table class="table table-hover lecture-table "   >
+                <thead class="thead-dark">
+                  <tr>
+                   
+    
+                    <th>Place Name </th>
+                    <th> Action </th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let quiz of usertoquiz  | search: searchText; let i = index" id="{{quiz.id}}">
+                   
+                   
+                   
+                    <td style="width: 10%;"  > <input type="text" #nname [value]="quiz.name"></td>
+
+
+<td  style="width: 10%;">  
+  
+      
+      <button  type="button"  class="btn btn-primary"  (click)="EditPlace(quiz.id ,nname.value , null)"   >Update</button>  
+
+      <button  type="button"  class="btn btn-Danger"  (click)="EditPlace(quiz.id ,nname.value , true)"  >Delete</button>  
+
+ 
+</td>
+    
+                </tr>
+                <tr>
+                    <td>
+                  
+                        <input type="text" #name [(ngModel)]="emp">
+
+                    </td> 
+                    <td>
+                        <button  type="button"  class="btn btn-secondary"  (click)="EditPlace(null ,name.value , null)"   >Add</button>  
+
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+            
+        
+        
+        
+    
+    
+        </div>
+      
+    </div>
+    
+    
+  

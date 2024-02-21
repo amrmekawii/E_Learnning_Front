@@ -13,6 +13,7 @@
         yearid?: number | null =null;
         role?: Role = 1 ;
         userClassDTOs?: UserClassDTO[] | null  = null  ;
+        placeTimeId:number|null = null
     }
 
 

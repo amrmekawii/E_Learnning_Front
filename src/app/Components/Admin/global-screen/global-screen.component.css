@@ -77,11 +77,11 @@
 }
 
 .card-3 {
-  background-image: url(https://img.freepik.com/free-vector/character-illustration-people-holding-user-account-icons_53876-43022.jpg?w=996&t=st=1694693771~exp=1694694371~hmac=fef53d4a18e546bb42ca61fad46782998dff5c7fecb2c385a6b851e57ae11cf2);
+  background-image: url(https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg?w=826);
   background-repeat: no-repeat;
   background-position: right;
   background-size: 95%;
-  height: 150PX;
+  height: 250PX;
   
 }
 .card-4 {
@@ -90,7 +90,7 @@
   background-repeat: no-repeat;
   background-position: right;
   background-size: 95%;
-  height: 150PX
+  height: 250PX
 }
 /* 
 .card:hover {

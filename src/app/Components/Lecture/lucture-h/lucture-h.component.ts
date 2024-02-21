@@ -64,8 +64,8 @@ export class LuctureHComponent implements OnInit {
     quizid: [0],
     Header: ['', [Validators.required, Validators.minLength(5)]],
     number: [ 0, [Validators.required]],
-    vedio: [[], Validators.required],
-    file: [[], Validators.required]
+    vedio: [[], ],
+    file: [[], ]
   });
 
   /////////////////////////////////////////////OninIt

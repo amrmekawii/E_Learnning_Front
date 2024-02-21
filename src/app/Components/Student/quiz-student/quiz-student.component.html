@@ -56,9 +56,20 @@
         <ul>
             <li style="background-color: azure;" *ngFor="let answer of question.getAnswersDtos" class="answer-item">
               <input type="radio" name="answer{{ i }}" [value]="answer.header"  [checked] = "question.usernswer== answer.answerID "  (click)="saveAnswer(answer.questionID ,answer.answerID , question.grade)">
-              <label>{{ answer.header }}</label>
+              <label>{{ answer.header }} 
+              </label>
+
+
+
             </li>
+            
           </ul>
+
+          
+          <span *ngIf="right==question.questionID">
+            <mat-icon style="color: #306f15;">check_circle</mat-icon> Answer saved</span> 
+        
+          <span *ngIf="wrong==question.questionID"> <mat-icon style="color: red;">clear</mat-icon>Answer not saved , try Again</span>
         </div>
       </div>
       <button *ngIf="!Show && !Solve" class="btn btn-primary"(click)="SubmitQuiz()">Submit</button>

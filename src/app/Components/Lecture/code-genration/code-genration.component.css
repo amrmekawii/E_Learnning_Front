@@ -79,13 +79,21 @@
 
     padding: 12px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ffffff;
   }
   
   .lecture-table th {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
   }
   
   .lecture-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ffffff;
+  }
+  @media print {
+
+    botton { display: none;
+    }
+    input{
+      display: none;
+    }
   }

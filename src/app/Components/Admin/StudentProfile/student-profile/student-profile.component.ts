@@ -36,7 +36,17 @@ this.UserService.GetStudentDetails(this.IdParams).subscribe({
   console.log(data);
   
 
-
+  this.UserAssighment=null;
+  this.QuizGrades= null
+  this.UserService.GetUserLectureAttedance(this.studentData.id).subscribe({
+  
+  
+    next:(data)=> {
+  console.log(data)
+  this.userAttendance=data
+  
+    }
+  })
   this.places = this.allservice.GetPlacessuser(this.studentData.classid).subscribe({
     next: (data)=>{this.places = data
     
@@ -147,8 +157,9 @@ this.UserAssighment=null;
 this.QuizGrades= null
 this.UserService.GetUserLectureAttedance(this.studentData.id).subscribe({
 
-  next:(data)=> {
 
+  next:(data)=> {
+console.log(data)
 this.userAttendance=data
 
   }

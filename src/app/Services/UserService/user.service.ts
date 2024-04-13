@@ -18,7 +18,7 @@ export class UserService {
   private readonly Base_URL2=" https://amrbackend.azurewebsites.net/api/User/GetUser/"
   private readonly Base_URL4="  https://amrbackend.azurewebsites.net/api/User/UpdateUser"
 
-  private readonly Base_URL5="https://amrbackend.azurewebsites.net/api/Lecture/GetStudentLectureAttendence/"
+  private readonly Base_URL5="https://amrbackend.azurewebsites.net/api/Lecture/GetStudentAttendancewithGrades/"
   private readonly Base_URL6="https://amrbackend.azurewebsites.net/api/Assighment/GetUserAssighmentsByUserId?UserId="
 
   private readonly Base_URL7="https://amrbackend.azurewebsites.net/api/Class/GetAllClassesRequists/"

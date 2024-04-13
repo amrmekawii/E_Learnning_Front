@@ -148,7 +148,7 @@ console.log(place);
 
 }
 
-updateGrade(id :any, userid:any ,lectureid:any, attend:any , quizAttend :any  ,assateend :any,quizgrade:any  ,assighmentGrade:any , note:any, Places:any , remove :any ){
+updateGrade(id :any, userid:any ,lectureid:any, attend:any , quizAttend :any  ,assateend :any,quizgrade:any  ,assighmentGrade:any , note:any, feed:any , Places:any , remove :any ){
 
   let x : any  =  {
     "id": 0,
@@ -170,7 +170,10 @@ updateGrade(id :any, userid:any ,lectureid:any, attend:any , quizAttend :any  ,a
     "quizGrade": quizgrade,
     "assighmentGrade": assighmentGrade,
     "assighmentAttend": assateend,
-    "note": note,
+    "note": note, 
+
+    "parentFeedBack" :feed
+,
     "placeid": Number
   }
 
@@ -209,11 +212,13 @@ console.log(y);
   })
 }
 
-UpdateOinline(lectureid :any, assonlinevalue :any , onlineattendchecked :any ){
+UpdateOinline(lectureid :any, assonlinevalue :any , onlineattendchecked :any , note:any, feed :any ){
  let x = {
     "id": lectureid,
     "grade": null  ,
-    "attend": onlineattendchecked
+    "attend": onlineattendchecked,
+    "notes":note,
+    "parentFeedBack" :feed
   }
 
 
@@ -229,7 +234,8 @@ this.GetAllActive.AddGradeOnline(x).subscribe({
 
  
     next: (data) => {
-    
+      this.toastr.success("Saved")
+
       this.GetAllActive.userAttendances(this.idpram).subscribe({
         next: (data) => {
           console.log(data);

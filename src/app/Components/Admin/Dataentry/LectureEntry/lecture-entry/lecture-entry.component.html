@@ -63,6 +63,8 @@
                     <th> Assigment Grade </th>
                     <th> Assigment  Attendance </th>
                     <th> Note </th>
+                    <th> Parent Feedback </th>
+
                     <th> Action </th>
 
                   </tr>
@@ -72,7 +74,7 @@
                    
                    
                     <td style="width: 1%;">{{i+1}}</td>
-                    <td style="width: 5%;"  id="{{quiz.userid}}" >{{ quiz.userName }}</td>
+                    <td style="width: 1%;"  id="{{quiz.userid}}" >{{ quiz.userName }}</td>
                     <td style="width: 4%;"  id="{{quiz.userid}}" >{{ quiz.parentNumber }}</td>
 
 
@@ -99,9 +101,9 @@
                      </td>
 
 
-                     <td   style="width: 5%;">   <input   #quizgrade class="form-control" type="number"  [disabled]="!quiz.edit"  [value]="quiz.quizGrade" > </td>
+                     <td   style="width: 1%;">   <input   #quizgrade class="form-control" type="number"  [disabled]="!quiz.edit"  [value]="quiz.quizGrade" > </td>
 
-                     <td style="width: 5%;"> 
+                     <td style="width: 1%;"> 
 
                       <div   class="form-check form-switch">
                         <input    class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" #quizeattend  [checked]="quiz.quizAttend==true" [disabled]="!quiz.edit">
@@ -120,16 +122,17 @@
                 
                       
                      </td>
-                     <td style="width: 100%;">   <input  style="width: 100% !important; "  #note class="form-control" type="text"   [disabled]="!quiz.edit"  [value]="quiz.note"> </td>
+                     <td style="width: 40%;">   <input  style="width: 100% !important; "  #note class="form-control" type="text"   [disabled]="!quiz.edit"  [value]="quiz.note"> </td>
+                     <td style="width: 100%;">   <input  style="width: 100% !important; "  #feed class="form-control" type="text"   [disabled]="!quiz.edit"  [value]="quiz.parentFeedBack"> </td>
 
 
 
 <td  style="width: 10%;">  
-        <input class="form-check-input" type="button"  class="btn btn-primary" id="flexSwitchCheckDefault"   value="Add"  (click)="updateGrade(null, quiz.userid ,idpram, attend.checked , quizeattend.checked,assateend.checked  ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , null )" *ngIf=" quiz.id ==null"   [disabled]="!quiz.edit">
+        <input class="form-check-input" type="button"  class="btn btn-primary" id="flexSwitchCheckDefault"   value="Add"  (click)="updateGrade(null, quiz.userid ,idpram, attend.checked , quizeattend.checked,assateend.checked  ,quizgrade.value  ,assighmentgrade.value , note.value ,feed.value, plac.value , null )" *ngIf=" quiz.id ==null"   [disabled]="!quiz.edit">
       
-      <button  type="button"  class="btn btn-primary"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked ,assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , false )"    *ngIf=" quiz.id !=null">Update</button>  
+      <button  type="button"  class="btn btn-primary"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked ,assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value,feed.value, plac.value , false )"    *ngIf=" quiz.id !=null">Update</button>  
 
-      <button  type="button"  class="btn btn-Danger"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked  , assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value, plac.value , true )"   *ngIf="  quiz.id !=null">Delete</button>  
+      <button  type="button"  class="btn btn-Danger"  (click)="updateGrade(quiz.id, quiz.userid ,idpram, attend.checked , quizeattend.checked  , assateend.checked ,quizgrade.value  ,assighmentgrade.value , note.value,feed.value, plac.value , true )"   *ngIf="  quiz.id !=null">Delete</button>  
 
  
 </td>
@@ -150,12 +153,13 @@
                     <th>AccessType</th>
                     <th>Created By</th>
                     <th>Created Date</th>
-            
                     <th>start</th>
                     <th>END</th>
                     <th> Assigment Grade </th>
                     <th> Assigment  Attendance </th>
-            
+                    <th> Note </th>
+                    <th> Parent Feedback </th>
+
                     <th>Action</th>
             
                   </tr>
@@ -180,9 +184,12 @@
                
                      
                     </td>
+                    <td style="width: 40%;">   <input   #note class="form-control" type="text"   [value]="lecture.note" > </td>
+                    <td style="width: 100%;">   <input   #feed class="form-control" type="text"   [value]="lecture.parentFeedBack" > </td>
+
 
             
-                    <td >           <button class="btn btn-primary" [disabled]="lecture.place !=null "   (click)="UpdateOinline(lecture.id, assonline.value, onlineattend.checked )" >Update</button> |
+                    <td >           <button class="btn btn-primary" [disabled]="lecture.place !=null "   (click)="UpdateOinline(lecture.id, assonline.value, onlineattend.checked  , note.value ,feed.value)" >Update</button> 
                     </td>
             
                   </tr>

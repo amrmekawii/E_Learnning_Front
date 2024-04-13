@@ -172,18 +172,13 @@ style="
 <div class="box  container" >
     <h3>Student Result </h3>
     <div class="row">
-        <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;">
-          <div class="card card-3"  (click)="GetAssighmentResult()">
-            <p>Assighment result  </p>
-          </div>
-        </div>
-
-         <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" (click)="GetSolvedQuiz()">
+    
+         <div class="col-md-6" style="margin-top: 3%; margin-bottom: 3%;" (click)="GetSolvedQuiz()">
           <div class="card card-3">
             <p>Quizs Result </p>
           </div>
         </div> 
-        <div class="col-md-4" style="margin-top: 3%; margin-bottom: 3%;" (click)=" GetUserattendance ()">
+        <div class="col-md-6" style="margin-top: 3%; margin-bottom: 3%;" (click)=" GetUserattendance ()">
           <div class="card card-3">
             <p>Lecture Attendance </p>
           </div>
@@ -202,11 +197,13 @@ style="
             <tr >
               <th>#</th>
               <th>Lecture Name</th>
-              <th>Acess Type</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Lecture Type</th>
-              <th>place</th>
+              <th>Attend</th>
+              <th>Details</th>
+              <th>Quiz Solve</th>
+              <th>Quiz Grade</th>
+              <th>Assigment Solve</th>
+              <th>Assigment Grade</th>
+              <th>Notes</th>
 
 
 
@@ -215,12 +212,19 @@ style="
           <tbody>
             <tr *ngFor="let Lecture of userAttendance.lectureuserAcessds| search: searchText  ;let i = index"  >
               <td>{{i+1}}</td>
-              <td>{{Lecture.lectureName}}</td>
-              <td>{{Lecture.acessType}}</td>
-              <td>{{Lecture.start}}</td>
-              <td>{{Lecture.end}}</td>
-              <td>{{ Lecture.lectureType }}</td>
-              <td>{{ Lecture.place }}</td>
+              <td style="width: 20%;">{{Lecture.lectureName}}</td>
+              <td style="width: 5%;"  *ngIf="Lecture.atteend" >   <mat-icon style="color: #00ff00;">done_outline</mat-icon></td>
+              <td style="width: 5%;"  *ngIf="!Lecture.atteend" >   <mat-icon style="color:#ff0000;">clear</mat-icon></td>
+
+              <td  style="width: 20%;" >{{Lecture.details}}</td>
+              <td style="width: 5%;"  *ngIf="Lecture.quizSolve" >   <mat-icon style="color: #00ff00;">done_outline</mat-icon></td>
+              <td style="width: 5%;"  *ngIf="!Lecture.quizSolve" >   <mat-icon style="color:#ff0000;">clear</mat-icon></td>
+              <td>{{ Lecture.quizGrade }}</td>
+              <td style="width: 5%;"  *ngIf="Lecture.assigmentSolve" >   <mat-icon style="color: #00ff00;">done_outline</mat-icon></td>
+              <td style="width: 5%;"  *ngIf="!Lecture.assigmentSolve" >   <mat-icon style="color:#ff0000;">clear</mat-icon></td>
+              <td>{{ Lecture.assigmentGrade }}</td>
+
+              <td>{{ Lecture.note }}</td>
 
             </tr>
           </tbody>
@@ -279,11 +283,9 @@ style="
       <thead class="thead-dark">
         <tr>
           <th>#</th>
-          <th>Student Name </th>
           <th>Quiz Name</th>
           <th>Quiz Grade</th>
           <th>Quiz Type</th>
-          <th>Quiz Place</th>
 
           <th > Watch <i class="fa-regular fa-eye" style="color: #ffa200;"></i></th>
         </tr>
@@ -291,11 +293,9 @@ style="
       <tbody>
         <tr *ngFor="let lecture of QuizGrades | search: searchText; let i = index">
           {{i+1}}
-          <td>{{ lecture.username }}</td>
           <td>{{ lecture.quizname }}</td>
           <td>{{ lecture.quizGrade }}</td>      
                 <td>{{ lecture.quizType }}</td>
-          <td>{{ lecture.place }}</td>
 
 
 

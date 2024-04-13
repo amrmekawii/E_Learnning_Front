@@ -33,7 +33,16 @@ this.QuizGrades=null;
 this.UserAssighment=null
 
 
+this.UserAssighment=null;
+this.QuizGrades=null
+this.UserService.GetUserLectureAttedance(this.StudentId).subscribe({
 
+  next:(data)=> {
+
+this.userAttendance=data
+
+  }
+})
 
 this.UserService.GetStudentDetails(this.StudentId).subscribe({
 

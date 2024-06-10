@@ -70,4 +70,6 @@ export class LecAudeanceComponent implements OnInit {
       }
     })
   }
-}
+
+
+ }

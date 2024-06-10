@@ -192,13 +192,18 @@
   
     <div *ngFor="let part of theLecture.videoParts "  >
   
-      <div *ngIf="part.id==selected"    plyr style="width: 80%; height: auto; margin: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
+      <div *ngIf="part.id==selected"  
+         plyr style="width: 80%; height: auto; margin: auto;" plyrTitle="{{part.Header}}" [plyrPlaysInline]="true"
     
       [plyrSources]=" [{ src: part.link , provider: 'youtube'}]"  >  </div>
     
+
+
+
     </div>
-    
-            
+     
+
+      
   
   </div>
   </div>

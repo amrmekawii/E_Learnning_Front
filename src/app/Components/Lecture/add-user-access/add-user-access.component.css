@@ -23,7 +23,6 @@ table {
 .lecture-table td {
 
   text-align: center;
-  border-bottom: 3px solid #ddd;
 }
   .table-title h2 {
     font-size: 24px;
@@ -40,12 +39,4 @@ table {
     justify-content: center;
     align-items: center;
   }
-    .green-button {
-    background-color: green;
-    color: white; 
-    width: 60%;
-    height: 60px;
-    margin: 10px;
-    font-size: xx-large;
-  }
-  
+   

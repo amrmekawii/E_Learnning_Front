@@ -20,6 +20,9 @@ export class UserDto {
   position: number = 0;
 
 }
+export enum dayhour{
+  day, hour
+}
 
 @Component({
   selector: 'app-add-user-access',
@@ -101,7 +104,7 @@ export class AddUserAccessComponent implements OnInit {
 
 
   // for submit change access
-  saveSelectedRows(): void {
+  saveSelectedRows(dayhour:dayhour): void {
     const selectedRows = this.selection.selected;
     for (let i = 0; i < selectedRows.length; i++) {
       this.objectUserForAccessService[i] =new AddUserAccessDto()
@@ -110,6 +113,8 @@ export class AddUserAccessComponent implements OnInit {
       this.objectUserForAccessService[i].accessType =1
       this.objectUserForAccessService[i].duration =selectedRows[i].Duration
       this.objectUserForAccessService[i].quizrequird =selectedRows[i].QuizRequird 
+      this.objectUserForAccessService[i].DayOrHour=dayhour
+
     }
     console.log("++++++++++++");
     

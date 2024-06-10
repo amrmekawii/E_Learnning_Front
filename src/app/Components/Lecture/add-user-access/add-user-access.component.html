@@ -2,6 +2,15 @@
     <p>classiD: {{ClassLecNam.ClassName}}</p>
     <p>LectureID:{{ClassLecNam.LectureName}} </p>
 </div>
+<div class="center-button">
+    <button mat-button (click)="saveSelectedRows( 1  )" *ngIf="selection.selected.length > 0"
+        class=" btn btn-success btn-outline-success">Save With Hours</button>
+        <button mat-button (click)="saveSelectedRows(0)" *ngIf="selection.selected.length > 0"
+            class=" btn btn-primary btn-outline-primary" >Save With Days </button>
+</div>
+<div class="center-button">
+  
+</div>
 
 <mat-form-field class="example-full-width white " style="width: 100%;">
     <mat-label>Filter</mat-label>
@@ -80,8 +89,3 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" >
     </tr>
 </table>
-<!-- (click)="selection.toggle(row)" -->
-<div class="center-button">
-    <button mat-button (click)="saveSelectedRows()" *ngIf="selection.selected.length > 0"
-        class="green-button">Save</button>
-</div>

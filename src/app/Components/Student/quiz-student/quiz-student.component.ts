@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
@@ -40,6 +40,7 @@ export class QuizStudentComponent implements OnInit {
   UserData: any
 right:any
 wrong : any
+timeDifferenceInMilliseconds :any;
   GetUserQuizAnswer= new GetUserQuizAnswersDto()
   ngOnInit(): void {
     this.UserData = this.Auth.UserData
@@ -75,6 +76,7 @@ wrong : any
         console.log(this.QuizToSolv.start as Date)
 
         this.setupTimer()
+        this.timeDifferenceInMilliseconds = this.QuizToSolv.seconds *1000;
 
       },
       error: (error) => {
@@ -169,10 +171,9 @@ let ndDate = Date.parse(this.QuizToSolv.end as unknown  as string)
 
 
     console.log(endDate  +  "            " + startDate)
-    const timeDifferenceInMilliseconds = endDate.getTime() - startDate.getTime();
-        console.log(timeDifferenceInMilliseconds);
+        console.log(this. timeDifferenceInMilliseconds);
 
-    const timeDifferenceInMinutes = timeDifferenceInMilliseconds / (1000 * 60);
+    const timeDifferenceInMinutes = this. timeDifferenceInMilliseconds / (1000 * 60);
 
     console.log(timeDifferenceInMinutes);
 
@@ -182,10 +183,10 @@ let ndDate = Date.parse(this.QuizToSolv.end as unknown  as string)
     this.timerInterval = setInterval(() => {
 
       let x = new Date()
-      let timeDifferenceInMilliseconds = endDate.getTime() - x.getTime();
-      console.log(timeDifferenceInMilliseconds);
+this.timeDifferenceInMilliseconds = this.timeDifferenceInMilliseconds - 1000;
+      console.log(this.timeDifferenceInMilliseconds);
 
-  let timeDifferenceInMinutes = timeDifferenceInMilliseconds / (1000 * 60);
+  let timeDifferenceInMinutes = this.timeDifferenceInMilliseconds / (1000 * 60);
   let remainingTime = timeDifferenceInMinutes * 60 * 1000
       remainingTime -= 1000; // Subtract one second
 console.log(remainingTime *1000)
@@ -203,8 +204,47 @@ console.log(remainingTime *1000)
   }
 
 
+    @HostListener('window:focus')
+    onFocus(event: any) {
+   
+      this.QuizServ.GetQuizToSolve(this.CheckQuiz).subscribe({
+        next: (data) => {
+          console.log(this.QuizToSolv);
+  
+          console.log(this.QuizToSolv.start as Date)
+  
+          this.timeDifferenceInMilliseconds = data.seconds *1000;
+          this.QuizToSolv.seconds = data.seconds;
+  
+        },
+        error: (error) => {
+          this.toastr.error("Some Thing Wrong")
+  
+        }
+      })
+      
+  }
 
-  timerInterval:any
+
+   isMaximized() {
+    return (window.screenX === 0) && (window.screenY === 0) &&
+    (window.outerWidth === window.screen.availWidth) &&
+    (window.outerHeight === window.screen.availHeight);
+  }
+  
+   isMinimized() {
+    return (window.screenX < -window.screen.availWidth) &&
+    (window.screenY < -window.screen.availHeight);
+  }
+  
+   isSplitScreen() {
+    return (window.screenY === 0) &&
+    ((window.screenX === 0) || (window.screenX === window.outerWidth)) &&
+    (window.outerWidth === window.screen.availWidth / 2) &&
+    (window.outerHeight === window.screen.availHeight);
+  }
+  
+  timerInterval:any;
   // submitQuiz() {
   //   const selectedAnswers = [];
 

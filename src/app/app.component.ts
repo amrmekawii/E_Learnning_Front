@@ -20,6 +20,8 @@ export class AppComponent  implements OnInit{
   }
 
   ngOnInit(): void {
+
+
     if (localStorage.getItem('token')) {
       this.authenticationService.isLoggedIn$.next(true);
 

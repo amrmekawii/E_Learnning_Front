@@ -44,7 +44,7 @@ style="
   <tbody>
     <tr *ngFor="let Requist of all_lectures  let index = index " >
       <td>{{index+1}}</td>
-      <td>{{Requist.lecturename}}</td>
+      <td>{{Requist.name}}</td>
       <td> <input type="text" #c  >    <button  (click)="GetLectureAcess(c.value , Requist.id , c) " class="btn btn-success m-3 r-20">Get Lecture   </button> </td>
 
 

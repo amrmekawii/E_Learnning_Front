@@ -30,6 +30,7 @@ export class QuizService {
   private readonly Base_URL915 = "https://amrbackend.azurewebsites.net/api/Quiz/DeleteQuestion/";
   private readonly Base_URL91 = "https://amrbackend.azurewebsites.net/api/Quiz/AddAnswer";
   private readonly Base_URL96 = "https://amrbackend.azurewebsites.net/api/Quiz/DeleteAnswer/";
+   
 
   private readonly Base_URL9111 = "https://amrbackend.azurewebsites.net/api/Quiz/GetQuizResult/"
 

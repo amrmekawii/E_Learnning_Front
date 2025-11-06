@@ -82,6 +82,17 @@ private readonly  AddEditDeleteTimePlace = "https://amrbackend.azurewebsites.net
 
 private readonly  Updateassighmentonline = "https://amrbackend.azurewebsites.net/api/Lecture/AddAssighmentOnlineGrade"
 
+private readonly changevisibilty = "https://amrbackend.azurewebsites.net/api/Lecture/ChangeLectureVisibility"
+ 
+
+
+public changeLecturevisibilty(Lecture:any)
+{
+   return this.client.post(this.changevisibilty,Lecture);  
+
+}
+
+
 
 public AddGradeOnline(x:any ) {
 

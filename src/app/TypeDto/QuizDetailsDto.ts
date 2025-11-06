@@ -25,8 +25,9 @@ export class GetQustionWithAnswersDto {
 export class GetQuizToSolveDto {
     start?: Date;
     end?: Date;
-    userquiz:any
-    quiestions?:GetQustionWithAnswersDto
+    userquiz:any;
+    quiestions?:GetQustionWithAnswersDto;
+    seconds : any
   }
 export class UpdateQuestionsDto {
     id?: number ;

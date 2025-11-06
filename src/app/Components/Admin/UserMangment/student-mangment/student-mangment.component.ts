@@ -239,12 +239,15 @@ this.UserService.DeleteStuudent(d).subscribe({
   next: (data)=> {
 
     this.modalService.dismissAll(Delete)
-
+    this.toastr.success("Deleted")
+this.GetStudents(this.lastClass);
     
   },
 error:  (err)=>{ console.log(err)  
 
   this.modalService.dismissAll(Delete)
+  this.toastr.error("Something wrong")
+
 } 
 });
 

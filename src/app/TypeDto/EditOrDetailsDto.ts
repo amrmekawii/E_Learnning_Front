@@ -4,4 +4,5 @@ export class EditOrDetailsDto {
     header?: string;
     quizId?: number;
     assignmentId?: number;
+    number?:any;
   }

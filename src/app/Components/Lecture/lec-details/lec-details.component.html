@@ -17,7 +17,12 @@
           <input type="text" id="header" formControlName="header" class="form-control" [readonly]="!editMode" />
         </div>
       </div>
-
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="number" class="label">lecture Number:</label>
+          <input type="text" id="number" formControlName="number" class="form-control" [readonly]="!editMode" />
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -27,6 +32,8 @@
 
             <mat-label class="label">Quiz Name:</mat-label>
             <mat-select formControlName="quizId">
+              <mat-option  [value]="null">No Quiz </mat-option>
+
               <mat-option *ngFor="let Assigh of Quizghment" [value]="Assigh.id">{{ Assigh.name }}</mat-option>
             </mat-select>
           </mat-form-field>

@@ -73,6 +73,8 @@ export class LecDetailsComponent implements OnInit {
       classId: [{ value: null, disabled: this.isReadOnly }, Validators.required],
       header: [{ value: '', disabled: this.isReadOnly }, Validators.required],
       quizId: [{ value: null, disabled: this.isReadOnly }],
+      number: [{ value: null, disabled: this.isReadOnly }],
+
       assignmentId: [{ value: null, disabled: this.isReadOnly }],
     });
 
@@ -131,6 +133,7 @@ this.UpdateLecture.classid =form.value.classId
 this.UpdateLecture.header =form.value.header
 this.UpdateLecture.assighnmentid =form.value.assignmentId
 this.UpdateLecture.quizid =form.value.quizId
+this.UpdateLecture.number =form.value.number  
 console.log(this.UpdateLecture);
 
 this.asighm2.UpdateLecture(this.UpdateLecture).subscribe({

@@ -151,7 +151,7 @@ export class LuctureHComponent implements OnInit {
   }
 
   ////////////////////////////////////////////FireWhenSelectClass
-  onMyVariableChange(ClassID: number) {
+  onMyVariableChange(ClassID: any) {
     this, this.FiristId = ClassID
     console.log('myVariable changed in the child component:', ClassID);
     this.Getcalsss.GetLecByClassId(ClassID).subscribe({
@@ -169,6 +169,29 @@ export class LuctureHComponent implements OnInit {
         console.log(err);
       }
     })
+  }
+
+
+  Changevisibality(checked :any , id:any , ClassId:any){
+
+let x =  {
+  "id": id as number,
+  "isActive": checked
+}
+
+this.Getcalsss.changeLecturevisibilty(x).subscribe({
+
+  next:()=> {
+    this.toastr.success("Lecture Visibilty Changed")
+   this. onMyVariableChange(ClassId)
+
+  },
+  error:()=>{
+    this.toastr.error("Somthing Went Wrong")
+    this. onMyVariableChange(ClassId)
+
+  }
+})
   }
 
 
@@ -240,12 +263,14 @@ export class LuctureHComponent implements OnInit {
 
 
   /////////////////////ForEditOrDetails
-  EditOrDetails(LecId: any, Classid: any, Header: any, quizid: any, assid: any, clasj: any) {
+  EditOrDetails(LecId: any, Classid: any, Header: any, quizid: any, assid: any, clasj: any,number:any) {
     this.EditOrDeatails.lectureId = LecId
     this.EditOrDeatails.classId = Classid
     this.EditOrDeatails.header = Header
     this.EditOrDeatails.quizId = quizid
     this.EditOrDeatails.assignmentId = assid
+    this.EditOrDeatails.number = number
+
     console.log(this.EditOrDeatails)
     this.sharedService.setObject(this.EditOrDeatails);
     this.sharedService.SetLecandClssname({ ClassName: clasj, LectureName: Header });

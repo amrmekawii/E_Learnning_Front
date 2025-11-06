@@ -7,7 +7,7 @@ export class GetLectByClassIdDto {
     assighnmentid?: number;
     quizName?: string;
     assighnmentName?: string;
-
+number?:any;
   }
 
 

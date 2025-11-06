@@ -30,6 +30,7 @@ export class LectuterAddDto {
         header?: string;
         quizid?: number;
         assighnmentid?: number;
+        number?: number;
       }
   
   
